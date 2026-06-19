@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Anime Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="header-logo">🌸</div>
+      <div>
+        <h1 class="header-title">Anime Tracker</h1>
+        <p class="header-sub">Deine persönliche Anime-Liste</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <!-- Notification Bell -->
+      <div class="notif-wrap" id="notifWrap">
+        <button class="icon-btn" id="notifBtn" title="Benachrichtigungen">
+          <i class="fas fa-bell"></i>
+          <span class="notif-badge hidden" id="notifBadge">0</span>
+        </button>
+        <div class="notif-panel hidden" id="notifPanel">
+          <div class="notif-panel-header">
+            <span><i class="fas fa-bell"></i> Benachrichtigungen</span>
+            <button id="notifMarkAll" class="link-btn">Alle gelesen</button>
+          </div>
+          <div class="notif-tabs-bar">
+            <button class="notif-tab active" data-ntab="episodes"><i class="fas fa-play-circle"></i> Episoden</button>
+            <button class="notif-tab" data-ntab="news"><i class="fas fa-newspaper"></i> News</button>
+          </div>
+          <div class="notif-body" id="notifBody"></div>
+        </div>
+      </div>
+      <button class="btn-ghost" id="exportBtn"><i class="fas fa-download"></i> Exportieren</button>
+      <label class="btn-ghost">
+        <i class="fas fa-upload"></i> Importieren
+        <input type="file" id="importInput" accept="application/json" hidden>
+      </label>
+      <label class="btn-ghost btn-accent-border" title="Import von HiAnime/AnimeKai/MAL (XML, JSON, TXT)">
+        <i class="fas fa-file-import"></i> Extern
+        <input type="file" id="extImportInput" accept=".xml,.json,.txt" hidden>
+      </label>
+    </div>
+  </header>
+
+  <!-- ═══ HERO BANNER ═══ -->
+  <div class="hero-banner">
+    <div class="hero-img" style="background-image:url('assets/main_header.webp')"></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="stats-row" id="statsRow">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-film"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-total">0</span><span class="stat-lbl">Gesamt</span></div>
+    </div>
+    <div class="stat-card" style="position:relative;">
+      <span class="stat-pct-badge" id="st-completed-pct">0%</span>
+      <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-completed">0</span><span class="stat-lbl">Abgeschlossen</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-episodes">0</span><span class="stat-lbl">Episoden</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-star"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-avg">0.0</span><span class="stat-lbl">Ø Bewertung</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-eye"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-watching">0</span><span class="stat-lbl">Aktuell</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-clock"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-planning">0</span><span class="stat-lbl">Geplant</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fas fa-heart"></i></div>
+      <div class="stat-body"><span class="stat-val" id="st-favs">0</span><span class="stat-lbl">Favoriten</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ MAL SEARCH ═══ -->
+  <section class="search-section">
+    <div class="search-box">
+      <i class="fas fa-search search-icon"></i>
+      <input id="malInput" class="search-input" type="text" placeholder="MyAnimeList durchsuchen und hinzufügen…" autocomplete="off">
+      <i class="fas fa-times search-clear hidden" id="malClear"></i>
+      <div class="search-dropdown hidden" id="malDropdown"></div>
+    </div>
+  </section>
+
+  <!-- ═══ TABS ROW ═══ -->
+  <div class="tabs-row">
+    <div class="tabs-left">
+      <div class="tabs-fixed" id="tabsFixed"></div>
+      <div class="tabs-divider hidden" id="tabsDivider"></div>
+      <div class="tabs-scroll-wrap" id="tabsScrollWrap">
+        <div class="tabs-scroll" id="tabsScroll"></div>
+      </div>
+    </div>
+    <div class="tabs-right">
+      <!-- More / folders -->
+      <div class="more-wrap" id="moreWrap">
+        <button class="pill-btn" id="moreBtn"><i class="fas fa-ellipsis-h"></i> Mehr</button>
+        <div class="more-panel hidden" id="morePanel">
+          <div class="more-list" id="moreList"></div>
+          <div class="more-input-row hidden" id="moreInputRow">
+            <input id="folderInput" class="more-input" placeholder="Name…" onkeydown="if(event.key==='Enter')AT.addFolder()">
+            <i class="fas fa-check" onclick="AT.addFolder()" class="more-confirm-icon"></i>
+          </div>
+          <button class="more-add-btn" id="moreAddBtn" onclick="AT.showFolderInput()"><i class="fas fa-plus"></i> Neue Kategorie</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <div class="filter-bar">
+    <!-- List search -->
+    <div class="filter-item filter-search">
+      <i class="fas fa-search fi-icon"></i>
+      <input id="listSearch" class="filter-input" placeholder="Liste durchsuchen…">
+      <i class="fas fa-times fi-clear hidden" id="listSearchClear"></i>
+    </div>
+    <!-- Franchise -->
+    <div class="filter-item hidden" id="franchiseWrap">
+      <i class="fas fa-layer-group fi-icon"></i>
+      <select id="franchiseSel" class="filter-select">
+        <option value="">Alle Franchises</option>
+      </select>
+    </div>
+    <!-- Favorites toggle -->
+    <div class="filter-item">
+      <i class="fas fa-heart fi-icon"></i>
+      <label class="toggle"><input type="checkbox" id="favToggle"><span class="toggle-track"></span></label>
+    </div>
+    <!-- Rating -->
+    <div class="filter-item">
+      <i class="fas fa-star fi-icon"></i>
+      <span id="ratingVal" class="filter-val">0</span>
+      <input type="range" id="ratingRange" min="0" max="10" step="0.5" value="0" class="filter-range">
+    </div>
+    <!-- Genres -->
+    <div class="filter-item genre-wrap" id="genreWrap">
+      <button class="filter-select genre-btn" id="genreBtn">
+        <i class="fas fa-tags"></i> <span id="genreBtnText">Genres</span> <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="genre-panel hidden" id="genrePanel"></div>
+    </div>
+    <!-- Sort -->
+    <div class="filter-item">
+      <i class="fas fa-sort fi-icon"></i>
+      <select id="sortSel" class="filter-select">
+        <option value="added-desc">Zuletzt hinzugefügt</option>
+        <option value="title-asc">Titel A–Z</option>
+        <option value="title-desc">Titel Z–A</option>
+        <option value="rating-desc">Bewertung ↓</option>
+        <option value="rating-asc">Bewertung ↑</option>
+        <option value="mal-desc">MAL Score ↓</option>
+        <option value="progress-desc">Fortschritt ↓</option>
+      </select>
+    </div>
+    <!-- Grouping toggle -->
+    <div class="filter-item">
+      <button class="pill-btn active" id="groupingBtn"><i class="fas fa-layer-group"></i> Gruppierung</button>
+    </div>
+    <!-- Reset -->
+    <button class="reset-btn" id="resetBtn"><i class="fas fa-undo"></i></button>
+  </div>
+
+  <!-- ═══ BULK ACTIONS ═══ -->
+  <div class="bulk-bar" id="bulkBar">
+    <label class="cb-wrap"><input type="checkbox" id="selectAll"><span class="cb-box"></span><span>Alle</span></label>
+    <span class="bulk-count" id="bulkCount">0 ausgewählt</span>
+    <select id="bulkStatus" class="filter-select" style="padding:5px 10px;">
+      <option value="">Status setzen…</option>
+      <option value="Currently Watching">Aktuell</option>
+      <option value="Completed">Abgeschlossen</option>
+      <option value="Plan to Watch">Geplant</option>
+      <option value="On Hold">Pausiert</option>
+      <option value="Dropped">Abgebrochen</option>
+    </select>
+    <button class="btn-sm-accent" id="bulkApplyBtn">Anwenden</button>
+    <button class="btn-sm-danger" id="bulkDeleteBtn"><i class="fas fa-trash"></i> Löschen</button>
+  </div>
+
+  <!-- ═══ MESSAGE ═══ -->
+  <div class="msg-bar hidden" id="msgBar"></div>
+
+  <!-- ═══ ANIME GRID ═══ -->
+  <div class="anime-grid" id="animeGrid"></div>
+  <div class="empty-state hidden" id="emptyState">
+    <div class="empty-icon">🌸</div>
+    <h3>Keine Anime gefunden</h3>
+    <p>Suche oben nach Anime und füge sie hinzu!</p>
+  </div>
+
+  <!-- ═══ PAGINATION ═══ -->
+  <div class="pagination" id="pagination"></div>
+
+</div><!-- .app -->
+
+<!-- ══════════════════ MODALS ══════════════════ -->
+
+<!-- Detail Modal -->
+<div class="modal hidden" id="detailModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box xlarge">
+    <div class="modal-head">
+      <h2 id="detailModalTitle"></h2>
+      <button class="icon-btn" id="detailClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+    <div class="modal-foot">
+      <button class="btn-danger" id="detailDelete"><i class="fas fa-trash"></i> Löschen</button>
+      <button class="btn-accent" id="detailEdit"><i class="fas fa-edit"></i> Bearbeiten</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal hidden" id="editModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box medium">
+    <div class="modal-head">
+      <h2><i class="fas fa-edit"></i> Bearbeiten</h2>
+      <button class="icon-btn" id="editClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="edit-preview">
+        <img id="editImg" src="" alt="">
+        <div><h3 id="editName"></h3><p id="editMeta" class="dim"></p></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Status</label>
+          <select id="editStatus" class="filter-select" style="width:100%"></select>
+        </div>
+        <div class="form-field">
+          <label>Fortschritt</label>
+          <div class="ep-row">
+            <input type="number" id="editEpWatched" min="0" class="ep-input">
+            <span class="dim">/</span>
+            <span id="editEpTotal" class="dim">0</span>
+          </div>
+        </div>
+        <div class="form-field full">
+          <label>Meine Bewertung: <strong id="editRatingVal">0.0</strong></label>
+          <input type="range" id="editRating" min="0" max="10" step="0.5" value="0" class="filter-range" style="width:100%">
+        </div>
+        <div class="form-field full">
+          <label class="cb-wrap"><input type="checkbox" id="editFav"><span class="cb-box"></span><span><i class="fas fa-heart"></i> Favorit</span></label>
+        </div>
+        <div class="form-field full" id="editCatField"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="editCancel">Abbrechen</button>
+      <button class="btn-accent" id="editSave">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAL Add Modal -->
+<div class="modal hidden" id="addModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box large">
+    <div class="modal-head">
+      <h2><i class="fab fa-fort-awesome"></i> Zur Liste hinzufügen</h2>
+      <button class="icon-btn" id="addClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="addBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="addCancel">Abbrechen</button>
+      <button class="btn-accent" id="addConfirm"><i class="fas fa-plus"></i> Hinzufügen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Merge Modal -->
+<div class="modal hidden" id="mergeModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box medium">
+    <div class="modal-head">
+      <h2><i class="fas fa-compress-arrows-alt"></i> Kategorien zusammenführen</h2>
+      <button class="icon-btn" id="mergeClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <p class="dim" style="margin-bottom:16px;">Alle Anime aus <strong id="mergeSrcLabel"></strong> werden zusammengeführt.</p>
+      <div class="form-grid">
+        <div class="form-field full">
+          <label>Zusammenführen mit</label>
+          <select id="mergeTarget" class="filter-select" style="width:100%"></select>
+        </div>
+        <div class="form-field full">
+          <label>Neuer Name</label>
+          <input type="text" id="mergeName" class="ep-input" style="width:100%">
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="mergeCancel">Abbrechen</button>
+      <button class="btn-accent" id="mergeConfirm"><i class="fas fa-compress-arrows-alt"></i> Zusammenführen</button>
+    </div>
+  </div>
+</div>
+
+<!-- External Import Modal -->
+<div class="modal hidden" id="extModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box large">
+    <div class="modal-head">
+      <h2><i class="fas fa-file-import"></i> Externer Import</h2>
+      <button class="icon-btn" id="extClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="extBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="extCancel">Abbrechen</button>
+      <button class="btn-accent" id="extStart" disabled><i class="fas fa-rocket"></i> Import starten</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
