@@ -137,14 +137,7 @@ function load() {
 }
 
 function sampleData() {
-  const n = Date.now();
-  return [
-    { id:n-1, malId:16498, title:"Attack on Titan", status:"Currently Watching", episodesWatched:12, totalEpisodes:25, rating:8.5, favorite:true, imageUrl:"https://cdn.myanimelist.net/images/anime/10/47347.jpg", genres:["Action","Drama","Fantasy"], malScore:8.5, type:"TV", notes:"Ein Meisterwerk.", addedAt:n-1, customCategories:[] },
-    { id:n-2, malId:40748, title:"Jujutsu Kaisen", status:"Completed", episodesWatched:24, totalEpisodes:24, rating:9.0, favorite:true, imageUrl:"https://cdn.myanimelist.net/images/anime/1171/109222.jpg", genres:["Action","Supernatural"], malScore:8.6, type:"TV", notes:"Unglaubliche Animation.", addedAt:n-2, customCategories:[] },
-    { id:n-3, malId:54717, title:"Frieren: Beyond Journey's End", status:"Plan to Watch", episodesWatched:0, totalEpisodes:28, rating:0, favorite:false, imageUrl:"https://cdn.myanimelist.net/images/anime/1015/138006.jpg", genres:["Fantasy","Drama"], malScore:9.0, type:"TV", notes:"", addedAt:n-3, customCategories:[] },
-    { id:n-4, malId:38000, title:"Demon Slayer", status:"Completed", episodesWatched:44, totalEpisodes:44, rating:9.5, favorite:true, imageUrl:"https://cdn.myanimelist.net/images/anime/1286/99889.jpg", genres:["Action","Supernatural"], malScore:8.7, type:"TV", notes:"", addedAt:n-4, customCategories:[] },
-    { id:n-5, malId:30276, title:"One Punch Man", status:"On Hold", episodesWatched:6, totalEpisodes:12, rating:8.0, favorite:false, imageUrl:"https://cdn.myanimelist.net/images/anime/1160/122627.jpg", genres:["Action","Comedy"], malScore:8.4, type:"TV", notes:"", addedAt:n-5, customCategories:[] }
-  ];
+  return [];
 }
 
 // ══════════════════ FRANCHISE / GROUPING ══════════════════
