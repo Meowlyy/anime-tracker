@@ -4,7 +4,7 @@ Eine persönliche Anime-Watchlist-App – verfolge deinen Fortschritt, bekomme
 Benachrichtigungen für neue Episoden und importiere deine Liste direkt aus
 MyAnimeList, HiAnime oder AnimeKai.
 
-🔗 **Live:** [anime-tracker.pages.dev](https://anime-tracker.pages.dev) <!-- Link anpassen, sobald Cloudflare live ist -->
+🔗 **Live:** [anime-tracker-9nl.pages.dev](https://anime-tracker-9nl.pages.dev)
 
 ---
 
