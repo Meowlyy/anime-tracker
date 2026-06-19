@@ -1,0 +1,34 @@
+Copyright (c) 2026 Meowly
+
+Alle Rechte vorbehalten.
+
+Dieses Repository und der enthaltene Quellcode sind urheberrechtlich
+geschützt. Es ist nicht gestattet, den Code – ganz oder in Teilen – zu
+kopieren, zu verändern, weiterzuverbreiten, zu verkaufen, kommerziell zu
+nutzen oder als eigenes Projekt zu veröffentlichen, ohne vorherige
+ausdrückliche schriftliche Erlaubnis der Urheberin.
+
+Die Nutzung der über dieses Projekt bereitgestellten, gehosteten Website
+ist davon unberührt und ausdrücklich erlaubt.
+
+Forks zum Zweck der Erstellung von Pull Requests (z.B. zur Vorschlag von
+Bugfixes oder Verbesserungen an diesem Repository) sind erlaubt. Die
+Übernahme solcher Vorschläge liegt im Ermessen der Urheberin.
+
+---
+
+Copyright (c) 2026 Meowly
+
+All rights reserved.
+
+This repository and its source code are protected by copyright. No part
+of this code may be copied, modified, redistributed, sold, used
+commercially, or published as a separate project, without prior express
+written permission from the copyright holder.
+
+Use of the hosted website provided through this project is unaffected
+and explicitly permitted.
+
+Forks for the purpose of submitting pull requests (e.g. to propose
+bugfixes or improvements to this repository) are permitted. Acceptance
+of such proposals is at the sole discretion of the copyright holder.
