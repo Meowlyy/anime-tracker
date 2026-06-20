@@ -208,6 +208,12 @@ body{
   color:var(--dim);cursor:pointer;transition:color var(--trans);
 }
 .search-clear:hover{color:var(--text)}
+.search-expand-btn{
+  position:absolute;right:44px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--dim);cursor:pointer;
+  font-size:.85rem;padding:6px;transition:color var(--trans);
+}
+.search-expand-btn:hover{color:var(--accent)}
 .search-dropdown{
   position:absolute;top:calc(100% + 8px);left:0;right:0;
   background:#0b1020;border:1px solid var(--border);border-radius:var(--radius);
@@ -222,6 +228,31 @@ body{
 .sdrop-item img{width:46px;height:65px;object-fit:cover;border-radius:6px;flex-shrink:0}
 .sdrop-title{font-size:.83rem;font-weight:600;margin-bottom:4px}
 .sdrop-meta{font-size:.69rem;color:var(--dim);display:flex;gap:10px;flex-wrap:wrap}
+
+/* ════════════════════ BIG SEARCH MODAL ════════════════════ */
+.bigsearch-box{max-width:1040px;width:100%}
+.bigsearch-inputwrap{position:relative;padding:18px 24px}
+.bigsearch-inputwrap .search-icon{left:42px}
+.bigsearch-inputwrap .search-input{padding:14px 50px}
+.bigsearch-inputwrap .search-clear{right:42px}
+.bigsearch-body{padding-top:0}
+.bigsearch-hint{color:var(--dim);font-size:.82rem;padding:10px 4px 4px;display:flex;gap:8px;align-items:center}
+.bigsearch-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;
+}
+.bsr-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;cursor:pointer;transition:all var(--trans);display:flex;flex-direction:column;
+}
+.bsr-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--glow)}
+.bsr-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--bg3)}
+.bsr-info{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.bsr-title{font-size:.85rem;font-weight:700;line-height:1.25}
+.bsr-alt{font-size:.72rem;color:var(--dim);line-height:1.2}
+.bsr-meta{font-size:.68rem;color:var(--dim);display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.bsr-meta span{display:flex;align-items:center;gap:3px}
+.bsr-genres{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.bsr-genre-tag{font-size:.63rem;padding:2px 8px;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--accent)}
 
 /* ════════════════════ TABS ════════════════════ */
 .tabs-row{
