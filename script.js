@@ -66,6 +66,7 @@ const ui = {
   mergeIdx:   null,
   extParsed:  [],
   extCancelled: false,
+  repairCancelled: false,
   notifTab:   "episodes",
   activeNtab: "episodes"
 };
@@ -77,6 +78,48 @@ let _franchMap = null;
 // ══════════════════ HELPERS ══════════════════
 const $ = id => document.getElementById(id);
 const esc = s => s ? String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;") : "";
+
+// Self-hosted cover fallback (no external dependency like via.placeholder.com, which is unreliable).
+const NO_COVER_SVG = "data:image/svg+xml," + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+  <rect width="300" height="450" fill="#111827"/>
+  <rect x="0.5" y="0.5" width="299" height="449" fill="none" stroke="#1f2937" stroke-width="1"/>
+  <g transform="translate(150,195)" fill="#ff4fd8" opacity=".55">
+    <path d="M-26-20h52a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6h-52a6 6 0 0 1-6-6v-34a6 6 0 0 1 6-6Z" fill="none" stroke="#ff4fd8" stroke-width="3"/>
+    <circle cx="-9" cy="-3" r="5"/>
+    <path d="M-20 16l13-13 9 8 11-13 17 18Z"/>
+  </g>
+  <text x="150" y="248" font-family="sans-serif" font-size="15" fill="#8891a8" text-anchor="middle">Kein Cover</text>
+</svg>`.trim());
+function noCover(el){ el.onerror=null; el.src=NO_COVER_SVG; }
+
+// Generic Jikan API request helper. Used throughout the app (imports, airing
+// refresh, relations, news) — handles the relative "/..." paths and retries
+// once on a 429 rate-limit response.
+async function jikan(path) {
+  const url = path.startsWith("http") ? path : `https://api.jikan.moe/v4${path}`;
+  let retries = 3;
+  while (retries-- > 0) {
+    const res = await fetch(url);
+    if (res.status === 429) { await new Promise(r => setTimeout(r, 1500)); continue; }
+    if (!res.ok) throw new Error(`Jikan request failed: ${res.status}`);
+    return res.json();
+  }
+  throw new Error("Jikan rate limit exceeded");
+}
+
+// Prefer the english title (more familiar to most users) over MAL's primary
+// (often japanese romaji) title, falling back if no english title exists.
+const preferredTitle = a => (a.title_english && a.title_english.trim()) || a.title;
+
+// The "other" title not chosen as primary — romaji if english was used as primary,
+// or the japanese-script title as a bonus if no english title exists at all.
+function altTitleFor(a) {
+  const primary = preferredTitle(a);
+  if (a.title_english && a.title_english.trim() && a.title && a.title !== primary) return a.title;
+  if (a.title_japanese && a.title_japanese !== primary) return a.title_japanese;
+  return "";
+}
 const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
 function msg(text, isErr=false) {
@@ -207,10 +250,11 @@ function getFiltered() {
     const ids = new Set((fm[ui.franchise]||[]).map(a=>a.id));
     l = l.filter(a => ids.has(a.id));
   }
-  // Text search
+  // Text search — match against the saved title and the alt title (e.g. japanese
+  // romaji if english is stored as primary, so it's findable either way)
   if (ui.search) {
     const q = ui.search.toLowerCase();
-    l = l.filter(a => a.title.toLowerCase().includes(q));
+    l = l.filter(a => a.title.toLowerCase().includes(q) || (a.altTitle||"").toLowerCase().includes(q));
   }
   // Favorites
   if (ui.favOnly) l = l.filter(a => a.favorite);
@@ -422,8 +466,8 @@ function makeCard(anime) {
   div.className = "anime-card";
   div.dataset.id = anime.id;
   div.innerHTML = `
-    <img src="${esc(anime.imageUrl||"")}" alt="${esc(anime.title)}" loading="lazy"
-         onerror="this.src='https://via.placeholder.com/300x450?text=No+Cover'">
+    <img src="${esc(anime.imageUrl||NO_COVER_SVG)}" alt="${esc(anime.title)}" loading="lazy"
+         onerror="noCover(this)">
     <div class="card-badges">
       <span class="card-status ${sc}">${sl}</span>
       <div class="card-fav-btn${anime.favorite?" on":""}" data-id="${anime.id}"><i class="fas fa-star"></i></div>
@@ -436,6 +480,7 @@ function makeCard(anime) {
     </div>
     <div class="card-body">
       <div class="card-title" title="${esc(anime.title)}">${esc(anime.title)}</div>
+      ${anime.altTitle ? `<div class="card-alt-title" title="${esc(anime.altTitle)}">${esc(anime.altTitle)}</div>` : ""}
       <div class="card-prog-bar"><div class="card-prog-fill" style="width:${pct}%"></div></div>
       <div class="card-prog-txt">${anime.episodesWatched||0}/${anime.totalEpisodes||"?"} Ep.</div>
       <div class="card-stars">${stars}</div>
@@ -596,6 +641,8 @@ function openDetail(anime) {
   ui.detailId = anime.id;
   const title = $("detailModalTitle"), body = $("detailBody");
   if (title) title.textContent = anime.title;
+  const altEl = $("detailModalAlt");
+  if (altEl) altEl.textContent = anime.altTitle || "";
   const sl = TO_LABEL[anime.status]||anime.status;
   const malLink = anime.malId
     ? `<a href="https://myanimelist.net/anime/${anime.malId}" target="_blank" rel="noopener" class="mal-link"><i class="fab fa-myanimelist"></i> Auf MAL öffnen</a>`
@@ -605,8 +652,8 @@ function openDetail(anime) {
   if (body) body.innerHTML = `
     <div class="detail-layout">
       <div class="detail-poster">
-        <img src="${esc(anime.imageUrl||"")}" alt="${esc(anime.title)}"
-             onerror="this.src='https://via.placeholder.com/300x450?text=No+Cover'">
+        <img src="${esc(anime.imageUrl||NO_COVER_SVG)}" alt="${esc(anime.title)}"
+             onerror="noCover(this)">
       </div>
       <div>
         <div class="detail-meta-row">
@@ -637,7 +684,7 @@ function openDetail(anime) {
 // ══════════════════ EDIT MODAL ══════════════════
 function openEdit(anime) {
   ui.editId = anime.id;
-  const img   = $("editImg");   if(img)   img.src = anime.imageUrl||"";
+  const img   = $("editImg");   if(img)   img.src = anime.imageUrl||NO_COVER_SVG;
   const name  = $("editName");  if(name)  name.textContent = anime.title;
   const meta  = $("editMeta");  if(meta)  meta.textContent = `${anime.type||"Anime"} · ${anime.totalEpisodes||"?"} Ep.`;
   const stat  = $("editStatus"); if(stat) stat.innerHTML = statusOptions(anime.status);
@@ -675,6 +722,41 @@ let _malTimer = null;
 // so background tasks (airing, etc.) don't block search results
 let _malSearchId = 0;
 
+// Shared search helper used by both the small dropdown search and the big search modal.
+// Tries the full query first, then falls back to shorter word-chunks if nothing is found.
+// Jikan's /anime?q= already matches against english/japanese/synonym titles, not just
+// the romaji title, so searching "Attack on Titan" or "進撃の巨人" both work here.
+async function fetchAnimeSearch(q, { limit = 20, onRetryWait } = {}) {
+  const queries = [q];
+  const words = q.split(/\s+/);
+  if (words.length > 4) queries.push(words.slice(0, 5).join(" "));
+  if (words.length > 2) queries.push(words.slice(0, 3).join(" "));
+
+  for (const query of queries) {
+    let retries = 2;
+    while (retries-- > 0) {
+      try {
+        const res = await fetch(
+          `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=${limit}&sfw`
+        );
+        if (res.status === 429) {
+          if (onRetryWait) onRetryWait();
+          await new Promise(r => setTimeout(r, 2000));
+          continue;
+        }
+        if (!res.ok) break;
+        const data = await res.json();
+        const results = data.data || [];
+        if (results.length) return results;
+        break;
+      } catch {
+        break;
+      }
+    }
+  }
+  return [];
+}
+
 async function malSearch() {
   const inp  = $("malInput");
   const drop = $("malDropdown");
@@ -687,38 +769,15 @@ async function malSearch() {
     const searchId = ++_malSearchId; // track this specific search run
     if(drop) { drop.classList.remove("hidden"); drop.innerHTML='<div class="notif-loading"><i class="fas fa-spinner fa-spin"></i> Suche…</div>'; }
 
-    // Try full query, then fall back to first 6 words if no results
-    const queries = [q];
-    const words = q.split(/\s+/);
-    if (words.length > 4) queries.push(words.slice(0, 5).join(" "));
-    if (words.length > 2) queries.push(words.slice(0, 3).join(" "));
-
-    let results = [];
-    for (const query of queries) {
-      if (searchId !== _malSearchId) return; // user typed again, abort
-      try {
-        let retries = 2;
-        while (retries-- > 0) {
-          const res = await fetch(
-            `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=20&order_by=popularity&sfw`
-          );
-          if (res.status === 429) {
-            if(drop) drop.innerHTML='<div class="notif-loading" style="color:var(--warning);"><i class="fas fa-clock"></i> Kurz warten…</div>';
-            await new Promise(r => setTimeout(r, 2000));
-            continue;
-          }
-          if (!res.ok) break;
-          const data = await res.json();
-          results = data.data || [];
-          break;
-        }
-        if (results.length) break; // got results, stop trying shorter queries
-      } catch {
-        if (retries === 0 && query === queries[queries.length-1]) {
-          if(drop && searchId===_malSearchId) drop.innerHTML='<div class="notif-loading" style="color:var(--danger);">Verbindung fehlgeschlagen. Bitte Seite neu laden.</div>';
-          return;
-        }
-      }
+    let results;
+    try {
+      results = await fetchAnimeSearch(q, {
+        limit: 20,
+        onRetryWait: () => { if(drop && searchId===_malSearchId) drop.innerHTML='<div class="notif-loading" style="color:var(--warning);"><i class="fas fa-clock"></i> Kurz warten…</div>'; }
+      });
+    } catch {
+      if(drop && searchId===_malSearchId) drop.innerHTML='<div class="notif-loading" style="color:var(--danger);">Verbindung fehlgeschlagen. Bitte Seite neu laden.</div>';
+      return;
     }
 
     if (searchId !== _malSearchId) return; // stale result
@@ -764,6 +823,95 @@ async function malSearch() {
   }, 600);
 }
 
+// ══════════════════ BIG SEARCH MODAL ══════════════════
+let _bigSearchId = 0, _bigSearchTimer = null;
+
+function openBigSearchModal() {
+  $("bigSearchModal")?.classList.remove("hidden");
+  const bi = $("bigSearchInput");
+  if (bi) { bi.value = ""; setTimeout(() => bi.focus(), 50); }
+  const res = $("bigSearchResults");
+  if (res) res.innerHTML = '<div class="bigsearch-hint"><i class="fas fa-info-circle"></i> Tipp wenn du einen Anime nicht findest: probier mal nur ein einzelnes Schlüsselwort statt des ganzen Titels.</div>';
+  $("bigSearchClear")?.classList.add("hidden");
+}
+
+function closeBigSearchModal() {
+  $("bigSearchModal")?.classList.add("hidden");
+}
+
+async function bigSearch() {
+  const inp = $("bigSearchInput");
+  const res = $("bigSearchResults");
+  const q = inp ? inp.value.trim() : "";
+  if (!q) {
+    if (res) res.innerHTML = '<div class="bigsearch-hint"><i class="fas fa-info-circle"></i> Tipp wenn du einen Anime nicht findest: probier mal nur ein einzelnes Schlüsselwort statt des ganzen Titels.</div>';
+    return;
+  }
+
+  clearTimeout(_bigSearchTimer);
+  _bigSearchTimer = setTimeout(async () => {
+    const searchId = ++_bigSearchId;
+    if (res) res.innerHTML = '<div class="notif-loading"><i class="fas fa-spinner fa-spin"></i> Suche…</div>';
+
+    let results;
+    try {
+      results = await fetchAnimeSearch(q, {
+        limit: 24,
+        onRetryWait: () => { if (res && searchId === _bigSearchId) res.innerHTML = '<div class="notif-loading" style="color:var(--warning);"><i class="fas fa-clock"></i> Kurz warten…</div>'; }
+      });
+    } catch {
+      if (res && searchId === _bigSearchId) res.innerHTML = '<div class="notif-loading" style="color:var(--danger);">Verbindung fehlgeschlagen. Bitte Seite neu laden.</div>';
+      return;
+    }
+
+    if (searchId !== _bigSearchId) return;
+
+    if (!results.length) {
+      if (res) res.innerHTML = '<div class="notif-loading">Keine Ergebnisse — versuche einen kürzeren oder anderen Suchbegriff.</div>';
+      return;
+    }
+
+    if (!res) return;
+    res.innerHTML = `<div class="bigsearch-grid">${results.map(a => {
+      // Show an alt title (english if different from main title, otherwise first synonym) so it's
+      // clear which anime this is even if you searched in a different language than the main title.
+      const altTitle = (a.title_english && a.title_english !== a.title) ? a.title_english
+        : (a.title_synonyms && a.title_synonyms[0]) || "";
+      const genres = (a.genres || []).slice(0, 3).map(g => `<span class="bsr-genre-tag">${esc(g.name)}</span>`).join("");
+      return `
+        <div class="bsr-card" data-mal-id="${a.mal_id}">
+          <img src="${esc(a.images?.jpg?.large_image_url || a.images?.jpg?.image_url || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="bsr-info">
+            <div class="bsr-title">${esc(a.title)}</div>
+            ${altTitle ? `<div class="bsr-alt">${esc(altTitle)}</div>` : ""}
+            <div class="bsr-genres">${genres}</div>
+            <div class="bsr-meta">
+              <span>${a.type || "Anime"}</span>
+              <span>${a.episodes || "?"} Ep.</span>
+              <span>⭐ ${a.score?.toFixed(1) || "—"}</span>
+              <span>${a.year || "?"}</span>
+            </div>
+          </div>
+        </div>`;
+    }).join("")}</div>`;
+
+    res.querySelectorAll(".bsr-card").forEach(card => {
+      card.addEventListener("click", async () => {
+        const malId = parseInt(card.dataset.malId);
+        res.innerHTML = '<div class="notif-loading"><i class="fas fa-spinner fa-spin"></i> Lade Details…</div>';
+        try {
+          const r = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
+          const d = await r.json();
+          if (d.data) {
+            closeBigSearchModal();
+            openAddModal(d.data);
+          }
+        } catch { msg("Fehler beim Laden der Details.", true); }
+      });
+    });
+  }, 500);
+}
+
 // ══════════════════ ADD MODAL ══════════════════
 function openAddModal(anime) {
   ui.pendingMal = anime;
@@ -773,7 +921,7 @@ function openAddModal(anime) {
     <div class="add-preview">
       <img src="${esc(anime.images?.jpg?.large_image_url||"")}" alt="">
       <div>
-        <h3>${esc(anime.title)}</h3>
+        <h3>${esc(preferredTitle(anime))}</h3>
         <div class="add-meta">
           <span><i class="fas fa-tv"></i> ${anime.type||"Anime"}</span>
           <span><i class="fas fa-list"></i> ${anime.episodes||"?"} Ep.</span>
@@ -808,7 +956,8 @@ function confirmAdd() {
   const newAnime = {
     id: Date.now() + Math.floor(Math.random()*1000),
     malId: pm.mal_id,
-    title: pm.title,
+    title: preferredTitle(pm),
+    altTitle: altTitleFor(pm),
     status: $("addStatus")?.value||"Plan to Watch",
     episodesWatched: Math.min(parseInt($("addEpWatched")?.value)||0, pm.episodes||999999),
     totalEpisodes: pm.episodes||0,
@@ -1149,7 +1298,8 @@ async function runExtImport() {
     list.push({
       id: Date.now()+Math.floor(Math.random()*1000),
       malId: entry.malId||(ad?.mal_id)||0,
-      title: ad?.title||entry.title,
+      title: ad?preferredTitle(ad):entry.title,
+      altTitle: ad?altTitleFor(ad):"",
       status: entry.status,
       episodesWatched: entry.episodesWatched||0,
       totalEpisodes: ad?.episodes||0,
@@ -1172,6 +1322,94 @@ async function runExtImport() {
   if(startBtn) startBtn.innerHTML='<i class="fas fa-check"></i> Fertig';
   if(cancelBtn) cancelBtn.textContent="Schließen";
   msg(`${done} Anime importiert!`);
+}
+
+// ══════════════════ REPAIR EXISTING ENTRIES ══════════════════
+// Backfills missing data (cover, episode count, score, alt title, genres) for entries
+// that were added/imported before a fix, or where the source API returned incomplete
+// data at the time. Only re-fetches entries that look incomplete — doesn't touch
+// personal fields (status, progress, rating, favorite, notes, categories).
+function needsRepair(a) {
+  if (!a.malId) return false; // nothing to fetch without a MAL id
+  return !a.altTitle || !a.imageUrl || !a.totalEpisodes;
+}
+
+function openRepairModal() {
+  const toRepair = list.filter(needsRepair);
+  const body = $("repairBody"), startBtn = $("repairStart");
+  if (!body) return;
+  ui.repairList = toRepair;
+  body.innerHTML = `
+    <div class="ext-stats">
+      <div class="ext-stat"><div class="stat-icon"><i class="fas fa-list"></i></div><div><div class="ext-stat-val">${list.length}</div><div class="ext-stat-lbl">Gesamt</div></div></div>
+      <div class="ext-stat"><div class="stat-icon" style="color:var(--warning)"><i class="fas fa-triangle-exclamation"></i></div><div><div class="ext-stat-val" style="color:var(--warning)">${toRepair.length}</div><div class="ext-stat-lbl">Unvollständig</div></div></div>
+    </div>
+    <div class="ext-info"><i class="fas fa-info-circle" style="color:var(--accent2);margin-right:6px;"></i>
+      Lädt fehlendes Cover, Episodenzahl, Score, Genres &amp; den Alternativtitel für Einträge mit lückenhaften Daten nach. Deine Bewertungen, Notizen und Fortschritt bleiben unangetastet. Bei ${toRepair.length} Einträgen ca. ${Math.ceil(toRepair.length*0.4/60)} Minuten — der Tab muss währenddessen offen bleiben, der Fortschritt wird laufend zwischengespeichert.
+    </div>
+    <div class="ext-progress hidden" id="repairProgressWrap">
+      <div class="ext-prog-row"><span id="repairProgText">Starte…</span><span id="repairProgCount">0 / ${toRepair.length}</span></div>
+      <div class="ext-prog-bar"><div class="ext-prog-fill" id="repairProgFill" style="width:0%"></div></div>
+      <div class="ext-log" id="repairLog"></div>
+    </div>`;
+  if (startBtn) startBtn.disabled = toRepair.length === 0;
+  $("repairModal")?.classList.remove("hidden");
+}
+
+async function runRepair() {
+  const startBtn = $("repairStart"), cancelBtn = $("repairCancel");
+  const toRepair = ui.repairList || [];
+  if (startBtn) { startBtn.disabled = true; startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Repariere…'; }
+  ui.repairCancelled = false;
+  const pw = $("repairProgressWrap"); if (pw) pw.classList.remove("hidden");
+
+  const total = toRepair.length;
+  let done = 0, fixed = 0, failed = 0;
+  const log = s => { const el = $("repairLog"); if (el) { el.innerHTML += `<div>${s}</div>`; el.scrollTop = el.scrollHeight; } };
+
+  for (const entry of toRepair) {
+    if (ui.repairCancelled) { log("⛔ Abgebrochen."); break; }
+    const pt = $("repairProgText"), pc = $("repairProgCount"), pf = $("repairProgFill");
+    if (pt) pt.textContent = `Lade: ${(entry.title || "?").substring(0, 40)}…`;
+    if (pc) pc.textContent = `${done} / ${total}`;
+    if (pf) pf.style.width = `${(done / total * 100).toFixed(0)}%`;
+
+    try {
+      await new Promise(r => setTimeout(r, 350)); // be gentle with the free API rate limit
+      const d = await jikan(`/anime/${entry.malId}`);
+      const ad = d.data;
+      if (ad) {
+        const live = list.find(a => a.id === entry.id);
+        if (live) {
+          if (!live.title || live.title === ad.title) live.title = preferredTitle(ad); // keep a manual rename if user made one
+          live.altTitle = altTitleFor(ad);
+          if (!live.imageUrl) live.imageUrl = ad.images?.jpg?.large_image_url || "";
+          if (!live.totalEpisodes) live.totalEpisodes = ad.episodes || 0;
+          if (!live.malScore) live.malScore = ad.score || 0;
+          if (!live.genres?.length) live.genres = (ad.genres || []).map(g => g.name);
+          if (!live.type) live.type = ad.type || "";
+          fixed++;
+          log(`✅ ${esc(preferredTitle(ad))}`);
+        }
+      } else {
+        failed++; log(`⚠️ Keine Daten: ${esc(entry.title || "?")}`);
+      }
+    } catch {
+      failed++; log(`❌ Fehler: ${esc(entry.title || "?")}`);
+    }
+
+    done++;
+    if (done % 20 === 0) save(); // checkpoint periodically in case the tab gets closed
+  }
+
+  save(); updateStats(); renderList(); renderTabs();
+  const pt = $("repairProgText"), pc = $("repairProgCount"), pf = $("repairProgFill");
+  if (pt) pt.textContent = ui.repairCancelled ? "Abgebrochen" : "✅ Fertig!";
+  if (pc) pc.textContent = `${done} / ${total}`;
+  if (pf) pf.style.width = "100%";
+  if (startBtn) startBtn.innerHTML = '<i class="fas fa-check"></i> Fertig';
+  if (cancelBtn) cancelBtn.textContent = "Schließen";
+  msg(`${fixed} repariert, ${failed} fehlgeschlagen.`);
 }
 
 // ══════════════════ EXPORT / IMPORT ══════════════════
@@ -1299,6 +1537,26 @@ function initEvents() {
     if(!e.target.closest(".search-box")) $("malDropdown")?.classList.add("hidden");
   });
 
+  // Big search modal
+  $("searchExpandBtn")?.addEventListener("click", openBigSearchModal);
+  $("bigSearchClose")?.addEventListener("click", closeBigSearchModal);
+  $("bigSearchModal")?.addEventListener("click", e => {
+    if (e.target === $("bigSearchModal")?.querySelector(".modal-bg")) closeBigSearchModal();
+  });
+  $("bigSearchInput")?.addEventListener("input", e => {
+    const clr = $("bigSearchClear"); if (clr) clr.classList.toggle("hidden", !e.target.value);
+    bigSearch();
+  });
+  $("bigSearchClear")?.addEventListener("click", () => {
+    const inp = $("bigSearchInput"), clr = $("bigSearchClear");
+    if (inp) { inp.value = ""; inp.focus(); }
+    if (clr) clr.classList.add("hidden");
+    bigSearch();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !$("bigSearchModal")?.classList.contains("hidden")) closeBigSearchModal();
+  });
+
   // Filters
   const ls=$("listSearch"),lsc=$("listSearchClear");
   ls?.addEventListener("input", debounce(e=>{ ui.search=e.target.value; if(lsc) lsc.classList.toggle("hidden",!ui.search); ui.page=1; renderList(); },200));
@@ -1370,6 +1628,18 @@ function initEvents() {
   $("extCancel")?.addEventListener("click",()=>{ if(!$("extProgressWrap")||$("extProgressWrap").classList.contains("hidden")){ $("extModal")?.classList.add("hidden"); } else { ui.extCancelled=true; } });
   $("extModal")?.addEventListener("click",e=>{ if(e.target===$("extModal").querySelector(".modal-bg")){ ui.extCancelled=true; $("extModal")?.classList.add("hidden"); } });
   $("extStart")?.addEventListener("click",runExtImport);
+
+  // Repair existing entries
+  $("repairBtn")?.addEventListener("click", openRepairModal);
+  $("repairClose")?.addEventListener("click", () => { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); });
+  $("repairCancel")?.addEventListener("click", () => {
+    if (!$("repairProgressWrap") || $("repairProgressWrap").classList.contains("hidden")) { $("repairModal")?.classList.add("hidden"); }
+    else { ui.repairCancelled = true; }
+  });
+  $("repairModal")?.addEventListener("click", e => {
+    if (e.target === $("repairModal")?.querySelector(".modal-bg")) { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); }
+  });
+  $("repairStart")?.addEventListener("click", runRepair);
 
   // Detail modal
   $("detailClose")?.addEventListener("click",()=>$("detailModal")?.classList.add("hidden"));
