@@ -1241,7 +1241,8 @@ function parseTXT(text) {
 
 function showExtPreview(entries) {
   ui.extParsed = entries;
-  const body = $("extBody"), startBtn = $("extStart");
+  ui.extDone = false;
+  const body = $("extBody"), startBtn = $("extStart"), cancelBtn = $("extCancel");
   if (!body) return;
   const existIds = new Set(list.filter(a=>a.malId).map(a=>a.malId));
   const dupes = entries.filter(e=>e.malId&&existIds.has(e.malId)).length;
@@ -1265,7 +1266,8 @@ function showExtPreview(entries) {
       <div class="ext-prog-bar"><div class="ext-prog-fill" id="extProgFill" style="width:0%"></div></div>
       <div class="ext-log" id="extLog"></div>
     </div>`;
-  if (startBtn) startBtn.disabled = newCount===0;
+  if (startBtn) { startBtn.disabled = newCount===0; startBtn.innerHTML = '<i class="fas fa-rocket"></i> Import starten'; }
+  if (cancelBtn) cancelBtn.textContent = "Abbrechen";
 }
 
 async function runExtImport() {
@@ -1321,6 +1323,8 @@ async function runExtImport() {
   if(pf) pf.style.width="100%";
   if(startBtn) startBtn.innerHTML='<i class="fas fa-check"></i> Fertig';
   if(cancelBtn) cancelBtn.textContent="Schließen";
+  if(startBtn) startBtn.disabled = false;
+  ui.extDone = true;
   msg(`${done} Anime importiert!`);
 }
 
@@ -1331,12 +1335,15 @@ async function runExtImport() {
 // personal fields (status, progress, rating, favorite, notes, categories).
 function needsRepair(a) {
   if (!a.malId) return false; // nothing to fetch without a MAL id
+  if (a.repairedAt) return false; // already successfully queried once — MAL itself may just not have episodes/score yet (e.g. still airing)
   return !a.altTitle || !a.imageUrl || !a.totalEpisodes;
 }
 
 function openRepairModal() {
+  ui.repairDone = false;
+  ui.repairCancelled = false;
   const toRepair = list.filter(needsRepair);
-  const body = $("repairBody"), startBtn = $("repairStart");
+  const body = $("repairBody"), startBtn = $("repairStart"), cancelBtn = $("repairCancel");
   if (!body) return;
   ui.repairList = toRepair;
   body.innerHTML = `
@@ -1352,7 +1359,8 @@ function openRepairModal() {
       <div class="ext-prog-bar"><div class="ext-prog-fill" id="repairProgFill" style="width:0%"></div></div>
       <div class="ext-log" id="repairLog"></div>
     </div>`;
-  if (startBtn) startBtn.disabled = toRepair.length === 0;
+  if (startBtn) { startBtn.disabled = toRepair.length === 0; startBtn.innerHTML = '<i class="fas fa-rocket"></i> Reparatur starten'; }
+  if (cancelBtn) cancelBtn.textContent = "Abbrechen";
   $("repairModal")?.classList.remove("hidden");
 }
 
@@ -1388,6 +1396,7 @@ async function runRepair() {
           if (!live.malScore) live.malScore = ad.score || 0;
           if (!live.genres?.length) live.genres = (ad.genres || []).map(g => g.name);
           if (!live.type) live.type = ad.type || "";
+          live.repairedAt = Date.now();
           fixed++;
           log(`✅ ${esc(preferredTitle(ad))}`);
         }
@@ -1409,6 +1418,8 @@ async function runRepair() {
   if (pf) pf.style.width = "100%";
   if (startBtn) startBtn.innerHTML = '<i class="fas fa-check"></i> Fertig';
   if (cancelBtn) cancelBtn.textContent = "Schließen";
+  if (startBtn) startBtn.disabled = false;
+  ui.repairDone = true;
   msg(`${fixed} repariert, ${failed} fehlgeschlagen.`);
 }
 
@@ -1418,6 +1429,103 @@ function exportData() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a"); a.href=url; a.download="anime-data.json"; a.click();
   URL.revokeObjectURL(url); msg("JSON exportiert!");
+}
+
+// ══════════════════ ZIP EXPORT WITH IMAGES ══════════════════
+// Bundles data.json + every cover image into one ZIP, so the list can later be
+// re-imported without needing internet access for the covers. Whether this works
+// depends on the image host allowing cross-origin reads (not just <img> display) —
+// entries whose image can't be fetched this way are simply skipped and logged,
+// the rest of the export still succeeds.
+ui.zipExportCancelled = false;
+
+function openZipExportModal() {
+  ui.zipExportDone = false;
+  ui.zipExportCancelled = false;
+  const withImg = list.filter(a => a.imageUrl);
+  const body = $("zipExportBody"), startBtn = $("zipExportStart"), cancelBtn = $("zipExportCancel");
+  if (!body) return;
+  body.innerHTML = `
+    <div class="ext-stats">
+      <div class="ext-stat"><div class="stat-icon"><i class="fas fa-list"></i></div><div><div class="ext-stat-val">${list.length}</div><div class="ext-stat-lbl">Gesamt</div></div></div>
+      <div class="ext-stat"><div class="stat-icon" style="color:var(--accent2)"><i class="fas fa-image"></i></div><div><div class="ext-stat-val" style="color:var(--accent2)">${withImg.length}</div><div class="ext-stat-lbl">Mit Cover</div></div></div>
+    </div>
+    <div class="ext-info"><i class="fas fa-info-circle" style="color:var(--accent2);margin-right:6px;"></i>
+      Lädt alle Cover-Bilder herunter und packt sie zusammen mit deinen Daten in eine ZIP-Datei. Bei ${withImg.length} Bildern kann das ein paar Minuten dauern — falls einzelne Bilder vom Server nicht ausgelesen werden können, werden sie übersprungen (steht im Log), der Rest des Exports läuft trotzdem durch.
+    </div>
+    <div class="ext-progress hidden" id="zipExportProgressWrap">
+      <div class="ext-prog-row"><span id="zipExportProgText">Starte…</span><span id="zipExportProgCount">0 / ${withImg.length}</span></div>
+      <div class="ext-prog-bar"><div class="ext-prog-fill" id="zipExportProgFill" style="width:0%"></div></div>
+      <div class="ext-log" id="zipExportLog"></div>
+    </div>`;
+  if (startBtn) { startBtn.disabled = withImg.length === 0; startBtn.innerHTML = '<i class="fas fa-rocket"></i> Export starten'; }
+  if (cancelBtn) cancelBtn.textContent = "Abbrechen";
+  $("zipExportModal")?.classList.remove("hidden");
+}
+
+function fileExtFromUrl(u) {
+  const m = (u || "").match(/\.(jpe?g|png|webp|gif)(\?|$)/i);
+  return m ? m[1].toLowerCase().replace("jpeg", "jpg") : "jpg";
+}
+
+async function runZipExport() {
+  if (typeof JSZip === "undefined") { msg("ZIP-Bibliothek konnte nicht geladen werden (offline?).", true); return; }
+  const startBtn = $("zipExportStart"), cancelBtn = $("zipExportCancel");
+  const withImg = list.filter(a => a.imageUrl);
+  if (startBtn) { startBtn.disabled = true; startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exportiere…'; }
+  ui.zipExportCancelled = false;
+  const pw = $("zipExportProgressWrap"); if (pw) pw.classList.remove("hidden");
+
+  const zip = new JSZip();
+  const coversFolder = zip.folder("covers");
+  const total = withImg.length;
+  let done = 0, ok = 0, failed = 0;
+  const log = s => { const el = $("zipExportLog"); if (el) { el.innerHTML += `<div>${s}</div>`; el.scrollTop = el.scrollHeight; } };
+
+  // Build a lookup so we can attach the right local filename to each list entry afterwards.
+  const localImageById = {};
+
+  for (const entry of withImg) {
+    if (ui.zipExportCancelled) { log("⛔ Abgebrochen."); break; }
+    const pt = $("zipExportProgText"), pc = $("zipExportProgCount"), pf = $("zipExportProgFill");
+    if (pt) pt.textContent = `Lade Cover: ${(entry.title || "?").substring(0, 40)}…`;
+    if (pc) pc.textContent = `${done} / ${total}`;
+    if (pf) pf.style.width = `${(done / total * 100).toFixed(0)}%`;
+
+    try {
+      const res = await fetch(entry.imageUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(res.status);
+      const blob = await res.blob();
+      const filename = `${entry.malId || entry.id}.${fileExtFromUrl(entry.imageUrl)}`;
+      coversFolder.file(filename, blob);
+      localImageById[entry.id] = `covers/${filename}`;
+      ok++;
+    } catch {
+      failed++; log(`⚠️ Cover nicht ladbar: ${esc(entry.title || "?")}`);
+    }
+    done++;
+  }
+
+  if (!ui.zipExportCancelled) {
+    const pt = $("zipExportProgText");
+    if (pt) pt.textContent = "Erstelle ZIP-Datei…";
+    const dataWithLocalImages = list.map(a => localImageById[a.id] ? { ...a, localImage: localImageById[a.id] } : a);
+    zip.file("data.json", JSON.stringify(dataWithLocalImages, null, 2));
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement("a"); a.href = url; a.download = "anime-tracker-export.zip"; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  const pt = $("zipExportProgText"), pc = $("zipExportProgCount"), pf = $("zipExportProgFill");
+  if (pt) pt.textContent = ui.zipExportCancelled ? "Abgebrochen" : "✅ Fertig!";
+  if (pc) pc.textContent = `${done} / ${total}`;
+  if (pf) pf.style.width = "100%";
+  if (startBtn) startBtn.innerHTML = '<i class="fas fa-check"></i> Fertig';
+  if (cancelBtn) cancelBtn.textContent = "Schließen";
+  if (startBtn) startBtn.disabled = false;
+  ui.zipExportDone = true;
+  msg(ui.zipExportCancelled ? "Export abgebrochen." : `${ok} Cover exportiert, ${failed} übersprungen.`);
 }
 
 function importData(file) {
@@ -1625,21 +1733,36 @@ function initEvents() {
     reader.readAsText(f); e.target.value="";
   });
   $("extClose")?.addEventListener("click",()=>{ ui.extCancelled=true; $("extModal")?.classList.add("hidden"); });
-  $("extCancel")?.addEventListener("click",()=>{ if(!$("extProgressWrap")||$("extProgressWrap").classList.contains("hidden")){ $("extModal")?.classList.add("hidden"); } else { ui.extCancelled=true; } });
+  $("extCancel")?.addEventListener("click",()=>{ ui.extCancelled=true; $("extModal")?.classList.add("hidden"); });
   $("extModal")?.addEventListener("click",e=>{ if(e.target===$("extModal").querySelector(".modal-bg")){ ui.extCancelled=true; $("extModal")?.classList.add("hidden"); } });
-  $("extStart")?.addEventListener("click",runExtImport);
+  $("extStart")?.addEventListener("click",()=>{
+    if (ui.extDone) { $("extModal")?.classList.add("hidden"); return; }
+    runExtImport();
+  });
 
   // Repair existing entries
   $("repairBtn")?.addEventListener("click", openRepairModal);
   $("repairClose")?.addEventListener("click", () => { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); });
-  $("repairCancel")?.addEventListener("click", () => {
-    if (!$("repairProgressWrap") || $("repairProgressWrap").classList.contains("hidden")) { $("repairModal")?.classList.add("hidden"); }
-    else { ui.repairCancelled = true; }
-  });
+  $("repairCancel")?.addEventListener("click", () => { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); });
   $("repairModal")?.addEventListener("click", e => {
     if (e.target === $("repairModal")?.querySelector(".modal-bg")) { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); }
   });
-  $("repairStart")?.addEventListener("click", runRepair);
+  $("repairStart")?.addEventListener("click", () => {
+    if (ui.repairDone) { $("repairModal")?.classList.add("hidden"); return; }
+    runRepair();
+  });
+
+  // ZIP export with images
+  $("exportZipBtn")?.addEventListener("click", openZipExportModal);
+  $("zipExportClose")?.addEventListener("click", () => { ui.zipExportCancelled = true; $("zipExportModal")?.classList.add("hidden"); });
+  $("zipExportCancel")?.addEventListener("click", () => { ui.zipExportCancelled = true; $("zipExportModal")?.classList.add("hidden"); });
+  $("zipExportModal")?.addEventListener("click", e => {
+    if (e.target === $("zipExportModal")?.querySelector(".modal-bg")) { ui.zipExportCancelled = true; $("zipExportModal")?.classList.add("hidden"); }
+  });
+  $("zipExportStart")?.addEventListener("click", () => {
+    if (ui.zipExportDone) { $("zipExportModal")?.classList.add("hidden"); return; }
+    runZipExport();
+  });
 
   // Detail modal
   $("detailClose")?.addEventListener("click",()=>$("detailModal")?.classList.add("hidden"));

@@ -509,6 +509,7 @@ body{
 .card-select-wrap{position:absolute;bottom:9px;right:9px;z-index:2}
 .card-body{padding:11px}
 .card-title{font-size:.82rem;font-weight:600;margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-alt-title{font-size:.68rem;color:var(--dim);margin-top:-5px;margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-prog-bar{height:4px;background:rgba(31,36,56,.8);border-radius:2px;overflow:hidden;margin-bottom:4px}
 .card-prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .3s}
 .card-prog-txt{font-size:.65rem;color:var(--dim);margin-bottom:5px}
@@ -572,6 +573,8 @@ body{
 }
 .modal-head h2{margin:0;font-size:1.1rem;font-weight:700}
 .modal-head h2 i{color:var(--accent);margin-right:8px}
+.detail-head-titles{display:flex;flex-direction:column;gap:2px;min-width:0}
+.detail-modal-alt{font-size:.78rem;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .modal-body{padding:22px 24px;overflow-y:auto;flex:1}
 .modal-body::-webkit-scrollbar{width:5px}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(255,79,216,.3);border-radius:5px}
