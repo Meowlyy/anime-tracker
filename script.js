@@ -163,6 +163,17 @@ function load() {
   catch { list = sampleData(); }
   try { const f = JSON.parse(localStorage.getItem(FK)); folders = Array.isArray(f) ? f : []; }
   catch { folders = []; }
+
+  // One-time cleanup: dedupe customCategories arrays (a past bug in the "merge categories"
+  // feature could push the same category name onto an item twice).
+  let dupesFound = false;
+  list.forEach(a => {
+    if (a.customCategories?.length) {
+      const deduped = [...new Set(a.customCategories)];
+      if (deduped.length !== a.customCategories.length) { a.customCategories = deduped; dupesFound = true; }
+    }
+  });
+  if (dupesFound) save();
   try { airingCache = JSON.parse(localStorage.getItem(AK)) || {}; }
   catch { airingCache = {}; }
   try { readNotifs = new Set(JSON.parse(localStorage.getItem(NK) || "[]")); }
@@ -191,6 +202,8 @@ function normTitle(t) {
     .replace(/\s*[:\-–]\s*(Season|Part|Cour)\s*\d+/gi,"")
     .replace(/\s*(2nd|3rd|4th|\d+th|\d+st|\d+nd|\d+rd)\s+Season/gi,"")
     .replace(/\s*Season\s*\d+/gi,"")
+    .replace(/\s*Part\s*\d+/gi,"")
+    .replace(/\s*Cour\s*\d+/gi,"")
     .replace(/\s*[:\-–]\s*.+$/,"")
     .replace(/\s*(Movie|Film|The Movie|OVA|ONA|Special|Specials|Recap|Part)\s*$/gi,"")
     .replace(/\s+[IVXLCDM]+\s*$/i,"")
@@ -218,21 +231,91 @@ function buildFranchMap() {
   return _franchMap;
 }
 
-function getSeriesGroups(filtered) {
+// Builds an ordered list of "render units" (a franchise group or a single anime) from
+// the FULL filtered list (not a page slice) — this is what makes sure a franchise group
+// (e.g. all Slime seasons) always renders together, instead of potentially being split
+// across two pages if pagination happened before grouping.
+function buildRenderUnits(filtered) {
+  // Step 1: group by normalized title text (catches numbered seasons, parts, etc.)
   const byKey = {};
   filtered.forEach(a => {
     const k = normTitle(a.title);
     if (!byKey[k]) byKey[k] = [];
     byKey[k].push(a);
   });
-  const groups = [], singles = [];
-  Object.entries(byKey).forEach(([k,items]) => {
-    if (items.length >= 2) {
-      const label = items.reduce((a,b) => a.title.length <= b.title.length ? a : b).title;
-      groups.push({ label, items });
-    } else singles.push(...items);
+
+  // Step 2: union-find over text-keys, merged further using cached relation data
+  // (spin-offs / side stories / etc. whose titles don't share words with the main
+  // franchise, e.g. "The Slime Diaries" vs "That Time I Got Reincarnated as a Slime").
+  const parent = {};
+  Object.keys(byKey).forEach(k => parent[k] = k);
+  const root = k => { while (parent[k] && parent[k] !== k) k = parent[k]; return k; };
+  const union = (k1, k2) => { const r1 = root(k1), r2 = root(k2); if (r1 !== r2) parent[r1] = r2; };
+
+  const byMalId = {};
+  filtered.forEach(a => { if (a.malId) byMalId[a.malId] = a; });
+
+  // Track which items are linked in only via a "secondary" relation (spin-off/side story),
+  // so they can be visually marked as not being a main numbered entry of the franchise.
+  const secondaryOf = {};
+  filtered.forEach(a => {
+    if (!a.relatedMalIds?.length) return;
+    const k1 = normTitle(a.title);
+    for (const rel of a.relatedMalIds) {
+      const other = byMalId[rel.malId];
+      if (!other || other.id === a.id) continue;
+      const k2 = normTitle(other.title);
+      if (!byKey[k1] || !byKey[k2]) continue;
+      if (root(k1) === root(k2)) continue;
+      union(k1, k2);
+      if (rel.relation === "Side story" || rel.relation === "Spin-off") {
+        if (!secondaryOf[a.id]) secondaryOf[a.id] = rel.relation;
+      }
+    }
   });
-  return { groups, singles };
+
+  // Step 3: collect final groups by union-find root
+  const groupsByRoot = {};
+  filtered.forEach(a => {
+    const r = root(normTitle(a.title));
+    if (!groupsByRoot[r]) groupsByRoot[r] = [];
+    groupsByRoot[r].push(a);
+  });
+
+  const seenRoot = new Set();
+  const units = [];
+  filtered.forEach(a => {
+    const r = root(normTitle(a.title));
+    const members = groupsByRoot[r];
+    if (members.length >= 2) {
+      if (seenRoot.has(r)) return; // this group's unit was already added on a previous item
+      seenRoot.add(r);
+      // prefer a main (non-spin-off) entry's title as the group label
+      const mainMembers = members.filter(m => !secondaryOf[m.id]);
+      const labelPool = mainMembers.length ? mainMembers : members;
+      const label = labelPool.reduce((x,y) => x.title.length <= y.title.length ? x : y).title;
+      units.push({ type: "group", label, items: members, size: members.length, secondaryOf });
+    } else {
+      units.push({ type: "single", item: a, size: 1 });
+    }
+  });
+  return units;
+}
+
+// Bin-packs render units into pages of roughly PER_PAGE items each, without ever
+// splitting a single unit (i.e. a franchise group) across two pages — a group that's
+// bigger than PER_PAGE on its own simply makes that one page larger than usual.
+function paginateUnits(units, perPage) {
+  const pages = [];
+  let current = [], currentSize = 0;
+  units.forEach(u => {
+    if (currentSize > 0 && currentSize + u.size > perPage) {
+      pages.push(current); current = []; currentSize = 0;
+    }
+    current.push(u); currentSize += u.size;
+  });
+  if (current.length) pages.push(current);
+  return pages.length ? pages : [[]];
 }
 
 // ══════════════════ FILTER ══════════════════
@@ -456,7 +539,7 @@ async function refreshAllAiring() {
 }
 
 // ══════════════════ RENDER CARD ══════════════════
-function makeCard(anime) {
+function makeCard(anime, relationLabel) {
   const pct = anime.totalEpisodes ? Math.round((anime.episodesWatched||0)/anime.totalEpisodes*100) : 0;
   const stars = anime.rating ? "★".repeat(Math.floor(anime.rating/2))+"☆".repeat(5-Math.floor(anime.rating/2)) : "☆☆☆☆☆";
   const sc = TO_CLASS[anime.status]||"planning";
@@ -466,15 +549,18 @@ function makeCard(anime) {
   div.className = "anime-card";
   div.dataset.id = anime.id;
   div.innerHTML = `
-    <img src="${esc(anime.imageUrl||NO_COVER_SVG)}" alt="${esc(anime.title)}" loading="lazy"
-         onerror="noCover(this)">
-    <div class="card-badges">
-      <span class="card-status ${sc}">${sl}</span>
-      <div class="card-fav-btn${anime.favorite?" on":""}" data-id="${anime.id}"><i class="fas fa-star"></i></div>
+    <div class="card-media">
+      <img src="${esc(anime.imageUrl||NO_COVER_SVG)}" alt="${esc(anime.title)}" loading="lazy"
+           onerror="noCover(this)">
+      <div class="card-badges">
+        <span class="card-status ${sc}">${sl}</span>
+        <div class="card-fav-btn${anime.favorite?" on":""}" data-id="${anime.id}"><i class="fas fa-star"></i></div>
+        ${relationLabel ? `<span class="card-relation-tag"><i class="fas fa-code-branch"></i> ${esc(relationLabel)}</span>` : ""}
+      </div>
+      ${cats.length?`<div class="card-badges card-badges-bottom">
+        <span class="card-custom-pill"><i class="fas fa-folder"></i> ${esc(cats[0])}${cats.length>1?" +"+(cats.length-1):""}</span>
+      </div>`:""}
     </div>
-    ${cats.length?`<div class="card-badges" style="top:auto;bottom:44px;left:9px;right:auto;">
-      <span class="card-custom-pill"><i class="fas fa-folder"></i> ${esc(cats[0])}${cats.length>1?" +"+(cats.length-1):""}</span>
-    </div>`:""}
     <div class="card-select-wrap">
       <label class="cb-wrap"><input type="checkbox" class="card-cb" data-id="${anime.id}"${ui.selected.has(String(anime.id))?" checked":""}><span class="cb-box"></span></label>
     </div>
@@ -515,36 +601,41 @@ function _doRender() {
   if (empty) empty.classList.add("hidden");
 
   // Pagination
-  const totalPages = Math.ceil(filtered.length / PER_PAGE);
-  if (ui.page > totalPages) ui.page = 1;
-  const pageItems = filtered.slice((ui.page-1)*PER_PAGE, ui.page*PER_PAGE);
-
-  // Build page content
   if (ui.grouping) {
-    const { groups, singles } = getSeriesGroups(pageItems);
-    // Render groups as full-width wrappers
-    groups.forEach(({ label, items }) => {
-      const wrap = document.createElement("div");
-      wrap.className = "sg-wrap open";
-      wrap.style.gridColumn = "1/-1";
-      const header = document.createElement("div");
-      header.className = "sg-header";
-      header.innerHTML = `
-        <div class="sg-title"><i class="fas fa-layer-group"></i><span>${esc(label)}</span><span class="sg-count">${items.length}</span></div>
-        <i class="fas fa-chevron-down sg-arrow"></i>`;
-      header.addEventListener("click", () => wrap.classList.toggle("open"));
-      const body = document.createElement("div");
-      body.className = "sg-body";
-      items.forEach(a => body.appendChild(makeCard(a)));
-      wrap.append(header, body);
-      grid.appendChild(wrap);
+    const units = buildRenderUnits(filtered);
+    const pages = paginateUnits(units, PER_PAGE);
+    if (ui.page > pages.length) ui.page = 1;
+    const pageUnits = pages[ui.page-1] || [];
+    pageUnits.forEach(u => {
+      if (u.type === "group") {
+        const { label, items } = u;
+        const wrap = document.createElement("div");
+        wrap.className = "sg-wrap open";
+        wrap.style.gridColumn = "1/-1";
+        const header = document.createElement("div");
+        header.className = "sg-header";
+        header.innerHTML = `
+          <div class="sg-title"><i class="fas fa-layer-group"></i><span>${esc(label)}</span><span class="sg-count">${items.length}</span></div>
+          <i class="fas fa-chevron-down sg-arrow"></i>`;
+        header.addEventListener("click", () => wrap.classList.toggle("open"));
+        const body = document.createElement("div");
+        body.className = "sg-body";
+        items.forEach(a => body.appendChild(makeCard(a, u.secondaryOf?.[a.id])));
+        wrap.append(header, body);
+        grid.appendChild(wrap);
+      } else {
+        grid.appendChild(makeCard(u.item));
+      }
     });
-    singles.forEach(a => grid.appendChild(makeCard(a)));
+    renderPagination(pages.length, filtered.length);
   } else {
+    const totalPages = Math.ceil(filtered.length / PER_PAGE);
+    if (ui.page > totalPages) ui.page = 1;
+    const pageItems = filtered.slice((ui.page-1)*PER_PAGE, ui.page*PER_PAGE);
     pageItems.forEach(a => grid.appendChild(makeCard(a)));
+    renderPagination(totalPages, filtered.length);
   }
 
-  renderPagination(totalPages, filtered.length);
   updateBulkUI();
 }
 
@@ -979,25 +1070,28 @@ function confirmAdd() {
   msg(`✅ "${pm.title}" wurde hinzugefügt!`);
   // Refresh airing + load relations in background
   refreshAiringOne(newAnime).then(()=>{ save(); renderList(); });
-  if (pm.mal_id) fetchAndShowRelations(pm.mal_id, pm.title);
+  if (newAnime.malId) fetchAndShowRelations(newAnime);
 }
 
-async function fetchAndShowRelations(malId, baseTitle) {
+async function fetchAndShowRelations(entry) {
   try {
-    const data = await jikan(`/anime/${malId}/relations`);
+    const data = await jikan(`/anime/${entry.malId}/relations`);
     const rels = data.data || [];
     const existIds = new Set(list.filter(a=>a.malId).map(a=>a.malId));
     const relevant = [];
-    const wantedTypes = ["Sequel","Prequel","Alternative version","Side story","Parent story","Spin-off"];
+    const linked = [];
     for (const rel of rels) {
-      if (!wantedTypes.includes(rel.relation)) continue;
-      for (const entry of (rel.entry||[])) {
-        if (entry.type !== "anime" || existIds.has(entry.mal_id)) continue;
-        relevant.push({ malId: entry.mal_id, name: entry.name, relation: rel.relation });
+      if (!RELATION_TYPES.includes(rel.relation)) continue;
+      for (const e of (rel.entry||[])) {
+        if (e.type !== "anime") continue;
+        linked.push({ malId: e.mal_id, relation: rel.relation });
+        if (!existIds.has(e.mal_id)) relevant.push({ malId: e.mal_id, name: e.name, relation: rel.relation });
       }
     }
-    if (!relevant.length) return;
-    showRelationsBanner(baseTitle, relevant);
+    entry.relatedMalIds = linked;
+    entry.relationsAt = Date.now();
+    save(); renderList();
+    if (relevant.length) showRelationsBanner(entry.title, relevant);
   } catch {}
 }
 
@@ -1339,20 +1433,31 @@ function needsRepair(a) {
   return !a.altTitle || !a.imageUrl || !a.totalEpisodes;
 }
 
+// Relation links (spin-offs, side stories, etc.) used for grouping entries whose
+// titles don't share enough words to be matched by normTitle (e.g. "The Slime Diaries"
+// vs "That Time I Got Reincarnated as a Slime"). Fetched + cached once per entry.
+const RELATION_TYPES = ["Side story", "Spin-off", "Alternative version", "Parent story", "Sequel", "Prequel", "Full story", "Summary"];
+function needsRelations(a) {
+  return !!a.malId && !a.relationsAt;
+}
+function needsAnyRepair(a) {
+  return needsRepair(a) || needsRelations(a);
+}
+
 function openRepairModal() {
   ui.repairDone = false;
   ui.repairCancelled = false;
-  const toRepair = list.filter(needsRepair);
+  const toRepair = list.filter(needsAnyRepair);
   const body = $("repairBody"), startBtn = $("repairStart"), cancelBtn = $("repairCancel");
   if (!body) return;
   ui.repairList = toRepair;
   body.innerHTML = `
     <div class="ext-stats">
       <div class="ext-stat"><div class="stat-icon"><i class="fas fa-list"></i></div><div><div class="ext-stat-val">${list.length}</div><div class="ext-stat-lbl">Gesamt</div></div></div>
-      <div class="ext-stat"><div class="stat-icon" style="color:var(--warning)"><i class="fas fa-triangle-exclamation"></i></div><div><div class="ext-stat-val" style="color:var(--warning)">${toRepair.length}</div><div class="ext-stat-lbl">Unvollständig</div></div></div>
+      <div class="ext-stat"><div class="stat-icon" style="color:var(--warning)"><i class="fas fa-triangle-exclamation"></i></div><div><div class="ext-stat-val" style="color:var(--warning)">${toRepair.length}</div><div class="ext-stat-lbl">Zu bearbeiten</div></div></div>
     </div>
     <div class="ext-info"><i class="fas fa-info-circle" style="color:var(--accent2);margin-right:6px;"></i>
-      Lädt fehlendes Cover, Episodenzahl, Score, Genres &amp; den Alternativtitel für Einträge mit lückenhaften Daten nach. Deine Bewertungen, Notizen und Fortschritt bleiben unangetastet. Bei ${toRepair.length} Einträgen ca. ${Math.ceil(toRepair.length*0.4/60)} Minuten — der Tab muss währenddessen offen bleiben, der Fortschritt wird laufend zwischengespeichert.
+      Lädt fehlendes Cover, Episodenzahl, Score, Genres &amp; den Alternativtitel nach, und lädt zusätzlich die Verknüpfungen (Spin-offs, Side Storys, Sequels) für die Gruppierung. Deine Bewertungen, Notizen und Fortschritt bleiben unangetastet. Bei ${toRepair.length} Einträgen ca. ${Math.ceil(toRepair.length*0.6/60)} Minuten — der Tab muss währenddessen offen bleiben, der Fortschritt wird laufend zwischengespeichert.
     </div>
     <div class="ext-progress hidden" id="repairProgressWrap">
       <div class="ext-prog-row"><span id="repairProgText">Starte…</span><span id="repairProgCount">0 / ${toRepair.length}</span></div>
@@ -1383,12 +1488,14 @@ async function runRepair() {
     if (pf) pf.style.width = `${(done / total * 100).toFixed(0)}%`;
 
     try {
-      await new Promise(r => setTimeout(r, 350)); // be gentle with the free API rate limit
-      const d = await jikan(`/anime/${entry.malId}`);
-      const ad = d.data;
-      if (ad) {
-        const live = list.find(a => a.id === entry.id);
-        if (live) {
+      const live = list.find(a => a.id === entry.id);
+      if (!live) { done++; continue; }
+
+      if (needsRepair(live)) {
+        await new Promise(r => setTimeout(r, 350)); // be gentle with the free API rate limit
+        const d = await jikan(`/anime/${live.malId}`);
+        const ad = d.data;
+        if (ad) {
           if (!live.title || live.title === ad.title) live.title = preferredTitle(ad); // keep a manual rename if user made one
           live.altTitle = altTitleFor(ad);
           if (!live.imageUrl) live.imageUrl = ad.images?.jpg?.large_image_url || "";
@@ -1399,9 +1506,25 @@ async function runRepair() {
           live.repairedAt = Date.now();
           fixed++;
           log(`✅ ${esc(preferredTitle(ad))}`);
+        } else {
+          failed++; log(`⚠️ Keine Daten: ${esc(live.title || "?")}`);
         }
-      } else {
-        failed++; log(`⚠️ Keine Daten: ${esc(entry.title || "?")}`);
+      }
+
+      if (needsRelations(live)) {
+        await new Promise(r => setTimeout(r, 350));
+        const rd = await jikan(`/anime/${live.malId}/relations`);
+        const rels = rd.data || [];
+        const linked = [];
+        for (const rel of rels) {
+          if (!RELATION_TYPES.includes(rel.relation)) continue;
+          for (const e of (rel.entry || [])) {
+            if (e.type !== "anime") continue;
+            linked.push({ malId: e.mal_id, relation: rel.relation });
+          }
+        }
+        live.relatedMalIds = linked;
+        live.relationsAt = Date.now();
       }
     } catch {
       failed++; log(`❌ Fehler: ${esc(entry.title || "?")}`);
@@ -1617,7 +1740,7 @@ const AT = window.AT = {
       if(a.customCategories){
         const hs=a.customCategories.includes(src),ht=a.customCategories.includes(tgt);
         a.customCategories=a.customCategories.filter(c=>c!==src&&c!==tgt);
-        if(hs||ht) a.customCategories.push(nv);
+        if((hs||ht)&&!a.customCategories.includes(nv)) a.customCategories.push(nv);
       }
     });
     folders=folders.filter(f=>f!==src&&f!==tgt);
