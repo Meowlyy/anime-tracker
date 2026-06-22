@@ -101,12 +101,19 @@ async function jikan(path) {
   let retries = 3;
   while (retries-- > 0) {
     const res = await fetch(url);
-    if (res.status === 429) { await new Promise(r => setTimeout(r, 1500)); continue; }
+    if (res.status === 429 || res.status === 504) { await new Promise(r => setTimeout(r, 2000)); continue; }
     if (!res.ok) throw new Error(`Jikan request failed: ${res.status}`);
     return res.json();
   }
-  throw new Error("Jikan rate limit exceeded");
+  throw new Error("Jikan rate limit/gateway exceeded");
 }
+
+// Manual relation overrides for known MAL data gaps (e.g. Slime Diaries is listed as
+// Spin-off of Tensura on MAL but the relation is missing in the API response on both sides).
+// Key: MAL ID of the "secondary" entry. Value: { mainMalId, relation }.
+const MANUAL_RELATIONS = {
+  41488: { mainMalId: 37430, relation: "Spin-off" }, // The Slime Diaries → Tensura
+};
 
 // Prefer the english title (more familiar to most users) over MAL's primary
 // (often japanese romaji) title, falling back if no english title exists.
@@ -258,6 +265,20 @@ function buildRenderUnits(filtered) {
   // Track which items are linked in only via a "secondary" relation (spin-off/side story),
   // so they can be visually marked as not being a main numbered entry of the franchise.
   const secondaryOf = {};
+
+  // Apply manual overrides first (for known MAL data gaps where the API returns no relations)
+  filtered.forEach(a => {
+    const override = a.malId && MANUAL_RELATIONS[a.malId];
+    if (!override) return;
+    const other = byMalId[override.mainMalId];
+    if (!other) return;
+    const k1 = normTitle(a.title), k2 = normTitle(other.title);
+    if (byKey[k1] && byKey[k2] && root(k1) !== root(k2)) {
+      union(k1, k2);
+      if (!secondaryOf[a.id]) secondaryOf[a.id] = override.relation;
+    }
+  });
+
   filtered.forEach(a => {
     if (!a.relatedMalIds?.length) return;
     const k1 = normTitle(a.title);
@@ -1961,5 +1982,13 @@ function init() {
 
 if (document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
 else init();
+
+// Temporary debug helpers — remove after diagnosing Slime Diaries grouping
+window._debugAnime = (q) => {
+  const r = list.filter(a => a.title.toLowerCase().includes(q.toLowerCase()) || (a.altTitle||"").toLowerCase().includes(q.toLowerCase()));
+  r.forEach(a => console.log(a.title, "| malId:", a.malId, "| relationsAt:", a.relationsAt, "| relatedMalIds:", JSON.stringify(a.relatedMalIds)));
+  return r;
+};
+window._debugNorm = (t) => normTitle(t);
 
 })();
