@@ -8,6 +8,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) {
+      animation: vt-out-left .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: vt-in-left .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    @keyframes vt-out-left {
+      to { opacity:0; transform:translateX(-80px) scale(0.97); }
+    }
+    @keyframes vt-in-left {
+      from { opacity:0; transform:translateX(-80px) scale(0.97); }
+    }
+  </style>
 </head>
 <body>
 <div class="app">
@@ -42,6 +57,7 @@
       </div>
       <button class="btn-ghost" id="exportBtn"><i class="fas fa-download"></i> Exportieren</button>
       <button class="btn-ghost" id="exportZipBtn" title="JSON + alle Cover-Bilder als ZIP exportieren"><i class="fas fa-file-zipper"></i> Mit Bildern (ZIP)</button>
+      <a href="stats.html" class="btn-ghost" style="text-decoration:none"><i class="fas fa-chart-bar"></i> Statistiken</a>
       <label class="btn-ghost">
         <i class="fas fa-upload"></i> Importieren
         <input type="file" id="importInput" accept="application/json" hidden>
@@ -392,6 +408,7 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="script.js"></script>
 </body>

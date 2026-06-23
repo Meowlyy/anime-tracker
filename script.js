@@ -1077,6 +1077,8 @@ function confirmAdd() {
     favorite: $("addFav")?.checked||false,
     notes: pm.synopsis||"",
     genres: (pm.genres||[]).map(g=>g.name),
+    studios: (pm.studios||[]).map(s=>s.name).filter(Boolean),
+    year: pm.year||0,
     imageUrl: pm.images?.jpg?.large_image_url||"",
     type: pm.type||"",
     malScore: pm.score||0,
@@ -1449,9 +1451,9 @@ async function runExtImport() {
 // data at the time. Only re-fetches entries that look incomplete — doesn't touch
 // personal fields (status, progress, rating, favorite, notes, categories).
 function needsRepair(a) {
-  if (!a.malId) return false; // nothing to fetch without a MAL id
-  if (a.repairedAt) return false; // already successfully queried once — MAL itself may just not have episodes/score yet (e.g. still airing)
-  return !a.altTitle || !a.imageUrl || !a.totalEpisodes;
+  if (!a.malId) return false;
+  if (a.repairedAt) return false;
+  return !a.altTitle || !a.imageUrl || !a.totalEpisodes || !a.studios;
 }
 
 // Relation links (spin-offs, side stories, etc.) used for grouping entries whose
@@ -1524,6 +1526,8 @@ async function runRepair() {
           if (!live.malScore) live.malScore = ad.score || 0;
           if (!live.genres?.length) live.genres = (ad.genres || []).map(g => g.name);
           if (!live.type) live.type = ad.type || "";
+          if (!live.studios?.length) live.studios = (ad.studios || []).map(s => s.name).filter(Boolean);
+          if (!live.year) live.year = ad.year || 0;
           live.repairedAt = Date.now();
           fixed++;
           log(`✅ ${esc(preferredTitle(ad))}`);
@@ -1565,6 +1569,295 @@ async function runRepair() {
   if (startBtn) startBtn.disabled = false;
   ui.repairDone = true;
   msg(`${fixed} repariert, ${failed} fehlgeschlagen.`);
+}
+
+// ══════════════════ STATS PAGE ══════════════════
+const CHART_COLORS = [
+  "#ff4fd8","#a855f7","#06b6d4","#10b981","#f59e0b",
+  "#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316",
+  "#6366f1","#84cc16","#0ea5e9","#e879f9","#22d3ee"
+];
+let _charts = {};
+
+function destroyChart(id) {
+  if (_charts[id]) { _charts[id].destroy(); delete _charts[id]; }
+}
+
+function buildStatsData() {
+  const completed = list.filter(a => a.status === "Completed");
+  const rated = list.filter(a => a.rating > 0);
+  const totalEp = list.reduce((s,a) => s+(a.episodesWatched||0), 0);
+  const hours = Math.round(totalEp * 24 / 60); // ~24 min avg episode length
+
+  // Genre counts (weighted: completed+rated anime count more)
+  const genreCount = {};
+  list.forEach(a => {
+    const w = (a.status==="Completed" ? 2 : 1);
+    (a.genres||[]).forEach(g => genreCount[g] = (genreCount[g]||0) + w);
+  });
+  const topGenres = Object.entries(genreCount).sort((a,b)=>b[1]-a[1]).slice(0,12);
+
+  // Rating distribution (1-10, step 1)
+  const ratingDist = Array.from({length:10},(_,i)=>{
+    const r = i+1;
+    return list.filter(a => a.rating && Math.round(a.rating) === r).length;
+  });
+
+  // Status distribution
+  const statusMap = {
+    "Currently Watching":"Watching","Completed":"Completed",
+    "Plan to Watch":"Geplant","On Hold":"Pausiert","Dropped":"Abgebrochen"
+  };
+  const statusCounts = Object.entries(statusMap).map(([k,l]) => ({
+    label: l, count: list.filter(a=>a.status===k).length
+  })).filter(s=>s.count>0);
+
+  // Studios (from a.studios array if stored, else skip)
+  const studioCount = {};
+  list.forEach(a => {
+    (a.studios||[]).forEach(s => {
+      const n = typeof s === "string" ? s : s.name;
+      if (n) studioCount[n] = (studioCount[n]||0)+1;
+    });
+  });
+  const topStudios = Object.entries(studioCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
+
+  // Year distribution (completed only)
+  const yearCount = {};
+  completed.forEach(a => {
+    if (a.year) yearCount[a.year] = (yearCount[a.year]||0)+1;
+  });
+  const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]).slice(-15);
+
+  return { topGenres, ratingDist, statusCounts, topStudios, years, totalEp, hours,
+    completedCount: completed.length, ratedCount: rated.length,
+    avgRating: rated.length ? (rated.reduce((s,a)=>s+a.rating,0)/rated.length).toFixed(1) : "—",
+    favCount: list.filter(a=>a.favorite).length };
+}
+
+function renderStatsPage() {
+  const d = buildStatsData();
+
+  // Summary cards
+  const sumEl = $("spSummary");
+  if (sumEl) sumEl.innerHTML = [
+    { val: list.length,         lbl: "Anime gesamt" },
+    { val: d.completedCount,    lbl: "Abgeschlossen" },
+    { val: d.totalEp,           lbl: "Episoden gesehen" },
+    { val: d.hours + " h",      lbl: "≈ Stunden" },
+    { val: d.avgRating,         lbl: "Ø Bewertung" },
+    { val: d.favCount,          lbl: "Favoriten" },
+  ].map(c=>`<div class="sp-sum-card"><div class="sp-sum-val">${c.val}</div><div class="sp-sum-lbl">${c.lbl}</div></div>`).join("");
+
+  const font = "'Poppins', sans-serif";
+  const textColor = "#8891a8";
+  const gridColor = "rgba(255,255,255,.06)";
+  Chart.defaults.color = textColor;
+  Chart.defaults.font.family = font;
+
+  // Genre chart (horizontal bar)
+  destroyChart("genre");
+  const gCtx = $("genreChart")?.getContext("2d");
+  if (gCtx && d.topGenres.length) {
+    _charts.genre = new Chart(gCtx, {
+      type: "bar",
+      data: {
+        labels: d.topGenres.map(g=>g[0]),
+        datasets: [{ data: d.topGenres.map(g=>g[1]), backgroundColor: CHART_COLORS, borderRadius: 5, borderSkipped: false }]
+      },
+      options: {
+        indexAxis: "y", responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: gridColor }, ticks: { stepSize: 1 } },
+          y: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Rating distribution (bar)
+  destroyChart("rating");
+  const rCtx = $("ratingChart")?.getContext("2d");
+  if (rCtx) {
+    _charts.rating = new Chart(rCtx, {
+      type: "bar",
+      data: {
+        labels: ["1","2","3","4","5","6","7","8","9","10"],
+        datasets: [{ data: d.ratingDist, backgroundColor: CHART_COLORS.slice(0,10), borderRadius: 4, borderSkipped: false }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: gridColor }, ticks: { stepSize: 1 } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Status donut
+  destroyChart("status");
+  const sCtx = $("statusChart")?.getContext("2d");
+  if (sCtx && d.statusCounts.length) {
+    _charts.status = new Chart(sCtx, {
+      type: "doughnut",
+      data: {
+        labels: d.statusCounts.map(s=>s.label),
+        datasets: [{ data: d.statusCounts.map(s=>s.count), backgroundColor: CHART_COLORS, borderWidth: 0, hoverOffset: 6 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: "bottom", labels: { padding: 12, boxWidth: 10, font: { size: 11 } } } },
+        cutout: "65%"
+      }
+    });
+  }
+
+  // Studios bar list
+  const stEl = $("studioList");
+  if (stEl) {
+    if (d.topStudios.length) {
+      const max = d.topStudios[0][1];
+      stEl.innerHTML = d.topStudios.map(([name,count]) => `
+        <div class="sp-bar-item">
+          <div class="sp-bar-row">
+            <span class="sp-bar-name">${esc(name)}</span>
+            <span class="sp-bar-count">${count}</span>
+          </div>
+          <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${Math.round(count/max*100)}%"></div></div>
+        </div>`).join("");
+    } else {
+      stEl.innerHTML = `<div class="sp-reco-empty">Noch keine Studio-Daten — einmal "Daten reparieren" ausführen.</div>`;
+    }
+  }
+
+  // Year chart (bar)
+  destroyChart("year");
+  const yCtx = $("yearChart")?.getContext("2d");
+  if (yCtx && d.years.length) {
+    _charts.year = new Chart(yCtx, {
+      type: "bar",
+      data: {
+        labels: d.years.map(y=>y[0]),
+        datasets: [{ data: d.years.map(y=>y[1]), backgroundColor: CHART_COLORS[2], borderRadius: 4, borderSkipped: false }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: gridColor }, ticks: { stepSize: 1 } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  $("recoGrid").innerHTML = "";
+  $("spRecoWrap").querySelector(".sp-reco-hint").textContent = "Basierend auf deinen Top-Genres und Bewertungen.";
+}
+
+// ── Recommendations ──
+async function loadRecommendations() {
+  const btn = $("recoLoadBtn"), grid = $("recoGrid");
+  if (!btn || !grid) return;
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Lade…';
+
+  // Build weighted genre profile from completed+rated anime
+  const genreWeight = {};
+  list.forEach(a => {
+    if (!a.rating) return;
+    const boost = a.status === "Completed" ? 1 : 0.5;
+    (a.genres||[]).forEach(g => genreWeight[g] = (genreWeight[g]||0) + a.rating * boost);
+  });
+  const topGenres = Object.entries(genreWeight).sort((a,b)=>b[1]-a[1]).slice(0,5).map(g=>g[0]);
+
+  if (!topGenres.length) {
+    grid.innerHTML = `<div class="sp-reco-empty">Noch keine bewerteten Anime — bewerte ein paar und probier es nochmal.</div>`;
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Empfehlungen laden';
+    return;
+  }
+
+  const existingMalIds = new Set(list.map(a=>a.malId).filter(Boolean));
+  const seen = new Set();
+  const results = [];
+
+  // Search Jikan for top genres, collect results not in list
+  for (const genre of topGenres.slice(0,3)) {
+    if (results.length >= 20) break;
+    try {
+      const d = await fetchAnimeSearch(genre, { limit: 20 });
+      for (const a of d) {
+        if (existingMalIds.has(a.mal_id) || seen.has(a.mal_id)) continue;
+        seen.add(a.mal_id); results.push(a);
+      }
+      await new Promise(r => setTimeout(r, 400));
+    } catch {}
+  }
+
+  // Score results: bonus if matches multiple top genres
+  const scored = results.map(a => {
+    const aGenres = (a.genres||[]).map(g=>g.name);
+    const overlap = topGenres.filter(g => aGenres.includes(g)).length;
+    return { a, score: (a.score||0) + overlap * 0.5 };
+  }).sort((a,b) => b.score - a.score).slice(0, 10);
+
+  if (!scored.length) {
+    grid.innerHTML = `<div class="sp-reco-empty">Keine Empfehlungen gefunden – versuch es gleich nochmal.</div>`;
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Empfehlungen laden';
+    return;
+  }
+
+  grid.innerHTML = scored.map(({ a }) => {
+    const genres = (a.genres||[]).slice(0,3).map(g=>`<span class="reco-genre">${esc(g.name)}</span>`).join("");
+    return `
+      <div class="reco-card" data-mal-id="${a.mal_id}">
+        <img src="${esc(a.images?.jpg?.large_image_url||NO_COVER_SVG)}" alt="" loading="lazy" onerror="noCover(this)">
+        <div class="reco-info">
+          <div class="reco-title">${esc(a.title_english||a.title)}</div>
+          <div class="reco-meta">
+            <span>${a.type||"TV"}</span>
+            <span>${a.episodes||"?"} Ep.</span>
+            <span>⭐ ${a.score?.toFixed(1)||"—"}</span>
+          </div>
+          <div class="reco-genres">${genres}</div>
+          <button class="reco-add-btn" data-mal-id="${a.mal_id}"><i class="fas fa-plus"></i> Hinzufügen</button>
+        </div>
+      </div>`;
+  }).join("");
+
+  // Wire up "add" buttons
+  grid.querySelectorAll(".reco-add-btn").forEach(b => {
+    b.addEventListener("click", async e => {
+      e.stopPropagation();
+      const malId = parseInt(b.dataset.malId);
+      b.disabled = true; b.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+      try {
+        const resp = await jikan(`/anime/${malId}`);
+        if (resp.data) { openAddModal(resp.data); }
+      } catch { msg("Fehler beim Laden.", true); }
+      b.disabled = false; b.innerHTML = '<i class="fas fa-plus"></i> Hinzufügen';
+    });
+  });
+
+  btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Neu laden';
+  $("spRecoWrap").querySelector(".sp-reco-hint").textContent =
+    `Basierend auf deinen Top-Genres: ${topGenres.slice(0,3).join(", ")}.`;
+}
+
+function showStatsPage() {
+  $("statsPage")?.classList.remove("hidden");
+  $("statsBtn").innerHTML = '<i class="fas fa-list"></i> Zur Liste';
+  $("statsBtn").dataset.open = "1";
+  renderStatsPage();
+  $("statsPage")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function hideStatsPage() {
+  $("statsPage")?.classList.add("hidden");
+  $("statsBtn").innerHTML = '<i class="fas fa-chart-bar"></i> Statistiken';
+  delete $("statsBtn").dataset.open;
 }
 
 // ══════════════════ EXPORT / IMPORT ══════════════════
