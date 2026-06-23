@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Statistiken – Anime Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) {
+      animation: vt-out-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    ::view-transition-new(root) {
+      animation: vt-in-right  .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    @keyframes vt-out-right {
+      to { opacity:0; transform:translateX(80px) scale(0.97); }
+    }
+    @keyframes vt-in-right {
+      from { opacity:0; transform:translateX(80px) scale(0.97); }
+    }
+  </style>
+</head>
+<body>
+<div class="app" id="statsApp">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="header-logo">🌸</div>
+      <div>
+        <h1 class="header-title">Anime <span style="color:var(--accent)">Tracker</span></h1>
+        <div class="header-sub">Deine persönliche Anime-Liste</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-ghost" onclick="history.back()" style="border:none;cursor:pointer;">
+        <i class="fas fa-arrow-left"></i> Zur Liste
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══ STATS PAGE ═══ -->
+  <div class="stats-page" id="statsPage">
+    <div class="stats-page-head">
+      <h2><i class="fas fa-chart-bar"></i> Statistiken</h2>
+    </div>
+
+    <div class="sp-summary" id="spSummary"></div>
+
+    <div class="sp-grid">
+      <div class="sp-card sp-card-wide">
+        <h3><i class="fas fa-tag"></i> Genre-Verteilung</h3>
+        <canvas id="genreChart"></canvas>
+      </div>
+      <div class="sp-card">
+        <h3><i class="fas fa-star"></i> Bewertungsverteilung</h3>
+        <canvas id="ratingChart"></canvas>
+      </div>
+      <div class="sp-card">
+        <h3><i class="fas fa-circle-half-stroke"></i> Status</h3>
+        <canvas id="statusChart"></canvas>
+      </div>
+    </div>
+
+    <div class="sp-grid sp-grid-2">
+      <div class="sp-card">
+        <h3><i class="fas fa-building"></i> Top Studios</h3>
+        <div class="sp-bar-list" id="studioList"></div>
+      </div>
+      <div class="sp-card">
+        <h3><i class="fas fa-calendar"></i> Anime pro Jahr (abgeschlossen)</h3>
+        <div style="font-size:.72rem;color:var(--dim);margin-top:-8px">Erscheinungsjahr der Anime die du abgeschlossen hast</div>
+        <canvas id="yearChart"></canvas>
+      </div>
+    </div>
+
+    <div class="sp-card sp-reco-card" id="spRecoWrap">
+      <div class="sp-reco-head">
+        <h3><i class="fas fa-wand-magic-sparkles"></i> Empfehlungen für dich</h3>
+        <button class="btn-accent" id="recoLoadBtn"><i class="fas fa-rotate"></i> Empfehlungen laden</button>
+      </div>
+      <div class="sp-reco-hint">Basierend auf deinen Top-Genres und deinen Bewertungen.</div>
+      <div class="sp-reco-grid" id="recoGrid"></div>
+    </div>
+  </div>
+
+</div><!-- .app -->
+
+<div class="msg-bar hidden" id="msgBar"></div>
+<div class="modal hidden" id="addModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box large">
+    <div class="modal-head">
+      <h2><i class="fas fa-plus-circle"></i> Zur Liste hinzufügen</h2>
+      <button class="icon-btn" id="addClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="addBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="addCancel">Abbrechen</button>
+      <button class="btn-accent" id="addConfirm"><i class="fas fa-plus"></i> Hinzufügen</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="stats.js"></script>
+</body>
+</html>
