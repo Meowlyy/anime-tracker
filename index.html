@@ -274,7 +274,10 @@
         </div>
         <div class="form-field" id="editCompletedDateWrap" style="display:none">
           <label><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:4px"></i> Abgeschlossen am</label>
-          <input type="date" id="editCompletedDate" class="filter-select" style="width:100%;color-scheme:dark">
+          <div style="display:flex;gap:6px;align-items:center">
+            <input type="date" id="editCompletedDate" class="filter-select" style="flex:1;color-scheme:dark">
+            <button type="button" id="editDateClear" class="btn-ghost" title="Datum löschen" style="padding:4px 8px;font-size:.75rem">✕</button>
+          </div>
         </div>
         <div class="form-field">
           <label>Fortschritt</label>

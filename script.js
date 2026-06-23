@@ -849,15 +849,17 @@ function saveEdit() {
   const dateInp = $("editCompletedDate");
   if (a.status === "Completed") {
     if (dateInp?.value) {
-      // Use manual date if set
+      // Manual date set
       a.completedAt = new Date(dateInp.value).getTime();
+    } else if (dateInp && !dateInp.value) {
+      // Date field shown but cleared with Reset → remove date
+      a.completedAt = null;
     } else if (oldStatus !== "Completed") {
       // Auto-set to now when switching to Completed for the first time
       a.completedAt = Date.now();
     }
-    // If already Completed and no manual date entered → keep existing completedAt
+    // If already Completed and date field not shown → keep existing
   } else {
-    // Status changed away from Completed → clear date
     if (oldStatus === "Completed") a.completedAt = null;
   }
 
@@ -1083,7 +1085,16 @@ function openAddModal(anime) {
       </div>
     </div>
     <div class="add-form">
-      <div class="form-field"><label>Status</label><select id="addStatus" class="filter-select" style="width:100%">${statusOptions("Plan to Watch")}</select></div>
+      <div class="form-grid">
+        <div class="form-field"><label>Status</label><select id="addStatus" class="filter-select" style="width:100%">${statusOptions("Plan to Watch")}</select></div>
+        <div class="form-field" id="addCompletedDateWrap" style="display:none">
+          <label><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:4px"></i> Abgeschlossen am</label>
+          <div style="display:flex;gap:6px;align-items:center">
+            <input type="date" id="addCompletedDate" class="filter-select" style="flex:1;color-scheme:dark">
+            <button type="button" id="addDateClear" class="btn-ghost" title="Datum löschen" style="padding:4px 8px;font-size:.75rem">✕</button>
+          </div>
+        </div>
+      </div>
       <div class="form-field">
         <label>Bereits gesehen</label>
         <div class="ep-row">
@@ -1098,6 +1109,13 @@ function openAddModal(anime) {
     </div>`;
   const rat = $("addRat"), ratV = $("addRatVal");
   if (rat && ratV) rat.oninput = () => { ratV.textContent = parseFloat(rat.value).toFixed(1); };
+
+  // Show/hide date field based on status
+  const addStat = $("addStatus"), addDateWrap = $("addCompletedDateWrap");
+  const toggleAddDate = () => { if(addDateWrap) addDateWrap.style.display = addStat?.value==="Completed" ? "" : "none"; };
+  addStat?.addEventListener("change", toggleAddDate);
+  $("addDateClear")?.addEventListener("click", () => { const d=$("addCompletedDate"); if(d) d.value=""; });
+
   $("addModal")?.classList.remove("hidden");
 }
 
@@ -1123,7 +1141,11 @@ function confirmAdd() {
     malScore: pm.score||0,
     airing: pm.airing||false,
     nextEpAt: null,
-    completedAt: ($("addStatus")?.value === "Completed") ? Date.now() : null,
+    completedAt: (() => {
+      if ($("addStatus")?.value !== "Completed") return null;
+      const d = $("addCompletedDate")?.value;
+      return d ? new Date(d).getTime() : Date.now();
+    })(),
     addedAt: Date.now(),
     customCategories: [...document.querySelectorAll(".cat-cb:checked")].map(c=>c.value)
   };
@@ -2257,6 +2279,7 @@ function initEvents() {
   // Edit modal
   $("editClose")?.addEventListener("click",()=>$("editModal")?.classList.add("hidden"));
   $("editCancel")?.addEventListener("click",()=>$("editModal")?.classList.add("hidden"));
+  $("editDateClear")?.addEventListener("click",()=>{ const d=$("editCompletedDate"); if(d) d.value=""; });
   $("editModal")?.addEventListener("click",e=>{ if(e.target===$("editModal").querySelector(".modal-bg"))$("editModal")?.classList.add("hidden"); });
   $("editSave")?.addEventListener("click",saveEdit);
 
