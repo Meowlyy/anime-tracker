@@ -794,12 +794,20 @@ function openDetail(anime) {
 }
 
 // ══════════════════ EDIT MODAL ══════════════════
+function toggleCompletedDateField(status) {
+  const wrap = $("editCompletedDateWrap");
+  if (wrap) wrap.style.display = status === "Completed" ? "" : "none";
+}
+
 function openEdit(anime) {
   ui.editId = anime.id;
   const img   = $("editImg");   if(img)   img.src = anime.imageUrl||NO_COVER_SVG;
   const name  = $("editName");  if(name)  name.textContent = anime.title;
   const meta  = $("editMeta");  if(meta)  meta.textContent = `${anime.type||"Anime"} · ${anime.totalEpisodes||"?"} Ep.`;
-  const stat  = $("editStatus"); if(stat) stat.innerHTML = statusOptions(anime.status);
+  const stat  = $("editStatus"); if(stat) {
+    stat.innerHTML = statusOptions(anime.status);
+    stat.onchange = () => toggleCompletedDateField(stat.value);
+  }
   const epW   = $("editEpWatched"); if(epW) epW.value = anime.episodesWatched||0;
   const epT   = $("editEpTotal");   if(epT) epT.textContent = anime.totalEpisodes||"?";
   const rat   = $("editRating");  const ratV = $("editRatingVal");
@@ -810,18 +818,49 @@ function openEdit(anime) {
   }
   const fav = $("editFav"); if(fav) fav.checked = anime.favorite||false;
   const catF = $("editCatField"); if(catF) catF.innerHTML = customCatCheckboxes(anime.customCategories||[]);
+
+  // Completed date field
+  const dateInp = $("editCompletedDate");
+  if (dateInp) {
+    if (anime.completedAt) {
+      const d = new Date(anime.completedAt);
+      // Format as YYYY-MM-DD for the date input
+      dateInp.value = d.toISOString().slice(0,10);
+    } else {
+      dateInp.value = "";
+    }
+  }
+  toggleCompletedDateField(anime.status);
   $("editModal")?.classList.remove("hidden");
 }
 
 function saveEdit() {
   const a = list.find(x=>String(x.id)===String(ui.editId));
   if (!a) return;
+  const oldStatus = a.status;
   const stat = $("editStatus"); if(stat) a.status = stat.value;
   const epW  = $("editEpWatched");
   if (epW) a.episodesWatched = Math.min(parseInt(epW.value)||0, a.totalEpisodes||Infinity);
   const rat  = $("editRating"); if(rat) a.rating = parseFloat(rat.value)||0;
   const fav  = $("editFav");    if(fav) a.favorite = fav.checked;
   a.customCategories = [...document.querySelectorAll(".cat-cb:checked")].map(c=>c.value);
+
+  // Handle completedAt
+  const dateInp = $("editCompletedDate");
+  if (a.status === "Completed") {
+    if (dateInp?.value) {
+      // Use manual date if set
+      a.completedAt = new Date(dateInp.value).getTime();
+    } else if (oldStatus !== "Completed") {
+      // Auto-set to now when switching to Completed for the first time
+      a.completedAt = Date.now();
+    }
+    // If already Completed and no manual date entered → keep existing completedAt
+  } else {
+    // Status changed away from Completed → clear date
+    if (oldStatus === "Completed") a.completedAt = null;
+  }
+
   save(); updateStats(); renderList();
   $("editModal")?.classList.add("hidden");
   msg("Anime aktualisiert!");
@@ -1084,6 +1123,7 @@ function confirmAdd() {
     malScore: pm.score||0,
     airing: pm.airing||false,
     nextEpAt: null,
+    completedAt: ($("addStatus")?.value === "Completed") ? Date.now() : null,
     addedAt: Date.now(),
     customCategories: [...document.querySelectorAll(".cat-cb:checked")].map(c=>c.value)
   };

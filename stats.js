@@ -90,7 +90,10 @@ function buildStatsData() {
 
   const yearCount = {};
   completed.forEach(a => {
-    if (a.year) yearCount[a.year] = (yearCount[a.year]||0)+1;
+    const y = a.completedAt
+      ? new Date(a.completedAt).getFullYear()
+      : a.year || null;
+    if (y) yearCount[y] = (yearCount[y]||0)+1;
   });
   const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
 
@@ -214,7 +217,7 @@ function renderStats() {
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
-        tooltip:{ callbacks:{ title: items => `Erscheinungsjahr ${items[0].label}`, label: item => ` ${item.raw} abgeschlossene Anime` } }
+        tooltip:{ callbacks:{ title: items => `${items[0].label}`, label: item => ` ${item.raw} Anime abgeschlossen` } }
       },
       scales:{ y:{grid:{color:gridColor},ticks:{stepSize:1}}, x:{grid:{display:false}} }}
   });
