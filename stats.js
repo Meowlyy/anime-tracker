@@ -72,7 +72,7 @@ function buildStatsData() {
     { key:"Currently Watching", label:"Watching",    color:"#ff4fd8" },
     { key:"Completed",          label:"Completed",   color:"#a855f7" },
     { key:"Plan to Watch",      label:"Geplant",     color:"#06b6d4" },
-    { key:"On Hold",            label:"Pausiert",    color:"#10b981" },
+    { key:"On Hold",            label:"Pausiert",    color:"#f59e0b" },
     { key:"Dropped",            label:"Abgebrochen", color:"#ef4444" },
   ];
   const statusCounts = STATUS_CFG
@@ -90,10 +90,7 @@ function buildStatsData() {
 
   const yearCount = {};
   completed.forEach(a => {
-    if (a.addedAt) {
-      const y = new Date(a.addedAt).getFullYear();
-      yearCount[y] = (yearCount[y]||0)+1;
-    }
+    if (a.year) yearCount[a.year] = (yearCount[a.year]||0)+1;
   });
   const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
 
@@ -143,23 +140,52 @@ function renderStats() {
   const sCtx = $("statusChart")?.getContext("2d");
   if (sCtx && d.statusCounts.length) {
     const total = d.statusCounts.reduce((s,x)=>s+x.count,0);
+    // enforce a minimum visual slice of 3% so tiny segments (e.g. 1-2 entries out of 800+)
+    // are still clearly visible in the donut
+    const MIN_PCT = 0.03;
+    const displayData = d.statusCounts.map(s => Math.max(s.count, total * MIN_PCT));
+
     _charts.status = new Chart(sCtx, {
-      type:"doughnut", data:{
+      type:"doughnut",
+      data:{
         labels: d.statusCounts.map(s=>`${s.label} (${s.count})`),
         datasets:[{
-          data: d.statusCounts.map(s=>s.count),
+          data: displayData,
           backgroundColor: d.statusCounts.map(s=>s.color),
-          borderWidth: 2,
+          borderWidth: 3,
           borderColor: "#0b1020",
-          hoverOffset: 8,
-          // ensure tiny slices stay visible by enforcing a minimum arc
-          circumference: undefined
-        }]},
-      options:{ responsive:true, maintainAspectRatio:false, cutout:"58%",
+          hoverOffset: 10,
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false, cutout:"55%",
         plugins:{
-          legend:{position:"bottom", labels:{padding:12,boxWidth:10,font:{size:11}}},
-          tooltip:{callbacks:{label: item => ` ${item.label.split("(")[0].trim()}: ${item.raw} (${Math.round(item.raw/total*100)}%)`}}
-        }}
+          legend:{
+            position:"bottom",
+            labels:{
+              padding:10, boxWidth:12, boxHeight:12, font:{size:11},
+              color:"#8891a8",
+              generateLabels: chart => d.statusCounts.map((s,i) => ({
+                text: `${s.label} (${s.count})`,
+                fillStyle: s.color,
+                strokeStyle: s.color,
+                fontColor: "#8891a8",
+                lineWidth: 0,
+                hidden: false,
+                index: i
+              }))
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label: item => {
+                const real = d.statusCounts[item.dataIndex];
+                return ` ${real.label}: ${real.count} (${Math.round(real.count/total*100)}%)`;
+              }
+            }
+          }
+        }
+      }
     });
   }
 
@@ -188,7 +214,7 @@ function renderStats() {
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
-        tooltip:{ callbacks:{ title: items => `${items[0].label}`, label: item => ` ${item.raw} Anime abgeschlossen` } }
+        tooltip:{ callbacks:{ title: items => `Erscheinungsjahr ${items[0].label}`, label: item => ` ${item.raw} abgeschlossene Anime` } }
       },
       scales:{ y:{grid:{color:gridColor},ticks:{stepSize:1}}, x:{grid:{display:false}} }}
   });
