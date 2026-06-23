@@ -89,8 +89,13 @@ function buildStatsData() {
   const topStudios = Object.entries(studioCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
 
   const yearCount = {};
-  completed.forEach(a => { if (a.year) yearCount[a.year] = (yearCount[a.year]||0)+1; });
-  const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]).slice(-20);
+  completed.forEach(a => {
+    if (a.addedAt) {
+      const y = new Date(a.addedAt).getFullYear();
+      yearCount[y] = (yearCount[y]||0)+1;
+    }
+  });
+  const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
 
   return { topGenres, ratingDist, statusCounts, topStudios, years, totalEp, hours,
     completedCount: completed.length,
@@ -136,13 +141,27 @@ function renderStats() {
 
   destroyChart("status");
   const sCtx = $("statusChart")?.getContext("2d");
-  if (sCtx && d.statusCounts.length) _charts.status = new Chart(sCtx, {
-    type:"doughnut", data:{
-      labels: d.statusCounts.map(s=>s.label),
-      datasets:[{ data:d.statusCounts.map(s=>s.count), backgroundColor:d.statusCounts.map(s=>s.color), borderWidth:0, hoverOffset:6 }]},
-    options:{ responsive:true, maintainAspectRatio:false, cutout:"65%",
-      plugins:{legend:{position:"bottom", labels:{padding:12,boxWidth:10,font:{size:11}}}}}
-  });
+  if (sCtx && d.statusCounts.length) {
+    const total = d.statusCounts.reduce((s,x)=>s+x.count,0);
+    _charts.status = new Chart(sCtx, {
+      type:"doughnut", data:{
+        labels: d.statusCounts.map(s=>`${s.label} (${s.count})`),
+        datasets:[{
+          data: d.statusCounts.map(s=>s.count),
+          backgroundColor: d.statusCounts.map(s=>s.color),
+          borderWidth: 2,
+          borderColor: "#0b1020",
+          hoverOffset: 8,
+          // ensure tiny slices stay visible by enforcing a minimum arc
+          circumference: undefined
+        }]},
+      options:{ responsive:true, maintainAspectRatio:false, cutout:"58%",
+        plugins:{
+          legend:{position:"bottom", labels:{padding:12,boxWidth:10,font:{size:11}}},
+          tooltip:{callbacks:{label: item => ` ${item.label.split("(")[0].trim()}: ${item.raw} (${Math.round(item.raw/total*100)}%)`}}
+        }}
+    });
+  }
 
   const stEl = $("studioList");
   if (stEl) {
@@ -169,7 +188,7 @@ function renderStats() {
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
-        tooltip:{ callbacks:{ title: items => `Jahr ${items[0].label}`, label: item => ` ${item.raw} Anime abgeschlossen` } }
+        tooltip:{ callbacks:{ title: items => `${items[0].label}`, label: item => ` ${item.raw} Anime abgeschlossen` } }
       },
       scales:{ y:{grid:{color:gridColor},ticks:{stepSize:1}}, x:{grid:{display:false}} }}
   });
