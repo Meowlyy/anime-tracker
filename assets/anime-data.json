@@ -1,5 +1,103 @@
 [
   {
+    "id": 1782250470753,
+    "malId": 63508,
+    "title": "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage",
+    "altTitle": "Rakudai Kenja no Gakuin Musou: Nidome no Tensei, S-Rank Cheat Majutsushi Boukenroku",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 0,
+    "rating": 0,
+    "favorite": false,
+    "notes": "The Sage of Wind, Ephtal is a reincarnated human, coming from modern Earth. Reincarnated in a new world where magic is real, he decides to devote the entirety of his life in the pursuit of magic. Despite his efforts, though, he discovers that he is absolutely talentless in magic, and breathed his last in anguish.\n\nBut it isn't the end for him just yet! He reincarnates once again bearing the same name, Ephtal, 400 years later. Having retained his knowledge and power, he steels his resolve and once again sets his sights for the peak of magic!\n\nHowever, in a surprising turn of events, he discovers that magic has terribly declined. In this era where powerful spells are a rarity, his talentless self is now completely unmatched! From the depths of powerlessness to the peak of power, the talentless but peerless mage's journey to the top starts now!\n\n(Source: Manga UP!, edited)",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "studios": [
+      "EMT Squared"
+    ],
+    "year": 2026,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1319/158376l.jpg",
+    "type": "TV",
+    "malScore": 0,
+    "airing": false,
+    "nextEpAt": 1782313200000,
+    "completedAt": null,
+    "addedAt": 1782250470279,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782250472680,
+    "repairedAt": 1782251157298
+  },
+  {
+    "id": 1782244923179,
+    "malId": 29758,
+    "title": "Taboo Tattoo",
+    "altTitle": "タブー・タトゥー",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "By all accounts, middle schooler Seigi is pretty unremarkable except for his martial arts prowess and a desire to protect the weak. But when his good intentions are put to the test by saving an old homeless man from some street thugs, the mysterious man shows his gratitude by...burning a tattoo onto Seigi's palm?! It turns out, the tattoo is a powerful secret weapon that everyone--including a formidable girl with a tattoo of her own--is after. With his life on the line and his martial arts skills alone no match against super-powered foes, will Seigi be able to unlock the latent potential of his tattoo and live to fight another day?!\n\n(Source: Yen Press)",
+    "genres": [
+      "Action",
+      "Fantasy"
+    ],
+    "studios": [
+      "J.C.Staff"
+    ],
+    "year": 2016,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/12/80197l.jpg",
+    "type": "TV",
+    "malScore": 5.73,
+    "airing": false,
+    "nextEpAt": 1782752700000,
+    "completedAt": null,
+    "addedAt": 1782244923027,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782244926642
+  },
+  {
+    "id": 1782244439958,
+    "malId": 55774,
+    "title": "'Tis Time for \"Torture,\" Princess",
+    "altTitle": "Himesama \"Goumon\" no Jikan desu",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "As the commander of the Imperial Army's Third Legion, the Royal Empire's princess has led humanity to countless victories against the demonic Hellhorde. However, she has now been captured by the enemy and confined to the dungeons, with her sentient sword, Ex, as her only company.\n\nDue to her royal status, the princess knows invaluable secrets that would help the Hellhorde achieve dominance. To have her reveal all the information they need, the demons do not hesitate to subject the princess to the most vile forms of torture—that is, tempting her with delicious food, lasting friendships, adorable animals, and the most enjoyable experiences imaginable.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Comedy",
+      "Fantasy",
+      "Gourmet"
+    ],
+    "studios": [
+      "PINE JAM"
+    ],
+    "year": 2024,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1056/139398l.jpg",
+    "type": "TV",
+    "malScore": 7.26,
+    "airing": false,
+    "nextEpAt": 1782745200000,
+    "completedAt": null,
+    "addedAt": 1782244439519,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 58524,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782244439636
+  },
+  {
     "id": 1782182296270,
     "malId": 62322,
     "title": "The Villager of Level 999",
@@ -21,7 +119,7 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": null,
+    "nextEpAt": 1782313200000,
     "addedAt": 1782182296230,
     "customCategories": [],
     "relatedMalIds": [],
@@ -513,7 +611,7 @@
     "id": 1781915038800,
     "malId": 39030,
     "title": "Kemono Michi: Rise Up",
-    "status": "Plan to Watch",
+    "status": "Dropped",
     "episodesWatched": 0,
     "totalEpisodes": 12,
     "rating": 0,
@@ -645,7 +743,7 @@
     "malId": 61276,
     "title": "The Banished Court Magician Aims to Become the Strongest",
     "status": "Currently Watching",
-    "episodesWatched": 2,
+    "episodesWatched": 3,
     "totalEpisodes": 12,
     "rating": 0,
     "favorite": false,
@@ -888,7 +986,7 @@
     "type": "TV",
     "malScore": 6.57,
     "airing": true,
-    "nextEpAt": 1782306000000,
+    "nextEpAt": 1782910800000,
     "addedAt": 1780592179061,
     "customCategories": [],
     "altTitle": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 3rd Season",
@@ -1182,7 +1280,7 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1726/155542l.jpg",
     "type": "TV",
     "malScore": 8.73,
-    "airing": true,
+    "airing": false,
     "nextEpAt": 1782741600000,
     "altTitle": "Tongari Boushi no Atelier",
     "relatedMalIds": [],
@@ -2381,7 +2479,7 @@
     "type": "TV",
     "malScore": 8.53,
     "airing": false,
-    "nextEpAt": 1782309600000,
+    "nextEpAt": 1782914400000,
     "altTitle": "[Oshi no Ko]",
     "relatedMalIds": [
       {
@@ -2580,7 +2678,7 @@
     "type": "TV",
     "malScore": 6.97,
     "airing": false,
-    "nextEpAt": 1782312300000,
+    "nextEpAt": 1782917100000,
     "altTitle": "ワンダンス",
     "relatedMalIds": [],
     "relationsAt": 1782005964769,
@@ -2613,7 +2711,7 @@
     "type": "TV",
     "malScore": 4.56,
     "airing": false,
-    "nextEpAt": 1782232200000,
+    "nextEpAt": 1782837000000,
     "altTitle": "CONCEPTION（コンセプション）",
     "relatedMalIds": [],
     "relationsAt": 1782005966793,
@@ -3137,7 +3235,7 @@
     "type": "TV",
     "malScore": 6.7,
     "airing": false,
-    "nextEpAt": 1782302400000,
+    "nextEpAt": 1782907200000,
     "altTitle": "Renai Flops",
     "relatedMalIds": [],
     "relationsAt": 1782005981694,
@@ -4500,7 +4598,7 @@
     "type": "TV",
     "malScore": 8.01,
     "airing": false,
-    "nextEpAt": 1782230340000,
+    "nextEpAt": 1782835140000,
     "altTitle": "Kimi ni Todoke",
     "relatedMalIds": [
       {
@@ -5058,7 +5156,7 @@
     "type": "TV",
     "malScore": 8.21,
     "airing": false,
-    "nextEpAt": 1782232200000,
+    "nextEpAt": 1782837000000,
     "altTitle": "Ookami to Koushinryou",
     "relatedMalIds": [
       {
@@ -5258,7 +5356,7 @@
     "type": "TV",
     "malScore": 7.54,
     "airing": false,
-    "nextEpAt": 1782232140000,
+    "nextEpAt": 1782836940000,
     "altTitle": "ワンダーエッグ・プライオリティ",
     "relatedMalIds": [
       {
@@ -5649,7 +5747,7 @@
     "type": "TV",
     "malScore": 5.61,
     "airing": false,
-    "nextEpAt": 1782228600000,
+    "nextEpAt": 1782833400000,
     "altTitle": "Deep Insanity THE LOST CHILD",
     "relatedMalIds": [],
     "relationsAt": 1782006057863,
@@ -6196,7 +6294,7 @@
     "type": "TV",
     "malScore": 7.29,
     "airing": false,
-    "nextEpAt": 1782293100000,
+    "nextEpAt": 1782897900000,
     "altTitle": "Sousei no Onmyouji",
     "relatedMalIds": [],
     "relationsAt": 1782006074258,
@@ -6452,7 +6550,7 @@
     "type": "TV",
     "malScore": 8.05,
     "airing": false,
-    "nextEpAt": 1782232440000,
+    "nextEpAt": 1782837240000,
     "altTitle": "アポカリプスホテル",
     "relatedMalIds": [],
     "relationsAt": 1782006082570,
@@ -6925,7 +7023,7 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": false,
-    "nextEpAt": 1782302400000,
+    "nextEpAt": 1782907200000,
     "altTitle": "くま クマ 熊 ベアー",
     "relatedMalIds": [
       {
@@ -6994,7 +7092,7 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782302400000,
+    "nextEpAt": 1782907200000,
     "altTitle": "Mamahaha no Tsurego ga Motokano datta",
     "relatedMalIds": [],
     "relationsAt": 1782006099537,
@@ -7389,7 +7487,7 @@
     "type": "TV",
     "malScore": 6.54,
     "airing": true,
-    "nextEpAt": 1782233940000,
+    "nextEpAt": 1782838740000,
     "altTitle": "Megami \"Isekai Tensei Nani ni Naritai desu ka\" Ore \"Yuusha no Rokkotsu de\"",
     "relatedMalIds": [],
     "relationsAt": 1782006112970,
@@ -7653,7 +7751,7 @@
     "type": "TV",
     "malScore": 6.48,
     "airing": true,
-    "nextEpAt": 1782232140000,
+    "nextEpAt": 1782836940000,
     "altTitle": "Tadaima, Ojamasaremasu!",
     "relatedMalIds": [],
     "relationsAt": 1782006121492,
@@ -8317,7 +8415,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782228600000,
+    "nextEpAt": 1782833400000,
     "altTitle": "東京レイヴンズ",
     "relatedMalIds": [
       {
@@ -8855,7 +8953,7 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782229500000,
+    "nextEpAt": 1782834300000,
     "altTitle": "World Witches Hasshin Shimasu!",
     "relatedMalIds": [],
     "relationsAt": 1782006160775,
@@ -8922,7 +9020,7 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": false,
-    "nextEpAt": 1782226800000,
+    "nextEpAt": 1782831600000,
     "altTitle": "Amagami-san Chi no Enmusubi",
     "relatedMalIds": [],
     "relationsAt": 1782006163293,
@@ -9115,7 +9213,7 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782226800000,
+    "nextEpAt": 1782831600000,
     "altTitle": "takt op.Destiny",
     "relatedMalIds": [],
     "relationsAt": 1782006169121,
@@ -10545,7 +10643,7 @@
     "type": "TV",
     "malScore": 6.25,
     "airing": false,
-    "nextEpAt": 1782302400000,
+    "nextEpAt": 1782907200000,
     "altTitle": "Majutsushi Orphen Hagure Tabi: Kimluck-hen",
     "relatedMalIds": [
       {
@@ -10678,7 +10776,7 @@
     "type": "TV",
     "malScore": 6.41,
     "airing": false,
-    "nextEpAt": 1782232500000,
+    "nextEpAt": 1782837300000,
     "altTitle": "ミス・モノクローム -The Animation-",
     "relatedMalIds": [
       {
@@ -11283,36 +11381,6 @@
     "repairedAt": 1782165096433
   },
   {
-    "addedAt": 1779994518766,
-    "customCategories": [],
-    "id": 1779994518766.268,
-    "malId": 29758,
-    "title": "Taboo Tattoo",
-    "status": "Plan to Watch",
-    "episodesWatched": 0,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "By all accounts, middle schooler Seigi is pretty unremarkable except for his martial arts prowess and a desire to protect the weak. But when his good intentions are put to the test by saving an old homeless man from some street thugs, the mysterious man shows his gratitude by...burning a tattoo onto Seigi's palm?! It turns out, the tattoo is a powerful secret weapon that everyone--including a formidable girl with a tattoo of her own--is after. With his life on the line and his martial arts skills alone no match against super-powered foes, will Seigi be able to unlock the latent potential of his tattoo and live to fight another day?!\n\n(Source: Yen Press)",
-    "genres": [
-      "Action",
-      "Fantasy"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/12/80197l.jpg",
-    "type": "TV",
-    "malScore": 5.74,
-    "airing": false,
-    "nextEpAt": 1782752700000,
-    "altTitle": "タブー・タトゥー",
-    "relatedMalIds": [],
-    "relationsAt": 1782006235581,
-    "studios": [
-      "J.C.Staff"
-    ],
-    "year": 2016,
-    "repairedAt": 1782165096790
-  },
-  {
     "addedAt": 1779994522651,
     "customCategories": [],
     "id": 1779994522651.0698,
@@ -11459,7 +11527,7 @@
     "type": "TV",
     "malScore": 8.42,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "Re:Zero kara Hajimeru Isekai Seikatsu 3rd Season",
     "relatedMalIds": [
       {
@@ -12315,7 +12383,7 @@
     "type": "TV",
     "malScore": 6.45,
     "airing": false,
-    "nextEpAt": 1782306000000,
+    "nextEpAt": 1782910800000,
     "altTitle": "Cheat Kusushi no Slow Life: Isekai ni Tsukurou Drugstore",
     "relatedMalIds": [],
     "relationsAt": 1782006266833,
@@ -12662,7 +12730,7 @@
     "type": "TV",
     "malScore": 7.47,
     "airing": false,
-    "nextEpAt": 1782302400000,
+    "nextEpAt": 1782907200000,
     "altTitle": "Tensei Oujo to Tensai Reijou no Mahou Kakumei",
     "relatedMalIds": [],
     "relationsAt": 1782006278047,
@@ -12835,7 +12903,7 @@
     "type": "TV",
     "malScore": 8.37,
     "airing": false,
-    "nextEpAt": 1782293400000,
+    "nextEpAt": 1782898200000,
     "altTitle": "Shinseiki Evangelion",
     "relatedMalIds": [
       {
@@ -13602,7 +13670,7 @@
     "type": "TV",
     "malScore": 8.18,
     "airing": false,
-    "nextEpAt": 1782230340000,
+    "nextEpAt": 1782835140000,
     "altTitle": "ちはやふる",
     "relatedMalIds": [
       {
@@ -13762,7 +13830,7 @@
     "type": "TV",
     "malScore": 4.91,
     "airing": false,
-    "nextEpAt": 1782306000000,
+    "nextEpAt": 1782910800000,
     "altTitle": "Ore ga Suki nano wa Imouto dakedo Imouto ja Nai",
     "relatedMalIds": [],
     "relationsAt": 1782006309820,
@@ -13794,7 +13862,7 @@
     "type": "TV",
     "malScore": 6.19,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "Haite Kudasai, Takamine-san",
     "relatedMalIds": [],
     "relationsAt": 1782006311844,
@@ -13952,7 +14020,7 @@
     "type": "TV",
     "malScore": 6.36,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "Puraore! Pride of Orange",
     "relatedMalIds": [],
     "relationsAt": 1782006315701,
@@ -14195,7 +14263,7 @@
     "type": "TV",
     "malScore": 7.15,
     "airing": false,
-    "nextEpAt": 1782311400000,
+    "nextEpAt": 1782916200000,
     "altTitle": "Shibou Yuugi de Meshi wo Kuu.",
     "relatedMalIds": [
       {
@@ -14388,7 +14456,7 @@
     "type": "TV",
     "malScore": 7.1,
     "airing": false,
-    "nextEpAt": 1782232140000,
+    "nextEpAt": 1782836940000,
     "altTitle": "Hana wa Saku, Shura no Gotoku",
     "relatedMalIds": [],
     "relationsAt": 1782006329884,
@@ -14683,7 +14751,7 @@
     "type": "TV",
     "malScore": 5.87,
     "airing": false,
-    "nextEpAt": 1782232800000,
+    "nextEpAt": 1782837600000,
     "altTitle": "ソウルイーターノット！",
     "relatedMalIds": [],
     "relationsAt": 1782006340096,
@@ -15185,7 +15253,7 @@
     "type": "TV",
     "malScore": 8.33,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season",
     "relatedMalIds": [
       {
@@ -15631,7 +15699,7 @@
     "type": "TV",
     "malScore": 6.41,
     "airing": false,
-    "nextEpAt": 1782306000000,
+    "nextEpAt": 1782910800000,
     "altTitle": "Maougun Saikyou no Majutsushi wa Ningen datta",
     "relatedMalIds": [],
     "relationsAt": 1782006363819,
@@ -23091,7 +23159,7 @@
     "type": "TV",
     "malScore": 7.61,
     "airing": false,
-    "nextEpAt": 1782311400000,
+    "nextEpAt": 1782916200000,
     "altTitle": "Mahou Shoujo ni Akogarete",
     "relatedMalIds": [
       {
@@ -23234,7 +23302,7 @@
     "type": "TV",
     "malScore": 5.68,
     "airing": true,
-    "nextEpAt": 1782311400000,
+    "nextEpAt": 1782916200000,
     "altTitle": "Saikyou no Ousama, Nidome no Jinsei wa Nani wo Suru? Season 2",
     "relatedMalIds": [
       {
@@ -23630,7 +23698,7 @@
     "type": "TV",
     "malScore": 6.75,
     "airing": false,
-    "nextEpAt": 1782309600000,
+    "nextEpAt": 1782914400000,
     "altTitle": "異修羅",
     "relatedMalIds": [
       {
@@ -23736,7 +23804,7 @@
     "type": "TV",
     "malScore": 7.12,
     "airing": false,
-    "nextEpAt": 1782226800000,
+    "nextEpAt": 1782831600000,
     "altTitle": "Fantasy Bishoujo Juniku Ojisan to",
     "relatedMalIds": [],
     "relationsAt": 1782006597480,
@@ -23857,7 +23925,7 @@
     "type": "TV",
     "malScore": 6.61,
     "airing": false,
-    "nextEpAt": 1782304200000,
+    "nextEpAt": 1782909000000,
     "altTitle": "29-sai Dokushin Chuuken Boukensha no Nichijou",
     "relatedMalIds": [],
     "relationsAt": 1782006600857,
@@ -24660,7 +24728,7 @@
     "type": "TV",
     "malScore": 7.87,
     "airing": false,
-    "nextEpAt": 1782232200000,
+    "nextEpAt": 1782837000000,
     "altTitle": "Higurashi no Naku Koro ni",
     "relatedMalIds": [
       {
@@ -25175,7 +25243,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "Koori Zokusei Danshi to Cool na Douryou Joshi",
     "relatedMalIds": [],
     "relationsAt": 1782006639019,
@@ -26870,7 +26938,7 @@
     "type": "TV",
     "malScore": 6.5,
     "airing": false,
-    "nextEpAt": 1782307800000,
+    "nextEpAt": 1782912600000,
     "altTitle": "AKIBA'S TRIP THE ANIMATION",
     "relatedMalIds": [],
     "relationsAt": 1782006686235,
@@ -27594,7 +27662,7 @@
     "type": "TV",
     "malScore": 7.36,
     "airing": false,
-    "nextEpAt": 1782311400000,
+    "nextEpAt": 1782916200000,
     "altTitle": "Sakurada Reset",
     "relatedMalIds": [],
     "relationsAt": 1782006709051,
@@ -27846,7 +27914,7 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1484/155726l.jpg",
     "type": "TV",
     "malScore": 7.56,
-    "airing": true,
+    "airing": false,
     "nextEpAt": 1782743040000,
     "altTitle": "Ponkotsu Fuuki Iin to Skirt-take ga Futekisetsu na JK no Hanashi",
     "relatedMalIds": [],
@@ -28057,7 +28125,7 @@
     "type": "TV",
     "malScore": 5.54,
     "airing": false,
-    "nextEpAt": 1782309900000,
+    "nextEpAt": 1782914700000,
     "altTitle": "Dogeza de Tanondemita",
     "relatedMalIds": [
       {
@@ -28159,7 +28227,7 @@
     "type": "TV",
     "malScore": 8.03,
     "airing": false,
-    "nextEpAt": 1782304200000,
+    "nextEpAt": 1782909000000,
     "altTitle": "No Game No Life",
     "relatedMalIds": [
       {
@@ -29004,7 +29072,7 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1656/156369l.jpg",
     "type": "TV",
     "malScore": 7.48,
-    "airing": true,
+    "airing": false,
     "nextEpAt": 1782739800000,
     "altTitle": "Isekai Nonbiri Nouka 2",
     "relatedMalIds": [
@@ -29098,7 +29166,7 @@
     "type": "TV",
     "malScore": 6.87,
     "airing": false,
-    "nextEpAt": 1782233940000,
+    "nextEpAt": 1782838740000,
     "altTitle": "3D Kanojo: Real Girl",
     "relatedMalIds": [
       {

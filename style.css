@@ -926,3 +926,6 @@ body{
 @media(max-width:640px){
   .sp-grid,.sp-grid-2{grid-template-columns:1fr}
 }
+.reco-links{display:flex;gap:6px;margin-top:4px}
+.reco-link{font-size:.65rem;color:var(--dim);text-decoration:none;padding:2px 7px;border:1px solid var(--border);border-radius:var(--radius-pill);transition:all var(--trans);display:flex;align-items:center;gap:3px}
+.reco-link:hover{color:var(--accent);border-color:var(--accent)}

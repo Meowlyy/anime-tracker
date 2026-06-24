@@ -224,6 +224,14 @@ function renderStats() {
 }
 
 // ── Recommendations ──
+const GENRE_IDS = {
+  "Action":1,"Adventure":2,"Comedy":4,"Drama":8,"Fantasy":10,
+  "Horror":14,"Mystery":7,"Romance":22,"Sci-Fi":24,"Slice of Life":36,
+  "Sports":30,"Supernatural":37,"Thriller":41,"Ecchi":9,"Isekai":62,
+  "Mecha":18,"Music":19,"Psychological":40,"Shounen":27,"Seinen":42,
+  "Historical":13,"Martial Arts":17,"Magic":16,"School":23
+};
+
 async function loadRecommendations() {
   const btn = $("recoLoadBtn"), grid = $("recoGrid");
   if (!btn || !grid) return;
@@ -231,49 +239,64 @@ async function loadRecommendations() {
 
   const genreWeight = {};
   list.forEach(a => {
-    if (!a.rating) return;
-    const boost = a.status==="Completed" ? 1 : 0.5;
-    (a.genres||[]).forEach(g => genreWeight[g] = (genreWeight[g]||0) + a.rating * boost);
+    if (!a.rating || a.rating < 6) return;
+    const w = (a.status==="Completed" ? 1 : 0.4) * (a.rating / 5);
+    (a.genres||[]).forEach(g => genreWeight[g] = (genreWeight[g]||0) + w);
   });
-  const topGenres = Object.entries(genreWeight).sort((a,b)=>b[1]-a[1]).slice(0,5).map(g=>g[0]);
+  const topGenres = Object.entries(genreWeight).sort((a,b)=>b[1]-a[1]).slice(0,6).map(g=>g[0]);
 
   if (!topGenres.length) {
-    grid.innerHTML = `<div class="sp-reco-empty">Noch keine bewerteten Anime — bewerte ein paar und probier es nochmal.</div>`;
+    grid.innerHTML = `<div class="sp-reco-empty">Noch keine bewerteten Anime (min. 6/10) — bewerte ein paar und probier es nochmal.</div>`;
     btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Empfehlungen laden';
     return;
   }
 
-  const existingMalIds = new Set(list.map(a=>a.malId).filter(Boolean));
-  const seen = new Set(); const results = [];
+  const ratedCompleted = list.filter(a=>a.status==="Completed"&&a.rating>=7);
+  const avgRating = ratedCompleted.length ? ratedCompleted.reduce((s,a)=>s+a.rating,0)/ratedCompleted.length : 7;
+  const minMalScore = Math.max(6.5, avgRating * 0.7);
 
-  for (const genre of topGenres.slice(0,3)) {
-    if (results.length >= 20) break;
+  const existingMalIds = new Set(list.map(a=>a.malId).filter(Boolean));
+  const seen = new Set(); let results = [];
+
+  const page = Math.floor(Math.random() * 5) + 1;
+  for (const genre of topGenres.slice(0,4)) {
+    if (results.length >= 40) break;
+    const gid = GENRE_IDS[genre];
     try {
-      const d = await fetchAnimeSearch(genre, { limit: 20 });
-      for (const a of d) {
+      const url = gid
+        ? `https://api.jikan.moe/v4/anime?genres=${gid}&min_score=${minMalScore.toFixed(1)}&order_by=score&sort=desc&limit=20&page=${page}&type=tv&sfw`
+        : `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(genre)}&min_score=${minMalScore.toFixed(1)}&limit=20&sfw`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(res.status);
+      const d = await res.json();
+      for (const a of (d.data||[])) {
         if (existingMalIds.has(a.mal_id) || seen.has(a.mal_id)) continue;
         seen.add(a.mal_id); results.push(a);
       }
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 350));
     } catch {}
   }
 
   const scored = results.map(a => {
     const aGenres = (a.genres||[]).map(g=>g.name);
-    const overlap = topGenres.filter(g=>aGenres.includes(g)).length;
-    return { a, score:(a.score||0)+overlap*0.5 };
-  }).sort((a,b)=>b.score-a.score).slice(0,10);
+    const overlap = topGenres.reduce((s,g,i) => aGenres.includes(g) ? s+(1-i*0.1) : s, 0);
+    return { a, score: (a.score||0)*0.7 + overlap*0.3 };
+  });
+  // Shuffle for variety, then sort
+  for (let i=scored.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[scored[i],scored[j]]=[scored[j],scored[i]];}
+  scored.sort((a,b)=>b.score-a.score);
+  const top = scored.slice(0,10);
 
-  if (!scored.length) {
-    grid.innerHTML = `<div class="sp-reco-empty">Keine Empfehlungen gefunden – versuch es gleich nochmal.</div>`;
-    btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Empfehlungen laden';
+  if (!top.length) {
+    grid.innerHTML = `<div class="sp-reco-empty">Keine Empfehlungen gefunden – versuch "Neu laden".</div>`;
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate"></i> Neu laden';
     return;
   }
 
-  grid.innerHTML = scored.map(({ a }) => {
+  grid.innerHTML = top.map(({ a }) => {
     const genres = (a.genres||[]).slice(0,3).map(g=>`<span class="reco-genre">${esc(g.name)}</span>`).join("");
     return `
-      <div class="reco-card" data-mal-id="${a.mal_id}">
+      <div class="reco-card" id="reco-${a.mal_id}">
         <img src="${esc(a.images?.jpg?.large_image_url||NO_COVER_SVG)}" alt="" loading="lazy" onerror="noCover(this)">
         <div class="reco-info">
           <div class="reco-title">${esc(a.title_english||a.title)}</div>
@@ -283,6 +306,10 @@ async function loadRecommendations() {
             <span>⭐ ${a.score?.toFixed(1)||"—"}</span>
           </div>
           <div class="reco-genres">${genres}</div>
+          <div class="reco-links">
+            <a href="https://myanimelist.net/anime/${a.mal_id}" target="_blank" class="reco-link" title="Auf MAL ansehen"><i class="fas fa-external-link-alt"></i> MAL</a>
+            <a href="https://www.anime-planet.com/anime/all?include=${encodeURIComponent(a.title_english||a.title)}" target="_blank" class="reco-link" title="Dub/Sub-Verfügbarkeit prüfen"><i class="fas fa-language"></i> Dub/Sub</a>
+          </div>
           <button class="reco-add-btn" data-mal-id="${a.mal_id}"><i class="fas fa-plus"></i> Hinzufügen</button>
         </div>
       </div>`;
@@ -292,19 +319,34 @@ async function loadRecommendations() {
     b.addEventListener("click", async e => {
       e.stopPropagation();
       const malId = parseInt(b.dataset.malId);
+      const card = document.getElementById(`reco-${malId}`);
       b.disabled=true; b.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
       try {
         const resp = await jikan(`/anime/${malId}`);
-        if (resp.data) openAddModal(resp.data);
-      } catch { msg("Fehler beim Laden.", true); }
-      b.disabled=false; b.innerHTML='<i class="fas fa-plus"></i> Hinzufügen';
+        if (resp.data) {
+          openAddModal(resp.data);
+          if (card) card.style.opacity="0.4";
+          // Poll for the anime being saved, then fade-remove the card
+          const check = setInterval(() => {
+            try {
+              const saved = JSON.parse(localStorage.getItem(SK)||"[]");
+              if (saved.some(a=>a.malId===malId)) {
+                clearInterval(check);
+                if (card) { card.style.transition="opacity .4s,transform .4s"; card.style.opacity="0"; card.style.transform="scale(0.9)"; setTimeout(()=>card.remove(),400); }
+              }
+            } catch {}
+          }, 600);
+          setTimeout(()=>clearInterval(check), 60000);
+        }
+      } catch { msg("Fehler beim Laden.", true); b.disabled=false; b.innerHTML='<i class="fas fa-plus"></i> Hinzufügen'; if(card) card.style.opacity="1"; }
     });
   });
 
   btn.disabled=false; btn.innerHTML='<i class="fas fa-rotate"></i> Neu laden';
-  $("spRecoWrap").querySelector(".sp-reco-hint").textContent =
-    `Basierend auf deinen Top-Genres: ${topGenres.slice(0,3).join(", ")}.`;
+  const hint = $("spRecoWrap")?.querySelector(".sp-reco-hint");
+  if (hint) hint.textContent = `Basierend auf: ${topGenres.slice(0,4).join(", ")} · Mindest-MAL-Score: ${minMalScore.toFixed(1)}`;
 }
+
 
 // ── Minimal Add Modal (saves back to localStorage) ──
 let pendingMal = null;
