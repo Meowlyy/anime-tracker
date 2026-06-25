@@ -211,10 +211,12 @@ function normTitle(t) {
     .replace(/\s*Season\s*\d+/gi,"")
     .replace(/\s*Part\s*\d+/gi,"")
     .replace(/\s*Cour\s*\d+/gi,"")
+    .replace(/\s*:?\s*(the\s+)?movie\s*\d*/gi,"")  // "the Movie 2", "Movie 3", etc.
     .replace(/\s*[:\-–]\s*.+$/,"")
-    .replace(/\s*(Movie|Film|The Movie|OVA|ONA|Special|Specials|Recap|Part)\s*$/gi,"")
+    .replace(/\s*(Film|OVA|ONA|Special|Specials|Recap|Part)\s*$/gi,"")
     .replace(/\s+[IVXLCDM]+\s*$/i,"")
     .replace(/\s+\d+\s*$/,"")
+    .replace(/\s+the\s*$/i,"")  // trailing "the" leftover
     .trim().toLowerCase();
   _normCache.set(t, r);
   return r;
@@ -1548,6 +1550,7 @@ function renderNotifEpisodes() {
             card.style.boxShadow="0 0 0 3px var(--accent),0 0 30px rgba(255,79,216,.5)";
             setTimeout(()=>card.style.boxShadow="",2500);
           }
+          openDetail(anime);
         }, 300);
       }
       renderNotifEpisodes();
