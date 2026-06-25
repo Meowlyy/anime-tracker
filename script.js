@@ -295,7 +295,7 @@ function buildRenderUnits(filtered) {
     }
   });
 
-  // Step 3: collect final groups by union-find root
+  // Step 3: collect final groups by union-find root and sort chronologically
   const groupsByRoot = {};
   filtered.forEach(a => {
     const r = root(normTitle(a.title));
@@ -303,19 +303,45 @@ function buildRenderUnits(filtered) {
     groupsByRoot[r].push(a);
   });
 
+  // Sort members: follow Prequel→Sequel chain, then by year, then by title
+  function sortGroupMembers(members) {
+    const byMalId = {};
+    members.forEach(m => { if (m.malId) byMalId[m.malId] = m; });
+    const hasPrequelInGroup = new Set();
+    members.forEach(m => {
+      (m.relatedMalIds||[]).forEach(r => {
+        if (r.relation==="Sequel" && byMalId[r.malId]) hasPrequelInGroup.add(r.malId);
+      });
+    });
+    const score = new Map(); let counter = 0; const visited = new Set();
+    function walk(m) {
+      if (!m || visited.has(m.id)) return;
+      visited.add(m.id); score.set(m.id, counter++);
+      (m.relatedMalIds||[]).forEach(r => { if (r.relation==="Sequel" && byMalId[r.malId]) walk(byMalId[r.malId]); });
+    }
+    members.filter(m => !hasPrequelInGroup.has(m.malId)).forEach(walk);
+    members.forEach(m => { if (!visited.has(m.id)) walk(m); });
+    return [...members].sort((a,b) => {
+      const sa = score.has(a.id)?score.get(a.id):999, sb = score.has(b.id)?score.get(b.id):999;
+      if (sa!==sb) return sa-sb;
+      if (a.year&&b.year&&a.year!==b.year) return a.year-b.year;
+      return a.title.localeCompare(b.title);
+    });
+  }
+
   const seenRoot = new Set();
   const units = [];
   filtered.forEach(a => {
     const r = root(normTitle(a.title));
     const members = groupsByRoot[r];
     if (members.length >= 2) {
-      if (seenRoot.has(r)) return; // this group's unit was already added on a previous item
+      if (seenRoot.has(r)) return;
       seenRoot.add(r);
-      // prefer a main (non-spin-off) entry's title as the group label
       const mainMembers = members.filter(m => !secondaryOf[m.id]);
       const labelPool = mainMembers.length ? mainMembers : members;
       const label = labelPool.reduce((x,y) => x.title.length <= y.title.length ? x : y).title;
-      units.push({ type: "group", label, items: members, size: members.length, secondaryOf });
+      const sorted = sortGroupMembers(members);
+      units.push({ type: "group", label, items: sorted, size: sorted.length, secondaryOf });
     } else {
       units.push({ type: "single", item: a, size: 1 });
     }
@@ -1026,8 +1052,6 @@ async function bigSearch() {
 
     if (!res) return;
     res.innerHTML = `<div class="bigsearch-grid">${results.map(a => {
-      // Show an alt title (english if different from main title, otherwise first synonym) so it's
-      // clear which anime this is even if you searched in a different language than the main title.
       const altTitle = (a.title_english && a.title_english !== a.title) ? a.title_english
         : (a.title_synonyms && a.title_synonyms[0]) || "";
       const genres = (a.genres || []).slice(0, 3).map(g => `<span class="bsr-genre-tag">${esc(g.name)}</span>`).join("");
@@ -1044,22 +1068,37 @@ async function bigSearch() {
               <span>⭐ ${a.score?.toFixed(1) || "—"}</span>
               <span>${a.year || "?"}</span>
             </div>
+            <div class="bsr-actions">
+              <button class="bsr-add-btn" data-mal-id="${a.mal_id}"><i class="fas fa-plus"></i> Hinzufügen</button>
+              <button class="bsr-franchise-btn" data-mal-id="${a.mal_id}" data-title="${esc(a.title_english||a.title)}" title="Alle Staffeln & Filme anzeigen"><i class="fas fa-layer-group"></i> Alle Staffeln</button>
+            </div>
           </div>
         </div>`;
     }).join("")}</div>`;
 
-    res.querySelectorAll(".bsr-card").forEach(card => {
-      card.addEventListener("click", async () => {
-        const malId = parseInt(card.dataset.malId);
-        res.innerHTML = '<div class="notif-loading"><i class="fas fa-spinner fa-spin"></i> Lade Details…</div>';
+    // Single add
+    res.querySelectorAll(".bsr-add-btn").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        e.stopPropagation();
+        const malId = parseInt(btn.dataset.malId);
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        btn.disabled = true;
         try {
           const r = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
           const d = await r.json();
-          if (d.data) {
-            closeBigSearchModal();
-            openAddModal(d.data);
-          }
-        } catch { msg("Fehler beim Laden der Details.", true); }
+          if (d.data) { closeBigSearchModal(); openAddModal(d.data); }
+        } catch { msg("Fehler beim Laden der Details.", true); btn.disabled=false; btn.innerHTML='<i class="fas fa-plus"></i> Hinzufügen'; }
+      });
+    });
+
+    // Franchise (all seasons) modal
+    res.querySelectorAll(".bsr-franchise-btn").forEach(btn => {
+      btn.addEventListener("click", async e => {
+        e.stopPropagation();
+        const malId = parseInt(btn.dataset.malId);
+        const title = btn.dataset.title;
+        closeBigSearchModal();
+        openFranchiseModal(malId, title);
       });
     });
   }, 500);
@@ -1196,9 +1235,12 @@ function showRelationsBanner(baseTitle, relations) {
       <span><i class="fas fa-layer-group"></i>
         Weitere Anime zur Serie <strong>${esc(baseTitle.length>35?baseTitle.substring(0,35)+"…":baseTitle)}</strong> — noch nicht in deiner Liste:
       </span>
-      <span class="rel-banner-close" onclick="document.getElementById('relBanner')?.remove()">
-        <i class="fas fa-times"></i>
-      </span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn-ghost" style="font-size:.78rem;padding:4px 12px" id="relBannerBulkBtn"><i class="fas fa-layer-group"></i> Alle auf einmal</button>
+        <span class="rel-banner-close" onclick="document.getElementById('relBanner')?.remove()">
+          <i class="fas fa-times"></i>
+        </span>
+      </div>
     </div>
     <div class="rel-banner-items">
       ${relations.slice(0,8).map(r=>`
@@ -1221,13 +1263,215 @@ function showRelationsBanner(baseTitle, relations) {
     });
   });
 
+  document.getElementById("relBannerBulkBtn")?.addEventListener("click", () => {
+    banner.remove();
+    // Find the base entry malId from the relations list to pass to franchise modal
+    // We need to search back for the anime we just added to get its malId
+    const lastAdded = list[0];
+    if (lastAdded?.malId) openFranchiseModal(lastAdded.malId, baseTitle);
+  });
+
   // Insert right above the anime grid
   const grid = $("animeGrid");
   if (grid) grid.parentNode.insertBefore(banner, grid);
   setTimeout(() => banner.remove(), 45000);
 }
 
-// ══════════════════ GENRE DROPDOWN ══════════════════
+// ══════════════════ FRANCHISE / ALL SEASONS MODAL ══════════════════
+const RELATION_ORDER = ["Prequel","Parent story","Full story","Sequel","Side story","Spin-off","Alternative version","Summary","Other"];
+const RELATION_LABELS = { "Sequel":"Fortsetzung","Prequel":"Vorgeschichte","Side story":"Side Story",
+  "Spin-off":"Spin-off","Alternative version":"Alt. Version","Parent story":"Hauptstory",
+  "Full story":"Vollversion","Summary":"Zusammenfassung","Other":"Sonstiges" };
+const TYPE_BADGES = { "TV":"TV","Movie":"Movie","OVA":"OVA","ONA":"ONA","Special":"Special","Music":"Music" };
+
+let _franchiseEntries = []; // [{malId, title, relation, type, episodes, score, imageUrl, year, checked}]
+
+async function openFranchiseModal(baseMalId, baseTitle) {
+  _franchiseEntries = [];
+  const modal = $("franchiseModal"), body = $("franchiseBody"), titleEl = $("franchiseModalTitle");
+  const confirmBtn = $("franchiseConfirm");
+  if (!modal || !body) return;
+
+  if (titleEl) titleEl.textContent = baseTitle.length > 40 ? baseTitle.slice(0,40)+"…" : baseTitle;
+  body.innerHTML = '<div class="notif-loading"><i class="fas fa-spinner fa-spin"></i> Lade Serieninformationen…</div>';
+  modal.classList.remove("hidden");
+  if (confirmBtn) confirmBtn.disabled = true;
+
+  try {
+    const existingMalIds = new Set(list.map(a=>a.malId).filter(Boolean));
+    const rd = await jikan(`/anime/${baseMalId}/relations`);
+    const rels = rd.data || [];
+    const relMap = {};
+    for (const rel of rels) {
+      for (const e of (rel.entry||[])) {
+        if (e.type !== "anime") continue;
+        if (!relMap[e.mal_id]) relMap[e.mal_id] = { malId:e.mal_id, name:e.name, relation:rel.relation };
+      }
+    }
+
+    // Sort by relation type importance
+    const sorted = Object.values(relMap).sort((a,b) => {
+      const ia = RELATION_ORDER.indexOf(a.relation), ib = RELATION_ORDER.indexOf(b.relation);
+      return (ia===-1?99:ia) - (ib===-1?99:ib);
+    });
+
+    // Fetch details for each entry (capped at 12 to avoid rate limits)
+    const details = [];
+    for (const rel of sorted.slice(0,12)) {
+      try {
+        await new Promise(r=>setTimeout(r,350));
+        const d = await jikan(`/anime/${rel.malId}`);
+        if (d.data) details.push({ ...rel, data: d.data });
+      } catch {}
+    }
+
+    _franchiseEntries = details.map(e => ({
+      malId: e.malId,
+      title: preferredTitle(e.data),
+      altTitle: altTitleFor(e.data),
+      relation: e.relation,
+      type: e.data.type||"TV",
+      episodes: e.data.episodes||0,
+      score: e.data.score||0,
+      year: e.data.year||0,
+      imageUrl: e.data.images?.jpg?.large_image_url||"",
+      synopsis: e.data.synopsis||"",
+      alreadyInList: existingMalIds.has(e.malId),
+      checked: !existingMalIds.has(e.malId), // pre-check things not yet in list
+      defaultStatus: "Plan to Watch"
+    }));
+
+    renderFranchiseBody();
+  } catch (err) {
+    body.innerHTML = `<div class="notif-loading" style="color:var(--danger)">Fehler beim Laden. Bitte erneut versuchen.</div>`;
+  }
+}
+
+function renderFranchiseBody() {
+  const body = $("franchiseBody"), confirmBtn = $("franchiseConfirm");
+  if (!body) return;
+
+  if (!_franchiseEntries.length) {
+    body.innerHTML = '<div class="sp-reco-empty">Keine weiteren Einträge zur Serie gefunden.</div>';
+    return;
+  }
+
+  body.innerHTML = `
+    <div class="franchise-grid">
+      ${_franchiseEntries.map((e,i) => `
+        <div class="franchise-item ${e.alreadyInList?"franchise-item--owned":""}" data-idx="${i}">
+          <label class="franchise-check-wrap">
+            <input type="checkbox" class="franchise-cb" data-idx="${i}" ${e.checked&&!e.alreadyInList?"checked":""} ${e.alreadyInList?"disabled":""}>
+            <span class="cb-box"></span>
+          </label>
+          <img src="${esc(e.imageUrl||NO_COVER_SVG)}" alt="" onerror="noCover(this)" loading="lazy">
+          <div class="franchise-info">
+            <div class="franchise-badges">
+              <span class="franchise-relation-badge">${esc(RELATION_LABELS[e.relation]||e.relation)}</span>
+              ${TYPE_BADGES[e.type]?`<span class="franchise-type-badge franchise-type-${e.type.toLowerCase()}">${e.type}</span>`:""}
+              ${e.alreadyInList?`<span class="franchise-owned-badge"><i class="fas fa-check"></i> In Liste</span>`:""}
+            </div>
+            <div class="franchise-title">${esc(e.title)}</div>
+            ${e.altTitle?`<div class="franchise-alt">${esc(e.altTitle)}</div>`:""}
+            <div class="franchise-meta">
+              ${e.episodes?`<span>${e.episodes} Ep.</span>`:""}
+              ${e.score?`<span>⭐ ${e.score.toFixed(1)}</span>`:""}
+              ${e.year?`<span>${e.year}</span>`:""}
+            </div>
+            ${!e.alreadyInList?`
+            <select class="franchise-status filter-select" data-idx="${i}" style="margin-top:6px;width:100%;font-size:.75rem">
+              <option value="Plan to Watch"${e.defaultStatus==="Plan to Watch"?" selected":""}>Geplant</option>
+              <option value="Currently Watching"${e.defaultStatus==="Currently Watching"?" selected":""}>Watching</option>
+              <option value="Completed"${e.defaultStatus==="Completed"?" selected":""}>Abgeschlossen</option>
+              <option value="On Hold"${e.defaultStatus==="On Hold"?" selected":""}>Pausiert</option>
+              <option value="Dropped"${e.defaultStatus==="Dropped"?" selected":""}>Abgebrochen</option>
+            </select>`:"<div style='font-size:.72rem;color:var(--dim);margin-top:6px'>Bereits vorhanden</div>"}
+          </div>
+        </div>`).join("")}
+    </div>`;
+
+  // Wire checkboxes
+  body.querySelectorAll(".franchise-cb").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const idx = parseInt(cb.dataset.idx);
+      _franchiseEntries[idx].checked = cb.checked;
+      updateFranchiseConfirmBtn();
+    });
+  });
+
+  // Wire status dropdowns
+  body.querySelectorAll(".franchise-status").forEach(sel => {
+    sel.addEventListener("change", () => {
+      const idx = parseInt(sel.dataset.idx);
+      _franchiseEntries[idx].defaultStatus = sel.value;
+    });
+  });
+
+  updateFranchiseConfirmBtn();
+}
+
+function updateFranchiseConfirmBtn() {
+  const btn = $("franchiseConfirm");
+  const count = _franchiseEntries.filter(e=>e.checked&&!e.alreadyInList).length;
+  if (btn) {
+    btn.disabled = count === 0;
+    btn.innerHTML = count > 0
+      ? `<i class="fas fa-plus"></i> ${count} Anime hinzufügen`
+      : `<i class="fas fa-plus"></i> Ausgewählte hinzufügen`;
+  }
+}
+
+async function confirmFranchiseAdd() {
+  const toAdd = _franchiseEntries.filter(e=>e.checked&&!e.alreadyInList);
+  if (!toAdd.length) return;
+
+  const btn = $("franchiseConfirm"); if(btn) { btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Füge hinzu…'; }
+
+  let added = 0;
+  for (const e of toAdd) {
+    try {
+      await new Promise(r=>setTimeout(r,300));
+      const d = await jikan(`/anime/${e.malId}`);
+      if (d.data) {
+        const pm = d.data;
+        list.unshift({
+          id: Date.now()+Math.floor(Math.random()*1000)+added,
+          malId: pm.mal_id,
+          title: preferredTitle(pm),
+          altTitle: altTitleFor(pm),
+          status: e.defaultStatus,
+          episodesWatched: e.defaultStatus==="Completed"?(pm.episodes||0):0,
+          totalEpisodes: pm.episodes||0,
+          rating: 0,
+          favorite: false,
+          notes: "",
+          genres: (pm.genres||[]).map(g=>g.name),
+          studios: (pm.studios||[]).map(s=>s.name).filter(Boolean),
+          year: pm.year||0,
+          imageUrl: pm.images?.jpg?.large_image_url||"",
+          type: pm.type||"",
+          malScore: pm.score||0,
+          airing: pm.airing||false,
+          nextEpAt: null,
+          completedAt: e.defaultStatus==="Completed"?Date.now():null,
+          addedAt: Date.now()+added,
+          customCategories: [],
+          relationsAt: null, relatedMalIds: []
+        });
+        added++;
+      }
+    } catch {}
+  }
+
+  save(); updateStats(); renderList(); renderTabs(); invalidateFranchMap();
+  $("franchiseModal")?.classList.add("hidden");
+  msg(`${added} Anime hinzugefügt!`);
+}
+
+function invalidateFranchMap() {
+  _franchMap = null;
+  _normCache.clear();
+}
 function initGenres() {
   const panel = $("genrePanel");
   if (!panel) return;
@@ -2238,6 +2482,17 @@ function initEvents() {
     if (ui.extDone) { $("extModal")?.classList.add("hidden"); return; }
     runExtImport();
   });
+
+  // Repair existing entries
+  $("franchiseClose")?.addEventListener("click",  ()=>$("franchiseModal")?.classList.add("hidden"));
+  $("franchiseCancel")?.addEventListener("click", ()=>$("franchiseModal")?.classList.add("hidden"));
+  $("franchiseModal")?.addEventListener("click", e=>{if(e.target===$("franchiseModal")?.querySelector(".modal-bg"))$("franchiseModal")?.classList.add("hidden");});
+  $("franchiseSelectAll")?.addEventListener("click", ()=>{
+    const anyUnchecked = _franchiseEntries.some(e=>!e.alreadyInList&&!e.checked);
+    _franchiseEntries.forEach(e=>{ if(!e.alreadyInList) e.checked=anyUnchecked; });
+    renderFranchiseBody();
+  });
+  $("franchiseConfirm")?.addEventListener("click", confirmFranchiseAdd);
 
   // Repair existing entries
   $("repairBtn")?.addEventListener("click", openRepairModal);

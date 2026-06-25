@@ -415,6 +415,25 @@
   </div>
 </div>
 
+<!-- Franchise / All seasons add modal -->
+<div class="modal hidden" id="franchiseModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box xlarge">
+    <div class="modal-head">
+      <h2><i class="fas fa-layer-group"></i> <span id="franchiseModalTitle">Serie hinzufügen</span></h2>
+      <button class="icon-btn" id="franchiseClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="franchiseBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="franchiseCancel">Abbrechen</button>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn-ghost" id="franchiseSelectAll"><i class="fas fa-check-double"></i> Alle auswählen</button>
+        <button class="btn-accent" id="franchiseConfirm" disabled><i class="fas fa-plus"></i> Ausgewählte hinzufügen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="script.js"></script>

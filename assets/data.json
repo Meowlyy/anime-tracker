@@ -1,5 +1,422 @@
 [
   {
+    "id": 1782281379657,
+    "malId": 10408,
+    "title": "Into the Forest of Fireflies' Light",
+    "altTitle": "Hotarubi no Mori e",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "During a summer vacation at her grandfather’s house, six-year-old Hotaru Takegawa gets lost in a forest rumored to be inhabited by spirits. While crying out in desperation, Hotaru is approached by Gin—a mysterious boy wearing a mask—who offers to help her.\n\nOverjoyed at the sight of another person, Hotaru runs to Gin with open arms only to be rudely fended off. However, she quickly learns the grave reason behind his behavior: a dreadful curse has been cast upon Gin. Should he ever be touched by a human being, he will disappear forever.\n\nThough Gin urges her to never return, Hotaru does the exact opposite, and before too long, the two become close friends despite his delicate situation. Nonetheless, as years pass and their mutual feelings grow stronger, Hotaru and Gin start struggling with the boundaries that destiny has set between them.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Award Winning",
+      "Drama",
+      "Romance",
+      "Supernatural"
+    ],
+    "studios": [
+      "Brain's Base"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1599/112267l.jpg",
+    "type": "Movie",
+    "malScore": 8.26,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281378793,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782281378907,
+    "localImage": "covers/10408.jpg"
+  },
+  {
+    "id": 1782281338336,
+    "malId": 58849,
+    "title": "Garena Free Fire",
+    "altTitle": "",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 0,
+    "rating": 0,
+    "favorite": false,
+    "notes": "",
+    "genres": [
+      "Action"
+    ],
+    "studios": [
+      "Studio CANDY BOX"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1708/150892l.jpg",
+    "type": "",
+    "malScore": 0,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281338212,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782281340375,
+    "repairedAt": 1782281413488,
+    "localImage": "covers/58849.jpg"
+  },
+  {
+    "id": 1782281296725,
+    "malId": 26213,
+    "title": "Free! Eternal Summer: Kindan no All Hard!",
+    "altTitle": "Free! -Eternal Summer- 禁断のオールハード！",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Unaired episode included with volume 7 of the Blu-ray/DVD.",
+    "genres": [
+      "Comedy"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/6/73125l.jpg",
+    "type": "Special",
+    "malScore": 7.87,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281296508,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782281298673,
+    "localImage": "covers/26213.jpg"
+  },
+  {
+    "id": 1782281101178,
+    "malId": 33845,
+    "title": "Free! The Movie -Timeless Medley- the Bond",
+    "altTitle": "Free! Movie 1: Timeless Medley - Kizuna",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Haruka Nanase has reconciled with his rival Rin Matsuoka, and they have re-established their friendship, determined to race each other again. Now Haruka, along with Makoto Tachibana, Rei Ryuugazaki, and Nagisa Hazuki, prepare for their upcoming tournaments, determined to compete wholeheartedly and achieve victory as a team. At Samezuka Academy, Rin resolves to do the same.\n\nFurther, the seniors near graduation, and Rin has decided his future plans. However, Haruka and Makoto remain uncertain, and they begin to feel the pressure of having to choose their own paths.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/5/87930l.jpg",
+    "type": "Movie",
+    "malScore": 7.61,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281100877,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 35191,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782281101018,
+    "localImage": "covers/33845.jpg"
+  },
+  {
+    "id": 1782281097114,
+    "malId": 35191,
+    "title": "Free! The Movie -Timeless Medley- the Promise",
+    "altTitle": "Free! Movie 2: Timeless Medley - Yakusoku",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Rin Matsuoka’s childhood friend, Sousuke Yamazaki, has recently transferred to Samezuka Academy. Upon their reunion, the two reminisce about their childhood days and reaffirm their wish to swim together. Now with Rin, Sousuke, Captain Mikoshiba’s younger brother Momotarou Mikoshiba, and hard-working Aiichirou Nitori, the Samezuka relay team is formed, and their friendship deepens. However, as tournaments, races, and training go on, the reason for Sousuke’s sudden return begins to trouble him and affect his swimming. Noticing Sousuke’s change, Rin pushes to uncover what is holding him back.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/13/87931l.jpg",
+    "type": "Movie",
+    "malScore": 7.67,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281096119,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 33845,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 35198,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782281098297,
+    "localImage": "covers/35191.jpg"
+  },
+  {
+    "id": 1782281091900,
+    "malId": 35198,
+    "title": "Free! Take Your Marks",
+    "altTitle": "特別版 Free!-Take Your Marks-",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Taking place between the events of Free!: Eternal Summer and Free!: Dive to the Future, Free!: Take Your Marks plays out the graduated seniors' last summer through four different stories before they set sail for the future.\n\nUnmei no Choice! (Destined Choice!) follows Haruka Nanase and Makoto Tachibana searching for a new apartment for Haruka as he settles into Tokyo. \n\nHitou no Cooling Down! (Cooling Down at the Secret Hot Spring!) sees Aiichiro Nitori choose a graduation gift for Rin Matsuoka and Sousuke Yamazaki, while Momotaro Mikoshiba wins tickets to the Anago Hot Springs. Hoping for a trip together, Aiichiro and Momotaro invite Rin and Sousuke. \n\nKessoku no Batafurai! (United Butterfly!) shows Rei Ryugazaki, Nagisa Hazuki, and Gou Matsuoka creating a recruitment video to attract new club members for the next school year. \n\nTabidachi no Etanaru Buru! (Departing Eternal Blue!) looks into the Iwatobi and Samezuka swim teams' plans for Rin's surprise going-away party, as he will be departing for Australia soon. \n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Slice of Life"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/6/87928l.jpg",
+    "type": "Movie",
+    "malScore": 7.75,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782281091603,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 22265,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 35191,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 38027,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782281091732,
+    "localImage": "covers/35198.jpg"
+  },
+  {
+    "id": 1782281085502,
+    "malId": 22265,
+    "title": "Free! Eternal Summer",
+    "altTitle": "Free!-Eternal Summer-",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 13,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Even though it has been a year since the Iwatobi High School Swim Club has been created, new members have yet to join the club. Now that Haruka Nanase and Makoto Tachibana are senior students, along with their younger friends Nagisa Hazuki and Rei Ryuugazaki, they have to find a way to attract new members. If not, the club will be forced to close the following year due to a lack of membership.\n\nMeanwhile, with impending graduation, it is also time for the seniors to decide their plans for the future. Unlike their friend Rin Matsuoka, the new captain of Samezuka Academy Swim Club who is determined to fulfill his dream of being a professional swimmer, Haruka and Makoto are unsure about what career path they want to take.\n\nFurther problems arise when an old friend of Rin's, Sousuke Yamazaki, comes to the city to study at Samezuka Academy; the recently scouted swimmer's arrival causes tension in the relationship among him, Rin, and Haruka.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 2014,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1719/108886l.jpg",
+    "type": "TV",
+    "malScore": 7.61,
+    "airing": false,
+    "nextEpAt": 1782313200000,
+    "completedAt": null,
+    "addedAt": 1782281085076,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 18507,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 35198,
+        "relation": "Sequel"
+      },
+      {
+        "malId": 36704,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782281087257,
+    "localImage": "covers/22265.jpg"
+  },
+  {
+    "id": 1782281078131,
+    "malId": 36704,
+    "title": "Free! Dive to the Future",
+    "altTitle": "Free!-Dive to the Future-",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "With the seniors having graduated from high school, the determined swimmers eagerly take on their futures with a dream to fulfill. \n\nNow attending Hidaka University in Tokyo, Haruka Nanase unexpectedly runs into Shiina Asahi, an old teammate and friend from his middle school days. Consequently, the troubling memories regarding his middle school swim team resurface, as it was a time when Haruka's views on swimming became negative and led him to quit the team. Haruka later reconnects with his other middle school classmates; all except for Ikuya Kirishima, who still resents Haruka for quitting the team, resulting in its disbandment. Aware of the issues between them, Haruka resolves to improve his friendship with Ikuya. However, he quickly realizes that making amends with an old friend isn't his only obstacle. \n\nFacing the reality and challenges of encountering higher calibre swimmers, Haruka must work hard to establish himself if he dreams of competing on an international level.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 2018,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1243/95025l.jpg",
+    "type": "TV",
+    "malScore": 7.6,
+    "airing": false,
+    "nextEpAt": 1782313200000,
+    "completedAt": null,
+    "addedAt": 1782281077381,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 22265,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 35191,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 38027,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 38400,
+        "relation": "Sequel"
+      },
+      {
+        "malId": 39014,
+        "relation": "Summary"
+      }
+    ],
+    "relationsAt": 1782281077504,
+    "localImage": "covers/36704.jpg"
+  },
+  {
+    "id": 1782280982859,
+    "malId": 30415,
+    "title": "Free! Starting Days",
+    "altTitle": "High☆Speed! Movie: Free! Starting Days",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Haruka Nanase and Makoto Tachibana have started middle school and must adjust to the changes that come along with growing up. While Makoto fits in with his classmates and remains positive about swimming, Haruka struggles to befriend others or join his school's swim club, as his previous issues with swimming trouble him. Distancing himself from his lively classmates and the swimming club, he has difficulty deciding which club to join instead. The rest of his classmates, including Makoto, are also hesitant as to which clubs to participate in. After an argument leads them to join the swimming club anyway, the boys strive to hone their skills, harmonize their swimming styles, and refine their conflicting feelings toward swimming and each other.\n\nAs determination and talent run high, Haruka and Makoto—along with their classmates—discover themselves and improve their talents during their starting days.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Drama",
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/8/76967l.jpg",
+    "type": "Movie",
+    "malScore": 7.85,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782280982368,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 18507,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782280982490,
+    "localImage": "covers/30415.jpg"
+  },
+  {
+    "id": 1782280970524,
+    "malId": 18507,
+    "title": "Free! - Iwatobi Swim Club",
+    "altTitle": "Free!",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Haruka Nanase has a love for water and a passion for swimming. In elementary school, he competed in and won a relay race with his three friends Rin Matsuoka, Nagisa Hazuki, and Makoto Tachibana. After claiming victory at the tournament, the four friends went their separate ways. Years later, they reunite as high school students; however, Rin couldn't care less about returning to the way things used to be. Not only does he attend a different school, but the sole thing important to him is proving that he is a better swimmer than Haruka.\n\nAfter the bitter reunion, Haruka, Nagisa, and Makoto decide to form the Iwatobi High School Swim Club, but they will need a fourth member if they hope to take part in the upcoming tournament. Enter Rei Ryuugazaki, a former member of the track team whom Nagisa recruits. As the time to compete draws near, the four develop a close bond while training intensely to come out on top and settle things between Haruka and Rin once and for all.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Sports"
+    ],
+    "studios": [
+      "Kyoto Animation",
+      "Animation Do"
+    ],
+    "year": 2013,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/6/51107l.jpg",
+    "type": "TV",
+    "malScore": 7.32,
+    "airing": false,
+    "nextEpAt": 1782315000000,
+    "completedAt": null,
+    "addedAt": 1782280969617,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 30415,
+        "relation": "Prequel"
+      },
+      {
+        "malId": 22265,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782280969748,
+    "localImage": "covers/18507.jpg"
+  },
+  {
+    "id": 1782280725942,
+    "malId": 60521,
+    "title": "Twins Hinahima",
+    "altTitle": "ツインズひなひま",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 1,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Two high school girls Himari and Hinana dream of going viral. As they film all sorts of topics that could become a hot topic, they notice something weird and enter a strange world.",
+    "genres": [
+      "Sci-Fi"
+    ],
+    "studios": [
+      "KaKa Technology Studio"
+    ],
+    "year": 0,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1808/148205l.jpg",
+    "type": "TV Special",
+    "malScore": 4.99,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782280725929,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782280728299,
+    "localImage": "covers/60521.jpg"
+  },
+  {
     "id": 1782250470753,
     "malId": 63508,
     "title": "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage",
@@ -138,7 +555,7 @@
     "episodesWatched": 0,
     "totalEpisodes": 12,
     "rating": 0,
-    "favorite": false,
+    "favorite": true,
     "notes": "Corporate slave Arihito Atobe's death in a freak bus accident marks the beginning of his new life as a kind of adventurer called a Seeker. Reborn into a fantasy world, he settles into a previously unknown job class called \"rearguard,\" capable of providing his (all-female) party with critical attack, defense, and recovery support. And it comes with an added bonus: Simply being at the back of the party line increases his companions' fondness for him! Freed from the shackles of corporate life, Arihito is eager to start fresh as a newly minted Seeker!\n\n(Source: Yen Press)",
     "genres": [
       "Action",
