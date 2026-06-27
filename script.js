@@ -98,14 +98,33 @@ function noCover(el){ el.onerror=null; el.src=NO_COVER_SVG; }
 // once on a 429 rate-limit response.
 async function jikan(path) {
   const url = path.startsWith("http") ? path : `https://api.jikan.moe/v4${path}`;
-  let retries = 3;
-  while (retries-- > 0) {
-    const res = await fetch(url);
-    if (res.status === 429 || res.status === 504) { await new Promise(r => setTimeout(r, 2000)); continue; }
-    if (!res.ok) throw new Error(`Jikan request failed: ${res.status}`);
-    return res.json();
+  const isRelations = path.includes("/relations");
+  const maxRetries = isRelations ? 6 : 3;
+  let delay = isRelations ? 1500 : 2000;
+
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (res.status === 429 || res.status === 504 || res.status === 502 || res.status === 503) {
+        if (attempt < maxRetries - 1) {
+          await new Promise(r => setTimeout(r, delay));
+          delay = Math.min(delay * 1.5, 8000); // exponential backoff, cap at 8s
+          continue;
+        }
+        throw new Error(`Jikan ${res.status} after ${maxRetries} attempts`);
+      }
+      if (!res.ok) throw new Error(`Jikan request failed: ${res.status}`);
+      return res.json();
+    } catch (e) {
+      if (attempt < maxRetries - 1) {
+        await new Promise(r => setTimeout(r, delay));
+        delay = Math.min(delay * 1.5, 8000);
+        continue;
+      }
+      throw e;
+    }
   }
-  throw new Error("Jikan rate limit/gateway exceeded");
+  throw new Error("Jikan: max retries exceeded");
 }
 
 // Manual relation overrides for known MAL data gaps (e.g. Slime Diaries is listed as
@@ -1861,8 +1880,10 @@ async function runRepair() {
       const live = list.find(a => a.id === entry.id);
       if (!live) { done++; continue; }
 
+      const baseDelay = ui.repairForceRelations ? 800 : 350;
+
       if (needsRepair(live)) {
-        await new Promise(r => setTimeout(r, 350)); // be gentle with the free API rate limit
+        await new Promise(r => setTimeout(r, baseDelay));
         const d = await jikan(`/anime/${live.malId}`);
         const ad = d.data;
         if (ad) {
@@ -1886,7 +1907,7 @@ async function runRepair() {
       if (needsRelations(live)) {
         // In force mode, clear relationsAt first so the fetch actually runs
         if (ui.repairForceRelations) live.relationsAt = null;
-        await new Promise(r => setTimeout(r, 600)); // longer delay to avoid rate limits
+        await new Promise(r => setTimeout(r, 1000)); // longer delay to avoid rate limits
         try {
           const rd = await jikan(`/anime/${live.malId}/relations`);
           const rels = rd.data || [];
