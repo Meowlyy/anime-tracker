@@ -1886,19 +1886,24 @@ async function runRepair() {
       if (needsRelations(live)) {
         // In force mode, clear relationsAt first so the fetch actually runs
         if (ui.repairForceRelations) live.relationsAt = null;
-        await new Promise(r => setTimeout(r, 350));
-        const rd = await jikan(`/anime/${live.malId}/relations`);
-        const rels = rd.data || [];
-        const linked = [];
-        for (const rel of rels) {
-          if (!RELATION_TYPES.includes(rel.relation)) continue;
-          for (const e of (rel.entry || [])) {
-            if (e.type !== "anime") continue;
-            linked.push({ malId: e.mal_id, relation: rel.relation });
+        await new Promise(r => setTimeout(r, 600)); // longer delay to avoid rate limits
+        try {
+          const rd = await jikan(`/anime/${live.malId}/relations`);
+          const rels = rd.data || [];
+          const linked = [];
+          for (const rel of rels) {
+            if (!RELATION_TYPES.includes(rel.relation)) continue;
+            for (const e of (rel.entry || [])) {
+              if (e.type !== "anime") continue;
+              linked.push({ malId: e.mal_id, relation: rel.relation });
+            }
           }
+          live.relatedMalIds = linked;
+          live.relationsAt = Date.now(); // only set on success
+        } catch {
+          // Don't set relationsAt on failure → will retry next time
+          log(`⚠️ Beziehungen fehlgeschlagen: ${esc(live.title||"?")}`);
         }
-        live.relatedMalIds = linked;
-        live.relationsAt = Date.now();
       }
     } catch {
       failed++; log(`❌ Fehler: ${esc(entry.title || "?")}`);
