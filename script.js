@@ -1819,7 +1819,19 @@ function openRepairModal() {
   ui.repairCancelled = false;
   ui.repairForceRelations = false;
   const toRepair = list.filter(needsAnyRepair);
-  const withEmptyRels = list.filter(a => a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0)).length;
+  const groupedMalIds = new Set();
+  const normMap = {};
+  list.forEach(a => {
+    const k = normTitle(a.title);
+    if (!normMap[k]) normMap[k] = [];
+    normMap[k].push(a);
+  });
+  Object.values(normMap).forEach(grp => {
+    if (grp.length >= 2) grp.forEach(a => { if (a.malId) groupedMalIds.add(a.malId); });
+  });
+  const withEmptyRels = list.filter(a =>
+    a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0) && groupedMalIds.has(a.malId)
+  ).length;
   const body = $("repairBody"), startBtn = $("repairStart"), cancelBtn = $("repairCancel");
   if (!body) return;
   ui.repairList = toRepair;
