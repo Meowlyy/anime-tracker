@@ -321,11 +321,22 @@ function buildRenderUnits(filtered) {
       visited.add(m.id); score.set(m.id, counter++);
       (m.relatedMalIds||[]).forEach(r => { if (r.relation==="Sequel" && byMalId[r.malId]) walk(byMalId[r.malId]); });
     }
-    members.filter(m => !hasPrequelInGroup.has(m.malId)).forEach(walk);
+    // Sort roots by type so TV series are walked first → get lower chain scores than movies
+    const TYPE_PRIO = {"TV":0,"ONA":1,"OVA":2,"Special":3,"Movie":4,"Music":5};
+    members.filter(m => !hasPrequelInGroup.has(m.malId))
+      .sort((a,b) => (TYPE_PRIO[a.type]??3)-(TYPE_PRIO[b.type]??3) || (a.year||9999)-(b.year||9999))
+      .forEach(walk);
     members.forEach(m => { if (!visited.has(m.id)) walk(m); });
     return [...members].sort((a,b) => {
       const sa = score.has(a.id)?score.get(a.id):999, sb = score.has(b.id)?score.get(b.id):999;
-      if (sa!==sb) return sa-sb;
+      // If both have chain data, use it
+      if (sa!==999 || sb!==999) {
+        if (sa!==sb) return sa-sb;
+      }
+      // Fallback: TV before movies
+      const tprio = {"TV":0,"ONA":1,"OVA":2,"Special":3,"Movie":4,"Music":5}; const pa = tprio[a.type]??3, pb = tprio[b.type]??3;
+      if (pa!==pb) return pa-pb;
+      // Then by year
       if (a.year&&b.year&&a.year!==b.year) return a.year-b.year;
       return a.title.localeCompare(b.title);
     });
@@ -1770,7 +1781,15 @@ function needsRepair(a) {
 // vs "That Time I Got Reincarnated as a Slime"). Fetched + cached once per entry.
 const RELATION_TYPES = ["Side story", "Spin-off", "Alternative version", "Parent story", "Sequel", "Prequel", "Full story", "Summary"];
 function needsRelations(a) {
-  return !!a.malId && !a.relationsAt;
+  if (!a.malId) return false;
+  if (!a.relationsAt) return true; // never fetched
+  // Re-fetch if relations were fetched but came back empty AND the anime has genres
+  // that suggest it belongs to a franchise (e.g. might have been a 504 error)
+  if (a.relationsAt && (!a.relatedMalIds || a.relatedMalIds.length === 0)) {
+    // Only re-fetch if explicitly requested via force mode
+    return ui.repairForceRelations || false;
+  }
+  return false;
 }
 function needsAnyRepair(a) {
   return needsRepair(a) || needsRelations(a);
@@ -1779,7 +1798,9 @@ function needsAnyRepair(a) {
 function openRepairModal() {
   ui.repairDone = false;
   ui.repairCancelled = false;
+  ui.repairForceRelations = false;
   const toRepair = list.filter(needsAnyRepair);
+  const withEmptyRels = list.filter(a => a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0)).length;
   const body = $("repairBody"), startBtn = $("repairStart"), cancelBtn = $("repairCancel");
   if (!body) return;
   ui.repairList = toRepair;
@@ -1791,13 +1812,30 @@ function openRepairModal() {
     <div class="ext-info"><i class="fas fa-info-circle" style="color:var(--accent2);margin-right:6px;"></i>
       Lädt fehlendes Cover, Episodenzahl, Score, Genres &amp; den Alternativtitel nach, und lädt zusätzlich die Verknüpfungen (Spin-offs, Side Storys, Sequels) für die Gruppierung. Deine Bewertungen, Notizen und Fortschritt bleiben unangetastet. Bei ${toRepair.length} Einträgen ca. ${Math.ceil(toRepair.length*0.6/60)} Minuten — der Tab muss währenddessen offen bleiben, der Fortschritt wird laufend zwischengespeichert.
     </div>
+    ${withEmptyRels > 0 ? `
+    <div class="ext-info" style="border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.07);margin-top:8px">
+      <i class="fas fa-link" style="color:#f59e0b;margin-right:6px;flex-shrink:0"></i>
+      <div><strong style="color:#f59e0b">${withEmptyRels} Anime</strong> haben leere Beziehungsdaten (z.B. durch frühere 504-Fehler). 
+      <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;margin-top:4px">
+        <input type="checkbox" id="forceRelationsCheck"> Beziehungsdaten neu abrufen (für korrekte Sortierung in Gruppen)
+      </label></div>
+    </div>` : ""}
     <div class="ext-progress hidden" id="repairProgressWrap">
       <div class="ext-prog-row"><span id="repairProgText">Starte…</span><span id="repairProgCount">0 / ${toRepair.length}</span></div>
       <div class="ext-prog-bar"><div class="ext-prog-fill" id="repairProgFill" style="width:0%"></div></div>
       <div class="ext-log" id="repairLog"></div>
     </div>`;
-  if (startBtn) { startBtn.disabled = toRepair.length === 0; startBtn.innerHTML = '<i class="fas fa-rocket"></i> Reparatur starten'; }
+  if (startBtn) { startBtn.disabled = toRepair.length === 0 && withEmptyRels === 0; startBtn.innerHTML = '<i class="fas fa-rocket"></i> Reparatur starten'; }
   if (cancelBtn) cancelBtn.textContent = "Abbrechen";
+
+  $("forceRelationsCheck")?.addEventListener("change", e => {
+    ui.repairForceRelations = e.target.checked;
+    // Recalculate repair list with/without force mode
+    ui.repairList = list.filter(needsAnyRepair);
+    if (startBtn) startBtn.disabled = ui.repairList.length === 0;
+    const cnt = $("repairProgCount"); if(cnt) cnt.textContent = `0 / ${ui.repairList.length}`;
+  });
+
   $("repairModal")?.classList.remove("hidden");
 }
 
@@ -1846,6 +1884,8 @@ async function runRepair() {
       }
 
       if (needsRelations(live)) {
+        // In force mode, clear relationsAt first so the fetch actually runs
+        if (ui.repairForceRelations) live.relationsAt = null;
         await new Promise(r => setTimeout(r, 350));
         const rd = await jikan(`/anime/${live.malId}/relations`);
         const rels = rd.data || [];
