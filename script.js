@@ -92,6 +92,7 @@ const NO_COVER_SVG = "data:image/svg+xml," + encodeURIComponent(`
   <text x="150" y="248" font-family="sans-serif" font-size="15" fill="#8891a8" text-anchor="middle">Kein Cover</text>
 </svg>`.trim());
 function noCover(el){ el.onerror=null; el.src=NO_COVER_SVG; }
+window.noCover = noCover; // expose globally for inline onerror attributes
 
 // Generic Jikan API request helper. Used throughout the app (imports, airing
 // refresh, relations, news) — handles the relative "/..." paths and retries
@@ -1830,7 +1831,7 @@ function openRepairModal() {
     if (grp.length >= 2) grp.forEach(a => { if (a.malId) groupedMalIds.add(a.malId); });
   });
   const withEmptyRels = list.filter(a =>
-    a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0) && groupedMalIds.has(a.malId)
+    a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0) && groupedMalIds.has(a.malId) && !a.relationsVerified
   ).length;
   const body = $("repairBody"), startBtn = $("repairStart"), cancelBtn = $("repairCancel");
   if (!body) return;
@@ -1861,10 +1862,20 @@ function openRepairModal() {
 
   $("forceRelationsCheck")?.addEventListener("change", e => {
     ui.repairForceRelations = e.target.checked;
-    // Recalculate repair list with/without force mode
-    ui.repairList = list.filter(needsAnyRepair);
+    if (e.target.checked) {
+      // Only re-fetch relations for anime that are already in a group (29, not all 487)
+      const inGroupWithEmpty = list.filter(a =>
+        a.malId && a.relationsAt && (!a.relatedMalIds||a.relatedMalIds.length===0) && groupedMalIds.has(a.malId) && !a.relationsVerified
+      );
+      ui.repairList = [...list.filter(needsRepair), ...inGroupWithEmpty.filter(a=>!needsRepair(a))];
+    } else {
+      ui.repairList = list.filter(needsAnyRepair);
+    }
     if (startBtn) startBtn.disabled = ui.repairList.length === 0;
-    const cnt = $("repairProgCount"); if(cnt) cnt.textContent = `0 / ${ui.repairList.length}`;
+    const pw = $("repairProgressWrap"); if(pw) pw.classList.add("hidden");
+    const pt = $("repairProgText"); if(pt) pt.textContent = "Starte…";
+    const pc = $("repairProgCount"); if(pc) pc.textContent = `0 / ${ui.repairList.length}`;
+    const pf = $("repairProgFill"); if(pf) pf.style.width = "0%";
   });
 
   $("repairModal")?.classList.remove("hidden");
@@ -1932,7 +1943,8 @@ async function runRepair() {
             }
           }
           live.relatedMalIds = linked;
-          live.relationsAt = Date.now(); // only set on success
+          live.relationsAt = Date.now();
+          if (ui.repairForceRelations) live.relationsVerified = true; // mark as verified even if empty
         } catch {
           // Don't set relationsAt on failure → will retry next time
           log(`⚠️ Beziehungen fehlgeschlagen: ${esc(live.title||"?")}`);
