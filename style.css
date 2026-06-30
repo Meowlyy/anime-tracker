@@ -899,26 +899,36 @@ body{
 .sp-reco-head h3{margin:0}
 .sp-reco-hint{font-size:.78rem;color:var(--dim);margin-top:-8px}
 .sp-reco-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;align-items:stretch;
 }
 .reco-card{
   background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);
   overflow:hidden;cursor:pointer;transition:all var(--trans);
+  display:flex;flex-direction:column;height:100%;
 }
 .reco-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--glow)}
-.reco-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--bg3)}
-.reco-info{padding:10px 12px}
+.reco-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--bg3);flex-shrink:0}
+.reco-info{padding:10px 12px;display:flex;flex-direction:column;flex:1}
 .reco-title{font-size:.8rem;font-weight:700;line-height:1.25;margin-bottom:4px}
 .reco-meta{font-size:.68rem;color:var(--dim);display:flex;gap:6px;flex-wrap:wrap}
 .reco-genres{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .reco-genre{font-size:.62rem;padding:2px 7px;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--accent)}
+.reco-spacer{flex:1}
 .reco-add-btn{
   width:100%;margin-top:8px;padding:5px;font-size:.72rem;font-weight:600;
   background:var(--accent-dim);color:var(--accent);border:1px solid var(--accent);
-  border-radius:var(--radius-pill);cursor:pointer;transition:all var(--trans);
+  border-radius:var(--radius-pill);cursor:pointer;transition:all var(--trans);flex-shrink:0;
 }
 .reco-add-btn:hover{background:var(--accent);color:#fff}
 .sp-reco-empty{color:var(--dim);font-size:.85rem;text-align:center;padding:24px 0}
+
+.reco-detail-layout{display:flex;gap:24px}
+.reco-detail-layout img{width:220px;flex-shrink:0;border-radius:var(--radius);object-fit:cover;aspect-ratio:2/3;background:var(--bg3)}
+.reco-detail-info{flex:1;min-width:0}
+@media(max-width:640px){
+  .reco-detail-layout{flex-direction:column}
+  .reco-detail-layout img{width:160px;margin:0 auto}
+}
 
 @media(max-width:900px){
   .sp-grid{grid-template-columns:1fr 1fr}

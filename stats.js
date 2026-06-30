@@ -306,7 +306,7 @@ async function loadRecommendations() {
 
   const page = Math.floor(Math.random() * 5) + 1;
   for (const genre of topGenres.slice(0,4)) {
-    if (results.length >= 40) break;
+    if (results.length >= 60) break;
     const gid = GENRE_IDS[genre];
     try {
       const url = gid
@@ -331,7 +331,7 @@ async function loadRecommendations() {
   // Shuffle for variety, then sort
   for (let i=scored.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[scored[i],scored[j]]=[scored[j],scored[i]];}
   scored.sort((a,b)=>b.score-a.score);
-  const top = scored.slice(0,10);
+  const top = scored.slice(0,16);
 
   if (!top.length) {
     grid.innerHTML = `<div class="sp-reco-empty">Keine Empfehlungen gefunden – versuch "Neu laden".</div>`;
@@ -342,7 +342,7 @@ async function loadRecommendations() {
   grid.innerHTML = top.map(({ a }) => {
     const genres = (a.genres||[]).slice(0,3).map(g=>`<span class="reco-genre">${esc(g.name)}</span>`).join("");
     return `
-      <div class="reco-card" id="reco-${a.mal_id}">
+      <div class="reco-card" id="reco-${a.mal_id}" data-mal-id="${a.mal_id}">
         <img src="${esc(a.images?.jpg?.large_image_url||NO_COVER_SVG)}" alt="" loading="lazy" onerror="noCover(this)">
         <div class="reco-info">
           <div class="reco-title">${esc(a.title_english||a.title)}</div>
@@ -352,14 +352,29 @@ async function loadRecommendations() {
             <span>⭐ ${a.score?.toFixed(1)||"—"}</span>
           </div>
           <div class="reco-genres">${genres}</div>
+          <div class="reco-spacer"></div>
           <div class="reco-links">
-            <a href="https://myanimelist.net/anime/${a.mal_id}" target="_blank" class="reco-link" title="Auf MAL ansehen"><i class="fas fa-external-link-alt"></i> MAL</a>
-            <a href="https://www.anime-planet.com/anime/all?include=${encodeURIComponent(a.title_english||a.title)}" target="_blank" class="reco-link" title="Dub/Sub-Verfügbarkeit prüfen"><i class="fas fa-language"></i> Dub/Sub</a>
+            <a href="https://myanimelist.net/anime/${a.mal_id}" target="_blank" class="reco-link" title="Auf MAL ansehen" onclick="event.stopPropagation()"><i class="fas fa-external-link-alt"></i> MAL</a>
+            <a href="https://www.anime-planet.com/anime/all?include=${encodeURIComponent(a.title_english||a.title)}" target="_blank" class="reco-link" title="Dub/Sub-Verfügbarkeit prüfen" onclick="event.stopPropagation()"><i class="fas fa-language"></i> Dub/Sub</a>
           </div>
           <button class="reco-add-btn" data-mal-id="${a.mal_id}"><i class="fas fa-plus"></i> Hinzufügen</button>
         </div>
       </div>`;
   }).join("");
+
+  // Store full data for detail view lookups
+  window._recoDataByMalId = window._recoDataByMalId || {};
+  top.forEach(({a}) => window._recoDataByMalId[a.mal_id] = a);
+
+  // Click card (but not its buttons/links) → open detail view
+  grid.querySelectorAll(".reco-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.closest("a") || e.target.closest("button")) return;
+      const malId = parseInt(card.dataset.malId);
+      const data = window._recoDataByMalId[malId];
+      if (data) openRecoDetail(data);
+    });
+  });
 
   grid.querySelectorAll(".reco-add-btn").forEach(b => {
     b.addEventListener("click", async e => {
@@ -393,6 +408,53 @@ async function loadRecommendations() {
   if (hint) hint.textContent = `Basierend auf: ${topGenres.slice(0,4).join(", ")} · Mindest-MAL-Score: ${minMalScore.toFixed(1)}`;
 }
 
+
+// ── Recommendation detail view ──
+let _recoDetailMalId = null;
+function openRecoDetail(a) {
+  _recoDetailMalId = a.mal_id;
+  const modal = $("recoDetailModal"), body = $("recoDetailBody"), titleEl = $("recoDetailTitle");
+  if (!modal || !body) return;
+  const title = a.title_english || a.title;
+  if (titleEl) titleEl.textContent = title;
+  const genres = (a.genres||[]).map(g=>`<span class="reco-genre">${esc(g.name)}</span>`).join("");
+  body.innerHTML = `
+    <div class="reco-detail-layout">
+      <img src="${esc(a.images?.jpg?.large_image_url||NO_COVER_SVG)}" alt="" onerror="noCover(this)">
+      <div class="reco-detail-info">
+        ${a.title !== title ? `<div class="franchise-alt" style="margin-bottom:8px">${esc(a.title)}</div>` : ""}
+        <div class="reco-meta" style="font-size:.85rem;margin-bottom:10px">
+          <span>${a.type||"TV"}</span>
+          <span>${a.episodes||"?"} Episoden</span>
+          <span>⭐ ${a.score?.toFixed(1)||"—"} / 10</span>
+          <span>${a.year||"?"}</span>
+        </div>
+        <div class="reco-genres" style="margin-bottom:14px">${genres}</div>
+        <p style="font-size:.85rem;line-height:1.55;color:var(--dim);max-height:220px;overflow-y:auto">${esc(a.synopsis||"Keine Beschreibung verfügbar.")}</p>
+        <div class="reco-links" style="margin-top:14px">
+          <a href="https://myanimelist.net/anime/${a.mal_id}" target="_blank" class="reco-link"><i class="fas fa-external-link-alt"></i> Auf MAL ansehen</a>
+          <a href="https://www.anime-planet.com/anime/all?include=${encodeURIComponent(title)}" target="_blank" class="reco-link"><i class="fas fa-language"></i> Dub/Sub prüfen</a>
+        </div>
+      </div>
+    </div>`;
+  modal.classList.remove("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  $("recoDetailClose")?.addEventListener("click", ()=>$("recoDetailModal")?.classList.add("hidden"));
+  $("recoDetailCancel")?.addEventListener("click", ()=>$("recoDetailModal")?.classList.add("hidden"));
+  $("recoDetailModal")?.addEventListener("click", e => { if (e.target===$("recoDetailModal")?.querySelector(".modal-bg")) $("recoDetailModal")?.classList.add("hidden"); });
+  $("recoDetailAdd")?.addEventListener("click", async () => {
+    if (!_recoDetailMalId) return;
+    const btn = $("recoDetailAdd");
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    try {
+      const resp = await jikan(`/anime/${_recoDetailMalId}`);
+      if (resp.data) { $("recoDetailModal")?.classList.add("hidden"); openAddModal(resp.data); }
+    } catch { msg("Fehler beim Laden.", true); }
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-plus"></i> Zur Liste hinzufügen';
+  });
+});
 
 // ── Minimal Add Modal (saves back to localStorage) ──
 let pendingMal = null;
