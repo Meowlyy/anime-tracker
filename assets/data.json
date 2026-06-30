@@ -1,5 +1,72 @@
 [
   {
+    "id": 1782843597150,
+    "malId": 41574,
+    "title": "Grand Blues!",
+    "altTitle": "Guraburu!",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Anime adaptation of Guraburu!, which is 4-koma manga of Granblue Fantasy.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "studios": [
+      "W-Toon Studio",
+      "DMM.futureworks"
+    ],
+    "year": 2020,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1870/119993l.jpg",
+    "type": "TV",
+    "malScore": 5.8,
+    "airing": false,
+    "nextEpAt": 1782996840000,
+    "completedAt": null,
+    "addedAt": 1782843596867,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782843597961,
+    "localImage": "covers/41574.jpg"
+  },
+  {
+    "id": 1782843561900,
+    "malId": 37105,
+    "title": "Grand Blue Dreaming",
+    "altTitle": "Grand Blue",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Iori Kitahara moves to the coastal town of Izu for his freshman year at its university, taking residence above Grand Blue, his uncle's scuba diving shop. Iori has high hopes and dreams about having the ideal college experience, but when he enters the shop he is sucked into the alcoholic activities of the carefree members of the Diving Club who frequent the place. Persuaded by upperclassmen Shinji Tokita and Ryuujirou Kotobuki, Iori reluctantly joins their bizarre party. His cousin Chisa Kotegawa later walks in and catches him in the act, earning Iori her utter disdain.\n\nBased on Kenji Inoue and Kimitake Yoshioka's popular comedy manga, Grand Blue follows Iori's misadventures with his eccentric new friends as he strives to realize his ideal college dream, while also learning how to scuba dive.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Comedy"
+    ],
+    "studios": [
+      "Zero-G"
+    ],
+    "year": 2018,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1302/94882l.jpg",
+    "type": "TV",
+    "malScore": 8.45,
+    "airing": false,
+    "nextEpAt": null,
+    "completedAt": null,
+    "addedAt": 1782843561015,
+    "customCategories": [],
+    "relatedMalIds": [
+      {
+        "malId": 59986,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782843562124,
+    "localImage": "covers/37105.jpg"
+  },
+  {
     "id": 1782363265586,
     "malId": 63736,
     "title": "Sword Art Online: Unanswered//butterfly",
@@ -26,8 +93,9 @@
     "completedAt": null,
     "addedAt": 1782363264834,
     "customCategories": [],
-    "relationsAt": 1782363294024,
+    "relationsAt": 1782665227632,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/63736.jpg"
   },
   {
@@ -56,8 +124,9 @@
     "completedAt": null,
     "addedAt": 1782363264529,
     "customCategories": [],
-    "relationsAt": 1782363294476,
+    "relationsAt": 1782665228764,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/53588.jpg"
   },
   {
@@ -122,8 +191,9 @@
     "completedAt": null,
     "addedAt": 1782362903391,
     "customCategories": [],
-    "relationsAt": 1782363299499,
+    "relationsAt": 1782665229868,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/7367.jpg"
   },
   {
@@ -154,8 +224,9 @@
     "completedAt": null,
     "addedAt": 1782362903086,
     "customCategories": [],
-    "relationsAt": 1782363302013,
+    "relationsAt": 1782665231018,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/2144.jpg"
   },
   {
@@ -184,8 +255,9 @@
     "completedAt": null,
     "addedAt": 1782362902781,
     "customCategories": [],
-    "relationsAt": 1782363302474,
+    "relationsAt": 1782665232146,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/1074.jpg"
   },
   {
@@ -216,8 +288,9 @@
     "completedAt": null,
     "addedAt": 1782362902477,
     "customCategories": [],
-    "relationsAt": 1782363305016,
+    "relationsAt": 1782665233277,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/936.jpg"
   },
   {
@@ -247,8 +320,9 @@
     "completedAt": null,
     "addedAt": 1782362902172,
     "customCategories": [],
-    "relationsAt": 1782363307541,
+    "relationsAt": 1782665234420,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/761.jpg"
   },
   {
@@ -279,8 +353,9 @@
     "completedAt": null,
     "addedAt": 1782362901867,
     "customCategories": [],
-    "relationsAt": 1782363310045,
+    "relationsAt": 1782665235530,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/594.jpg"
   },
   {
@@ -311,8 +386,9 @@
     "completedAt": null,
     "addedAt": 1782362901563,
     "customCategories": [],
-    "relationsAt": 1782363312565,
+    "relationsAt": 1782665236635,
     "relatedMalIds": [],
+    "relationsVerified": true,
     "localImage": "covers/442.jpg"
   },
   {
@@ -341,7 +417,7 @@
     "completedAt": null,
     "addedAt": 1782362901257,
     "customCategories": [],
-    "relationsAt": 1782363315075,
+    "relationsAt": 1782570081947,
     "relatedMalIds": [],
     "localImage": "covers/54688.jpg"
   },
@@ -372,7 +448,7 @@
     "completedAt": null,
     "addedAt": 1782362900953,
     "customCategories": [],
-    "relationsAt": 1782363315528,
+    "relationsAt": 1782570082993,
     "relatedMalIds": [],
     "localImage": "covers/53236.jpg"
   },
@@ -405,7 +481,8 @@
     "addedAt": 1782362338300,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782362344167,
+    "relationsAt": 1782665238378,
+    "relationsVerified": true,
     "localImage": "covers/10659.jpg"
   },
   {
@@ -413,10 +490,10 @@
     "malId": 56400,
     "title": "Demon Lord, Retry! R",
     "altTitle": "Maou-sama, Retry! R",
-    "status": "Currently Watching",
-    "episodesWatched": 0,
+    "status": "Completed",
+    "episodesWatched": 12,
     "totalEpisodes": 12,
-    "rating": 0,
+    "rating": 7.5,
     "favorite": false,
     "notes": "With Rabbi Village greatly expanding under the management of his subordinates Isami Tahara and Yuu Kirino, Hakuto Kunai can now resume his adventures while looking for items to counteract magic. He begins his search at the Prison Labyrinth in Rookie Town, where a secret laboratory deep within the dungeon gives him insight into technology that is far more advanced and dangerous than anything in the rest of the world.\n\nMeanwhile, Rabbi Village has gained unwanted international attention from the newly formed Queendom of Xenobia, which wishes to drive a wedge between the Holy Kingdom of Light and the State of Right. But with Kunai's newly summoned aide, Akane Fujisaki, at his disposal, things may not go as the Queendom plans.\n\n[Written by MAL Rewrite]",
     "genres": [
@@ -433,7 +510,7 @@
     "malScore": 5.92,
     "airing": false,
     "nextEpAt": 1783171800000,
-    "completedAt": null,
+    "completedAt": 1782711399521,
     "addedAt": 1782298808407,
     "customCategories": [],
     "relatedMalIds": [
@@ -488,7 +565,7 @@
     "title": "Shachibato! President, It's Time for Battle!",
     "altTitle": "Shachou, Battle no Jikan desu!",
     "status": "Currently Watching",
-    "episodesWatched": 0,
+    "episodesWatched": 1,
     "totalEpisodes": 12,
     "rating": 0,
     "favorite": false,
@@ -506,12 +583,13 @@
     "type": "TV",
     "malScore": 5.85,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "completedAt": null,
     "addedAt": 1782282780354,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782282780472,
+    "relationsAt": 1782570085082,
+    "lastProgressAt": 1782844180714,
     "localImage": "covers/40783.jpg"
   },
   {
@@ -544,7 +622,7 @@
     "addedAt": 1782281378793,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782281378907,
+    "relationsAt": 1782570086126,
     "localImage": "covers/10408.jpg"
   },
   {
@@ -574,7 +652,7 @@
     "addedAt": 1782281338212,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782281340375,
+    "relationsAt": 1782570087174,
     "repairedAt": 1782281413488,
     "localImage": "covers/58849.jpg"
   },
@@ -606,7 +684,8 @@
     "addedAt": 1782281296508,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782281298673,
+    "relationsAt": 1782665239515,
+    "relationsVerified": true,
     "localImage": "covers/26213.jpg"
   },
   {
@@ -928,7 +1007,7 @@
     "addedAt": 1782280725929,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782280728299,
+    "relationsAt": 1782570089261,
     "localImage": "covers/60521.jpg"
   },
   {
@@ -960,7 +1039,7 @@
     "addedAt": 1782250470279,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782250472680,
+    "relationsAt": 1782570090402,
     "repairedAt": 1782251157298,
     "localImage": "covers/63508.jpg"
   },
@@ -987,12 +1066,12 @@
     "type": "TV",
     "malScore": 5.73,
     "airing": false,
-    "nextEpAt": 1782752700000,
+    "nextEpAt": 1783357500000,
     "completedAt": null,
     "addedAt": 1782244923027,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782244926642,
+    "relationsAt": 1782570091444,
     "localImage": "covers/29758.jpg"
   },
   {
@@ -1019,7 +1098,7 @@
     "type": "TV",
     "malScore": 7.26,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "completedAt": null,
     "addedAt": 1782244439519,
     "customCategories": [],
@@ -1058,7 +1137,7 @@
     "addedAt": 1782182296230,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782182298406,
+    "relationsAt": 1782570092487,
     "localImage": "covers/62322.jpg"
   },
   {
@@ -1085,11 +1164,11 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "addedAt": 1782182198987,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782182200106,
+    "relationsAt": 1782570093544,
     "localImage": "covers/62435.jpg"
   },
   {
@@ -1115,11 +1194,11 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782822600000,
+    "nextEpAt": 1783427400000,
     "addedAt": 1782182180013,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782182181112,
+    "relationsAt": 1782570094589,
     "repairedAt": 1782182312938,
     "localImage": "covers/61126.jpg"
   },
@@ -1151,7 +1230,7 @@
     "addedAt": 1782182158711,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782182159805,
+    "relationsAt": 1782570095634,
     "repairedAt": 1782182313296,
     "localImage": "covers/63316.jpg"
   },
@@ -1179,11 +1258,11 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782741600000,
+    "nextEpAt": 1783346400000,
     "addedAt": 1782182099889,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782182102240,
+    "relationsAt": 1782570096677,
     "repairedAt": 1782182313649,
     "localImage": "covers/63752.jpg"
   },
@@ -1247,7 +1326,7 @@
     "type": "TV",
     "malScore": 6.63,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "addedAt": 1782165648575,
     "customCategories": [],
     "relationsAt": 1782182314576,
@@ -1331,7 +1410,7 @@
     "addedAt": 1781916140651,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782005900068,
+    "relationsAt": 1782570097724,
     "studios": [
       "Maho Film"
     ],
@@ -1358,7 +1437,7 @@
     "type": "TV",
     "malScore": 7.46,
     "airing": false,
-    "nextEpAt": 1782748800000,
+    "nextEpAt": 1783353600000,
     "addedAt": 1781916035807,
     "customCategories": [],
     "relatedMalIds": [
@@ -1393,11 +1472,11 @@
     "type": "TV",
     "malScore": 7.76,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "addedAt": 1781916008822,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782005901010,
+    "relationsAt": 1782570098773,
     "studios": [
       "P.A. Works"
     ],
@@ -1428,7 +1507,7 @@
     "addedAt": 1781915972122,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782005903005,
+    "relationsAt": 1782570099817,
     "studios": [
       "Foch Film"
     ],
@@ -1455,11 +1534,11 @@
     "type": "TV",
     "malScore": 6.62,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "addedAt": 1781915825415,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782005903460,
+    "relationsAt": 1782570100864,
     "studios": [
       "Nomad"
     ],
@@ -1486,11 +1565,11 @@
     "type": "TV",
     "malScore": 5.76,
     "airing": false,
-    "nextEpAt": 1782646200000,
+    "nextEpAt": 1783251000000,
     "addedAt": 1781915701594,
     "customCategories": [],
     "relatedMalIds": [],
-    "relationsAt": 1782005903912,
+    "relationsAt": 1782570101942,
     "studios": [
       "Arms"
     ],
@@ -1515,12 +1594,12 @@
     "type": "TV",
     "malScore": 7,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "addedAt": 1781915539947,
     "customCategories": [],
     "altTitle": "VTuber Nandaga Haishin Kiri Wasuretara Densetsu ni Natteta",
     "relatedMalIds": [],
-    "relationsAt": 1782005905938,
+    "relationsAt": 1782570103166,
     "studios": [
       "TNK"
     ],
@@ -1550,7 +1629,7 @@
     "customCategories": [],
     "altTitle": "Hananoi-kun to Koi no Yamai",
     "relatedMalIds": [],
-    "relationsAt": 1782005906395,
+    "relationsAt": 1782570104211,
     "studios": [
       "East Fish Studio"
     ],
@@ -1581,7 +1660,7 @@
     "customCategories": [],
     "altTitle": "Hataage! Kemono Michi",
     "relatedMalIds": [],
-    "relationsAt": 1782005906854,
+    "relationsAt": 1782570106357,
     "studios": [
       "ENGI"
     ],
@@ -1613,7 +1692,7 @@
     "customCategories": [],
     "altTitle": "Dungeon no Naka no Hito",
     "relatedMalIds": [],
-    "relationsAt": 1782005908855,
+    "relationsAt": 1782568305145,
     "studios": [
       "OLM"
     ],
@@ -1697,10 +1776,10 @@
     "id": 1781226370807,
     "malId": 61276,
     "title": "The Banished Court Magician Aims to Become the Strongest",
-    "status": "Currently Watching",
-    "episodesWatched": 4,
+    "status": "Completed",
+    "episodesWatched": 12,
     "totalEpisodes": 12,
-    "rating": 0,
+    "rating": 7.5,
     "favorite": false,
     "notes": "\"This party doesn't need an incompetent magician who can only use supportive magic. You're fired, Alec Ygret.\"\n\nSuddenly, Alec, a court magician who had joined the crown prince's party to help him conquer dungeons—was banished from the party. And not just the party, but the crown prince's harassment has banished him from the royal palace as well, and a friend from the \"magic academy\" approached Alec, who was at his wit's end.\n\n\"Hey, Alec. Do you want to try to conquer the dungeon with us again?\"\n\nAnd so, together with the friends he used to party with, Alec begins his second journey in life. This is the adventure story of a former court magician who had been abandoned.\n\nFour years ago, the \"Lasting Period,\" a party of four that had been called \"legendary,\" has gradually spread its name around the world.\n\n(Source: Kodansha, translated)",
     "genres": [
@@ -1717,12 +1796,13 @@
     "customCategories": [],
     "altTitle": "Mikata ga Yowasugite Hojo Mahou ni Tesshiteita Kyuutei Mahoushi, Tsuihou sarete Saikyou wo Mezasu",
     "relatedMalIds": [],
-    "relationsAt": 1782005911634,
+    "relationsAt": 1782568306189,
     "studios": [
       "Gekkou"
     ],
     "year": 2025,
     "repairedAt": 1782164945693,
+    "completedAt": 1782691200000,
     "localImage": "covers/61276.jpg"
   },
   {
@@ -1790,7 +1870,7 @@
     "customCategories": [],
     "altTitle": "Toaru Kagaku no Accelerator",
     "relatedMalIds": [],
-    "relationsAt": 1782005914019,
+    "relationsAt": 1782568307334,
     "studios": [
       "J.C.Staff"
     ],
@@ -1858,6 +1938,7 @@
     ],
     "year": 1997,
     "repairedAt": 1782164946883,
+    "lastProgressAt": 1782815918917,
     "localImage": "covers/527.jpg"
   },
   {
@@ -1921,12 +2002,13 @@
     "customCategories": [],
     "altTitle": "Himekishi wa Barbaroi no Yome",
     "relatedMalIds": [],
-    "relationsAt": 1782005916867,
+    "relationsAt": 1782665240561,
     "studios": [
       "Jumondou"
     ],
     "year": 2026,
     "repairedAt": 1782164947637,
+    "relationsVerified": true,
     "localImage": "covers/60028.jpg"
   },
   {
@@ -1947,7 +2029,7 @@
     "type": "TV",
     "malScore": 6.57,
     "airing": false,
-    "nextEpAt": 1782910800000,
+    "nextEpAt": 1783515600000,
     "addedAt": 1780592179061,
     "customCategories": [],
     "altTitle": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 3rd Season",
@@ -2006,6 +2088,7 @@
     ],
     "year": 0,
     "repairedAt": 1782164948456,
+    "completedAt": null,
     "localImage": "covers/20021.jpg"
   },
   {
@@ -2101,15 +2184,16 @@
     "type": "TV",
     "malScore": 5.54,
     "airing": false,
-    "nextEpAt": 1782662700000,
+    "nextEpAt": 1783267500000,
     "altTitle": "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita",
     "relatedMalIds": [],
-    "relationsAt": 1782005922152,
+    "relationsAt": 1782665241672,
     "studios": [
       "Elias"
     ],
     "year": 2025,
     "repairedAt": 1782164949648,
+    "relationsVerified": true,
     "localImage": "covers/59745.jpg"
   },
   {
@@ -2168,8 +2252,8 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1190/155788l.jpg",
     "type": "TV",
     "malScore": 8.25,
-    "airing": true,
-    "nextEpAt": 1782631800000,
+    "airing": false,
+    "nextEpAt": 1783236600000,
     "altTitle": "Tsue to Tsurugi no Wistoria Season 2",
     "relatedMalIds": [
       {
@@ -2253,7 +2337,7 @@
     "nextEpAt": 1782741600000,
     "altTitle": "Tongari Boushi no Atelier",
     "relatedMalIds": [],
-    "relationsAt": 1782005925341,
+    "relationsAt": 1782568310534,
     "studios": [
       "BUG FILMS"
     ],
@@ -2627,7 +2711,7 @@
     "malScore": 7.29,
     "altTitle": "Kijin Gentoushou",
     "relatedMalIds": [],
-    "relationsAt": 1782005933901,
+    "relationsAt": 1782568311666,
     "studios": [
       "Yokohama Animation Lab"
     ],
@@ -2689,7 +2773,7 @@
     "malScore": 8.15,
     "altTitle": "Kotarou wa Hitorigurashi",
     "relatedMalIds": [],
-    "relationsAt": 1782005936291,
+    "relationsAt": 1782568312711,
     "studios": [
       "LIDENFILMS"
     ],
@@ -2802,7 +2886,7 @@
     "malScore": 7.33,
     "altTitle": "Ame wo Tsugeru Hyouryuu Danchi",
     "relatedMalIds": [],
-    "relationsAt": 1782005939176,
+    "relationsAt": 1782568313855,
     "studios": [
       "Studio Colorido"
     ],
@@ -2866,7 +2950,7 @@
     "malScore": 7.24,
     "altTitle": "バブル",
     "relatedMalIds": [],
-    "relationsAt": 1782005941621,
+    "relationsAt": 1782568314981,
     "studios": [
       "Wit Studio"
     ],
@@ -2896,7 +2980,7 @@
     "malScore": 7.16,
     "altTitle": "Chao Neng Lifang: Chaofan Pian",
     "relatedMalIds": [],
-    "relationsAt": 1782005942108,
+    "relationsAt": 1782568316788,
     "studios": [
       "Big Firebird Culture"
     ],
@@ -3076,7 +3160,7 @@
     "nextEpAt": 1782997200000,
     "altTitle": "Hoshifuru Oukoku no Nina",
     "relatedMalIds": [],
-    "relationsAt": 1782005947540,
+    "relationsAt": 1782568317901,
     "studios": [
       "Signal.MD"
     ],
@@ -3185,7 +3269,7 @@
     "nextEpAt": 1783013700000,
     "altTitle": "Renai Boukun",
     "relatedMalIds": [],
-    "relationsAt": 1782005950398,
+    "relationsAt": 1782568319013,
     "studios": [
       "EMT Squared"
     ],
@@ -3283,10 +3367,10 @@
     "type": "TV",
     "malScore": 7.72,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Mono",
     "relatedMalIds": [],
-    "relationsAt": 1782005953257,
+    "relationsAt": 1782568320117,
     "studios": [
       "Soigne"
     ],
@@ -3315,10 +3399,10 @@
     "type": "TV",
     "malScore": 7.07,
     "airing": false,
-    "nextEpAt": 1782826200000,
+    "nextEpAt": 1783431000000,
     "altTitle": "ブラック・ブレット　BLACK BULLET　［黒の銃弾］",
     "relatedMalIds": [],
-    "relationsAt": 1782005953746,
+    "relationsAt": 1782568321161,
     "studios": [
       "Kinema Citrus",
       "Orange"
@@ -3382,10 +3466,10 @@
     "type": "TV",
     "malScore": 6.37,
     "airing": false,
-    "nextEpAt": 1782657900000,
+    "nextEpAt": 1783262700000,
     "altTitle": "Na Nare Hana Nare",
     "relatedMalIds": [],
-    "relationsAt": 1782005956197,
+    "relationsAt": 1782568322259,
     "studios": [
       "P.A. Works"
     ],
@@ -3454,7 +3538,7 @@
     "nextEpAt": null,
     "altTitle": "ヴァージン・パンク",
     "relatedMalIds": [],
-    "relationsAt": 1782005958656,
+    "relationsAt": 1782568323372,
     "studios": [
       "Shaft"
     ],
@@ -3482,7 +3566,7 @@
     "type": "TV",
     "malScore": 8.53,
     "airing": false,
-    "nextEpAt": 1782914400000,
+    "nextEpAt": 1783519200000,
     "altTitle": "[Oshi no Ko]",
     "relatedMalIds": [
       {
@@ -3522,7 +3606,7 @@
     "nextEpAt": null,
     "altTitle": "Wuliao Jiu Wanjie",
     "relatedMalIds": [],
-    "relationsAt": 1782005961057,
+    "relationsAt": 1782568324508,
     "studios": [
       "Shengying Animation"
     ],
@@ -3550,10 +3634,10 @@
     "type": "TV",
     "malScore": 6.5,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Tomodachi no Imouto ga Ore ni dake Uzai",
     "relatedMalIds": [],
-    "relationsAt": 1782005961520,
+    "relationsAt": 1782568325554,
     "studios": [
       "Blade"
     ],
@@ -3615,7 +3699,7 @@
     "type": "TV",
     "malScore": 7.14,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "バディ・コンプレックス",
     "relatedMalIds": [
       {
@@ -3660,7 +3744,7 @@
     "nextEpAt": 1782923400000,
     "altTitle": "キャシャーン SINS",
     "relatedMalIds": [],
-    "relationsAt": 1782005964377,
+    "relationsAt": 1782568326667,
     "studios": [
       "Madhouse"
     ],
@@ -3687,10 +3771,10 @@
     "type": "TV",
     "malScore": 6.97,
     "airing": false,
-    "nextEpAt": 1782917100000,
+    "nextEpAt": 1783521900000,
     "altTitle": "ワンダンス",
     "relatedMalIds": [],
-    "relationsAt": 1782005964769,
+    "relationsAt": 1782568327773,
     "studios": [
       "Madhouse",
       "Cyclone Graphics"
@@ -3721,10 +3805,10 @@
     "type": "TV",
     "malScore": 4.56,
     "airing": false,
-    "nextEpAt": 1782837000000,
+    "nextEpAt": 1783441800000,
     "altTitle": "CONCEPTION（コンセプション）",
     "relatedMalIds": [],
-    "relationsAt": 1782005966793,
+    "relationsAt": 1782568328878,
     "studios": [
       "Gonzo"
     ],
@@ -3752,10 +3836,10 @@
     "type": "TV",
     "malScore": 6.94,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "Kawaii dake ja Nai Shikimori-san",
     "relatedMalIds": [],
-    "relationsAt": 1782005967250,
+    "relationsAt": 1782568329976,
     "studios": [
       "Doga Kobo"
     ],
@@ -3786,7 +3870,7 @@
     "nextEpAt": null,
     "altTitle": "グッド・ナイト・ワールド",
     "relatedMalIds": [],
-    "relationsAt": 1782005967704,
+    "relationsAt": 1782568331946,
     "studios": [
       "NAZ"
     ],
@@ -3813,7 +3897,7 @@
     "type": "TV",
     "malScore": 7.11,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "A3! SEASON SPRING & SUMMER",
     "relatedMalIds": [
       {
@@ -3853,7 +3937,7 @@
     "nextEpAt": 1783080000000,
     "altTitle": "Tonari no Kyuuketsuki-san",
     "relatedMalIds": [],
-    "relationsAt": 1782005970147,
+    "relationsAt": 1782568333049,
     "studios": [
       "Studio Gokumi",
       "AXsiZ"
@@ -3885,7 +3969,7 @@
     "nextEpAt": 1783166400000,
     "altTitle": "Madougushi Dahliya wa Utsumukanai",
     "relatedMalIds": [],
-    "relationsAt": 1782005972085,
+    "relationsAt": 1782568334158,
     "studios": [
       "Typhoon Graphics",
       "Imagica Infos"
@@ -3916,10 +4000,10 @@
     "type": "TV",
     "malScore": 6.39,
     "airing": false,
-    "nextEpAt": 1782749100000,
+    "nextEpAt": 1783353900000,
     "altTitle": "Toaru Ossan no VRMMO Katsudouki",
     "relatedMalIds": [],
-    "relationsAt": 1782005972547,
+    "relationsAt": 1782568335254,
     "studios": [
       "Maho Film"
     ],
@@ -3951,13 +4035,14 @@
     "nextEpAt": 1782919800000,
     "altTitle": "Boku no Kanojo ga Majimesugiru Sho-bitch na Ken",
     "relatedMalIds": [],
-    "relationsAt": 1782005973007,
+    "relationsAt": 1782665242813,
     "studios": [
       "Diomedéa",
       "Studio Blanc."
     ],
     "year": 2017,
     "repairedAt": 1782165000062,
+    "relationsVerified": true,
     "localImage": "covers/35712.jpg"
   },
   {
@@ -3985,7 +4070,7 @@
     "nextEpAt": 1783090800000,
     "altTitle": "Saigo ni Hitotsu dake Onegai shitemo Yoroshii deshou ka",
     "relatedMalIds": [],
-    "relationsAt": 1782005975022,
+    "relationsAt": 1782568337441,
     "studios": [
       "LIDENFILMS"
     ],
@@ -4054,10 +4139,10 @@
     "type": "TV",
     "malScore": 7.51,
     "airing": false,
-    "nextEpAt": 1782741600000,
+    "nextEpAt": 1783346400000,
     "altTitle": "Kono Kaisha ni Suki na Hito ga Imasu",
     "relatedMalIds": [],
-    "relationsAt": 1782005975869,
+    "relationsAt": 1782568339240,
     "studios": [
       "Blade"
     ],
@@ -4127,7 +4212,7 @@
     "nextEpAt": 1783099500000,
     "altTitle": "Mahou Shoujo Tokushusen Asuka",
     "relatedMalIds": [],
-    "relationsAt": 1782005978263,
+    "relationsAt": 1782568340387,
     "studios": [
       "LIDENFILMS"
     ],
@@ -4158,7 +4243,7 @@
     "nextEpAt": 1783097580000,
     "altTitle": "SANDA",
     "relatedMalIds": [],
-    "relationsAt": 1782005978719,
+    "relationsAt": 1782568341429,
     "studios": [
       "Science SARU"
     ],
@@ -4185,7 +4270,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782752400000,
+    "nextEpAt": 1783357200000,
     "altTitle": "Shinryaku! Ika Musume",
     "relatedMalIds": [
       {
@@ -4223,7 +4308,7 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": false,
-    "nextEpAt": 1782739800000,
+    "nextEpAt": 1783344600000,
     "altTitle": "Kakuriyo no Yadomeshi",
     "relatedMalIds": [
       {
@@ -4261,10 +4346,10 @@
     "type": "TV",
     "malScore": 6.7,
     "airing": false,
-    "nextEpAt": 1782907200000,
+    "nextEpAt": 1783512000000,
     "altTitle": "Renai Flops",
     "relatedMalIds": [],
-    "relationsAt": 1782005981694,
+    "relationsAt": 1782568343335,
     "studios": [
       "Passione"
     ],
@@ -4324,7 +4409,7 @@
     "nextEpAt": 1783013280000,
     "altTitle": "Kono Bijutsu-bu ni wa Mondai ga Aru!",
     "relatedMalIds": [],
-    "relationsAt": 1782005984171,
+    "relationsAt": 1782568344490,
     "studios": [
       "feel."
     ],
@@ -4429,7 +4514,7 @@
     "type": "TV",
     "malScore": 8.59,
     "airing": false,
-    "nextEpAt": 1782631800000,
+    "nextEpAt": 1783236600000,
     "altTitle": "Uma Musume: Cinderella Gray",
     "relatedMalIds": [
       {
@@ -4464,7 +4549,7 @@
     "type": "TV",
     "malScore": 8.51,
     "airing": false,
-    "nextEpAt": 1782747000000,
+    "nextEpAt": 1783351800000,
     "altTitle": "Grand Blue Season 2",
     "relatedMalIds": [
       {
@@ -4505,10 +4590,10 @@
     "type": "TV",
     "malScore": 6.89,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru",
     "relatedMalIds": [],
-    "relationsAt": 1782005989563,
+    "relationsAt": 1782568346454,
     "studios": [
       "A-1 Pictures"
     ],
@@ -4538,10 +4623,10 @@
     "type": "TV",
     "malScore": 6.71,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "Urasekai Picnic",
     "relatedMalIds": [],
-    "relationsAt": 1782005990043,
+    "relationsAt": 1782568347552,
     "studios": [
       "LIDENFILMS",
       "Felix Film"
@@ -4610,7 +4695,7 @@
     "nextEpAt": 1783175400000,
     "altTitle": "Darling in the FranXX",
     "relatedMalIds": [],
-    "relationsAt": 1782005992370,
+    "relationsAt": 1782568348597,
     "studios": [
       "A-1 Pictures",
       "Trigger",
@@ -4643,7 +4728,7 @@
     "nextEpAt": 1782919800000,
     "altTitle": "Mikadono Sanshimai wa Angai, Choroi.",
     "relatedMalIds": [],
-    "relationsAt": 1782005992848,
+    "relationsAt": 1782568349641,
     "studios": [
       "P.A. Works"
     ],
@@ -4671,7 +4756,7 @@
     "type": "TV",
     "malScore": 6.74,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "シャイ",
     "relatedMalIds": [
       {
@@ -4813,7 +4898,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Seijo no Maryoku wa Bannou desu",
     "relatedMalIds": [
       {
@@ -4885,7 +4970,7 @@
     "nextEpAt": 1783083600000,
     "altTitle": "SELECTION PROJECT",
     "relatedMalIds": [],
-    "relationsAt": 1782006000870,
+    "relationsAt": 1782568350773,
     "studios": [
       "Doga Kobo"
     ],
@@ -4916,7 +5001,7 @@
     "nextEpAt": 1783000800000,
     "altTitle": "Btooom!",
     "relatedMalIds": [],
-    "relationsAt": 1782006001335,
+    "relationsAt": 1782568351913,
     "studios": [
       "Madhouse"
     ],
@@ -4982,10 +5067,10 @@
     "type": "TV",
     "malScore": 6.29,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "Buta no Liver wa Kanetsu Shiro",
     "relatedMalIds": [],
-    "relationsAt": 1782006003749,
+    "relationsAt": 1782568353029,
     "studios": [
       "Project No.9"
     ],
@@ -5015,12 +5100,13 @@
     "nextEpAt": 1783175400000,
     "altTitle": "Horimiya: Piece",
     "relatedMalIds": [],
-    "relationsAt": 1782006004140,
+    "relationsAt": 1782665243862,
     "studios": [
       "CloverWorks"
     ],
     "year": 2023,
     "repairedAt": 1782165010984,
+    "relationsVerified": true,
     "localImage": "covers/54856.jpg"
   },
   {
@@ -5084,10 +5170,10 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782660600000,
+    "nextEpAt": 1783265400000,
     "altTitle": "Manaria Friends",
     "relatedMalIds": [],
-    "relationsAt": 1782006006625,
+    "relationsAt": 1782568355186,
     "studios": [
       "CygamesPictures"
     ],
@@ -5115,7 +5201,7 @@
     "type": "TV",
     "malScore": 6.83,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "Maou Gakuin no Futekigousha II: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou",
     "relatedMalIds": [
       {
@@ -5156,7 +5242,7 @@
     "type": "TV",
     "malScore": 6.31,
     "airing": false,
-    "nextEpAt": 1782646200000,
+    "nextEpAt": 1783251000000,
     "altTitle": "Senran Kagura",
     "relatedMalIds": [
       {
@@ -5193,10 +5279,10 @@
     "type": "TV",
     "malScore": 6.13,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "NEET Kunoichi to Nazeka Dousei Hajimemashita",
     "relatedMalIds": [],
-    "relationsAt": 1782006009531,
+    "relationsAt": 1782568356341,
     "studios": [
       "Quad"
     ],
@@ -5223,7 +5309,7 @@
     "type": "TV",
     "malScore": 8.04,
     "airing": false,
-    "nextEpAt": 1782581700000,
+    "nextEpAt": 1783186500000,
     "altTitle": "BLACK LAGOON",
     "relatedMalIds": [
       {
@@ -5259,7 +5345,7 @@
     "type": "TV",
     "malScore": 6.44,
     "airing": false,
-    "nextEpAt": 1782660600000,
+    "nextEpAt": 1783265400000,
     "altTitle": "ファントム イン ザ トワイライト",
     "relatedMalIds": [
       {
@@ -5299,10 +5385,10 @@
     "type": "TV",
     "malScore": 7.39,
     "airing": false,
-    "nextEpAt": 1782826200000,
+    "nextEpAt": 1783431000000,
     "altTitle": "Tensai Ouji no Akaji Kokka Saisei Jutsu",
     "relatedMalIds": [],
-    "relationsAt": 1782006012463,
+    "relationsAt": 1782568357438,
     "studios": [
       "Yokohama Animation Lab"
     ],
@@ -5365,7 +5451,7 @@
     "type": "TV",
     "malScore": 7.29,
     "airing": false,
-    "nextEpAt": 1782741600000,
+    "nextEpAt": 1783346400000,
     "altTitle": "Kyuuketsuki Sugu Shinu",
     "relatedMalIds": [
       {
@@ -5402,10 +5488,10 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782747000000,
+    "nextEpAt": 1783351800000,
     "altTitle": "Watashi no Oshi wa Akuyaku Reijou.",
     "relatedMalIds": [],
-    "relationsAt": 1782006015430,
+    "relationsAt": 1782568358545,
     "studios": [
       "Platinum Vision"
     ],
@@ -5470,10 +5556,10 @@
     "type": "TV",
     "malScore": 7.53,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Senpai ga Uzai Kouhai no Hanashi",
     "relatedMalIds": [],
-    "relationsAt": 1782006017826,
+    "relationsAt": 1782568359660,
     "studios": [
       "Doga Kobo"
     ],
@@ -5506,7 +5592,7 @@
     "nextEpAt": 1783011480000,
     "altTitle": "Mahoutsukai Reimeiki",
     "relatedMalIds": [],
-    "relationsAt": 1782006018316,
+    "relationsAt": 1782568360763,
     "studios": [
       "Tezuka Productions"
     ],
@@ -5534,7 +5620,7 @@
     "nextEpAt": null,
     "altTitle": "fly with the night",
     "relatedMalIds": [],
-    "relationsAt": 1782006018803,
+    "relationsAt": 1782568361882,
     "studios": [],
     "year": 0,
     "repairedAt": 1782165016360,
@@ -5559,7 +5645,7 @@
     "type": "TV",
     "malScore": 6.9,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "カードファイト!! ヴァンガード will+Dress",
     "relatedMalIds": [
       {
@@ -5605,7 +5691,7 @@
     "nextEpAt": 1783092600000,
     "altTitle": "Shokei Shoujo no Virgin Road",
     "relatedMalIds": [],
-    "relationsAt": 1782006021307,
+    "relationsAt": 1782568362991,
     "studios": [
       "J.C.Staff"
     ],
@@ -5636,7 +5722,7 @@
     "nextEpAt": 1783089000000,
     "altTitle": "Class no Daikirai na Joshi to Kekkon suru Koto ni Natta.",
     "relatedMalIds": [],
-    "relationsAt": 1782006021799,
+    "relationsAt": 1782568364102,
     "studios": [
       "Studio Gokumi",
       "AXsiZ"
@@ -5665,7 +5751,7 @@
     "type": "TV",
     "malScore": 8.01,
     "airing": false,
-    "nextEpAt": 1782835140000,
+    "nextEpAt": 1783439940000,
     "altTitle": "Kimi ni Todoke",
     "relatedMalIds": [
       {
@@ -5788,10 +5874,10 @@
     "type": "TV",
     "malScore": 7.58,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "Saikyou no Shienshoku \"Wajutsushi\" de Aru Ore wa Sekai Saikyou Clan wo Shitagaeru",
     "relatedMalIds": [],
-    "relationsAt": 1782006026681,
+    "relationsAt": 1782568365217,
     "studios": [
       "Felix Film",
       "Ga-Crew"
@@ -5821,7 +5907,7 @@
     "type": "TV",
     "malScore": 7.86,
     "airing": false,
-    "nextEpAt": 1782723600000,
+    "nextEpAt": 1783328400000,
     "altTitle": "ソウルイーター",
     "relatedMalIds": [
       {
@@ -5857,10 +5943,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Kunoichi Tsubaki no Mune no Uchi",
     "relatedMalIds": [],
-    "relationsAt": 1782006029088,
+    "relationsAt": 1782568366346,
     "studios": [
       "CloverWorks"
     ],
@@ -5923,7 +6009,7 @@
     "type": "TV",
     "malScore": 6.11,
     "airing": false,
-    "nextEpAt": 1782664500000,
+    "nextEpAt": 1783269300000,
     "altTitle": "BEM",
     "relatedMalIds": [
       {
@@ -5959,7 +6045,7 @@
     "type": "TV",
     "malScore": 7.2,
     "airing": false,
-    "nextEpAt": 1782576300000,
+    "nextEpAt": 1783181100000,
     "altTitle": "Haiyore! Nyaruko-san W",
     "relatedMalIds": [
       {
@@ -6037,7 +6123,7 @@
     "type": "TV",
     "malScore": 7.51,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Demi-chan wa Kataritai",
     "relatedMalIds": [
       {
@@ -6108,10 +6194,10 @@
     "type": "TV",
     "malScore": 6.23,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "ヴァンパイア男子寮",
     "relatedMalIds": [],
-    "relationsAt": 1782006035468,
+    "relationsAt": 1782568367460,
     "studios": [
       "Studio Blanc."
     ],
@@ -6138,10 +6224,10 @@
     "type": "TV",
     "malScore": 6.64,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Chichi wa Eiyuu, Haha wa Seirei, Musume no Watashi wa Tenseisha.",
     "relatedMalIds": [],
-    "relationsAt": 1782006035929,
+    "relationsAt": 1782568369594,
     "studios": [
       "J.C.Staff"
     ],
@@ -6170,10 +6256,10 @@
     "type": "TV",
     "malScore": 6.55,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "キスシス",
     "relatedMalIds": [],
-    "relationsAt": 1782006037930,
+    "relationsAt": 1782568370695,
     "studios": [
       "feel."
     ],
@@ -6201,7 +6287,7 @@
     "type": "TV",
     "malScore": 6.16,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Z/X Code Reunion",
     "relatedMalIds": [
       {
@@ -6239,7 +6325,7 @@
     "type": "TV",
     "malScore": 8.21,
     "airing": false,
-    "nextEpAt": 1782837000000,
+    "nextEpAt": 1783441800000,
     "altTitle": "Ookami to Koushinryou",
     "relatedMalIds": [
       {
@@ -6281,7 +6367,7 @@
     "nextEpAt": null,
     "altTitle": "Shiye Mowang",
     "relatedMalIds": [],
-    "relationsAt": 1782006040771,
+    "relationsAt": 1782568371877,
     "studios": [
       "Skyloong"
     ],
@@ -6312,7 +6398,7 @@
     "nextEpAt": 1782921600000,
     "altTitle": "鬼斬",
     "relatedMalIds": [],
-    "relationsAt": 1782006041217,
+    "relationsAt": 1782568372984,
     "studios": [
       "Pierrot Plus"
     ],
@@ -6377,10 +6463,10 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "見える子ちゃん",
     "relatedMalIds": [],
-    "relationsAt": 1782006043693,
+    "relationsAt": 1782568374029,
     "studios": [
       "Passione"
     ],
@@ -6445,7 +6531,7 @@
     "type": "TV",
     "malScore": 7.54,
     "airing": false,
-    "nextEpAt": 1782836940000,
+    "nextEpAt": 1783441740000,
     "altTitle": "ワンダーエッグ・プライオリティ",
     "relatedMalIds": [
       {
@@ -6481,10 +6567,10 @@
     "type": "TV",
     "malScore": 6.22,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "Chuu Bra!!",
     "relatedMalIds": [],
-    "relationsAt": 1782006046641,
+    "relationsAt": 1782568375151,
     "studios": [
       "Zexcs"
     ],
@@ -6519,7 +6605,7 @@
     "nextEpAt": null,
     "altTitle": "ソードアート・オンライン (オリジナル劇場版)",
     "relatedMalIds": [],
-    "relationsAt": 1782006047098,
+    "relationsAt": 1782568376272,
     "studios": [],
     "year": 0,
     "repairedAt": 1782165026458,
@@ -6547,10 +6633,10 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782739800000,
+    "nextEpAt": 1783344600000,
     "altTitle": "Saijaku Muhai no Bahamut",
     "relatedMalIds": [],
-    "relationsAt": 1782006049094,
+    "relationsAt": 1782568378262,
     "studios": [
       "Lerche"
     ],
@@ -6578,7 +6664,7 @@
     "type": "TV",
     "malScore": 7.64,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "Working!!",
     "relatedMalIds": [
       {
@@ -6614,10 +6700,10 @@
     "type": "TV",
     "malScore": 7.53,
     "airing": false,
-    "nextEpAt": 1782828900000,
+    "nextEpAt": 1783433700000,
     "altTitle": "Tsurezure Children",
     "relatedMalIds": [],
-    "relationsAt": 1782006049999,
+    "relationsAt": 1782568380325,
     "studios": [
       "Studio Gokumi"
     ],
@@ -6650,7 +6736,7 @@
     "nextEpAt": null,
     "altTitle": "カゲロウデイズ-in a day's-",
     "relatedMalIds": [],
-    "relationsAt": 1782006051995,
+    "relationsAt": 1782568381433,
     "studios": [
       "Jumonji"
     ],
@@ -6718,7 +6804,7 @@
     "nextEpAt": null,
     "altTitle": "Huan You Lieren",
     "relatedMalIds": [],
-    "relationsAt": 1782006052934,
+    "relationsAt": 1782568382530,
     "studios": [
       "Colored Pencil Animation"
     ],
@@ -6749,7 +6835,7 @@
     "nextEpAt": 1783011480000,
     "altTitle": "桜Trick",
     "relatedMalIds": [],
-    "relationsAt": 1782006054933,
+    "relationsAt": 1782568383677,
     "studios": [
       "Studio Deen"
     ],
@@ -6781,10 +6867,10 @@
     "type": "TV",
     "malScore": 5.54,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Shoumetsu Toshi",
     "relatedMalIds": [],
-    "relationsAt": 1782006055399,
+    "relationsAt": 1782568384781,
     "studios": [
       "Madhouse"
     ],
@@ -6848,10 +6934,10 @@
     "type": "TV",
     "malScore": 5.61,
     "airing": false,
-    "nextEpAt": 1782833400000,
+    "nextEpAt": 1783438200000,
     "altTitle": "Deep Insanity THE LOST CHILD",
     "relatedMalIds": [],
-    "relationsAt": 1782006057863,
+    "relationsAt": 1782568385899,
     "studios": [
       "SILVER LINK."
     ],
@@ -6878,7 +6964,7 @@
     "type": "TV",
     "malScore": 8.42,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Kono Oto Tomare! Part 2",
     "relatedMalIds": [
       {
@@ -6952,7 +7038,7 @@
     "nextEpAt": 1783097700000,
     "altTitle": "グランベルム",
     "relatedMalIds": [],
-    "relationsAt": 1782006060723,
+    "relationsAt": 1782568387021,
     "studios": [
       "Nexus"
     ],
@@ -6983,7 +7069,7 @@
     "nextEpAt": 1783095000000,
     "altTitle": "Lord of Vermilion: Guren no Ou",
     "relatedMalIds": [],
-    "relationsAt": 1782006061192,
+    "relationsAt": 1782568388140,
     "studios": [
       "asread.",
       "Tear Studio"
@@ -7012,10 +7098,10 @@
     "type": "TV",
     "malScore": 7.56,
     "airing": false,
-    "nextEpAt": 1782750600000,
+    "nextEpAt": 1783355400000,
     "altTitle": "So Ra No Wo To",
     "relatedMalIds": [],
-    "relationsAt": 1782006063210,
+    "relationsAt": 1782568389254,
     "studios": [
       "A-1 Pictures"
     ],
@@ -7047,7 +7133,7 @@
     "nextEpAt": null,
     "altTitle": "Hina Logi: From Luck & Logic",
     "relatedMalIds": [],
-    "relationsAt": 1782006063671,
+    "relationsAt": 1782568390465,
     "studios": [
       "Doga Kobo"
     ],
@@ -7111,7 +7197,7 @@
     "type": "TV",
     "malScore": 7.65,
     "airing": false,
-    "nextEpAt": 1782664200000,
+    "nextEpAt": 1783269000000,
     "altTitle": "みなみけ",
     "relatedMalIds": [
       {
@@ -7186,7 +7272,7 @@
     "nextEpAt": 1783170000000,
     "altTitle": "Tanaka-kun wa Itsumo Kedaruge",
     "relatedMalIds": [],
-    "relationsAt": 1782006067097,
+    "relationsAt": 1782568391569,
     "studios": [
       "SILVER LINK."
     ],
@@ -7217,7 +7303,7 @@
     "nextEpAt": null,
     "altTitle": "Kimi wo Aishita Hitori no Boku e",
     "relatedMalIds": [],
-    "relationsAt": 1782006069113,
+    "relationsAt": 1782568392674,
     "studios": [
       "TMS Entertainment"
     ],
@@ -7242,7 +7328,7 @@
     "type": "TV",
     "malScore": 5.44,
     "airing": false,
-    "nextEpAt": 1782750600000,
+    "nextEpAt": 1783355400000,
     "altTitle": "絆のアリル",
     "relatedMalIds": [
       {
@@ -7283,7 +7369,7 @@
     "nextEpAt": 1783085400000,
     "altTitle": "ディバインゲート",
     "relatedMalIds": [],
-    "relationsAt": 1782006070053,
+    "relationsAt": 1782568393772,
     "studios": [
       "Studio Pierrot"
     ],
@@ -7313,7 +7399,7 @@
     "type": "TV",
     "malScore": 6.87,
     "airing": false,
-    "nextEpAt": 1782749700000,
+    "nextEpAt": 1783354500000,
     "altTitle": "Juubee-chan: Lovely Gantai no Himitsu",
     "relatedMalIds": [
       {
@@ -7352,7 +7438,7 @@
     "nextEpAt": 1783173600000,
     "altTitle": "Shuumatsu no Izetta",
     "relatedMalIds": [],
-    "relationsAt": 1782006073412,
+    "relationsAt": 1782568394880,
     "studios": [
       "Ajia-do"
     ],
@@ -7380,10 +7466,10 @@
     "type": "TV",
     "malScore": 7.45,
     "airing": false,
-    "nextEpAt": 1782750900000,
+    "nextEpAt": 1783355700000,
     "altTitle": "Tonari no Kaibutsu-kun",
     "relatedMalIds": [],
-    "relationsAt": 1782006073864,
+    "relationsAt": 1782568395992,
     "studios": [
       "Brain's Base"
     ],
@@ -7412,10 +7498,10 @@
     "type": "TV",
     "malScore": 7.29,
     "airing": false,
-    "nextEpAt": 1782897900000,
+    "nextEpAt": 1783502700000,
     "altTitle": "Sousei no Onmyouji",
     "relatedMalIds": [],
-    "relationsAt": 1782006074258,
+    "relationsAt": 1782568397035,
     "studios": [
       "Studio Pierrot"
     ],
@@ -7444,7 +7530,7 @@
     "type": "TV",
     "malScore": 8.02,
     "airing": false,
-    "nextEpAt": 1782575700000,
+    "nextEpAt": 1783180500000,
     "altTitle": "Hikaru ga Shinda Natsu",
     "relatedMalIds": [
       {
@@ -7480,7 +7566,7 @@
     "type": "TV",
     "malScore": 6.13,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Sayonara Watashi no Cramer",
     "relatedMalIds": [
       {
@@ -7518,7 +7604,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "ネコぱら",
     "relatedMalIds": [],
-    "relationsAt": 1782006077193,
+    "relationsAt": 1782568398167,
     "studios": [
       "Felix Film"
     ],
@@ -7547,7 +7633,7 @@
     "type": "TV",
     "malScore": 6.93,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Kyokou Suiri",
     "relatedMalIds": [
       {
@@ -7586,7 +7672,7 @@
     "nextEpAt": 1783166400000,
     "altTitle": "Kao ni Denai Kashiwada-san to Kao ni Deru Oota-kun",
     "relatedMalIds": [],
-    "relationsAt": 1782006079605,
+    "relationsAt": 1782568399278,
     "studios": [
       "Studio Polon"
     ],
@@ -7614,10 +7700,10 @@
     "type": "TV",
     "malScore": 6.62,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku",
     "relatedMalIds": [],
-    "relationsAt": 1782006080079,
+    "relationsAt": 1782568405570,
     "studios": [
       "Maho Film"
     ],
@@ -7648,7 +7734,7 @@
     "nextEpAt": null,
     "altTitle": "Kun Tun Tianxia Zhi Zhang Men Guilai",
     "relatedMalIds": [],
-    "relationsAt": 1782006082090,
+    "relationsAt": 1782568406719,
     "studios": [
       "Big Firebird Culture"
     ],
@@ -7676,10 +7762,10 @@
     "type": "TV",
     "malScore": 8.05,
     "airing": false,
-    "nextEpAt": 1782837240000,
+    "nextEpAt": 1783442040000,
     "altTitle": "アポカリプスホテル",
     "relatedMalIds": [],
-    "relationsAt": 1782006082570,
+    "relationsAt": 1782568407821,
     "studios": [
       "CygamesPictures"
     ],
@@ -7707,7 +7793,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "",
     "repairedAt": 1781976179061,
     "relatedMalIds": [
@@ -7740,10 +7826,10 @@
     "type": "TV",
     "malScore": 6.53,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Gorilla no Kami kara Kago sareta Reijou wa Ouritsu Kishidan de Kawaigarareru",
     "relatedMalIds": [],
-    "relationsAt": 1782006085081,
+    "relationsAt": 1782568408864,
     "studios": [
       "Kachigarasu"
     ],
@@ -7773,7 +7859,7 @@
     "nextEpAt": 1783157100000,
     "altTitle": "アン・シャーリー",
     "relatedMalIds": [],
-    "relationsAt": 1782006085526,
+    "relationsAt": 1782568409985,
     "studios": [
       "The Answer Studio"
     ],
@@ -7802,7 +7888,7 @@
     "type": "TV",
     "malScore": 8.18,
     "airing": false,
-    "nextEpAt": 1782657900000,
+    "nextEpAt": 1783262700000,
     "altTitle": "Jigokuraku 2nd Season",
     "relatedMalIds": [
       {
@@ -7837,10 +7923,10 @@
     "type": "TV",
     "malScore": 8.11,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "CITY THE ANIMATION",
     "relatedMalIds": [],
-    "relationsAt": 1782006087919,
+    "relationsAt": 1782568411107,
     "studios": [
       "Kyoto Animation"
     ],
@@ -7872,7 +7958,7 @@
     "nextEpAt": 1783171800000,
     "altTitle": "Kizetsu Yuusha to Ansatsu Hime",
     "relatedMalIds": [],
-    "relationsAt": 1782006088367,
+    "relationsAt": 1782568412205,
     "studios": [
       "Connect"
     ],
@@ -7900,10 +7986,10 @@
     "type": "TV",
     "malScore": 6.43,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "Osananajimi to wa Love Comedy ni Naranai",
     "relatedMalIds": [],
-    "relationsAt": 1782006088815,
+    "relationsAt": 1782568413323,
     "studios": [
       "Tezuka Productions"
     ],
@@ -7932,11 +8018,11 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": true,
-    "nextEpAt": 1782604800000,
+    "nextEpAt": 1783209600000,
     "altTitle": "DIGIMON BEATBREAK（デジモンビートブレイク）",
     "repairedAt": 1781976179420,
     "relatedMalIds": [],
-    "relationsAt": 1782006090833,
+    "relationsAt": 1782568414441,
     "localImage": "covers/61269.jpg"
   },
   {
@@ -7962,7 +8048,7 @@
     "nextEpAt": 1783006200000,
     "altTitle": "Futari Solo Camp",
     "relatedMalIds": [],
-    "relationsAt": 1782006091318,
+    "relationsAt": 1782568415668,
     "studios": [
       "SynergySP"
     ],
@@ -7990,7 +8076,7 @@
     "type": "TV",
     "malScore": 8.3,
     "airing": false,
-    "nextEpAt": 1782633600000,
+    "nextEpAt": 1783238400000,
     "altTitle": "Seihantai na Kimi to Boku",
     "relatedMalIds": [
       {
@@ -8065,7 +8151,7 @@
     "nextEpAt": 1780326000000,
     "altTitle": "Sozai Saishuka no Isekai Ryokouki",
     "relatedMalIds": [],
-    "relationsAt": 1782006094171,
+    "relationsAt": 1782568416713,
     "studios": [
       "Tatsunoko Production",
       "SynergySP"
@@ -8135,7 +8221,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Odayaka Kizoku no Kyuuka no Susume.",
     "relatedMalIds": [],
-    "relationsAt": 1782006096639,
+    "relationsAt": 1782568417839,
     "studios": [
       "SynergySP"
     ],
@@ -8164,7 +8250,7 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": false,
-    "nextEpAt": 1782907200000,
+    "nextEpAt": 1783512000000,
     "altTitle": "くま クマ 熊 ベアー",
     "relatedMalIds": [
       {
@@ -8235,10 +8321,10 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782907200000,
+    "nextEpAt": 1783512000000,
     "altTitle": "Mamahaha no Tsurego ga Motokano datta",
     "relatedMalIds": [],
-    "relationsAt": 1782006099537,
+    "relationsAt": 1782568419033,
     "studios": [
       "Project No.9"
     ],
@@ -8268,7 +8354,7 @@
     "nextEpAt": 1782919800000,
     "altTitle": "16bitセンセーション ANOTHER LAYER",
     "relatedMalIds": [],
-    "relationsAt": 1782006099995,
+    "relationsAt": 1782568420150,
     "studios": [
       "Silver"
     ],
@@ -8297,10 +8383,10 @@
     "type": "TV",
     "malScore": 8.14,
     "airing": false,
-    "nextEpAt": 1782659400000,
+    "nextEpAt": 1783264200000,
     "altTitle": "Eizouken ni wa Te wo Dasu na!",
     "relatedMalIds": [],
-    "relationsAt": 1782006102006,
+    "relationsAt": 1782568421256,
     "studios": [
       "Science SARU"
     ],
@@ -8329,10 +8415,10 @@
     "type": "TV",
     "malScore": 6.59,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "ロビハチ",
     "relatedMalIds": [],
-    "relationsAt": 1782006102485,
+    "relationsAt": 1782568422519,
     "studios": [
       "Studio Comet"
     ],
@@ -8396,10 +8482,10 @@
     "type": "TV",
     "malScore": 6.09,
     "airing": false,
-    "nextEpAt": 1782750600000,
+    "nextEpAt": 1783355400000,
     "altTitle": "Botsuraku Yotei no Kizoku dakedo, Hima Datta kara Mahou wo Kiwametemita",
     "relatedMalIds": [],
-    "relationsAt": 1782006104909,
+    "relationsAt": 1782568423623,
     "studios": [
       "Studio Deen",
       "Marvy Jack"
@@ -8427,10 +8513,10 @@
     "type": "TV",
     "malScore": 5.52,
     "airing": false,
-    "nextEpAt": 1782738000000,
+    "nextEpAt": 1783342800000,
     "altTitle": "Mahoutsukai no Yakusoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006105358,
+    "relationsAt": 1782568424764,
     "studios": [
       "LIDENFILMS"
     ],
@@ -8461,7 +8547,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "宇宙人ムームー",
     "relatedMalIds": [],
-    "relationsAt": 1782006105838,
+    "relationsAt": 1782568425873,
     "studios": [
       "OLM"
     ],
@@ -8489,10 +8575,10 @@
     "type": "TV",
     "malScore": 7.88,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "グノーシア",
     "relatedMalIds": [],
-    "relationsAt": 1782006107776,
+    "relationsAt": 1782568427820,
     "studios": [
       "domerica"
     ],
@@ -8522,7 +8608,7 @@
     "nextEpAt": 1783171800000,
     "altTitle": "ライアー・ライアー",
     "relatedMalIds": [],
-    "relationsAt": 1782006108171,
+    "relationsAt": 1782568428980,
     "studios": [
       "Geek Toys"
     ],
@@ -8552,7 +8638,7 @@
     "nextEpAt": 1782999000000,
     "altTitle": "Kumichou Musume to Sewagakari",
     "relatedMalIds": [],
-    "relationsAt": 1782006110197,
+    "relationsAt": 1782568430102,
     "studios": [
       "feel.",
       "Gaina"
@@ -8583,7 +8669,7 @@
     "nextEpAt": 1783013280000,
     "altTitle": "Sakamoto desu ga?",
     "relatedMalIds": [],
-    "relationsAt": 1782006110642,
+    "relationsAt": 1782568431218,
     "studios": [
       "Studio Deen"
     ],
@@ -8611,11 +8697,11 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1993/156385l.jpg",
     "type": "TV",
     "malScore": 7.72,
-    "airing": true,
-    "nextEpAt": 1782572400000,
+    "airing": false,
+    "nextEpAt": 1783177200000,
     "altTitle": "Shunkashuutou Daikousha: Haru no Mai",
     "relatedMalIds": [],
-    "relationsAt": 1782006111032,
+    "relationsAt": 1782568432259,
     "studios": [
       "Wit Studio"
     ],
@@ -8643,10 +8729,10 @@
     "type": "TV",
     "malScore": 6.54,
     "airing": false,
-    "nextEpAt": 1782838740000,
+    "nextEpAt": 1783443540000,
     "altTitle": "Megami \"Isekai Tensei Nani ni Naritai desu ka\" Ore \"Yuusha no Rokkotsu de\"",
     "relatedMalIds": [],
-    "relationsAt": 1782006112970,
+    "relationsAt": 1782568433364,
     "studios": [
       "Qzil.la",
       "S.o.K"
@@ -8675,10 +8761,10 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": true,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "マリッジトキシン",
     "relatedMalIds": [],
-    "relationsAt": 1782006113365,
+    "relationsAt": 1782568434411,
     "studios": [
       "Bones Film"
     ],
@@ -8710,7 +8796,7 @@
     "altTitle": "Koori no Jouheki",
     "repairedAt": 1781976179782,
     "relatedMalIds": [],
-    "relationsAt": 1782006113760,
+    "relationsAt": 1782568435523,
     "localImage": "covers/60852.jpg"
   },
   {
@@ -8734,10 +8820,15 @@
     "type": "TV",
     "malScore": 7.01,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Kanan-sama wa Akumade Choroi",
-    "relatedMalIds": [],
-    "relationsAt": 1782006115699,
+    "relatedMalIds": [
+      {
+        "malId": 64441,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782568436567,
     "studios": [
       "Studio KAI"
     ],
@@ -8764,10 +8855,10 @@
     "type": "TV",
     "malScore": 7.5,
     "airing": false,
-    "nextEpAt": 1782631800000,
+    "nextEpAt": 1783236600000,
     "altTitle": "Uruwashi no Yoi no Tsuki",
     "relatedMalIds": [],
-    "relationsAt": 1782006116177,
+    "relationsAt": 1782568437623,
     "studios": [
       "East Fish Studio",
       "Atelier Peuplier"
@@ -8795,11 +8886,11 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "Nijusseiki Denki Mokuroku: Eureka Evrika",
     "repairedAt": 1781976180144,
     "relatedMalIds": [],
-    "relationsAt": 1782006118209,
+    "relationsAt": 1782568438736,
     "localImage": "covers/62856.jpg"
   },
   {
@@ -8823,10 +8914,10 @@
     "type": "TV",
     "malScore": 6.08,
     "airing": false,
-    "nextEpAt": 1782565200000,
+    "nextEpAt": 1783170000000,
     "altTitle": "Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo?",
     "relatedMalIds": [],
-    "relationsAt": 1782006118613,
+    "relationsAt": 1782568439859,
     "studios": [
       "Studio Flad"
     ],
@@ -8852,11 +8943,11 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1755/154935l.jpg",
     "type": "TV",
     "malScore": 6.84,
-    "airing": true,
-    "nextEpAt": 1782574200000,
+    "airing": false,
+    "nextEpAt": 1783179000000,
     "altTitle": "NEEDY GIRL OVERDOSE",
     "relatedMalIds": [],
-    "relationsAt": 1782006119003,
+    "relationsAt": 1782568440984,
     "studios": [
       "Yostar Pictures"
     ],
@@ -8885,10 +8976,10 @@
     "type": "TV",
     "malScore": 6.24,
     "airing": false,
-    "nextEpAt": 1782489600000,
+    "nextEpAt": 1783094400000,
     "altTitle": "Android wa Keiken Ninzuu ni Hairimasu ka??",
     "relatedMalIds": [],
-    "relationsAt": 1782006121001,
+    "relationsAt": 1782568442094,
     "studios": [
       "Nyan Pollution"
     ],
@@ -8916,10 +9007,10 @@
     "type": "TV",
     "malScore": 6.48,
     "airing": false,
-    "nextEpAt": 1782836940000,
+    "nextEpAt": 1783441740000,
     "altTitle": "Tadaima, Ojamasaremasu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006121492,
+    "relationsAt": 1782568443218,
     "studios": [
       "Tatsunoko Production"
     ],
@@ -8948,10 +9039,10 @@
     "type": "TV",
     "malScore": 5.28,
     "airing": false,
-    "nextEpAt": 1782663000000,
+    "nextEpAt": 1783267800000,
     "altTitle": "Ingoku Danchi",
     "relatedMalIds": [],
-    "relationsAt": 1782006121882,
+    "relationsAt": 1782568444259,
     "studios": [
       "Elias"
     ],
@@ -8978,10 +9069,10 @@
     "type": "TV",
     "malScore": 8.48,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "Nippon Sangoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006123810,
+    "relationsAt": 1782568445302,
     "studios": [
       "Studio Kafka"
     ],
@@ -9009,10 +9100,10 @@
     "type": "TV",
     "malScore": 7.36,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Kami no Niwatsuki Kusunoki-tei",
     "relatedMalIds": [],
-    "relationsAt": 1782006124203,
+    "relationsAt": 1782568446342,
     "studios": [
       "Juvenage"
     ],
@@ -9039,11 +9130,16 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1786/156390l.jpg",
     "type": "TV",
     "malScore": 6.61,
-    "airing": true,
-    "nextEpAt": 1782484200000,
+    "airing": false,
+    "nextEpAt": 1783089000000,
     "altTitle": "スノウボールアース",
-    "relatedMalIds": [],
-    "relationsAt": 1782006126141,
+    "relatedMalIds": [
+      {
+        "malId": 64482,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782568447387,
     "studios": [
       "Studio KAI"
     ],
@@ -9072,10 +9168,10 @@
     "type": "TV",
     "malScore": 5.24,
     "airing": false,
-    "nextEpAt": 1782662400000,
+    "nextEpAt": 1783267200000,
     "altTitle": "Marika-chan no Koukando wa Bukkowareteiru",
     "relatedMalIds": [],
-    "relationsAt": 1782006126530,
+    "relationsAt": 1782568448493,
     "studios": [
       "Studio LEO"
     ],
@@ -9103,10 +9199,10 @@
     "type": "TV",
     "malScore": 6.55,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Jingai Kyoushitsu no Ningengirai Kyoushi",
     "relatedMalIds": [],
-    "relationsAt": 1782006126987,
+    "relationsAt": 1782568449606,
     "studios": [
       "asread."
     ],
@@ -9133,10 +9229,10 @@
     "type": "TV",
     "malScore": 6.56,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Majutsushi Kunon wa Mieteiru",
     "relatedMalIds": [],
-    "relationsAt": 1782006128986,
+    "relationsAt": 1782568450649,
     "studios": [
       "Platinum Vision"
     ],
@@ -9165,10 +9261,10 @@
     "type": "TV",
     "malScore": 6.77,
     "airing": false,
-    "nextEpAt": 1782406680000,
+    "nextEpAt": 1783011480000,
     "altTitle": "Champignon no Majo",
     "relatedMalIds": [],
-    "relationsAt": 1782006129433,
+    "relationsAt": 1782568451746,
     "studios": [
       "Typhoon Graphics",
       "Qzil.la"
@@ -9197,10 +9293,10 @@
     "type": "TV",
     "malScore": 6.86,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Chanto Suenai Kyuuketsuki-chan",
     "relatedMalIds": [],
-    "relationsAt": 1782006129882,
+    "relationsAt": 1782568452878,
     "studios": [
       "feel."
     ],
@@ -9301,7 +9397,7 @@
     "nextEpAt": null,
     "altTitle": "Hateshinaki Scarlet",
     "relatedMalIds": [],
-    "relationsAt": 1782006134202,
+    "relationsAt": 1782568453979,
     "studios": [
       "Studio Chizu"
     ],
@@ -9333,7 +9429,7 @@
     "nextEpAt": 1782920700000,
     "altTitle": "Onmyou Kaiten Re:Birth",
     "relatedMalIds": [],
-    "relationsAt": 1782006134654,
+    "relationsAt": 1782568455090,
     "studios": [
       "David Production"
     ],
@@ -9360,11 +9456,11 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Tenmaku no Jaadugar",
     "repairedAt": 1781976180499,
     "relatedMalIds": [],
-    "relationsAt": 1782006135120,
+    "relationsAt": 1782568456883,
     "localImage": "covers/61483.jpg"
   },
   {
@@ -9390,7 +9486,7 @@
     "nextEpAt": 1782920700000,
     "altTitle": "Let's Play: Quest-darake no My Life",
     "relatedMalIds": [],
-    "relationsAt": 1782006137105,
+    "relationsAt": 1782568457990,
     "studios": [
       "OLM"
     ],
@@ -9420,10 +9516,10 @@
     "type": "TV",
     "malScore": 6.17,
     "airing": false,
-    "nextEpAt": 1782401400000,
+    "nextEpAt": 1783006200000,
     "altTitle": "\"Omae Gotoki ga Maou ni Kateru to Omouna\" to Yuusha Party wo Tsuihou sareta node, Outo de Kimama ni Kurashitai",
     "relatedMalIds": [],
-    "relationsAt": 1782006137580,
+    "relationsAt": 1782568459135,
     "studios": [
       "A.C.G.T."
     ],
@@ -9450,10 +9546,10 @@
     "type": "TV",
     "malScore": 6.42,
     "airing": false,
-    "nextEpAt": 1782403200000,
+    "nextEpAt": 1783008000000,
     "altTitle": "Potion, Wagami wo Tasukeru",
     "relatedMalIds": [],
-    "relationsAt": 1782006138060,
+    "relationsAt": 1782568460267,
     "studios": [
       "Imagica Infos",
       "Imageworks Studio"
@@ -9483,10 +9579,10 @@
     "type": "TV",
     "malScore": 6.23,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Yuusha Party ni Kawaii Ko ga Ita node, Kokuhaku shitemita.",
     "relatedMalIds": [],
-    "relationsAt": 1782006139993,
+    "relationsAt": 1782568461397,
     "studios": [
       "Gekkou"
     ],
@@ -9513,11 +9609,11 @@
     "type": "TV",
     "malScore": 6.36,
     "airing": false,
-    "nextEpAt": 1782606600000,
+    "nextEpAt": 1783211400000,
     "altTitle": "",
     "repairedAt": 1781976180858,
     "relatedMalIds": [],
-    "relationsAt": 1782006140450,
+    "relationsAt": 1782568462513,
     "localImage": "covers/62126.jpg"
   },
   {
@@ -9539,10 +9635,10 @@
     "type": "TV",
     "malScore": 6.79,
     "airing": false,
-    "nextEpAt": 1782565200000,
+    "nextEpAt": 1783170000000,
     "altTitle": "Okiraku Ryoushu no Tanoshii Ryouchi Bouei: Seisankei Majutsu de Na mo Naki Mura wo Saikyou no Jousai Toshi ni",
     "relatedMalIds": [],
-    "relationsAt": 1782006140843,
+    "relationsAt": 1782568463615,
     "studios": [
       "NAZ"
     ],
@@ -9570,10 +9666,10 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Maid-san wa Taberu dake",
     "relatedMalIds": [],
-    "relationsAt": 1782006143347,
+    "relationsAt": 1782568464659,
     "studios": [
       "EMT Squared"
     ],
@@ -9602,7 +9698,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782833400000,
+    "nextEpAt": 1783438200000,
     "altTitle": "東京レイヴンズ",
     "relatedMalIds": [
       {
@@ -9678,7 +9774,7 @@
     "nextEpAt": null,
     "altTitle": "Zanting! Rang Wo Cha Gonglue",
     "relatedMalIds": [],
-    "relationsAt": 1782006146247,
+    "relationsAt": 1782568465764,
     "studios": [
       "Kung Fu Frog Animation"
     ],
@@ -9707,10 +9803,10 @@
     "type": "TV",
     "malScore": 7.09,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria",
     "relatedMalIds": [],
-    "relationsAt": 1782006146702,
+    "relationsAt": 1782568467665,
     "studios": [
       "J.C.Staff"
     ],
@@ -9737,7 +9833,7 @@
     "type": "TV",
     "malScore": 7.93,
     "airing": false,
-    "nextEpAt": 1782640800000,
+    "nextEpAt": 1783245600000,
     "altTitle": "Love Live! Superstar!!",
     "relatedMalIds": [
       {
@@ -9781,7 +9877,7 @@
     "altTitle": "",
     "repairedAt": 1781976181219,
     "relatedMalIds": [],
-    "relationsAt": 1782006149145,
+    "relationsAt": 1782568468773,
     "localImage": "covers/45574.jpg"
   },
   {
@@ -9806,7 +9902,7 @@
     "nextEpAt": null,
     "altTitle": "＋チック姉さん",
     "relatedMalIds": [],
-    "relationsAt": 1782006151183,
+    "relationsAt": 1782568469889,
     "studios": [
       "Barnum Studio",
       "TYO Animations"
@@ -9838,7 +9934,7 @@
     "nextEpAt": null,
     "altTitle": "Null Peta",
     "relatedMalIds": [],
-    "relationsAt": 1782006151645,
+    "relationsAt": 1782568471001,
     "studios": [
       "Shin-Ei Animation"
     ],
@@ -9866,10 +9962,10 @@
     "type": "TV",
     "malScore": 6.57,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "Potion-danomi de Ikinobimasu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006152100,
+    "relationsAt": 1782568472106,
     "studios": [
       "Jumondou"
     ],
@@ -9898,10 +9994,10 @@
     "type": "TV",
     "malScore": 6.65,
     "airing": false,
-    "nextEpAt": 1782520200000,
+    "nextEpAt": 1783125000000,
     "altTitle": "Seiken no Blacksmith",
     "relatedMalIds": [],
-    "relationsAt": 1782006154096,
+    "relationsAt": 1782568473215,
     "studios": [
       "Manglobe"
     ],
@@ -9928,7 +10024,7 @@
     "type": "TV",
     "malScore": 5.32,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "シュート! Goal to the Future",
     "relatedMalIds": [
       {
@@ -9965,10 +10061,10 @@
     "type": "TV",
     "malScore": 7.43,
     "airing": false,
-    "nextEpAt": 1782635400000,
+    "nextEpAt": 1783240200000,
     "altTitle": "Kaya-chan wa Kowakunai",
     "relatedMalIds": [],
-    "relationsAt": 1782006155010,
+    "relationsAt": 1782568474343,
     "studios": [
       "East Fish Studio"
     ],
@@ -9997,10 +10093,10 @@
     "type": "TV",
     "malScore": 6.73,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Boku no Tsuma wa Kanjou ga Nai",
     "relatedMalIds": [],
-    "relationsAt": 1782006157008,
+    "relationsAt": 1782568476250,
     "studios": [
       "Tezuka Productions"
     ],
@@ -10030,7 +10126,7 @@
     "type": "TV",
     "malScore": 8.14,
     "airing": false,
-    "nextEpAt": 1782750600000,
+    "nextEpAt": 1783355400000,
     "altTitle": "Ookami to Koushinryou: Merchant Meets the Wise Wolf",
     "relatedMalIds": [
       {
@@ -10068,7 +10164,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "Around 40 Otoko no Isekai Tsuuhan",
     "relatedMalIds": [],
-    "relationsAt": 1782006157925,
+    "relationsAt": 1782568477367,
     "studios": [
       "East Fish Studio"
     ],
@@ -10097,10 +10193,10 @@
     "type": "TV",
     "malScore": 7.36,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "怪物事変",
     "relatedMalIds": [],
-    "relationsAt": 1782006159859,
+    "relationsAt": 1782568478463,
     "studios": [
       "Ajia-do"
     ],
@@ -10127,10 +10223,10 @@
     "type": "TV",
     "malScore": 7.12,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "ばっどがーる",
     "relatedMalIds": [],
-    "relationsAt": 1782006160316,
+    "relationsAt": 1782568479562,
     "studios": [
       "Bridge"
     ],
@@ -10157,10 +10253,10 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782834300000,
+    "nextEpAt": 1783439100000,
     "altTitle": "World Witches Hasshin Shimasu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006160775,
+    "relationsAt": 1782568480667,
     "studios": [
       "Acca effe",
       "Giga Production"
@@ -10226,10 +10322,10 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": false,
-    "nextEpAt": 1782831600000,
+    "nextEpAt": 1783436400000,
     "altTitle": "Amagami-san Chi no Enmusubi",
     "relatedMalIds": [],
-    "relationsAt": 1782006163293,
+    "relationsAt": 1782568481769,
     "studios": [
       "Drive"
     ],
@@ -10257,10 +10353,10 @@
     "type": "TV",
     "malScore": 6.57,
     "airing": false,
-    "nextEpAt": 1782751500000,
+    "nextEpAt": 1783356300000,
     "altTitle": "Eiyuuou, Bu wo Kiwameru Tame Tenseisu: Soshite, Sekai Saikyou no Minarai Kishi♀",
     "relatedMalIds": [],
-    "relationsAt": 1782006163734,
+    "relationsAt": 1782568482897,
     "studios": [
       "Studio Comet"
     ],
@@ -10291,7 +10387,7 @@
     "nextEpAt": null,
     "altTitle": "Ai no Utagoe wo Kikasete",
     "relatedMalIds": [],
-    "relationsAt": 1782006165734,
+    "relationsAt": 1782568484033,
     "studios": [
       "J.C.Staff"
     ],
@@ -10321,7 +10417,7 @@
     "nextEpAt": 1782999000000,
     "altTitle": "Ninja to Koroshiya no Futarigurashi",
     "relatedMalIds": [],
-    "relationsAt": 1782006166196,
+    "relationsAt": 1782568485144,
     "studios": [
       "Shaft"
     ],
@@ -10348,7 +10444,7 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": false,
-    "nextEpAt": 1782492900000,
+    "nextEpAt": 1783097700000,
     "altTitle": "K RETURN OF KINGS",
     "relatedMalIds": [
       {
@@ -10384,7 +10480,7 @@
     "type": "TV",
     "malScore": 7.6,
     "airing": false,
-    "nextEpAt": 1782490980000,
+    "nextEpAt": 1783095780000,
     "altTitle": "アークナイツ【冬隠帰路/PERISH IN FROST】",
     "relatedMalIds": [
       {
@@ -10425,10 +10521,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782831600000,
+    "nextEpAt": 1783436400000,
     "altTitle": "takt op.Destiny",
     "relatedMalIds": [],
-    "relationsAt": 1782006169121,
+    "relationsAt": 1782568486249,
     "studios": [
       "Madhouse",
       "MAPPA"
@@ -10459,7 +10555,7 @@
     "nextEpAt": 1782995400000,
     "altTitle": "Karaoke Iko!",
     "relatedMalIds": [],
-    "relationsAt": 1782006171116,
+    "relationsAt": 1782568487351,
     "studios": [
       "Doga Kobo"
     ],
@@ -10488,7 +10584,7 @@
     "type": "TV",
     "malScore": 7.98,
     "airing": false,
-    "nextEpAt": 1782750900000,
+    "nextEpAt": 1783355700000,
     "altTitle": "Kami nomi zo Shiru Sekai: Megami-hen",
     "relatedMalIds": [
       {
@@ -10524,7 +10620,7 @@
     "type": "TV",
     "malScore": 6.96,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Uzaki-chan wa Asobitai!",
     "relatedMalIds": [
       {
@@ -10560,10 +10656,10 @@
     "type": "TV",
     "malScore": 7.47,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "Majo to Yajuu",
     "relatedMalIds": [],
-    "relationsAt": 1782006174039,
+    "relationsAt": 1782568488455,
     "studios": [
       "Yokohama Animation Lab"
     ],
@@ -10591,7 +10687,7 @@
     "type": "TV",
     "malScore": 6.62,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Kono Yo no Hate de Koi wo Utau Shoujo YU-NO",
     "relatedMalIds": [
       {
@@ -10627,10 +10723,10 @@
     "type": "TV",
     "malScore": 6.73,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Shirobuta Kizoku desu ga Zense no Kioku ga Haeta node Hiyoko na Otouto Sodatemasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006174882,
+    "relationsAt": 1782568489622,
     "studios": [
       "Studio Comet"
     ],
@@ -10658,10 +10754,10 @@
     "type": "TV",
     "malScore": 7.19,
     "airing": false,
-    "nextEpAt": 1782656940000,
+    "nextEpAt": 1783261740000,
     "altTitle": "グイン・サーガ",
     "relatedMalIds": [],
-    "relationsAt": 1782006176881,
+    "relationsAt": 1782568490737,
     "studios": [
       "Satelight"
     ],
@@ -10690,10 +10786,10 @@
     "type": "TV",
     "malScore": 5.71,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "Party kara Tsuihou sareta Sono Chiyushi, Jitsu wa Saikyou ni Tsuki",
     "relatedMalIds": [],
-    "relationsAt": 1782006177271,
+    "relationsAt": 1782568491780,
     "studios": [
       "Studio Elle"
     ],
@@ -10721,7 +10817,7 @@
     "type": "TV",
     "malScore": 8.1,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "",
     "repairedAt": 1781976181576,
     "relatedMalIds": [
@@ -10755,7 +10851,7 @@
     "type": "TV",
     "malScore": 6.36,
     "airing": false,
-    "nextEpAt": 1782523800000,
+    "nextEpAt": 1783128600000,
     "altTitle": "Kanokon",
     "relatedMalIds": [
       {
@@ -10790,10 +10886,10 @@
     "type": "TV",
     "malScore": 6.95,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Shikanoko Nokonoko Koshitantan",
     "relatedMalIds": [],
-    "relationsAt": 1782006180290,
+    "relationsAt": 1782568492957,
     "studios": [
       "Wit Studio"
     ],
@@ -10821,10 +10917,10 @@
     "type": "TV",
     "malScore": 6.81,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "Niwatori Fighter",
     "relatedMalIds": [],
-    "relationsAt": 1782006180768,
+    "relationsAt": 1782568494117,
     "studios": [
       "SANZIGEN"
     ],
@@ -10852,10 +10948,10 @@
     "type": "TV",
     "malScore": 7.06,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Kimi wa Meido-sama.",
     "relatedMalIds": [],
-    "relationsAt": 1782006182760,
+    "relationsAt": 1782568495227,
     "studios": [
       "Felix Film"
     ],
@@ -10918,7 +11014,7 @@
     "type": "TV",
     "malScore": 7.26,
     "airing": false,
-    "nextEpAt": 1782824400000,
+    "nextEpAt": 1783429200000,
     "altTitle": "Watashi ni Tenshi ga Maiorita!",
     "relatedMalIds": [
       {
@@ -10953,10 +11049,10 @@
     "type": "TV",
     "malScore": 6.12,
     "airing": false,
-    "nextEpAt": 1782732600000,
+    "nextEpAt": 1783337400000,
     "altTitle": "SoniAni: Super Sonico The Animation",
     "relatedMalIds": [],
-    "relationsAt": 1782006184245,
+    "relationsAt": 1782568496403,
     "studios": [
       "White Fox"
     ],
@@ -10987,7 +11083,7 @@
     "nextEpAt": null,
     "altTitle": "Ane Log: Moyako Neesan no Tomaranai Monologue",
     "relatedMalIds": [],
-    "relationsAt": 1782006184714,
+    "relationsAt": 1782568497527,
     "studios": [
       "Brain's Base"
     ],
@@ -11015,10 +11111,10 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Mahouka Koukou no Yuutousei",
     "relatedMalIds": [],
-    "relationsAt": 1782006186951,
+    "relationsAt": 1782568498652,
     "studios": [
       "Connect"
     ],
@@ -11049,7 +11145,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Soukou Musume Senki",
     "relatedMalIds": [],
-    "relationsAt": 1782006188583,
+    "relationsAt": 1782568499903,
     "studios": [
       "Studio A-CAT"
     ],
@@ -11078,10 +11174,10 @@
     "type": "TV",
     "malScore": 3,
     "airing": false,
-    "nextEpAt": 1782750000000,
+    "nextEpAt": 1783354800000,
     "altTitle": "レディスポ",
     "relatedMalIds": [],
-    "relationsAt": 1782006189039,
+    "relationsAt": 1782568501042,
     "studios": [
       "Brio Animation"
     ],
@@ -11111,10 +11207,10 @@
     "type": "TV",
     "malScore": 5.17,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Battle Athletess Daiundoukai ReSTART!",
     "relatedMalIds": [],
-    "relationsAt": 1782006189505,
+    "relationsAt": 1782568502166,
     "studios": [
       "Seven"
     ],
@@ -11142,7 +11238,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782404100000,
+    "nextEpAt": 1783008900000,
     "altTitle": "ギルティクラウン",
     "relatedMalIds": [
       {
@@ -11181,7 +11277,7 @@
     "type": "TV",
     "malScore": 5.83,
     "airing": false,
-    "nextEpAt": 1782603000000,
+    "nextEpAt": 1783207800000,
     "altTitle": "シンカリオン チェンジ ザ ワールド",
     "relatedMalIds": [
       {
@@ -11222,10 +11318,10 @@
     "type": "TV",
     "malScore": 8.08,
     "airing": false,
-    "nextEpAt": 1782402600000,
+    "nextEpAt": 1783007400000,
     "altTitle": "Zankyou no Terror",
     "relatedMalIds": [],
-    "relationsAt": 1782006192453,
+    "relationsAt": 1782568503267,
     "studios": [
       "MAPPA"
     ],
@@ -11252,10 +11348,10 @@
     "type": "TV",
     "malScore": 6.98,
     "airing": false,
-    "nextEpAt": 1782581880000,
+    "nextEpAt": 1783186680000,
     "altTitle": "RELEASE THE SPYCE",
     "relatedMalIds": [],
-    "relationsAt": 1782006193005,
+    "relationsAt": 1782568504392,
     "studios": [
       "Lay-duce"
     ],
@@ -11282,7 +11378,7 @@
     "type": "TV",
     "malScore": 8.11,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "ブルーロック",
     "relatedMalIds": [
       {
@@ -11320,10 +11416,10 @@
     "type": "TV",
     "malScore": 7.15,
     "airing": false,
-    "nextEpAt": 1782402300000,
+    "nextEpAt": 1783007100000,
     "altTitle": "C: The Money of Soul and Possibility Control",
     "relatedMalIds": [],
-    "relationsAt": 1782006195392,
+    "relationsAt": 1782568505499,
     "studios": [
       "Tatsunoko Production"
     ],
@@ -11386,7 +11482,7 @@
     "type": "TV",
     "malScore": 7.5,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Blue Lock vs. U-20 Japan",
     "relatedMalIds": [
       {
@@ -11427,7 +11523,7 @@
     "type": "TV",
     "malScore": 6.79,
     "airing": false,
-    "nextEpAt": 1782492000000,
+    "nextEpAt": 1783096800000,
     "altTitle": "Shinmai Maou no Testament Burst",
     "relatedMalIds": [
       {
@@ -11464,10 +11560,10 @@
     "type": "TV",
     "malScore": 7.61,
     "airing": false,
-    "nextEpAt": 1782478800000,
+    "nextEpAt": 1783083600000,
     "altTitle": "Kino no Tabi: The Beautiful World - The Animated Series",
     "relatedMalIds": [],
-    "relationsAt": 1782006200286,
+    "relationsAt": 1782568507356,
     "studios": [
       "Lerche"
     ],
@@ -11496,7 +11592,7 @@
     "type": "TV",
     "malScore": 7.23,
     "airing": false,
-    "nextEpAt": 1782660600000,
+    "nextEpAt": 1783265400000,
     "altTitle": "ブラッドラッド",
     "relatedMalIds": [
       {
@@ -11531,10 +11627,10 @@
     "type": "TV",
     "malScore": 7.64,
     "airing": false,
-    "nextEpAt": 1782494580000,
+    "nextEpAt": 1783099380000,
     "altTitle": "Dekiru Neko wa Kyou mo Yuuutsu",
     "relatedMalIds": [],
-    "relationsAt": 1782006201206,
+    "relationsAt": 1782568508479,
     "studios": [
       "GoHands"
     ],
@@ -11562,10 +11658,10 @@
     "type": "TV",
     "malScore": 7.96,
     "airing": false,
-    "nextEpAt": 1782752400000,
+    "nextEpAt": 1783357200000,
     "altTitle": "Maoujou de Oyasumi",
     "relatedMalIds": [],
-    "relationsAt": 1782006203225,
+    "relationsAt": 1782568509578,
     "studios": [
       "Doga Kobo"
     ],
@@ -11593,7 +11689,7 @@
     "type": "TV",
     "malScore": 7.34,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "Rikei ga Koi ni Ochita no de Shoumei shitemita.",
     "relatedMalIds": [
       {
@@ -11628,7 +11724,7 @@
     "type": "TV",
     "malScore": 6.68,
     "airing": false,
-    "nextEpAt": 1782580800000,
+    "nextEpAt": 1783185600000,
     "altTitle": "てさぐれ！部活もの",
     "relatedMalIds": [
       {
@@ -11666,10 +11762,10 @@
     "type": "TV",
     "malScore": 7.68,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?",
     "relatedMalIds": [],
-    "relationsAt": 1782006206116,
+    "relationsAt": 1782568511442,
     "studios": [
       "Satelight",
       "C2C"
@@ -11701,7 +11797,7 @@
     "nextEpAt": null,
     "altTitle": "Suki demo Kirai na Amanojaku",
     "relatedMalIds": [],
-    "relationsAt": 1782006206587,
+    "relationsAt": 1782568512560,
     "studios": [
       "Studio Colorido"
     ],
@@ -11728,7 +11824,7 @@
     "type": "TV",
     "malScore": 7.95,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Kono Oto Tomare!",
     "relatedMalIds": [
       {
@@ -11763,10 +11859,10 @@
     "type": "TV",
     "malScore": 7.04,
     "airing": false,
-    "nextEpAt": 1782752700000,
+    "nextEpAt": 1783357500000,
     "altTitle": "Inou-Battle wa Nichijou-kei no Naka de",
     "relatedMalIds": [],
-    "relationsAt": 1782006209062,
+    "relationsAt": 1782568513693,
     "studios": [
       "Trigger"
     ],
@@ -11798,10 +11894,10 @@
     "type": "TV",
     "malScore": 7.67,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "Mousou Dairinin",
     "relatedMalIds": [],
-    "relationsAt": 1782006209523,
+    "relationsAt": 1782568514815,
     "studios": [
       "Madhouse"
     ],
@@ -11829,10 +11925,10 @@
     "type": "TV",
     "malScore": 7.55,
     "airing": false,
-    "nextEpAt": 1782822600000,
+    "nextEpAt": 1783427400000,
     "altTitle": "Kubo-san wa Mob wo Yurusanai",
     "relatedMalIds": [],
-    "relationsAt": 1782006209970,
+    "relationsAt": 1782568515866,
     "studios": [
       "PINE JAM"
     ],
@@ -11860,7 +11956,7 @@
     "type": "TV",
     "malScore": 6.85,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Kakkou no Iinazuke",
     "relatedMalIds": [
       {
@@ -11899,7 +11995,7 @@
     "type": "TV",
     "malScore": 6.25,
     "airing": false,
-    "nextEpAt": 1782907200000,
+    "nextEpAt": 1783512000000,
     "altTitle": "Majutsushi Orphen Hagure Tabi: Kimluck-hen",
     "relatedMalIds": [
       {
@@ -11943,7 +12039,7 @@
     "nextEpAt": null,
     "altTitle": "Kimi to, Nami ni Noretara",
     "relatedMalIds": [],
-    "relationsAt": 1782006212953,
+    "relationsAt": 1782568516987,
     "studios": [
       "Science SARU"
     ],
@@ -11971,7 +12067,7 @@
     "type": "TV",
     "malScore": 8.35,
     "airing": false,
-    "nextEpAt": 1782406680000,
+    "nextEpAt": 1783011480000,
     "altTitle": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Kan",
     "relatedMalIds": [
       {
@@ -12006,10 +12102,10 @@
     "type": "TV",
     "malScore": 6.38,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "バック・アロウ",
     "relatedMalIds": [],
-    "relationsAt": 1782006215407,
+    "relationsAt": 1782568518100,
     "studios": [
       "Studio VOLN"
     ],
@@ -12036,7 +12132,7 @@
     "type": "TV",
     "malScore": 6.41,
     "airing": false,
-    "nextEpAt": 1782837300000,
+    "nextEpAt": 1783442100000,
     "altTitle": "ミス・モノクローム -The Animation-",
     "relatedMalIds": [
       {
@@ -12072,7 +12168,7 @@
     "type": "TV",
     "malScore": 8.11,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "Silent Witch: Chinmoku no Majo no Kakushigoto",
     "relatedMalIds": [
       {
@@ -12109,10 +12205,10 @@
     "type": "TV",
     "malScore": 8.13,
     "airing": false,
-    "nextEpAt": 1782515160000,
+    "nextEpAt": 1783119960000,
     "altTitle": "Seirei no Moribito",
     "relatedMalIds": [],
-    "relationsAt": 1782006218590,
+    "relationsAt": 1782568519219,
     "studios": [
       "Production I.G"
     ],
@@ -12139,7 +12235,7 @@
     "type": "TV",
     "malScore": 6.67,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Cheer Danshi!!",
     "relatedMalIds": [
       {
@@ -12213,7 +12309,7 @@
     "type": "TV",
     "malScore": 8.45,
     "airing": false,
-    "nextEpAt": 1782496500000,
+    "nextEpAt": 1783101300000,
     "altTitle": "Grand Blue",
     "relatedMalIds": [
       {
@@ -12248,7 +12344,7 @@
     "type": "TV",
     "malScore": 6.99,
     "airing": false,
-    "nextEpAt": 1782752700000,
+    "nextEpAt": 1783357500000,
     "altTitle": "Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui!",
     "relatedMalIds": [
       {
@@ -12283,10 +12379,10 @@
     "type": "TV",
     "malScore": 6.06,
     "airing": false,
-    "nextEpAt": 1782817200000,
+    "nextEpAt": 1783422000000,
     "altTitle": "忍の一時",
     "relatedMalIds": [],
-    "relationsAt": 1782006223943,
+    "relationsAt": 1782568520321,
     "studios": [
       "TROYCA"
     ],
@@ -12313,7 +12409,7 @@
     "type": "TV",
     "malScore": 6.04,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Choboraunyopomi Gekijou Dai San Maku Ai Mai Mii: Surgical Friends",
     "relatedMalIds": [
       {
@@ -12350,10 +12446,10 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "Imouto sae Ireba Ii.",
     "relatedMalIds": [],
-    "relationsAt": 1782006224791,
+    "relationsAt": 1782568521423,
     "studios": [
       "SILVER LINK."
     ],
@@ -12420,11 +12516,11 @@
     "type": "TV",
     "malScore": 6.79,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "",
     "repairedAt": 1781976182091,
     "relatedMalIds": [],
-    "relationsAt": 1782006227306,
+    "relationsAt": 1782568522640,
     "localImage": "covers/51417.jpg"
   },
   {
@@ -12446,7 +12542,7 @@
     "type": "TV",
     "malScore": 6.9,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "Genjitsu no Yohane: Sunshine in the Mirror",
     "relatedMalIds": [
       {
@@ -12482,10 +12578,10 @@
     "type": "TV",
     "malScore": 7.07,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "THE GOD OF HIGH SCHOOL ゴッド・オブ・ハイスクール",
     "relatedMalIds": [],
-    "relationsAt": 1782006229780,
+    "relationsAt": 1782568524487,
     "studios": [
       "MAPPA"
     ],
@@ -12517,7 +12613,7 @@
     "nextEpAt": null,
     "altTitle": "Sora no Aosa wo Shiru Hito yo",
     "relatedMalIds": [],
-    "relationsAt": 1782006230237,
+    "relationsAt": 1782568525581,
     "studios": [
       "CloverWorks"
     ],
@@ -12544,10 +12640,10 @@
     "type": "TV",
     "malScore": 6.82,
     "airing": false,
-    "nextEpAt": 1782736200000,
+    "nextEpAt": 1783341000000,
     "altTitle": "Ochikobore Fruit Tart",
     "relatedMalIds": [],
-    "relationsAt": 1782006230697,
+    "relationsAt": 1782568526718,
     "studios": [
       "feel."
     ],
@@ -12575,10 +12671,10 @@
     "type": "TV",
     "malScore": 7.29,
     "airing": false,
-    "nextEpAt": 1782494700000,
+    "nextEpAt": 1783099500000,
     "altTitle": "Araburu Kisetsu no Otome-domo yo.",
     "relatedMalIds": [],
-    "relationsAt": 1782006232702,
+    "relationsAt": 1782568527763,
     "studios": [
       "Lay-duce"
     ],
@@ -12607,7 +12703,7 @@
     "type": "TV",
     "malScore": 7.43,
     "airing": false,
-    "nextEpAt": 1782750900000,
+    "nextEpAt": 1783355700000,
     "altTitle": "Isekai Shokudou",
     "relatedMalIds": [
       {
@@ -12644,7 +12740,7 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "Mirai Nikki (TV)",
     "relatedMalIds": [
       {
@@ -12683,7 +12779,7 @@
     "nextEpAt": null,
     "altTitle": "Holy Knight (ホーリーナイト)",
     "relatedMalIds": [],
-    "relationsAt": 1782006236042,
+    "relationsAt": 1782568528892,
     "studios": [
       "Lyrics"
     ],
@@ -12713,10 +12809,10 @@
     "type": "TV",
     "malScore": 6.31,
     "airing": false,
-    "nextEpAt": 1782752700000,
+    "nextEpAt": 1783357500000,
     "altTitle": "ハンドレッド",
     "relatedMalIds": [],
-    "relationsAt": 1782006238049,
+    "relationsAt": 1782568530016,
     "studios": [
       "Production IMS"
     ],
@@ -12750,13 +12846,14 @@
     "nextEpAt": null,
     "altTitle": "Re:cycle of the PENGUINDRUM",
     "relatedMalIds": [],
-    "relationsAt": 1782006238505,
+    "relationsAt": 1782665244997,
     "studios": [
       "Brain's Base",
       "Lapin Track"
     ],
     "year": 0,
     "repairedAt": 1782165098008,
+    "relationsVerified": true,
     "localImage": "covers/48624.jpg"
   },
   {
@@ -12779,10 +12876,10 @@
     "type": "TV",
     "malScore": 7.52,
     "airing": false,
-    "nextEpAt": 1782736200000,
+    "nextEpAt": 1783341000000,
     "altTitle": "Kanojo ga Koushaku-tei ni Itta Riyuu",
     "relatedMalIds": [],
-    "relationsAt": 1782006238965,
+    "relationsAt": 1782568532246,
     "studios": [
       "Typhoon Graphics"
     ],
@@ -12811,7 +12908,7 @@
     "type": "TV",
     "malScore": 8.42,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "Re:Zero kara Hajimeru Isekai Seikatsu 3rd Season",
     "relatedMalIds": [
       {
@@ -12856,7 +12953,7 @@
     "nextEpAt": null,
     "altTitle": "Kaze no Tani no Nausicaä",
     "relatedMalIds": [],
-    "relationsAt": 1782006241453,
+    "relationsAt": 1782568533355,
     "studios": [
       "Topcraft"
     ],
@@ -12884,10 +12981,10 @@
     "type": "TV",
     "malScore": 7.83,
     "airing": false,
-    "nextEpAt": 1782401400000,
+    "nextEpAt": 1783006200000,
     "altTitle": "Giji Harem",
     "relatedMalIds": [],
-    "relationsAt": 1782006241845,
+    "relationsAt": 1782568534400,
     "studios": [
       "Nomad"
     ],
@@ -12916,7 +13013,7 @@
     "type": "TV",
     "malScore": 6.81,
     "airing": false,
-    "nextEpAt": 1782402300000,
+    "nextEpAt": 1783007100000,
     "altTitle": "Black★Rock Shooter (TV)",
     "relatedMalIds": [
       {
@@ -12954,10 +13051,10 @@
     "type": "TV",
     "malScore": 6.76,
     "airing": false,
-    "nextEpAt": 1782489600000,
+    "nextEpAt": 1783094400000,
     "altTitle": "Nourin",
     "relatedMalIds": [],
-    "relationsAt": 1782006244543,
+    "relationsAt": 1782568535513,
     "studios": [
       "SILVER LINK."
     ],
@@ -12986,10 +13083,10 @@
     "type": "TV",
     "malScore": 8.65,
     "airing": false,
-    "nextEpAt": 1782603000000,
+    "nextEpAt": 1783207800000,
     "altTitle": "Tengen Toppa Gurren Lagann",
     "relatedMalIds": [],
-    "relationsAt": 1782006245013,
+    "relationsAt": 1782568536557,
     "studios": [
       "Gainax"
     ],
@@ -13019,10 +13116,10 @@
     "type": "TV",
     "malScore": 5.68,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "Isekai Shoukan wa Nidome desu",
     "relatedMalIds": [],
-    "relationsAt": 1782006247004,
+    "relationsAt": 1782568537600,
     "studios": [
       "Studio Elle"
     ],
@@ -13052,10 +13149,10 @@
     "type": "TV",
     "malScore": 6.77,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Sentai Red Isekai de Boukensha ni Naru",
     "relatedMalIds": [],
-    "relationsAt": 1782006247460,
+    "relationsAt": 1782568538710,
     "studios": [
       "Satelight"
     ],
@@ -13083,7 +13180,7 @@
     "type": "TV",
     "malScore": 8.4,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
     "relatedMalIds": [
       {
@@ -13120,7 +13217,7 @@
     "type": "TV",
     "malScore": 8.41,
     "airing": false,
-    "nextEpAt": 1782401160000,
+    "nextEpAt": 1783005960000,
     "altTitle": "Dandadan",
     "relatedMalIds": [
       {
@@ -13159,7 +13256,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Kanpekisugite Kawaige ga Nai to Konyaku Haki sareta Seijo wa Ringoku ni Urareru",
     "relatedMalIds": [],
-    "relationsAt": 1782006250330,
+    "relationsAt": 1782568539812,
     "studios": [
       "TROYCA"
     ],
@@ -13186,7 +13283,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782407940000,
+    "nextEpAt": 1783012740000,
     "altTitle": "Yuuki Yuuna wa Yuusha de Aru",
     "relatedMalIds": [
       {
@@ -13230,10 +13327,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Otonari ni Ginga",
     "relatedMalIds": [],
-    "relationsAt": 1782006252816,
+    "relationsAt": 1782568541881,
     "studios": [
       "Asahi Production"
     ],
@@ -13263,10 +13360,10 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Koi wa Sekai Seifuku no Ato de",
     "relatedMalIds": [],
-    "relationsAt": 1782006253267,
+    "relationsAt": 1782568543804,
     "studios": [
       "Project No.9"
     ],
@@ -13294,7 +13391,7 @@
     "type": "TV",
     "malScore": 6.87,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Toji no Miko",
     "relatedMalIds": [
       {
@@ -13334,7 +13431,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782480600000,
+    "nextEpAt": 1783085400000,
     "altTitle": "2.5-jigen no Ririsa",
     "relatedMalIds": [
       {
@@ -13370,7 +13467,7 @@
     "type": "TV",
     "malScore": 6.27,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "Rifle Is Beautiful",
     "relatedMalIds": [
       {
@@ -13406,10 +13503,10 @@
     "type": "TV",
     "malScore": 7.41,
     "airing": false,
-    "nextEpAt": 1782491400000,
+    "nextEpAt": 1783096200000,
     "altTitle": "Goukon ni Ittara Onna ga Inakatta Hanashi",
     "relatedMalIds": [],
-    "relationsAt": 1782006258173,
+    "relationsAt": 1782568544918,
     "studios": [
       "Ashi Productions"
     ],
@@ -13475,7 +13572,7 @@
     "altTitle": "Holo no Graffiti",
     "repairedAt": 1781976182452,
     "relatedMalIds": [],
-    "relationsAt": 1782006259087,
+    "relationsAt": 1782568546031,
     "localImage": "covers/44042.jpg"
   },
   {
@@ -13502,7 +13599,7 @@
     "nextEpAt": null,
     "altTitle": "Kotonoha no Niwa",
     "relatedMalIds": [],
-    "relationsAt": 1782006261025,
+    "relationsAt": 1782568547146,
     "studios": [
       "CoMix Wave Films"
     ],
@@ -13530,10 +13627,10 @@
     "type": "TV",
     "malScore": 8.51,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "Kaoru Hana wa Rin to Saku",
     "relatedMalIds": [],
-    "relationsAt": 1782006261419,
+    "relationsAt": 1782568548188,
     "studios": [
       "CloverWorks"
     ],
@@ -13564,7 +13661,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Niehime to Kemono no Ou",
     "relatedMalIds": [],
-    "relationsAt": 1782006261896,
+    "relationsAt": 1782568550112,
     "studios": [
       "J.C.Staff"
     ],
@@ -13593,10 +13690,10 @@
     "type": "TV",
     "malScore": 7.03,
     "airing": false,
-    "nextEpAt": 1782732600000,
+    "nextEpAt": 1783337400000,
     "altTitle": "Machine-Doll wa Kizutsukanai",
     "relatedMalIds": [],
-    "relationsAt": 1782006263913,
+    "relationsAt": 1782568551208,
     "studios": [
       "Lerche"
     ],
@@ -13626,7 +13723,7 @@
     "type": "TV",
     "malScore": 6.07,
     "airing": false,
-    "nextEpAt": 1782563400000,
+    "nextEpAt": 1783168200000,
     "altTitle": "Kekkon Yubiwa Monogatari",
     "relatedMalIds": [
       {
@@ -13665,7 +13762,7 @@
     "nextEpAt": 1782919800000,
     "altTitle": "Tomo-chan wa Onnanoko!",
     "relatedMalIds": [],
-    "relationsAt": 1782006264791,
+    "relationsAt": 1782568552252,
     "studios": [
       "Lay-duce"
     ],
@@ -13693,10 +13790,10 @@
     "type": "TV",
     "malScore": 6.45,
     "airing": false,
-    "nextEpAt": 1782910800000,
+    "nextEpAt": 1783515600000,
     "altTitle": "Cheat Kusushi no Slow Life: Isekai ni Tsukurou Drugstore",
     "relatedMalIds": [],
-    "relationsAt": 1782006266833,
+    "relationsAt": 1782568553370,
     "studios": [
       "EMT Squared"
     ],
@@ -13726,11 +13823,11 @@
     "type": "TV",
     "malScore": 7.48,
     "airing": true,
-    "nextEpAt": 1782467700000,
+    "nextEpAt": 1783072500000,
     "altTitle": "Pokemon (2023)",
     "repairedAt": 1781976182809,
     "relatedMalIds": [],
-    "relationsAt": 1782006267226,
+    "relationsAt": 1782568554476,
     "localImage": "covers/53876.jpg"
   },
   {
@@ -13792,10 +13889,10 @@
     "type": "TV",
     "malScore": 5.86,
     "airing": false,
-    "nextEpAt": 1782579300000,
+    "nextEpAt": 1783184100000,
     "altTitle": "シキザクラ",
     "relatedMalIds": [],
-    "relationsAt": 1782006269682,
+    "relationsAt": 1782568555610,
     "studios": [
       "Sublimation"
     ],
@@ -13827,7 +13924,7 @@
     "nextEpAt": 1782928200000,
     "altTitle": "Beelzebub-jou no Okinimesu mama.",
     "relatedMalIds": [],
-    "relationsAt": 1782006270205,
+    "relationsAt": 1782568556715,
     "studios": [
       "LIDENFILMS"
     ],
@@ -13856,7 +13953,7 @@
     "type": "TV",
     "malScore": 7.46,
     "airing": false,
-    "nextEpAt": 1782646200000,
+    "nextEpAt": 1783251000000,
     "altTitle": "Grisaia no Kajitsu",
     "relatedMalIds": [
       {
@@ -13894,7 +13991,7 @@
     "nextEpAt": null,
     "altTitle": "Kimi no Koe wo Todoketai",
     "relatedMalIds": [],
-    "relationsAt": 1782006272678,
+    "relationsAt": 1782568557824,
     "studios": [
       "Madhouse"
     ],
@@ -13921,10 +14018,10 @@
     "type": "TV",
     "malScore": 5.29,
     "airing": false,
-    "nextEpAt": 1782403200000,
+    "nextEpAt": 1783008000000,
     "altTitle": "180-byou de Kimi no Mimi wo Shiawase ni Dekiru ka?",
     "relatedMalIds": [],
-    "relationsAt": 1782006273150,
+    "relationsAt": 1782568558930,
     "studios": [
       "EKACHI EPILKA",
       "Indivision"
@@ -13955,12 +14052,13 @@
     "nextEpAt": null,
     "altTitle": "マケン姫っ！通 Ｐ～私事",
     "relatedMalIds": [],
-    "relationsAt": 1782006275182,
+    "relationsAt": 1782665246146,
     "studios": [
       "Xebec"
     ],
     "year": 0,
     "repairedAt": 1782165110296,
+    "relationsVerified": true,
     "localImage": "covers/23989.jpg"
   },
   {
@@ -13983,10 +14081,10 @@
     "type": "TV",
     "malScore": 7.15,
     "airing": false,
-    "nextEpAt": 1782406800000,
+    "nextEpAt": 1783011600000,
     "altTitle": "Kotoura-san",
     "relatedMalIds": [],
-    "relationsAt": 1782006275635,
+    "relationsAt": 1782568562001,
     "studios": [
       "AIC Classic"
     ],
@@ -14015,7 +14113,7 @@
     "type": "TV",
     "malScore": 6.76,
     "airing": false,
-    "nextEpAt": 1782568800000,
+    "nextEpAt": 1783173600000,
     "altTitle": "TRIGUN STARGAZE",
     "relatedMalIds": [
       {
@@ -14051,10 +14149,10 @@
     "type": "TV",
     "malScore": 7.47,
     "airing": false,
-    "nextEpAt": 1782907200000,
+    "nextEpAt": 1783512000000,
     "altTitle": "Tensei Oujo to Tensai Reijou no Mahou Kakumei",
     "relatedMalIds": [],
-    "relationsAt": 1782006278047,
+    "relationsAt": 1782568564029,
     "studios": [
       "Diomedéa"
     ],
@@ -14083,7 +14181,7 @@
     "type": "TV",
     "malScore": 7.9,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "Vanitas no Karte",
     "relatedMalIds": [
       {
@@ -14128,10 +14226,10 @@
     "type": "TV",
     "malScore": 8.47,
     "airing": false,
-    "nextEpAt": 1782399600000,
+    "nextEpAt": 1783004400000,
     "altTitle": "Summertime Render",
     "relatedMalIds": [],
-    "relationsAt": 1782006278985,
+    "relationsAt": 1782568565151,
     "studios": [
       "OLM"
     ],
@@ -14159,10 +14257,10 @@
     "type": "TV",
     "malScore": 6.99,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "神々の悪戯",
     "relatedMalIds": [],
-    "relationsAt": 1782006280977,
+    "relationsAt": 1782568566263,
     "studios": [
       "Brain's Base"
     ],
@@ -14190,7 +14288,7 @@
     "type": "TV",
     "malScore": 8.3,
     "airing": false,
-    "nextEpAt": 1782748800000,
+    "nextEpAt": 1783353600000,
     "altTitle": "Natsume Yuujinchou",
     "relatedMalIds": [
       {
@@ -14229,7 +14327,7 @@
     "type": "TV",
     "malScore": 8.37,
     "airing": false,
-    "nextEpAt": 1782898200000,
+    "nextEpAt": 1783503000000,
     "altTitle": "Shinseiki Evangelion",
     "relatedMalIds": [
       {
@@ -14271,10 +14369,10 @@
     "type": "TV",
     "malScore": 6.31,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Busamen Gachi Fighter",
     "relatedMalIds": [],
-    "relationsAt": 1782006283896,
+    "relationsAt": 1782568567307,
     "studios": [
       "White Fox"
     ],
@@ -14302,7 +14400,7 @@
     "type": "TV",
     "malScore": 8.15,
     "airing": false,
-    "nextEpAt": 1782575700000,
+    "nextEpAt": 1783180500000,
     "altTitle": "ザ・ファブル",
     "relatedMalIds": [
       {
@@ -14379,7 +14477,7 @@
     "type": "TV",
     "malScore": 6.13,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "Douse, Koishite Shimaunda.",
     "relatedMalIds": [
       {
@@ -14414,10 +14512,10 @@
     "type": "TV",
     "malScore": 7.6,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Fuufu Ijou, Koibito Miman.",
     "relatedMalIds": [],
-    "relationsAt": 1782006287159,
+    "relationsAt": 1782568568352,
     "studios": [
       "studio MOTHER"
     ],
@@ -14482,10 +14580,10 @@
     "type": "TV",
     "malScore": 6.64,
     "airing": false,
-    "nextEpAt": 1782579480000,
+    "nextEpAt": 1783184280000,
     "altTitle": "Rolling☆Girls",
     "relatedMalIds": [],
-    "relationsAt": 1782006289621,
+    "relationsAt": 1782568569467,
     "studios": [
       "Wit Studio"
     ],
@@ -14515,7 +14613,7 @@
     "nextEpAt": null,
     "altTitle": "BULLET/BULLET",
     "relatedMalIds": [],
-    "relationsAt": 1782006290070,
+    "relationsAt": 1782568570600,
     "studios": [
       "E&H Production"
     ],
@@ -14545,7 +14643,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "Gimai Seikatsu",
     "relatedMalIds": [],
-    "relationsAt": 1782006292073,
+    "relationsAt": 1782568571642,
     "studios": [
       "Studio Deen"
     ],
@@ -14573,7 +14671,7 @@
     "type": "TV",
     "malScore": 5.92,
     "airing": false,
-    "nextEpAt": 1782819000000,
+    "nextEpAt": 1783423800000,
     "altTitle": "Shin Ikkitousen",
     "relatedMalIds": [
       {
@@ -14611,7 +14709,7 @@
     "nextEpAt": null,
     "altTitle": "Tu Bian Yingxiong X",
     "relatedMalIds": [],
-    "relationsAt": 1782006292961,
+    "relationsAt": 1782568572867,
     "studios": [
       "Pb Animation",
       "LAN Studio",
@@ -14641,10 +14739,10 @@
     "type": "TV",
     "malScore": 6.48,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Gal to Kyouryuu",
     "relatedMalIds": [],
-    "relationsAt": 1782006294963,
+    "relationsAt": 1782568573971,
     "studios": [
       "Kamikaze Douga",
       "Space Neko Company"
@@ -14673,7 +14771,7 @@
     "type": "TV",
     "malScore": 8.95,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
     "relatedMalIds": [
       {
@@ -14712,7 +14810,7 @@
     "type": "TV",
     "malScore": 7.82,
     "airing": false,
-    "nextEpAt": 1782406680000,
+    "nextEpAt": 1783011480000,
     "altTitle": "Jibaku Shounen Hanako-kun",
     "relatedMalIds": [
       {
@@ -14750,7 +14848,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "クロムクロ",
     "relatedMalIds": [],
-    "relationsAt": 1782006297813,
+    "relationsAt": 1782568575111,
     "studios": [
       "P.A. Works"
     ],
@@ -14779,10 +14877,10 @@
     "type": "TV",
     "malScore": 6.83,
     "airing": false,
-    "nextEpAt": 1782750900000,
+    "nextEpAt": 1783355700000,
     "altTitle": "Jitsu wa Watashi wa",
     "relatedMalIds": [],
-    "relationsAt": 1782006298271,
+    "relationsAt": 1782568576241,
     "studios": [
       "TMS Entertainment"
     ],
@@ -14849,7 +14947,7 @@
     "nextEpAt": null,
     "altTitle": "Nerawareta Gakuen",
     "relatedMalIds": [],
-    "relationsAt": 1782006300750,
+    "relationsAt": 1782568577343,
     "studios": [
       "Sunrise"
     ],
@@ -14955,11 +15053,11 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1064/155042l.jpg",
     "type": "TV",
     "malScore": 6.04,
-    "airing": true,
-    "nextEpAt": 1782401400000,
+    "airing": false,
+    "nextEpAt": 1783006200000,
     "altTitle": "Reincarnation no Kaben",
     "relatedMalIds": [],
-    "relationsAt": 1782006303648,
+    "relationsAt": 1782568578387,
     "studios": [
       "BENTEN Film"
     ],
@@ -14988,10 +15086,10 @@
     "type": "TV",
     "malScore": 7.13,
     "airing": false,
-    "nextEpAt": 1782567000000,
+    "nextEpAt": 1783171800000,
     "altTitle": "Hentai Ouji to Warawanai Neko.",
     "relatedMalIds": [],
-    "relationsAt": 1782006304097,
+    "relationsAt": 1782568579514,
     "studios": [
       "J.C.Staff"
     ],
@@ -15020,7 +15118,7 @@
     "type": "TV",
     "malScore": 8.18,
     "airing": false,
-    "nextEpAt": 1782835140000,
+    "nextEpAt": 1783439940000,
     "altTitle": "ちはやふる",
     "relatedMalIds": [
       {
@@ -15060,7 +15158,7 @@
     "nextEpAt": null,
     "altTitle": "ペンギン・ハイウェイ",
     "relatedMalIds": [],
-    "relationsAt": 1782006306533,
+    "relationsAt": 1782568580623,
     "studios": [
       "Studio Colorido"
     ],
@@ -15088,7 +15186,7 @@
     "type": "TV",
     "malScore": 7.52,
     "airing": false,
-    "nextEpAt": 1782739800000,
+    "nextEpAt": 1783344600000,
     "altTitle": "Kamonohashi Ron no Kindan Suiri",
     "relatedMalIds": [
       {
@@ -15123,10 +15221,10 @@
     "type": "TV",
     "malScore": 7.91,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Class de 2-banme ni Kawaii Onnanoko to Tomodachi ni Natta",
     "relatedMalIds": [],
-    "relationsAt": 1782006308910,
+    "relationsAt": 1782568581669,
     "studios": [
       "Connect"
     ],
@@ -15153,10 +15251,10 @@
     "type": "TV",
     "malScore": 7.09,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "Bishounen Tanteidan",
     "relatedMalIds": [],
-    "relationsAt": 1782006309359,
+    "relationsAt": 1782568582714,
     "studios": [
       "Shaft"
     ],
@@ -15185,10 +15283,10 @@
     "type": "TV",
     "malScore": 4.91,
     "airing": false,
-    "nextEpAt": 1782910800000,
+    "nextEpAt": 1783515600000,
     "altTitle": "Ore ga Suki nano wa Imouto dakedo Imouto ja Nai",
     "relatedMalIds": [],
-    "relationsAt": 1782006309820,
+    "relationsAt": 1782568583811,
     "studios": [
       "NAZ",
       "Magia Doraglier"
@@ -15218,10 +15316,10 @@
     "type": "TV",
     "malScore": 6.19,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "Haite Kudasai, Takamine-san",
     "relatedMalIds": [],
-    "relationsAt": 1782006311844,
+    "relationsAt": 1782568585725,
     "studios": [
       "LIDENFILMS"
     ],
@@ -15248,7 +15346,7 @@
     "type": "TV",
     "malScore": 6.16,
     "airing": false,
-    "nextEpAt": 1782492900000,
+    "nextEpAt": 1783097700000,
     "altTitle": "BLUE REFLECTION RAY/澪",
     "relatedMalIds": [
       {
@@ -15283,10 +15381,10 @@
     "type": "TV",
     "malScore": 6.31,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Koujo Denka no Kateikyoushi",
     "relatedMalIds": [],
-    "relationsAt": 1782006312786,
+    "relationsAt": 1782568586820,
     "studios": [
       "Studio Blanc."
     ],
@@ -15314,10 +15412,10 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782480600000,
+    "nextEpAt": 1783085400000,
     "altTitle": "Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)",
     "relatedMalIds": [],
-    "relationsAt": 1782006314801,
+    "relationsAt": 1782568587866,
     "studios": [
       "J.C.Staff"
     ],
@@ -15346,7 +15444,7 @@
     "type": "TV",
     "malScore": 7.2,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "アクセル・ワールド",
     "relatedMalIds": [
       {
@@ -15381,10 +15479,10 @@
     "type": "TV",
     "malScore": 6.36,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "Puraore! Pride of Orange",
     "relatedMalIds": [],
-    "relationsAt": 1782006315701,
+    "relationsAt": 1782568588970,
     "studios": [
       "C2C"
     ],
@@ -15415,7 +15513,7 @@
     "nextEpAt": null,
     "altTitle": "Mahou Sensou",
     "relatedMalIds": [],
-    "relationsAt": 1782006317700,
+    "relationsAt": 1782568590081,
     "studios": [
       "Madhouse"
     ],
@@ -15443,7 +15541,7 @@
     "nextEpAt": 1782999000000,
     "altTitle": "Heroine Tarumono! Kiraware Heroine to Naisho no Oshigoto",
     "relatedMalIds": [],
-    "relationsAt": 1782006318149,
+    "relationsAt": 1782568591180,
     "studios": [
       "Lay-duce"
     ],
@@ -15476,7 +15574,7 @@
     "nextEpAt": null,
     "altTitle": "Tenkuu Shinpan",
     "relatedMalIds": [],
-    "relationsAt": 1782006320139,
+    "relationsAt": 1782568592309,
     "studios": [
       "Zero-G"
     ],
@@ -15507,7 +15605,7 @@
     "nextEpAt": null,
     "altTitle": "サマーゴースト",
     "relatedMalIds": [],
-    "relationsAt": 1782006320594,
+    "relationsAt": 1782568593429,
     "studios": [
       "Flat Studio"
     ],
@@ -15535,10 +15633,10 @@
     "type": "TV",
     "malScore": 7.09,
     "airing": false,
-    "nextEpAt": 1782749100000,
+    "nextEpAt": 1783353900000,
     "altTitle": "Mangaka-san to Assistant-san to The Animation",
     "relatedMalIds": [],
-    "relationsAt": 1782006321047,
+    "relationsAt": 1782568594559,
     "studios": [
       "Zexcs"
     ],
@@ -15566,10 +15664,10 @@
     "type": "TV",
     "malScore": 6.63,
     "airing": false,
-    "nextEpAt": 1782752400000,
+    "nextEpAt": 1783357200000,
     "altTitle": "Yumemiru Danshi wa Genjitsushugisha",
     "relatedMalIds": [],
-    "relationsAt": 1782006323080,
+    "relationsAt": 1782568595605,
     "studios": [
       "Studio Gokumi",
       "AXsiZ"
@@ -15632,7 +15730,7 @@
     "type": "TV",
     "malScore": 7.15,
     "airing": false,
-    "nextEpAt": 1782916200000,
+    "nextEpAt": 1783521000000,
     "altTitle": "Shibou Yuugi de Meshi wo Kuu.",
     "relatedMalIds": [
       {
@@ -15668,10 +15766,10 @@
     "type": "TV",
     "malScore": 5.03,
     "airing": false,
-    "nextEpAt": 1782491700000,
+    "nextEpAt": 1783096500000,
     "altTitle": "Inu ni Nattara Suki na Hito ni Hirowareta.",
     "relatedMalIds": [],
-    "relationsAt": 1782006325986,
+    "relationsAt": 1782568596704,
     "studios": [
       "Quad"
     ],
@@ -15698,10 +15796,10 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "三ツ星カラーズ",
     "relatedMalIds": [],
-    "relationsAt": 1782006326598,
+    "relationsAt": 1782568597804,
     "studios": [
       "SILVER LINK."
     ],
@@ -15730,10 +15828,10 @@
     "type": "TV",
     "malScore": 7.84,
     "airing": false,
-    "nextEpAt": 1782597600000,
+    "nextEpAt": 1783202400000,
     "altTitle": "べるぜバブ",
     "relatedMalIds": [],
-    "relationsAt": 1782006326989,
+    "relationsAt": 1782568598932,
     "studios": [
       "Pierrot Plus"
     ],
@@ -15831,10 +15929,10 @@
     "type": "TV",
     "malScore": 7.1,
     "airing": false,
-    "nextEpAt": 1782836940000,
+    "nextEpAt": 1783441740000,
     "altTitle": "Hana wa Saku, Shura no Gotoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006329884,
+    "relationsAt": 1782568600035,
     "studios": [
       "Studio Bind"
     ],
@@ -15861,10 +15959,10 @@
     "type": "TV",
     "malScore": 7.53,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Ame to Kimi to",
     "relatedMalIds": [],
-    "relationsAt": 1782006331820,
+    "relationsAt": 1782568602238,
     "studios": [
       "Lesprit"
     ],
@@ -15894,7 +15992,7 @@
     "type": "TV",
     "malScore": 6.76,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "Hyakka Ryouran: Samurai Girls",
     "relatedMalIds": [
       {
@@ -15929,10 +16027,10 @@
     "type": "TV",
     "malScore": 6.28,
     "airing": false,
-    "nextEpAt": 1782406680000,
+    "nextEpAt": 1783011480000,
     "altTitle": "Konbini Kareshi",
     "relatedMalIds": [],
-    "relationsAt": 1782006332758,
+    "relationsAt": 1782568603398,
     "studios": [
       "Studio Pierrot"
     ],
@@ -15962,7 +16060,7 @@
     "nextEpAt": null,
     "altTitle": "Fate/Grand Order: Himuro no Tenchi - 7-nin no Saikyou Ijin-hen",
     "relatedMalIds": [],
-    "relationsAt": 1782006334785,
+    "relationsAt": 1782568604503,
     "studios": [
       "ufotable"
     ],
@@ -15995,7 +16093,7 @@
     "nextEpAt": null,
     "altTitle": "Natsu e no Tunnel, Sayonara no Deguchi",
     "relatedMalIds": [],
-    "relationsAt": 1782006335175,
+    "relationsAt": 1782568605628,
     "studios": [
       "CLAP"
     ],
@@ -16062,7 +16160,7 @@
     "type": "TV",
     "malScore": 6.55,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "Kuroiwa Medaka ni Watashi no Kawaii ga Tsuujinai",
     "relatedMalIds": [
       {
@@ -16098,7 +16196,7 @@
     "type": "TV",
     "malScore": 8.39,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "メダリスト",
     "relatedMalIds": [
       {
@@ -16135,10 +16233,10 @@
     "type": "TV",
     "malScore": 5.87,
     "airing": false,
-    "nextEpAt": 1782837600000,
+    "nextEpAt": 1783442400000,
     "altTitle": "ソウルイーターノット！",
     "relatedMalIds": [],
-    "relationsAt": 1782006340096,
+    "relationsAt": 1782568606736,
     "studios": [
       "Bones"
     ],
@@ -16167,15 +16265,16 @@
     "type": "TV",
     "malScore": 5.55,
     "airing": false,
-    "nextEpAt": 1782662700000,
+    "nextEpAt": 1783267500000,
     "altTitle": "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita",
     "relatedMalIds": [],
-    "relationsAt": 1782006340453,
+    "relationsAt": 1782665247152,
     "studios": [
       "Elias"
     ],
     "year": 2025,
     "repairedAt": 1782165134112,
+    "relationsVerified": true,
     "localImage": "covers/59745.jpg"
   },
   {
@@ -16197,10 +16296,10 @@
     "type": "TV",
     "malScore": 7,
     "airing": false,
-    "nextEpAt": 1782565200000,
+    "nextEpAt": 1783170000000,
     "altTitle": "Kaiko sareta Ankoku Heishi (30-dai) no Slow na Second Life",
     "relatedMalIds": [],
-    "relationsAt": 1782006340903,
+    "relationsAt": 1782568608850,
     "studios": [
       "Encourage Films"
     ],
@@ -16229,7 +16328,7 @@
     "type": "TV",
     "malScore": 8.73,
     "airing": true,
-    "nextEpAt": 1782656100000,
+    "nextEpAt": 1783260900000,
     "altTitle": "ONE PIECE",
     "repairedAt": 1781976183167,
     "relatedMalIds": [
@@ -16381,10 +16480,10 @@
     "type": "TV",
     "malScore": 6.86,
     "airing": false,
-    "nextEpAt": 1782549000000,
+    "nextEpAt": 1783153800000,
     "altTitle": "Denpa Kyoushi",
     "relatedMalIds": [],
-    "relationsAt": 1782006341758,
+    "relationsAt": 1782568609982,
     "studios": [
       "A-1 Pictures"
     ],
@@ -16414,10 +16513,10 @@
     "type": "TV",
     "malScore": 6.39,
     "airing": false,
-    "nextEpAt": 1782559800000,
+    "nextEpAt": 1783164600000,
     "altTitle": "Seikoku no Dragonar",
     "relatedMalIds": [],
-    "relationsAt": 1782006343789,
+    "relationsAt": 1782568611145,
     "studios": [
       "C-Station"
     ],
@@ -16446,7 +16545,7 @@
     "type": "TV",
     "malScore": 8.21,
     "airing": false,
-    "nextEpAt": 1782490980000,
+    "nextEpAt": 1783095780000,
     "altTitle": "フルーツバスケット",
     "relatedMalIds": [
       {
@@ -16488,7 +16587,7 @@
     "type": "TV",
     "malScore": 7.04,
     "airing": false,
-    "nextEpAt": 1782747000000,
+    "nextEpAt": 1783351800000,
     "altTitle": "プリンセスコネクト！Re:Dive",
     "relatedMalIds": [
       {
@@ -16528,7 +16627,7 @@
     "nextEpAt": null,
     "altTitle": "Sengoku Otome: Momoiro Paradox",
     "relatedMalIds": [],
-    "relationsAt": 1782006346692,
+    "relationsAt": 1782568612249,
     "studios": [
       "TMS Entertainment"
     ],
@@ -16556,10 +16655,10 @@
     "type": "TV",
     "malScore": 6.94,
     "airing": false,
-    "nextEpAt": 1782738000000,
+    "nextEpAt": 1783342800000,
     "altTitle": "ざつ旅 -That's Journey-",
     "relatedMalIds": [],
-    "relationsAt": 1782006347165,
+    "relationsAt": 1782568614197,
     "studios": [
       "Makaria"
     ],
@@ -16586,10 +16685,10 @@
     "type": "TV",
     "malScore": 6.61,
     "airing": false,
-    "nextEpAt": 1782561600000,
+    "nextEpAt": 1783166400000,
     "altTitle": "Boku no Tonari ni Ankoku Hakaishin ga Imasu.",
     "relatedMalIds": [],
-    "relationsAt": 1782006349166,
+    "relationsAt": 1782568615314,
     "studios": [
       "EMT Squared"
     ],
@@ -16617,10 +16716,10 @@
     "type": "TV",
     "malScore": 6.27,
     "airing": false,
-    "nextEpAt": 1782736200000,
+    "nextEpAt": 1783341000000,
     "altTitle": "Kami wa Game ni Ueteiru.",
     "relatedMalIds": [],
-    "relationsAt": 1782006349682,
+    "relationsAt": 1782568617217,
     "studios": [
       "LIDENFILMS"
     ],
@@ -16649,7 +16748,7 @@
     "type": "TV",
     "malScore": 8.33,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season",
     "relatedMalIds": [
       {
@@ -16690,7 +16789,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782750600000,
+    "nextEpAt": 1783355400000,
     "altTitle": "Ano Natsu de Matteru",
     "relatedMalIds": [
       {
@@ -16726,7 +16825,7 @@
     "type": "TV",
     "malScore": 8.29,
     "airing": false,
-    "nextEpAt": 1782404100000,
+    "nextEpAt": 1783008900000,
     "altTitle": "Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai.",
     "relatedMalIds": [
       {
@@ -16767,7 +16866,7 @@
     "nextEpAt": null,
     "altTitle": "アイズピュア",
     "relatedMalIds": [],
-    "relationsAt": 1782006352996,
+    "relationsAt": 1782568618320,
     "studios": [
       "Studio Pierrot",
       "Arms"
@@ -16800,7 +16899,7 @@
     "nextEpAt": null,
     "altTitle": "Maou Dante",
     "relatedMalIds": [],
-    "relationsAt": 1782006355018,
+    "relationsAt": 1782568619433,
     "studios": [
       "Magic Bus"
     ],
@@ -16829,10 +16928,10 @@
     "type": "TV",
     "malScore": 8.32,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "NHK ni Youkoso!",
     "relatedMalIds": [],
-    "relationsAt": 1782006355411,
+    "relationsAt": 1782568620572,
     "studios": [
       "Gonzo"
     ],
@@ -16861,10 +16960,10 @@
     "type": "TV",
     "malScore": 8.21,
     "airing": false,
-    "nextEpAt": 1782565200000,
+    "nextEpAt": 1783170000000,
     "altTitle": "Tengoku Daimakyou",
     "relatedMalIds": [],
-    "relationsAt": 1782006355883,
+    "relationsAt": 1782568621697,
     "studios": [
       "Production I.G"
     ],
@@ -16893,7 +16992,7 @@
     "type": "TV",
     "malScore": 8.38,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Vivy: Fluorite Eye's Song",
     "relatedMalIds": [
       {
@@ -17002,10 +17101,10 @@
     "type": "TV",
     "malScore": 6.82,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Kamisama ni Natta Hi",
     "relatedMalIds": [],
-    "relationsAt": 1782006360878,
+    "relationsAt": 1782568622821,
     "studios": [
       "P.A. Works"
     ],
@@ -17071,7 +17170,7 @@
     "type": "TV",
     "malScore": 6.97,
     "airing": false,
-    "nextEpAt": 1782752400000,
+    "nextEpAt": 1783357200000,
     "altTitle": "Haiyore! Nyaruko-san",
     "relatedMalIds": [
       {
@@ -17108,10 +17207,10 @@
     "type": "TV",
     "malScore": 6.41,
     "airing": false,
-    "nextEpAt": 1782910800000,
+    "nextEpAt": 1783515600000,
     "altTitle": "Maougun Saikyou no Majutsushi wa Ningen datta",
     "relatedMalIds": [],
-    "relationsAt": 1782006363819,
+    "relationsAt": 1782568624784,
     "studios": [
       "Studio A-CAT"
     ],
@@ -17142,7 +17241,7 @@
     "type": "TV",
     "malScore": 8.62,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "メイドインアビス",
     "relatedMalIds": [
       {
@@ -17188,10 +17287,10 @@
     "type": "TV",
     "malScore": 7.52,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "Yamada-kun to 7-nin no Majo",
     "relatedMalIds": [],
-    "relationsAt": 1782006364784,
+    "relationsAt": 1782568626648,
     "studios": [
       "LIDENFILMS"
     ],
@@ -17218,7 +17317,7 @@
     "type": "TV",
     "malScore": 6.83,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "ヒプノシスマイク -Division Rap Battle- Rhyme Anima",
     "relatedMalIds": [
       {
@@ -17254,7 +17353,7 @@
     "type": "TV",
     "malScore": 8.35,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "86",
     "relatedMalIds": [
       {
@@ -17297,7 +17396,7 @@
     "nextEpAt": null,
     "altTitle": "カラフル",
     "relatedMalIds": [],
-    "relationsAt": 1782006369206,
+    "relationsAt": 1782568627767,
     "studios": [
       "Triangle Staff"
     ],
@@ -17325,10 +17424,10 @@
     "type": "TV",
     "malScore": 7.02,
     "airing": false,
-    "nextEpAt": 1782520200000,
+    "nextEpAt": 1783125000000,
     "altTitle": "えむえむっ!",
     "relatedMalIds": [],
-    "relationsAt": 1782006369667,
+    "relationsAt": 1782568628873,
     "studios": [
       "Xebec"
     ],
@@ -17355,7 +17454,7 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "Uma Musume: Pretty Derby",
     "relatedMalIds": [
       {
@@ -17436,7 +17535,7 @@
     "nextEpAt": null,
     "altTitle": "うぽって!!",
     "relatedMalIds": [],
-    "relationsAt": 1782006372579,
+    "relationsAt": 1782568629981,
     "studios": [
       "Xebec"
     ],
@@ -17464,10 +17563,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782736200000,
+    "nextEpAt": 1783341000000,
     "altTitle": "Lv1 Maou to One Room Yuusha",
     "relatedMalIds": [],
-    "relationsAt": 1782006373048,
+    "relationsAt": 1782568631079,
     "studios": [
       "SILVER LINK.",
       "Blade"
@@ -17496,7 +17595,7 @@
     "type": "TV",
     "malScore": 7.1,
     "airing": false,
-    "nextEpAt": 1782475200000,
+    "nextEpAt": 1783080000000,
     "altTitle": "Jaku-Chara Tomozaki-kun",
     "relatedMalIds": [
       {
@@ -17571,7 +17670,7 @@
     "type": "TV",
     "malScore": 6.79,
     "airing": false,
-    "nextEpAt": 1782491400000,
+    "nextEpAt": 1783096200000,
     "altTitle": "Yuusha ni Narenakatta Ore wa Shibushibu Shuushoku wo Ketsui Shimashita.",
     "relatedMalIds": [
       {
@@ -17610,7 +17709,7 @@
     "nextEpAt": null,
     "altTitle": "Murai no Koi",
     "relatedMalIds": [],
-    "relationsAt": 1782006377939,
+    "relationsAt": 1782568632235,
     "studios": [
       "J.C.Staff"
     ],
@@ -17679,7 +17778,7 @@
     "altTitle": "",
     "repairedAt": 1781976183526,
     "relatedMalIds": [],
-    "relationsAt": 1782006378848,
+    "relationsAt": 1782568633344,
     "localImage": "covers/39057.jpg"
   },
   {
@@ -17701,10 +17800,10 @@
     "type": "TV",
     "malScore": 7.5,
     "airing": false,
-    "nextEpAt": 1782752700000,
+    "nextEpAt": 1783357500000,
     "altTitle": "ディーふらぐ！",
     "relatedMalIds": [],
-    "relationsAt": 1782006380785,
+    "relationsAt": 1782568634517,
     "studios": [
       "Brain's Base"
     ],
@@ -17731,7 +17830,7 @@
     "type": "TV",
     "malScore": 7.56,
     "airing": false,
-    "nextEpAt": 1782739800000,
+    "nextEpAt": 1783344600000,
     "altTitle": "NEW GAME!",
     "relatedMalIds": [
       {
@@ -17769,7 +17868,7 @@
     "nextEpAt": 1782921300000,
     "altTitle": "ハニーレモンソーダ",
     "relatedMalIds": [],
-    "relationsAt": 1782006381685,
+    "relationsAt": 1782568635562,
     "studios": [
       "J.C.Staff"
     ],
@@ -17794,10 +17893,10 @@
     "type": "TV",
     "malScore": 7.49,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "World Dai Star",
     "relatedMalIds": [],
-    "relationsAt": 1782006383802,
+    "relationsAt": 1782568636706,
     "studios": [
       "Lerche"
     ],
@@ -17826,7 +17925,7 @@
     "altTitle": "",
     "repairedAt": 1781976183886,
     "relatedMalIds": [],
-    "relationsAt": 1782006384269,
+    "relationsAt": 1782568637867,
     "localImage": "covers/41319.jpg"
   },
   {
@@ -17849,10 +17948,10 @@
     "type": "TV",
     "malScore": 6.74,
     "airing": false,
-    "nextEpAt": 1782738000000,
+    "nextEpAt": 1783342800000,
     "altTitle": "バビロン",
     "relatedMalIds": [],
-    "relationsAt": 1782006384713,
+    "relationsAt": 1782568638969,
     "studios": [
       "Revoroot"
     ],
@@ -17881,10 +17980,10 @@
     "type": "TV",
     "malScore": 6.75,
     "airing": false,
-    "nextEpAt": 1782662700000,
+    "nextEpAt": 1783267500000,
     "altTitle": "Seiken Tsukai no World Break",
     "relatedMalIds": [],
-    "relationsAt": 1782006386725,
+    "relationsAt": 1782568640088,
     "studios": [
       "Diomedéa"
     ],
@@ -17913,10 +18012,10 @@
     "type": "TV",
     "malScore": 6.95,
     "airing": false,
-    "nextEpAt": 1782738000000,
+    "nextEpAt": 1783342800000,
     "altTitle": "Dekin no Mogura",
     "relatedMalIds": [],
-    "relationsAt": 1782006387172,
+    "relationsAt": 1782568641236,
     "studios": [
       "Brain's Base"
     ],
@@ -17979,7 +18078,7 @@
     "nextEpAt": null,
     "altTitle": "Suzume no Tojimari",
     "relatedMalIds": [],
-    "relationsAt": 1782006389624,
+    "relationsAt": 1782568642459,
     "studios": [
       "CoMix Wave Films"
     ],
@@ -18009,7 +18108,7 @@
     "nextEpAt": null,
     "altTitle": "An Tu! An Tu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006390065,
+    "relationsAt": 1782568643562,
     "studios": [
       "Seven Stone Entertainment"
     ],
@@ -18037,10 +18136,10 @@
     "type": "TV",
     "malScore": 7.31,
     "airing": false,
-    "nextEpAt": 1782478800000,
+    "nextEpAt": 1783083600000,
     "altTitle": "Nihon e Youkoso Elf-san.",
     "relatedMalIds": [],
-    "relationsAt": 1782006392058,
+    "relationsAt": 1782568644754,
     "studios": [
       "Zero-G"
     ],
@@ -18071,12 +18170,13 @@
     "nextEpAt": null,
     "altTitle": "Maken-Ki! Specials",
     "relatedMalIds": [],
-    "relationsAt": 1782006392501,
+    "relationsAt": 1782665248264,
     "studios": [
       "AIC Spirits"
     ],
     "year": 0,
     "repairedAt": 1782165151729,
+    "relationsVerified": true,
     "localImage": "covers/12449.jpg"
   },
   {
@@ -18100,7 +18200,7 @@
     "type": "TV",
     "malScore": 5.6,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Elf-san wa Yaserarenai.",
     "relatedMalIds": [
       {
@@ -18140,7 +18240,7 @@
     "nextEpAt": null,
     "altTitle": "Kono Healer, Mendokusai",
     "relatedMalIds": [],
-    "relationsAt": 1782006394886,
+    "relationsAt": 1782568647109,
     "studios": [
       "Jumondou"
     ],
@@ -18172,7 +18272,7 @@
     "nextEpAt": null,
     "altTitle": "Isekai Shikkaku",
     "relatedMalIds": [],
-    "relationsAt": 1782006395276,
+    "relationsAt": 1782568648215,
     "studios": [
       "Atelier Pontdarc"
     ],
@@ -18205,7 +18305,7 @@
     "nextEpAt": null,
     "altTitle": "Tenki no Ko",
     "relatedMalIds": [],
-    "relationsAt": 1782006395677,
+    "relationsAt": 1782568650228,
     "studios": [
       "CoMix Wave Films"
     ],
@@ -18350,7 +18450,7 @@
     "nextEpAt": null,
     "altTitle": "Angel Beats!（エンジェルビーツ!）",
     "relatedMalIds": [],
-    "relationsAt": 1782006400621,
+    "relationsAt": 1782568651389,
     "studios": [
       "P.A. Works"
     ],
@@ -18619,7 +18719,7 @@
     "nextEpAt": null,
     "altTitle": "Rokudenashi Majutsu Koushi to Akashic Records",
     "relatedMalIds": [],
-    "relationsAt": 1782006408125,
+    "relationsAt": 1782568652446,
     "studios": [
       "LIDENFILMS"
     ],
@@ -18876,7 +18976,7 @@
     "nextEpAt": null,
     "altTitle": "S-Rank Monster no \"Behemoth\" dakedo, Neko to Machigawarete Elf Musume no Pet toshite Kurashitemasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006414240,
+    "relationsAt": 1782568653554,
     "studios": [
       "Zero-G",
       "Saber Works"
@@ -18989,7 +19089,7 @@
     "nextEpAt": null,
     "altTitle": "Tonari no Totoro",
     "relatedMalIds": [],
-    "relationsAt": 1782006417121,
+    "relationsAt": 1782568654661,
     "studios": [
       "Studio Ghibli"
     ],
@@ -19211,7 +19311,7 @@
     "nextEpAt": null,
     "altTitle": "Kaminaki Sekai no Kamisama Katsudou",
     "relatedMalIds": [],
-    "relationsAt": 1782006422773,
+    "relationsAt": 1782568655816,
     "studios": [
       "Studio Palette"
     ],
@@ -19243,7 +19343,7 @@
     "nextEpAt": null,
     "altTitle": "Oroka na Tenshi wa Akuma to Odoru",
     "relatedMalIds": [],
-    "relationsAt": 1782006424710,
+    "relationsAt": 1782568656946,
     "studios": [
       "Children's Playground Entertainment"
     ],
@@ -19319,7 +19419,7 @@
     "nextEpAt": null,
     "altTitle": "Seiken Gakuin no Makentsukai",
     "relatedMalIds": [],
-    "relationsAt": 1782006427038,
+    "relationsAt": 1782568659076,
     "studios": [
       "Passione"
     ],
@@ -19350,7 +19450,7 @@
     "nextEpAt": null,
     "altTitle": "Shijou Saikyou no Daimaou, Murabito A ni Tensei suru",
     "relatedMalIds": [],
-    "relationsAt": 1782006427524,
+    "relationsAt": 1782568660203,
     "studios": [
       "SILVER LINK.",
       "Blade"
@@ -19611,12 +19711,13 @@
     "nextEpAt": null,
     "altTitle": "The Last: Naruto the Movie",
     "relatedMalIds": [],
-    "relationsAt": 1782006435163,
+    "relationsAt": 1782665249309,
     "studios": [
       "Studio Pierrot"
     ],
     "year": 0,
     "repairedAt": 1782165232506,
+    "relationsVerified": true,
     "localImage": "covers/16870.jpg"
   },
   {
@@ -19717,7 +19818,7 @@
     "nextEpAt": null,
     "altTitle": "Choujin Koukousei-tachi wa Isekai demo Yoyuu de Ikinuku you desu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006438049,
+    "relationsAt": 1782568662449,
     "studios": [
       "Project No.9"
     ],
@@ -19785,7 +19886,7 @@
     "nextEpAt": null,
     "altTitle": "Rougo ni Sonaete Isekai de 8-manmai no Kinka wo Tamemasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006438969,
+    "relationsAt": 1782568663569,
     "studios": [
       "Felix Film"
     ],
@@ -19816,7 +19917,7 @@
     "nextEpAt": null,
     "altTitle": "Koe no Katachi",
     "relatedMalIds": [],
-    "relationsAt": 1782006440901,
+    "relationsAt": 1782568664613,
     "studios": [
       "Kyoto Animation"
     ],
@@ -19885,7 +19986,7 @@
     "nextEpAt": null,
     "altTitle": "Shinjiteita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakama-tachi wo Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!",
     "relatedMalIds": [],
-    "relationsAt": 1782006441746,
+    "relationsAt": 1782568665655,
     "studios": [
       "J.C.Staff"
     ],
@@ -19959,7 +20060,7 @@
     "nextEpAt": null,
     "altTitle": "Mizu Zokusei no Mahoutsukai",
     "relatedMalIds": [],
-    "relationsAt": 1782006444200,
+    "relationsAt": 1782568666753,
     "studios": [
       "Typhoon Graphics",
       "WonderLand"
@@ -19992,7 +20093,7 @@
     "nextEpAt": null,
     "altTitle": "Lv2 kara Cheat datta Motoyuusha Kouho no Mattari Isekai Life",
     "relatedMalIds": [],
-    "relationsAt": 1782006446192,
+    "relationsAt": 1782568667865,
     "studios": [
       "J.C.Staff"
     ],
@@ -20062,7 +20163,7 @@
     "nextEpAt": null,
     "altTitle": "Ichiban Ushiro no Daimaou",
     "relatedMalIds": [],
-    "relationsAt": 1782006447085,
+    "relationsAt": 1782568670137,
     "studios": [
       "Artland"
     ],
@@ -20094,7 +20195,7 @@
     "nextEpAt": null,
     "altTitle": "デス・パレード",
     "relatedMalIds": [],
-    "relationsAt": 1782006449078,
+    "relationsAt": 1782568671286,
     "studios": [
       "Madhouse"
     ],
@@ -20356,7 +20457,7 @@
     "nextEpAt": null,
     "altTitle": "Jitsu wa Ore, Saikyou deshita?",
     "relatedMalIds": [],
-    "relationsAt": 1782006455323,
+    "relationsAt": 1782568672330,
     "studios": [
       "Staple Entertainment"
     ],
@@ -20389,7 +20490,7 @@
     "nextEpAt": null,
     "altTitle": "Isekai Meikyuu de Harem wo",
     "relatedMalIds": [],
-    "relationsAt": 1782006455803,
+    "relationsAt": 1782568673466,
     "studios": [
       "Passione"
     ],
@@ -20418,7 +20519,7 @@
     "type": "TV",
     "malScore": 7.16,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "ソードアート・オンライン オルタナティブ ガンゲイル・オンラインⅡ",
     "relatedMalIds": [
       {
@@ -20460,7 +20561,7 @@
     "nextEpAt": null,
     "altTitle": "Kenka Dokugaku",
     "relatedMalIds": [],
-    "relationsAt": 1782006458241,
+    "relationsAt": 1782568675402,
     "studios": [
       "Okuruto Noboru"
     ],
@@ -20491,7 +20592,7 @@
     "nextEpAt": null,
     "altTitle": "Death March kara Hajimaru Isekai Kyousoukyoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006458698,
+    "relationsAt": 1782568676499,
     "studios": [
       "SILVER LINK.",
       "Connect"
@@ -20645,12 +20746,13 @@
     "nextEpAt": null,
     "altTitle": "Shinmai Maou no Testament: Toujou Basara no Hard Sweet na Nichijou",
     "relatedMalIds": [],
-    "relationsAt": 1782006463409,
+    "relationsAt": 1782665250448,
     "studios": [
       "Production IMS"
     ],
     "year": 0,
     "repairedAt": 1782165289663,
+    "relationsVerified": true,
     "localImage": "covers/29027.jpg"
   },
   {
@@ -20714,7 +20816,7 @@
     "nextEpAt": null,
     "altTitle": "Isekai Ojisan",
     "relatedMalIds": [],
-    "relationsAt": 1782006465907,
+    "relationsAt": 1782568678691,
     "studios": [
       "Atelier Pontdarc"
     ],
@@ -20746,7 +20848,7 @@
     "nextEpAt": null,
     "altTitle": "Shinmai Ossan Boukensha, Saikyou Party ni Shinu hodo Kitaerarete Muteki ni Naru.",
     "relatedMalIds": [],
-    "relationsAt": 1782006466302,
+    "relationsAt": 1782568679814,
     "studios": [
       "Yumeta Company"
     ],
@@ -20778,12 +20880,13 @@
     "nextEpAt": null,
     "altTitle": "Pokemon Movie 02: Maboroshi no Pokemon Lugia Bakutan",
     "relatedMalIds": [],
-    "relationsAt": 1782006466748,
+    "relationsAt": 1782665251543,
     "studios": [
       "OLM"
     ],
     "year": 0,
     "repairedAt": 1782165297682,
+    "relationsVerified": true,
     "localImage": "covers/1117.jpg"
   },
   {
@@ -20851,7 +20954,7 @@
     "nextEpAt": null,
     "altTitle": "Isekai Yururi Kikou: Kosodate shinagara Boukensha shimasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006469194,
+    "relationsAt": 1782568682945,
     "studios": [
       "EMT Squared"
     ],
@@ -20883,7 +20986,7 @@
     "nextEpAt": null,
     "altTitle": "Saikyou Onmyouji no Isekai Tenseiki",
     "relatedMalIds": [],
-    "relationsAt": 1782006471138,
+    "relationsAt": 1782568684055,
     "studios": [
       "Studio Blanc."
     ],
@@ -21070,7 +21173,7 @@
     "nextEpAt": null,
     "altTitle": "プランダラ",
     "relatedMalIds": [],
-    "relationsAt": 1782006475050,
+    "relationsAt": 1782568685100,
     "studios": [
       "Geek Toys"
     ],
@@ -21341,7 +21444,7 @@
     "nextEpAt": null,
     "altTitle": "Tensei Kenja no Isekai Life: Dai-2 no Shokugyou wo Ete, Sekai Saikyou ni Narimashita",
     "relatedMalIds": [],
-    "relationsAt": 1782006482712,
+    "relationsAt": 1782568686271,
     "studios": [
       "Revoroot"
     ],
@@ -21373,7 +21476,7 @@
     "nextEpAt": null,
     "altTitle": "Mushikago no Cagaster",
     "relatedMalIds": [],
-    "relationsAt": 1782006483171,
+    "relationsAt": 1782568687372,
     "studios": [
       "Studio KAI"
     ],
@@ -21446,7 +21549,7 @@
     "nextEpAt": null,
     "altTitle": "Seija Musou: Salaryman, Isekai de Ikinokoru Tame ni Ayumu Michi",
     "relatedMalIds": [],
-    "relationsAt": 1782006485644,
+    "relationsAt": 1782568688412,
     "studios": [
       "Yokohama Animation Lab",
       "Cloud Hearts"
@@ -21477,7 +21580,7 @@
     "nextEpAt": null,
     "altTitle": "Yubisaki to Renren",
     "relatedMalIds": [],
-    "relationsAt": 1782006486097,
+    "relationsAt": 1782568690605,
     "studios": [
       "Ajia-do"
     ],
@@ -21628,7 +21731,7 @@
     "nextEpAt": null,
     "altTitle": "Fuguushoku \"Kanteishi\" ga Jitsu wa Saikyou Datta",
     "relatedMalIds": [],
-    "relationsAt": 1782006490974,
+    "relationsAt": 1782568691741,
     "studios": [
       "Okuruto Noboru"
     ],
@@ -21734,7 +21837,7 @@
     "nextEpAt": null,
     "altTitle": "ラグナクリムゾン",
     "relatedMalIds": [],
-    "relationsAt": 1782006493811,
+    "relationsAt": 1782568692786,
     "studios": [
       "SILVER LINK."
     ],
@@ -21767,12 +21870,13 @@
     "nextEpAt": null,
     "altTitle": "ヴァルキリードライヴ　マーメイド　ミニOVA",
     "relatedMalIds": [],
-    "relationsAt": 1782006494261,
+    "relationsAt": 1782665252722,
     "studios": [
       "Arms"
     ],
     "year": 0,
     "repairedAt": 1782165349839,
+    "relationsVerified": true,
     "localImage": "covers/31736.jpg"
   },
   {
@@ -21798,7 +21902,7 @@
     "nextEpAt": null,
     "altTitle": "Kuro no Shoukanshi",
     "relatedMalIds": [],
-    "relationsAt": 1782006494655,
+    "relationsAt": 1782568695013,
     "studios": [
       "Satelight"
     ],
@@ -21954,7 +22058,7 @@
     "nextEpAt": null,
     "altTitle": "Kyuukyoku Shinka shita Full Dive RPG ga Genjitsu yori mo Kusoge Dattara",
     "relatedMalIds": [],
-    "relationsAt": 1782006499460,
+    "relationsAt": 1782568696122,
     "studios": [
       "ENGI"
     ],
@@ -22100,7 +22204,7 @@
     "nextEpAt": null,
     "altTitle": "Majo no Tabitabi",
     "relatedMalIds": [],
-    "relationsAt": 1782006502840,
+    "relationsAt": 1782568699036,
     "studios": [
       "C2C"
     ],
@@ -22243,7 +22347,7 @@
     "nextEpAt": null,
     "altTitle": "Mushoku no Eiyuu: Betsu ni Skill Nanka Iranakatta n da ga",
     "relatedMalIds": [],
-    "relationsAt": 1782006507660,
+    "relationsAt": 1782568701945,
     "studios": [
       "Studio A-CAT"
     ],
@@ -22314,12 +22418,13 @@
     "nextEpAt": null,
     "altTitle": "ヴァルキリードライヴ　マーメイド",
     "relatedMalIds": [],
-    "relationsAt": 1782006510092,
+    "relationsAt": 1782665253837,
     "studios": [
       "Arms"
     ],
     "year": 2015,
     "repairedAt": 1782165378416,
+    "relationsVerified": true,
     "localImage": "covers/30385.jpg"
   },
   {
@@ -22389,7 +22494,7 @@
     "nextEpAt": null,
     "altTitle": "Sokushi Cheat ga Saikyou sugite, Isekai no Yatsura ga Marude Aite ni Naranai n desu ga.",
     "relatedMalIds": [],
-    "relationsAt": 1782006510967,
+    "relationsAt": 1782568704031,
     "studios": [
       "Okuruto Noboru"
     ],
@@ -22422,7 +22527,7 @@
     "nextEpAt": null,
     "altTitle": "Guild no Uketsukejou desu ga, Zangyou wa Iya nanode Boss wo Solo Toubatsu Shiyou to Omoimasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006512985,
+    "relationsAt": 1782568705166,
     "studios": [
       "CloverWorks"
     ],
@@ -22567,7 +22672,7 @@
     "nextEpAt": null,
     "altTitle": "Maou no Ore ga Dorei Elf wo Yome ni Shitanda ga, Dou Medereba Ii?",
     "relatedMalIds": [],
-    "relationsAt": 1782006516386,
+    "relationsAt": 1782568707266,
     "studios": [
       "Brain's Base"
     ],
@@ -22669,7 +22774,7 @@
     "nextEpAt": null,
     "altTitle": "Salaryman ga Isekai ni Ittara Shitennou ni Natta Hanashi",
     "relatedMalIds": [],
-    "relationsAt": 1782006519235,
+    "relationsAt": 1782568708360,
     "studios": [
       "Geek Toys",
       "CompTown"
@@ -22897,7 +23002,7 @@
     "nextEpAt": null,
     "altTitle": "Hunter x Hunter (2011)",
     "relatedMalIds": [],
-    "relationsAt": 1782006524971,
+    "relationsAt": 1782568709401,
     "studios": [
       "Madhouse"
     ],
@@ -22929,7 +23034,7 @@
     "nextEpAt": null,
     "altTitle": "Yuusha Party wo Tsuihou sareta Beast Tamer, Saikyoushu no Nekomimi Shoujo to Deau",
     "relatedMalIds": [],
-    "relationsAt": 1782006526997,
+    "relationsAt": 1782568710522,
     "studios": [
       "EMT Squared"
     ],
@@ -23172,7 +23277,7 @@
     "nextEpAt": null,
     "altTitle": "Okashi na Tensei",
     "relatedMalIds": [],
-    "relationsAt": 1782006532642,
+    "relationsAt": 1782568711625,
     "studios": [
       "SynergySP"
     ],
@@ -23205,7 +23310,7 @@
     "nextEpAt": null,
     "altTitle": "戦×恋（ヴァルラヴ）",
     "relatedMalIds": [],
-    "relationsAt": 1782006533083,
+    "relationsAt": 1782568712764,
     "studios": [
       "Hoods Entertainment"
     ],
@@ -23280,7 +23385,7 @@
     "nextEpAt": null,
     "altTitle": "Masou Gakuen HxH",
     "relatedMalIds": [],
-    "relationsAt": 1782006535538,
+    "relationsAt": 1782568714542,
     "studios": [
       "Production IMS"
     ],
@@ -23312,7 +23417,7 @@
     "nextEpAt": null,
     "altTitle": "Oemojisangjuui",
     "relatedMalIds": [],
-    "relationsAt": 1782006536012,
+    "relationsAt": 1782568715645,
     "studios": [
       "Studio Mir"
     ],
@@ -23386,7 +23491,7 @@
     "nextEpAt": null,
     "altTitle": "Kumo desu ga, Nani ka?",
     "relatedMalIds": [],
-    "relationsAt": 1782006538402,
+    "relationsAt": 1782568716888,
     "studios": [
       "Millepensee"
     ],
@@ -23419,7 +23524,7 @@
     "nextEpAt": null,
     "altTitle": "Nakitai Watashi wa Neko wo Kaburu",
     "relatedMalIds": [],
-    "relationsAt": 1782006538791,
+    "relationsAt": 1782568718838,
     "studios": [
       "Studio Colorido"
     ],
@@ -23450,7 +23555,7 @@
     "nextEpAt": null,
     "altTitle": "Tsuyokute New Saga",
     "relatedMalIds": [],
-    "relationsAt": 1782006540899,
+    "relationsAt": 1782568719881,
     "studios": [
       "Sotsu",
       "Studio Clutch"
@@ -23520,7 +23625,7 @@
     "nextEpAt": null,
     "altTitle": "Maou 2099",
     "relatedMalIds": [],
-    "relationsAt": 1782006541741,
+    "relationsAt": 1782568721029,
     "studios": [
       "J.C.Staff"
     ],
@@ -23822,12 +23927,13 @@
     "nextEpAt": null,
     "altTitle": "ホリミヤ",
     "relatedMalIds": [],
-    "relationsAt": 1782006549757,
+    "relationsAt": 1782665254882,
     "studios": [
       "CloverWorks"
     ],
     "year": 2021,
     "repairedAt": 1782165444934,
+    "relationsVerified": true,
     "localImage": "covers/42897.jpg"
   },
   {
@@ -23891,7 +23997,7 @@
     "nextEpAt": null,
     "altTitle": "Noumin Kanren no Skill bakka Agetetara Nazeka Tsuyoku Natta.",
     "relatedMalIds": [],
-    "relationsAt": 1782006552133,
+    "relationsAt": 1782568723181,
     "studios": [
       "Studio A-CAT"
     ],
@@ -24042,7 +24148,7 @@
     "nextEpAt": null,
     "altTitle": "キス×シス",
     "relatedMalIds": [],
-    "relationsAt": 1782006556916,
+    "relationsAt": 1782568725030,
     "studios": [
       "feel."
     ],
@@ -24073,7 +24179,7 @@
     "nextEpAt": null,
     "altTitle": "Kimi no Na wa.",
     "relatedMalIds": [],
-    "relationsAt": 1782006557309,
+    "relationsAt": 1782568726140,
     "studios": [
       "CoMix Wave Films"
     ],
@@ -24140,7 +24246,7 @@
     "nextEpAt": null,
     "altTitle": "リコリス・リコイル",
     "relatedMalIds": [],
-    "relationsAt": 1782006559754,
+    "relationsAt": 1782568727239,
     "studios": [
       "A-1 Pictures"
     ],
@@ -24289,7 +24395,7 @@
     "nextEpAt": null,
     "altTitle": "Hitoribocchi no Isekai Kouryaku",
     "relatedMalIds": [],
-    "relationsAt": 1782006563111,
+    "relationsAt": 1782568728345,
     "studios": [
       "Passione",
       "Hayabusa Film"
@@ -24322,7 +24428,7 @@
     "nextEpAt": null,
     "altTitle": "Tatoeba Last Dungeon Mae no Mura no Shounen ga Joban no Machi de Kurasu Youna Monogatari",
     "relatedMalIds": [],
-    "relationsAt": 1782006565128,
+    "relationsAt": 1782568729455,
     "studios": [
       "LIDENFILMS"
     ],
@@ -24394,7 +24500,7 @@
     "nextEpAt": null,
     "altTitle": "Shikkakumon no Saikyou Kenja",
     "relatedMalIds": [],
-    "relationsAt": 1782006567965,
+    "relationsAt": 1782568730585,
     "studios": [
       "J.C.Staff"
     ],
@@ -24538,10 +24644,10 @@
     "type": "TV",
     "malScore": 7.58,
     "airing": false,
-    "nextEpAt": 1782657900000,
+    "nextEpAt": 1783262700000,
     "altTitle": "Zenshuu.",
     "relatedMalIds": [],
-    "relationsAt": 1782006571177,
+    "relationsAt": 1782568732480,
     "studios": [
       "MAPPA"
     ],
@@ -24570,10 +24676,10 @@
     "type": "TV",
     "malScore": 6.33,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "Übel Blatt",
     "relatedMalIds": [],
-    "relationsAt": 1782006573615,
+    "relationsAt": 1782568733579,
     "studios": [
       "Satelight",
       "Staple Entertainment"
@@ -24643,7 +24749,7 @@
     "type": "TV",
     "malScore": 6.79,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "100-man no Inochi no Ue ni Ore wa Tatteiru 2nd Season",
     "relatedMalIds": [
       {
@@ -24679,10 +24785,10 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782494580000,
+    "nextEpAt": 1783099380000,
     "altTitle": "Kono Sekai wa Fukanzen Sugiru",
     "relatedMalIds": [],
-    "relationsAt": 1782006575139,
+    "relationsAt": 1782568734769,
     "studios": [
       "Studio Palette",
       "100studio"
@@ -24712,10 +24818,10 @@
     "type": "TV",
     "malScore": 6.34,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Ningen Fushin no Boukensha-tachi ga Sekai wo Sukuu you desu",
     "relatedMalIds": [],
-    "relationsAt": 1782006577235,
+    "relationsAt": 1782568735897,
     "studios": [
       "Geek Toys"
     ],
@@ -24745,7 +24851,7 @@
     "type": "TV",
     "malScore": 7.61,
     "airing": false,
-    "nextEpAt": 1782916200000,
+    "nextEpAt": 1783521000000,
     "altTitle": "Mahou Shoujo ni Akogarete",
     "relatedMalIds": [
       {
@@ -24781,7 +24887,7 @@
     "type": "TV",
     "malScore": 6.77,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "Shin no Nakama ja Nai to Yuusha no Party wo Oidasareta node, Henkyou de Slow Life suru Koto ni Shimashita 2nd",
     "relatedMalIds": [
       {
@@ -24818,7 +24924,7 @@
     "type": "TV",
     "malScore": 8.88,
     "airing": false,
-    "nextEpAt": 1782482400000,
+    "nextEpAt": 1783087200000,
     "altTitle": "Sousou no Frieren 2nd Season",
     "relatedMalIds": [
       {
@@ -24857,7 +24963,7 @@
     "type": "TV",
     "malScore": 8.18,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Sono Bisque Doll wa Koi wo Suru Season 2",
     "relatedMalIds": [
       {
@@ -24891,8 +24997,8 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1738/156028l.jpg",
     "type": "TV",
     "malScore": 5.68,
-    "airing": true,
-    "nextEpAt": 1782916200000,
+    "airing": false,
+    "nextEpAt": 1783521000000,
     "altTitle": "Saikyou no Ousama, Nidome no Jinsei wa Nani wo Suru? Season 2",
     "relatedMalIds": [
       {
@@ -24969,10 +25075,10 @@
     "type": "TV",
     "malScore": 6.67,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "デッドアカウント",
     "relatedMalIds": [],
-    "relationsAt": 1782006583405,
+    "relationsAt": 1782568737865,
     "studios": [
       "SynergySP"
     ],
@@ -25000,7 +25106,7 @@
     "type": "TV",
     "malScore": 7.6,
     "airing": false,
-    "nextEpAt": 1782633600000,
+    "nextEpAt": 1783238400000,
     "altTitle": "Yozakura-san Chi no Daisakusen",
     "relatedMalIds": [
       {
@@ -25036,10 +25142,10 @@
     "type": "TV",
     "malScore": 6.97,
     "airing": false,
-    "nextEpAt": 1782493500000,
+    "nextEpAt": 1783098300000,
     "altTitle": "Nukitashi the Animation",
     "relatedMalIds": [],
-    "relationsAt": 1782006585846,
+    "relationsAt": 1782568740185,
     "studios": [
       "Passione"
     ],
@@ -25067,10 +25173,10 @@
     "type": "TV",
     "malScore": 6.58,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "Nanatsu no Maken ga Shihai suru",
     "relatedMalIds": [],
-    "relationsAt": 1782006586239,
+    "relationsAt": 1782568741309,
     "studios": [
       "J.C.Staff"
     ],
@@ -25102,7 +25208,7 @@
     "nextEpAt": null,
     "altTitle": "Isekai no Seikishi Monogatari",
     "relatedMalIds": [],
-    "relationsAt": 1782006586738,
+    "relationsAt": 1782568742414,
     "studios": [
       "AIC Spirits",
       "BeSTACK"
@@ -25132,7 +25238,7 @@
     "type": "TV",
     "malScore": 7.52,
     "airing": false,
-    "nextEpAt": 1782743400000,
+    "nextEpAt": 1783348200000,
     "altTitle": "Nageki no Bourei wa Intai shitai Part 2",
     "relatedMalIds": [
       {
@@ -25205,10 +25311,10 @@
     "type": "TV",
     "malScore": 7.16,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "アウトブレイク・カンパニー",
     "relatedMalIds": [],
-    "relationsAt": 1782006590079,
+    "relationsAt": 1782568744602,
     "studios": [
       "feel."
     ],
@@ -25236,10 +25342,10 @@
     "type": "TV",
     "malScore": 6.13,
     "airing": false,
-    "nextEpAt": 1782403200000,
+    "nextEpAt": 1783008000000,
     "altTitle": "Yuusha Party wo Tsuihou sareta Shiromadoushi, S-Rank Boukensha ni Hirowareru: Kono Shiromadoushi ga Kikakugai Sugiru",
     "relatedMalIds": [],
-    "relationsAt": 1782006592018,
+    "relationsAt": 1782568745647,
     "studios": [
       "Felix Film"
     ],
@@ -25268,10 +25374,10 @@
     "type": "TV",
     "malScore": 7.2,
     "airing": false,
-    "nextEpAt": 1782567000000,
+    "nextEpAt": 1783171800000,
     "altTitle": "Akuyaku Reijou nanode Last Boss wo Kattemimashita",
     "relatedMalIds": [],
-    "relationsAt": 1782006592407,
+    "relationsAt": 1782568746760,
     "studios": [
       "Maho Film"
     ],
@@ -25300,7 +25406,7 @@
     "type": "TV",
     "malScore": 6.75,
     "airing": false,
-    "nextEpAt": 1782914400000,
+    "nextEpAt": 1783519200000,
     "altTitle": "異修羅",
     "relatedMalIds": [
       {
@@ -25338,10 +25444,10 @@
     "type": "TV",
     "malScore": 5.5,
     "airing": false,
-    "nextEpAt": 1782663600000,
+    "nextEpAt": 1783268400000,
     "altTitle": "Kakushite! Makina-san!!",
     "relatedMalIds": [],
-    "relationsAt": 1782006594793,
+    "relationsAt": 1782568747859,
     "studios": [
       "BloomZ"
     ],
@@ -25372,7 +25478,7 @@
     "type": "TV",
     "malScore": 6.98,
     "airing": false,
-    "nextEpAt": 1782567000000,
+    "nextEpAt": 1783171800000,
     "altTitle": "Gakusen Toshi Asterisk 2nd Season",
     "relatedMalIds": [
       {
@@ -25409,10 +25515,10 @@
     "type": "TV",
     "malScore": 7.12,
     "airing": false,
-    "nextEpAt": 1782831600000,
+    "nextEpAt": 1783436400000,
     "altTitle": "Fantasy Bishoujo Juniku Ojisan to",
     "relatedMalIds": [],
-    "relationsAt": 1782006597480,
+    "relationsAt": 1782568748993,
     "studios": [
       "OLM"
     ],
@@ -25441,10 +25547,10 @@
     "type": "TV",
     "malScore": 5.42,
     "airing": false,
-    "nextEpAt": 1782738000000,
+    "nextEpAt": 1783342800000,
     "altTitle": "Shironeko Project: Zero Chronicle",
     "relatedMalIds": [],
-    "relationsAt": 1782006597962,
+    "relationsAt": 1782568750094,
     "studios": [
       "Project No.9"
     ],
@@ -25459,7 +25565,7 @@
     "malId": 62001,
     "title": "Daemons of the Shadow Realm",
     "status": "Currently Watching",
-    "episodesWatched": 8,
+    "episodesWatched": 10,
     "totalEpisodes": 24,
     "rating": 0,
     "favorite": false,
@@ -25473,10 +25579,10 @@
     "type": "TV",
     "malScore": 7.99,
     "airing": true,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Yomi no Tsugai",
     "relatedMalIds": [],
-    "relationsAt": 1782006598354,
+    "relationsAt": 1782568751138,
     "studios": [
       "Bones Film"
     ],
@@ -25507,7 +25613,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "Sunohara-sou no Kanrinin-san",
     "relatedMalIds": [],
-    "relationsAt": 1782006598836,
+    "relationsAt": 1782568752319,
     "studios": [
       "SILVER LINK."
     ],
@@ -25534,10 +25640,10 @@
     "type": "TV",
     "malScore": 6.61,
     "airing": false,
-    "nextEpAt": 1782909000000,
+    "nextEpAt": 1783513800000,
     "altTitle": "29-sai Dokushin Chuuken Boukensha no Nichijou",
     "relatedMalIds": [],
-    "relationsAt": 1782006600857,
+    "relationsAt": 1782568753433,
     "studios": [
       "HORNETS"
     ],
@@ -25565,10 +25671,10 @@
     "type": "TV",
     "malScore": 7.59,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Tensura Nikki: Tensei shitara Slime Datta Ken",
     "relatedMalIds": [],
-    "relationsAt": 1782006601331,
+    "relationsAt": 1782568754548,
     "studios": [
       "8bit"
     ],
@@ -25597,10 +25703,10 @@
     "type": "TV",
     "malScore": 6.23,
     "airing": false,
-    "nextEpAt": 1782567000000,
+    "nextEpAt": 1783171800000,
     "altTitle": "Naze Boku no Sekai wo Daremo Oboeteinai no ka?",
     "relatedMalIds": [],
-    "relationsAt": 1782006601819,
+    "relationsAt": 1782568755675,
     "studios": [
       "Project No.9"
     ],
@@ -25627,10 +25733,10 @@
     "type": "TV",
     "malScore": 7.75,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "Yamada-kun to Lv999 no Koi wo Suru",
     "relatedMalIds": [],
-    "relationsAt": 1782006603755,
+    "relationsAt": 1782568757656,
     "studios": [
       "Madhouse"
     ],
@@ -25644,10 +25750,10 @@
     "id": 1779995006504.987,
     "malId": 60460,
     "title": "Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing",
-    "status": "Currently Watching",
-    "episodesWatched": 10,
+    "status": "Completed",
+    "episodesWatched": 12,
     "totalEpisodes": 12,
-    "rating": 0,
+    "rating": 9,
     "favorite": false,
     "notes": "Kenichi Yamada has spent most of his adult life chasing the next punishing challenge in online gaming, only to find the modern landscape dominated by forgiving mechanics. As if fate were listening to his desire, Kenichi receives a sudden, mysterious invitation to an untitled game promising an inconceivable level of difficulty. Delighted, he selects its most ruthless setting without hesitation—Hell Mode.\n\nHowever, instead of diving into another virtual game, Kenichi is reborn in another world as a peasant named Allen, forced to grapple with a cruelly complex system where even the basics of progression demand relentless effort. Consequently, Allen must build his strength from the ground up and learn to master the summoner class. With his resilience being tested at every turn, Allen embarks on an uncharted journey that might just prove to burn hotter than actual hell.\n\n[Written by MAL Rewrite]",
     "genres": [
@@ -25659,7 +25765,7 @@
     "type": "TV",
     "malScore": 7.2,
     "airing": false,
-    "nextEpAt": 1782489900000,
+    "nextEpAt": 1783094700000,
     "altTitle": "Hell Mode: Yarikomizuki no Gamer wa Hai Settei no Isekai de Musou suru",
     "relatedMalIds": [
       {
@@ -25673,6 +25779,7 @@
     ],
     "year": 2026,
     "repairedAt": 1782165476118,
+    "completedAt": 1782711461676,
     "localImage": "covers/60460.jpg"
   },
   {
@@ -25695,10 +25802,10 @@
     "type": "TV",
     "malScore": 7.29,
     "airing": false,
-    "nextEpAt": 1782478800000,
+    "nextEpAt": 1783083600000,
     "altTitle": "スローループ",
     "relatedMalIds": [],
-    "relationsAt": 1782006606179,
+    "relationsAt": 1782568758820,
     "studios": [
       "Connect"
     ],
@@ -25730,7 +25837,7 @@
     "nextEpAt": null,
     "altTitle": "Goshuushou-sama Ninomiya-kun",
     "relatedMalIds": [],
-    "relationsAt": 1782006606665,
+    "relationsAt": 1782568759921,
     "studios": [
       "AIC Spirits"
     ],
@@ -25759,7 +25866,7 @@
     "type": "TV",
     "malScore": 8.35,
     "airing": false,
-    "nextEpAt": 1782741000000,
+    "nextEpAt": 1783345800000,
     "altTitle": "Fumetsu no Anata e",
     "relatedMalIds": [
       {
@@ -25800,7 +25907,7 @@
     "type": "TV",
     "malScore": 7.76,
     "airing": false,
-    "nextEpAt": 1782402900000,
+    "nextEpAt": 1783007700000,
     "altTitle": "Saenai Heroine no Sodatekata ♭",
     "relatedMalIds": [
       {
@@ -25845,10 +25952,10 @@
     "type": "TV",
     "malScore": 5.85,
     "airing": false,
-    "nextEpAt": 1782489600000,
+    "nextEpAt": 1783094400000,
     "altTitle": "Dolls' Frontline",
     "relatedMalIds": [],
-    "relationsAt": 1782006609719,
+    "relationsAt": 1782568761035,
     "studios": [
       "Asahi Production"
     ],
@@ -25880,7 +25987,7 @@
     "nextEpAt": null,
     "altTitle": "Kao Ni La Zhanshen Xitong",
     "relatedMalIds": [],
-    "relationsAt": 1782006610188,
+    "relationsAt": 1782568762141,
     "studios": [
       "Chongzhuo Animation"
     ],
@@ -25907,7 +26014,7 @@
     "type": "TV",
     "malScore": 8.04,
     "airing": false,
-    "nextEpAt": 1782579480000,
+    "nextEpAt": 1783184280000,
     "altTitle": "Kuroko no Basket",
     "relatedMalIds": [
       {
@@ -25951,10 +26058,10 @@
     "type": "TV",
     "malScore": 4.05,
     "airing": false,
-    "nextEpAt": 1782403200000,
+    "nextEpAt": 1783008000000,
     "altTitle": "Mamonogurai no Boukensha: Ore dake Mamono wo Kuratte Tsuyoku Naru",
     "relatedMalIds": [],
-    "relationsAt": 1782006612594,
+    "relationsAt": 1782568763269,
     "studios": [
       "Imagica Infos",
       "Imageworks Studio"
@@ -25983,7 +26090,7 @@
     "type": "TV",
     "malScore": 8.2,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Boku no Kokoro no Yabai Yatsu",
     "relatedMalIds": [
       {
@@ -26025,10 +26132,10 @@
     "type": "TV",
     "malScore": 8.25,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Shoujo Shuumatsu Ryokou",
     "relatedMalIds": [],
-    "relationsAt": 1782006614993,
+    "relationsAt": 1782568764375,
     "studios": [
       "White Fox"
     ],
@@ -26056,10 +26163,10 @@
     "type": "TV",
     "malScore": 7.37,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Mattaku Saikin no Tantei to Kitara",
     "relatedMalIds": [],
-    "relationsAt": 1782006615443,
+    "relationsAt": 1782568765476,
     "studios": [
       "LIDENFILMS"
     ],
@@ -26087,7 +26194,7 @@
     "type": "TV",
     "malScore": 7.33,
     "airing": false,
-    "nextEpAt": 1782574200000,
+    "nextEpAt": 1783179000000,
     "altTitle": "Bokutachi wa Benkyou ga Dekinai!",
     "relatedMalIds": [
       {
@@ -26123,10 +26230,10 @@
     "type": "TV",
     "malScore": 6.9,
     "airing": false,
-    "nextEpAt": 1782404700000,
+    "nextEpAt": 1783009500000,
     "altTitle": "キルミーベイベー",
     "relatedMalIds": [],
-    "relationsAt": 1782006617916,
+    "relationsAt": 1782568766593,
     "studios": [
       "J.C.Staff"
     ],
@@ -26155,7 +26262,7 @@
     "type": "TV",
     "malScore": 8.09,
     "airing": false,
-    "nextEpAt": 1782404700000,
+    "nextEpAt": 1783009500000,
     "altTitle": "デュラララ!!",
     "relatedMalIds": [
       {
@@ -26190,7 +26297,7 @@
     "type": "TV",
     "malScore": 7.65,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "Machikado Mazoku",
     "relatedMalIds": [
       {
@@ -26226,10 +26333,10 @@
     "type": "TV",
     "malScore": 6.94,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Kikaijikake no Marie",
     "relatedMalIds": [],
-    "relationsAt": 1782006620860,
+    "relationsAt": 1782568767633,
     "studios": [
       "Zero-G",
       "Liber"
@@ -26258,7 +26365,7 @@
     "type": "TV",
     "malScore": 7.79,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Nige Jouzu no Wakagimi",
     "relatedMalIds": [
       {
@@ -26297,10 +26404,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782407760000,
+    "nextEpAt": 1783012560000,
     "altTitle": "Joukamachi no Dandelion",
     "relatedMalIds": [],
-    "relationsAt": 1782006621816,
+    "relationsAt": 1782568768731,
     "studios": [
       "Production IMS"
     ],
@@ -26332,7 +26439,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Tensei Akujo no Kuro Rekishi",
     "relatedMalIds": [],
-    "relationsAt": 1782006623850,
+    "relationsAt": 1782568771275,
     "studios": [
       "Studio Deen"
     ],
@@ -26361,7 +26468,7 @@
     "type": "TV",
     "malScore": 7.87,
     "airing": false,
-    "nextEpAt": 1782837000000,
+    "nextEpAt": 1783441800000,
     "altTitle": "Higurashi no Naku Koro ni",
     "relatedMalIds": [
       {
@@ -26398,7 +26505,7 @@
     "type": "TV",
     "malScore": 7.73,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "Grisaia no Rakuen",
     "relatedMalIds": [
       {
@@ -26443,7 +26550,7 @@
     "nextEpAt": null,
     "altTitle": "Astarotte no Omocha! EX",
     "relatedMalIds": [],
-    "relationsAt": 1782006626872,
+    "relationsAt": 1782568772382,
     "studios": [
       "Diomedéa"
     ],
@@ -26471,10 +26578,10 @@
     "type": "TV",
     "malScore": 6.43,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "シトラス",
     "relatedMalIds": [],
-    "relationsAt": 1782006627381,
+    "relationsAt": 1782568773495,
     "studios": [
       "Passione"
     ],
@@ -26502,10 +26609,10 @@
     "type": "TV",
     "malScore": 5.27,
     "airing": false,
-    "nextEpAt": 1782487500000,
+    "nextEpAt": 1783092300000,
     "altTitle": "Nanatsu no Bitoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006627865,
+    "relationsAt": 1782568774666,
     "studios": [
       "Bridge"
     ],
@@ -26532,7 +26639,7 @@
     "type": "TV",
     "malScore": 7.41,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "ラブライブ! School idol project",
     "relatedMalIds": [
       {
@@ -26581,7 +26688,7 @@
     "nextEpAt": null,
     "altTitle": "Astarotte no Omocha!",
     "relatedMalIds": [],
-    "relationsAt": 1782006630341,
+    "relationsAt": 1782568775791,
     "studios": [
       "Diomedéa"
     ],
@@ -26609,7 +26716,7 @@
     "type": "TV",
     "malScore": 7.85,
     "airing": false,
-    "nextEpAt": 1782662700000,
+    "nextEpAt": 1783267500000,
     "altTitle": "ダークギャザリング",
     "relatedMalIds": [
       {
@@ -26645,7 +26752,7 @@
     "type": "TV",
     "malScore": 5.81,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "神田川JET GIRLS",
     "relatedMalIds": [
       {
@@ -26718,10 +26825,10 @@
     "type": "TV",
     "malScore": 7.85,
     "airing": false,
-    "nextEpAt": 1782401400000,
+    "nextEpAt": 1783006200000,
     "altTitle": "Sonny Boy (サニーボーイ)",
     "relatedMalIds": [],
-    "relationsAt": 1782006633735,
+    "relationsAt": 1782568776903,
     "studios": [
       "Madhouse"
     ],
@@ -26750,10 +26857,10 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782489600000,
+    "nextEpAt": 1783094400000,
     "altTitle": "Watari-kun no xx ga Houkai Sunzen",
     "relatedMalIds": [],
-    "relationsAt": 1782006635669,
+    "relationsAt": 1782568778009,
     "studios": [
       "Staple Entertainment"
     ],
@@ -26781,7 +26888,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Otome Game Sekai wa Mob ni Kibishii Sekai desu",
     "relatedMalIds": [
       {
@@ -26817,7 +26924,7 @@
     "type": "TV",
     "malScore": 8.62,
     "airing": false,
-    "nextEpAt": 1782401160000,
+    "nextEpAt": 1783005960000,
     "altTitle": "Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen",
     "relatedMalIds": [
       {
@@ -26861,13 +26968,14 @@
     "nextEpAt": null,
     "altTitle": "Boku no Kanojo ga Majimesugiru Sho-bitch na Ken OVA",
     "relatedMalIds": [],
-    "relationsAt": 1782006638557,
+    "relationsAt": 1782665256031,
     "studios": [
       "Diomedéa",
       "Studio Blanc."
     ],
     "year": 0,
     "repairedAt": 1782165488548,
+    "relationsVerified": true,
     "localImage": "covers/36560.jpg"
   },
   {
@@ -26891,10 +26999,10 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "Koori Zokusei Danshi to Cool na Douryou Joshi",
     "relatedMalIds": [],
-    "relationsAt": 1782006639019,
+    "relationsAt": 1782568781216,
     "studios": [
       "Zero-G",
       "Liber"
@@ -26922,7 +27030,7 @@
     "type": "TV",
     "malScore": 7.03,
     "airing": false,
-    "nextEpAt": 1782482400000,
+    "nextEpAt": 1783087200000,
     "altTitle": "Kabushikigaisha Magi-Lumière",
     "relatedMalIds": [
       {
@@ -27119,7 +27227,7 @@
     "nextEpAt": null,
     "altTitle": "Tensei Kizoku no Isekai Boukenroku: Jichou wo Shiranai Kamigami no Shito",
     "relatedMalIds": [],
-    "relationsAt": 1782006644660,
+    "relationsAt": 1782568782332,
     "studios": [
       "Magic Bus",
       "EMT Squared"
@@ -27152,7 +27260,7 @@
     "nextEpAt": null,
     "altTitle": "Ore ga Ojousama Gakkou ni \"Shomin Sample\" Toshite Gets♥Sareta Ken",
     "relatedMalIds": [],
-    "relationsAt": 1782006646689,
+    "relationsAt": 1782568783441,
     "studios": [
       "SILVER LINK."
     ],
@@ -27520,12 +27628,13 @@
     "nextEpAt": null,
     "altTitle": "Naruto: Shippuuden Movie 6 - Road to Ninja",
     "relatedMalIds": [],
-    "relationsAt": 1782006655174,
+    "relationsAt": 1782665257149,
     "studios": [
       "Studio Pierrot"
     ],
     "year": 0,
     "repairedAt": 1782165503906,
+    "relationsVerified": true,
     "localImage": "covers/13667.jpg"
   },
   {
@@ -27590,7 +27699,7 @@
     "nextEpAt": null,
     "altTitle": "Ore dake Haireru Kakushi Dungeon",
     "relatedMalIds": [],
-    "relationsAt": 1782006657569,
+    "relationsAt": 1782568785676,
     "studios": [
       "Okuruto Noboru"
     ],
@@ -27621,7 +27730,7 @@
     "nextEpAt": null,
     "altTitle": "Kenja no Deshi wo Nanoru Kenja",
     "relatedMalIds": [],
-    "relationsAt": 1782006658058,
+    "relationsAt": 1782568786798,
     "studios": [
       "Studio A-CAT"
     ],
@@ -27654,7 +27763,7 @@
     "nextEpAt": null,
     "altTitle": "Yuragi-sou no Yuuna-san",
     "relatedMalIds": [],
-    "relationsAt": 1782006660096,
+    "relationsAt": 1782568788681,
     "studios": [
       "Xebec"
     ],
@@ -27686,7 +27795,7 @@
     "nextEpAt": null,
     "altTitle": "-インフィニット・デンドログラム-",
     "relatedMalIds": [],
-    "relationsAt": 1782006660545,
+    "relationsAt": 1782568789793,
     "studios": [
       "NAZ"
     ],
@@ -28047,7 +28156,7 @@
     "nextEpAt": null,
     "altTitle": "Yuusha, Yamemasu",
     "relatedMalIds": [],
-    "relationsAt": 1782006669703,
+    "relationsAt": 1782568790911,
     "studios": [
       "EMT Squared"
     ],
@@ -28115,7 +28224,7 @@
     "nextEpAt": null,
     "altTitle": "Hazure Skill \"Kinomi Master\": Skill no Mi (Tabetara Shinu) wo Mugen ni Taberareru You ni Natta Ken ni Tsuite",
     "relatedMalIds": [],
-    "relationsAt": 1782006672084,
+    "relationsAt": 1782568792047,
     "studios": [
       "Asahi Production"
     ],
@@ -28146,7 +28255,7 @@
     "nextEpAt": null,
     "altTitle": "Sakura-sou no Pet na Kanojo",
     "relatedMalIds": [],
-    "relationsAt": 1782006674083,
+    "relationsAt": 1782568793088,
     "studios": [
       "J.C.Staff"
     ],
@@ -28177,7 +28286,7 @@
     "nextEpAt": null,
     "altTitle": "Kinsou no Vermeil: Gakeppuchi Majutsushi wa Saikyou no Yakusai to Mahou Sekai wo Tsukisusumu",
     "relatedMalIds": [],
-    "relationsAt": 1782006674562,
+    "relationsAt": 1782568794133,
     "studios": [
       "Staple Entertainment"
     ],
@@ -28205,10 +28314,10 @@
     "type": "TV",
     "malScore": 5.22,
     "airing": false,
-    "nextEpAt": 1782403200000,
+    "nextEpAt": 1783008000000,
     "altTitle": "Meitou \"Isekai no Yu\" Kaitakuki: Around 40 Onsen Mania no Tensei Saki wa, Nonbiri Onsen Tengoku deshita",
     "relatedMalIds": [],
-    "relationsAt": 1782006675012,
+    "relationsAt": 1782568795265,
     "studios": [
       "Wolfsbane",
       "BloomZ"
@@ -28240,7 +28349,7 @@
     "nextEpAt": null,
     "altTitle": "ムーンライズ",
     "relatedMalIds": [],
-    "relationsAt": 1782006677025,
+    "relationsAt": 1782568796368,
     "studios": [
       "Wit Studio"
     ],
@@ -28269,10 +28378,10 @@
     "type": "TV",
     "malScore": 7.53,
     "airing": false,
-    "nextEpAt": 1782492900000,
+    "nextEpAt": 1783097700000,
     "altTitle": "Irozuku Sekai no Ashita kara",
     "relatedMalIds": [],
-    "relationsAt": 1782006677479,
+    "relationsAt": 1782568797473,
     "studios": [
       "P.A. Works"
     ],
@@ -28300,10 +28409,10 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782567000000,
+    "nextEpAt": 1783171800000,
     "altTitle": "Hikikomari Kyuuketsuki no Monmon",
     "relatedMalIds": [],
-    "relationsAt": 1782006677942,
+    "relationsAt": 1782568798581,
     "studios": [
       "Project No.9"
     ],
@@ -28333,10 +28442,10 @@
     "type": "TV",
     "malScore": 6.66,
     "airing": false,
-    "nextEpAt": 1782576000000,
+    "nextEpAt": 1783180800000,
     "altTitle": "Maji de Watashi ni Koi Shinasai!",
     "relatedMalIds": [],
-    "relationsAt": 1782006679975,
+    "relationsAt": 1782568799690,
     "studios": [
       "Lerche"
     ],
@@ -28366,7 +28475,7 @@
     "type": "TV",
     "malScore": 7.07,
     "airing": false,
-    "nextEpAt": 1782484200000,
+    "nextEpAt": 1783089000000,
     "altTitle": "Mahouka Koukou no Rettousei 3rd Season",
     "relatedMalIds": [
       {
@@ -28407,10 +28516,10 @@
     "type": "TV",
     "malScore": 6.41,
     "airing": false,
-    "nextEpAt": 1782563400000,
+    "nextEpAt": 1783168200000,
     "altTitle": "Tensei shitara Dragon no Tamago datta",
     "relatedMalIds": [],
-    "relationsAt": 1782006680886,
+    "relationsAt": 1782568800831,
     "studios": [
       "Felix Film",
       "Ga-Crew"
@@ -28440,7 +28549,7 @@
     "type": "TV",
     "malScore": 8.14,
     "airing": true,
-    "nextEpAt": 1782482400000,
+    "nextEpAt": 1783087200000,
     "altTitle": "Tensei shitara Slime Datta Ken 4th Season",
     "repairedAt": 1781976184957,
     "relatedMalIds": [
@@ -28477,10 +28586,10 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": false,
-    "nextEpAt": 1782572400000,
+    "nextEpAt": 1783177200000,
     "altTitle": "Atri: My Dear Moments",
     "relatedMalIds": [],
-    "relationsAt": 1782006683380,
+    "relationsAt": 1782568801932,
     "studios": [
       "TROYCA"
     ],
@@ -28512,7 +28621,7 @@
     "nextEpAt": null,
     "altTitle": "ハロー・ワールド",
     "relatedMalIds": [],
-    "relationsAt": 1782006683846,
+    "relationsAt": 1782568803034,
     "studios": [
       "Graphinica"
     ],
@@ -28542,7 +28651,7 @@
     "type": "TV",
     "malScore": 8.57,
     "airing": false,
-    "nextEpAt": 1782579480000,
+    "nextEpAt": 1783184280000,
     "altTitle": "Shingeki no Kyojin",
     "relatedMalIds": [
       {
@@ -28596,10 +28705,10 @@
     "type": "TV",
     "malScore": 6.5,
     "airing": false,
-    "nextEpAt": 1782912600000,
+    "nextEpAt": 1783517400000,
     "altTitle": "AKIBA'S TRIP THE ANIMATION",
     "relatedMalIds": [],
-    "relationsAt": 1782006686235,
+    "relationsAt": 1782568804144,
     "studios": [
       "Gonzo"
     ],
@@ -28630,7 +28739,7 @@
     "nextEpAt": null,
     "altTitle": "Kyou no Asuka Show",
     "relatedMalIds": [],
-    "relationsAt": 1782006686628,
+    "relationsAt": 1782568805276,
     "studios": [
       "SILVER LINK."
     ],
@@ -28657,7 +28766,7 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Shoushimin Series",
     "relatedMalIds": [
       {
@@ -28695,10 +28804,10 @@
     "type": "TV",
     "malScore": 7.56,
     "airing": false,
-    "nextEpAt": 1782404100000,
+    "nextEpAt": 1783008900000,
     "altTitle": "No.6",
     "relatedMalIds": [],
-    "relationsAt": 1782006689120,
+    "relationsAt": 1782568806410,
     "studios": [
       "Bones"
     ],
@@ -28730,12 +28839,13 @@
     "nextEpAt": 1782995400000,
     "altTitle": "Himekishi wa Barbaroi no Yome",
     "relatedMalIds": [],
-    "relationsAt": 1782006689473,
+    "relationsAt": 1782665258154,
     "studios": [
       "Jumondou"
     ],
     "year": 2026,
     "repairedAt": 1782165528044,
+    "relationsVerified": true,
     "localImage": "covers/60028.jpg"
   },
   {
@@ -28762,7 +28872,7 @@
     "nextEpAt": 1782997200000,
     "altTitle": "ピーチボーイリバーサイド",
     "relatedMalIds": [],
-    "relationsAt": 1782006689956,
+    "relationsAt": 1782568808460,
     "studios": [
       "Asahi Production"
     ],
@@ -28790,10 +28900,10 @@
     "type": "TV",
     "malScore": 7.89,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Yagate Kimi ni Naru",
     "relatedMalIds": [],
-    "relationsAt": 1782006691962,
+    "relationsAt": 1782568809587,
     "studios": [
       "TROYCA"
     ],
@@ -28818,10 +28928,10 @@
     "type": "TV",
     "malScore": 6.62,
     "airing": false,
-    "nextEpAt": 1782730800000,
+    "nextEpAt": 1783335600000,
     "altTitle": "Tenshi no 3P!",
     "relatedMalIds": [],
-    "relationsAt": 1782006692431,
+    "relationsAt": 1782568810706,
     "studios": [
       "Project No.9"
     ],
@@ -28851,10 +28961,10 @@
     "type": "TV",
     "malScore": 5.68,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "Hyakuren no Haou to Seiyaku no Valkyria",
     "relatedMalIds": [],
-    "relationsAt": 1782006692897,
+    "relationsAt": 1782568811811,
     "studios": [
       "EMT Squared"
     ],
@@ -28881,7 +28991,7 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782734400000,
+    "nextEpAt": 1783339200000,
     "altTitle": "Shuumatsu Train Doko e Iku?",
     "relatedMalIds": [
       {
@@ -28917,7 +29027,7 @@
     "type": "TV",
     "malScore": 7.27,
     "airing": false,
-    "nextEpAt": 1782494700000,
+    "nextEpAt": 1783099500000,
     "altTitle": "阿波連さんははかれない",
     "relatedMalIds": [
       {
@@ -29028,10 +29138,10 @@
     "type": "TV",
     "malScore": 7.14,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Kimi to Koete Koi ni Naru",
     "relatedMalIds": [],
-    "relationsAt": 1782006698353,
+    "relationsAt": 1782568813991,
     "studios": [
       "Millepensee"
     ],
@@ -29059,15 +29169,16 @@
     "type": "TV",
     "malScore": 7.56,
     "airing": false,
-    "nextEpAt": 1782570600000,
+    "nextEpAt": 1783175400000,
     "altTitle": "Re:Creators",
     "relatedMalIds": [],
-    "relationsAt": 1782006698821,
+    "relationsAt": 1782665259286,
     "studios": [
       "TROYCA"
     ],
     "year": 2017,
     "repairedAt": 1782165531714,
+    "relationsVerified": true,
     "localImage": "covers/34561.jpg"
   },
   {
@@ -29090,10 +29201,10 @@
     "type": "TV",
     "malScore": 7.06,
     "airing": false,
-    "nextEpAt": 1782826200000,
+    "nextEpAt": 1783431000000,
     "altTitle": "Shiunji-ke no Kodomotachi",
     "relatedMalIds": [],
-    "relationsAt": 1782006700755,
+    "relationsAt": 1782568816276,
     "studios": [
       "Doga Kobo"
     ],
@@ -29122,10 +29233,10 @@
     "type": "TV",
     "malScore": 6.89,
     "airing": false,
-    "nextEpAt": 1782487800000,
+    "nextEpAt": 1783092600000,
     "altTitle": "神統記 (テオゴニア)",
     "relatedMalIds": [],
-    "relationsAt": 1782006701208,
+    "relationsAt": 1782568817375,
     "studios": [
       "Asahi Production"
     ],
@@ -29155,7 +29266,7 @@
     "nextEpAt": null,
     "altTitle": "ポッピンQ",
     "relatedMalIds": [],
-    "relationsAt": 1782006703230,
+    "relationsAt": 1782568818493,
     "studios": [
       "Toei Animation"
     ],
@@ -29218,10 +29329,10 @@
     "type": "TV",
     "malScore": 6.52,
     "airing": false,
-    "nextEpAt": 1782579600000,
+    "nextEpAt": 1783184400000,
     "altTitle": "いわかける！ -Sport Climbing Girls-",
     "relatedMalIds": [],
-    "relationsAt": 1782006704157,
+    "relationsAt": 1782568819595,
     "studios": [
       "Blade"
     ],
@@ -29249,10 +29360,10 @@
     "type": "TV",
     "malScore": 6.45,
     "airing": false,
-    "nextEpAt": 1782651600000,
+    "nextEpAt": 1783256400000,
     "altTitle": "Dragon, Ie wo Kau.",
     "relatedMalIds": [],
-    "relationsAt": 1782006706156,
+    "relationsAt": 1782568821558,
     "studios": [
       "Signal.MD"
     ],
@@ -29282,7 +29393,7 @@
     "nextEpAt": null,
     "altTitle": "Cider no You ni Kotoba ga Wakiagaru",
     "relatedMalIds": [],
-    "relationsAt": 1782006706548,
+    "relationsAt": 1782568822680,
     "studios": [
       "Signal.MD",
       "Sublimation"
@@ -29312,10 +29423,10 @@
     "type": "TV",
     "malScore": 5.81,
     "airing": false,
-    "nextEpAt": 1782565200000,
+    "nextEpAt": 1783170000000,
     "altTitle": "Mob kara Hajimaru Tansaku Eiyuutan",
     "relatedMalIds": [],
-    "relationsAt": 1782006707039,
+    "relationsAt": 1782568823779,
     "studios": [
       "Gekkou"
     ],
@@ -29343,10 +29454,10 @@
     "type": "TV",
     "malScore": 7.36,
     "airing": false,
-    "nextEpAt": 1782916200000,
+    "nextEpAt": 1783521000000,
     "altTitle": "Sakurada Reset",
     "relatedMalIds": [],
-    "relationsAt": 1782006709051,
+    "relationsAt": 1782568824905,
     "studios": [
       "David Production"
     ],
@@ -29375,10 +29486,10 @@
     "type": "TV",
     "malScore": 7.12,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "Akujiki Reijou to Kyouketsu Koushaku",
     "relatedMalIds": [],
-    "relationsAt": 1782006709519,
+    "relationsAt": 1782568826918,
     "studios": [
       "Asahi Production"
     ],
@@ -29404,11 +29515,11 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1821/154043l.jpg",
     "type": "TV",
     "malScore": 6.63,
-    "airing": true,
-    "nextEpAt": 1782575700000,
+    "airing": false,
+    "nextEpAt": 1783180500000,
     "altTitle": "Yuusha no Kuzu",
     "relatedMalIds": [],
-    "relationsAt": 1782006709999,
+    "relationsAt": 1782568827964,
     "studios": [
       "OLM"
     ],
@@ -29439,7 +29550,7 @@
     "nextEpAt": 1782997200000,
     "altTitle": "Bukiyou na Senpai.",
     "relatedMalIds": [],
-    "relationsAt": 1782006712003,
+    "relationsAt": 1782568829005,
     "studios": [
       "Studio Elle"
     ],
@@ -29471,7 +29582,7 @@
     "nextEpAt": 1782919800000,
     "altTitle": "Hortensia Saga",
     "relatedMalIds": [],
-    "relationsAt": 1782006712446,
+    "relationsAt": 1782568830175,
     "studios": [
       "LIDENFILMS"
     ],
@@ -29503,7 +29614,7 @@
     "nextEpAt": 1782918000000,
     "altTitle": "Kizoku Tensei: Megumareta Umare kara Saikyou no Chikara wo Eru",
     "relatedMalIds": [],
-    "relationsAt": 1782006712927,
+    "relationsAt": 1782568831287,
     "studios": [
       "CompTown"
     ],
@@ -29531,7 +29642,7 @@
     "type": "TV",
     "malScore": 7.89,
     "airing": false,
-    "nextEpAt": 1782653400000,
+    "nextEpAt": 1783258200000,
     "altTitle": "Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo 2nd Season",
     "relatedMalIds": [
       {
@@ -29575,7 +29686,7 @@
     "nextEpAt": null,
     "altTitle": "Chou Kaguya-hime!",
     "relatedMalIds": [],
-    "relationsAt": 1782006715335,
+    "relationsAt": 1782568832414,
     "studios": [
       "Studio Colorido",
       "Studio Chromato"
@@ -29604,10 +29715,10 @@
     "type": "TV",
     "malScore": 7.56,
     "airing": false,
-    "nextEpAt": 1782743040000,
+    "nextEpAt": 1783347840000,
     "altTitle": "Ponkotsu Fuuki Iin to Skirt-take ga Futekisetsu na JK no Hanashi",
     "relatedMalIds": [],
-    "relationsAt": 1782006715781,
+    "relationsAt": 1782568833458,
     "studios": [
       "Zero-G"
     ],
@@ -29635,10 +29746,10 @@
     "type": "TV",
     "malScore": 7.28,
     "airing": true,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Aishiteru Game wo Owarasetai",
     "relatedMalIds": [],
-    "relationsAt": 1782006717715,
+    "relationsAt": 1782568834503,
     "studios": [
       "Felix Film"
     ],
@@ -29669,7 +29780,7 @@
     "altTitle": "エレキシード / 일렉시드",
     "repairedAt": 1781976185325,
     "relatedMalIds": [],
-    "relationsAt": 1782006718201,
+    "relationsAt": 1782568835648,
     "localImage": "covers/61944.jpg"
   },
   {
@@ -29695,7 +29806,7 @@
     "nextEpAt": 1782993600000,
     "altTitle": "Hachi-nan tte, Sore wa Nai deshou!",
     "relatedMalIds": [],
-    "relationsAt": 1782006720217,
+    "relationsAt": 1782568836749,
     "studios": [
       "SynergySP",
       "Shin-Ei Animation"
@@ -29724,7 +29835,7 @@
     "type": "TV",
     "malScore": 6.51,
     "airing": false,
-    "nextEpAt": 1782494700000,
+    "nextEpAt": 1783099500000,
     "altTitle": "Kanojo mo Kanojo",
     "relatedMalIds": [
       {
@@ -29763,7 +29874,7 @@
     "nextEpAt": null,
     "altTitle": "Kimi no Suizou wo Tabetai",
     "relatedMalIds": [],
-    "relationsAt": 1782006721081,
+    "relationsAt": 1782568837790,
     "studios": [
       "Studio VOLN"
     ],
@@ -29790,10 +29901,10 @@
     "type": "TV",
     "malScore": 7.44,
     "airing": false,
-    "nextEpAt": 1782404880000,
+    "nextEpAt": 1783009680000,
     "altTitle": "Oshi ga Budoukan Ittekuretara Shinu",
     "relatedMalIds": [],
-    "relationsAt": 1782006723097,
+    "relationsAt": 1782568838895,
     "studios": [
       "8bit"
     ],
@@ -29821,7 +29932,7 @@
     "type": "TV",
     "malScore": 5.54,
     "airing": false,
-    "nextEpAt": 1782914700000,
+    "nextEpAt": 1783519500000,
     "altTitle": "Dogeza de Tanondemita",
     "relatedMalIds": [
       {
@@ -29857,10 +29968,10 @@
     "type": "TV",
     "malScore": 8.05,
     "airing": false,
-    "nextEpAt": 1782658800000,
+    "nextEpAt": 1783263600000,
     "altTitle": "氷菓",
     "relatedMalIds": [],
-    "relationsAt": 1782006724115,
+    "relationsAt": 1782568841009,
     "studios": [
       "Kyoto Animation"
     ],
@@ -29889,7 +30000,7 @@
     "type": "TV",
     "malScore": 7.4,
     "airing": false,
-    "nextEpAt": 1782491400000,
+    "nextEpAt": 1783096200000,
     "altTitle": "Mondaiji-tachi ga Isekai kara Kuru Sou desu yo?",
     "relatedMalIds": [
       {
@@ -29926,7 +30037,7 @@
     "type": "TV",
     "malScore": 8.03,
     "airing": false,
-    "nextEpAt": 1782909000000,
+    "nextEpAt": 1783513800000,
     "altTitle": "No Game No Life",
     "relatedMalIds": [
       {
@@ -29964,7 +30075,7 @@
     "nextEpAt": null,
     "altTitle": "Asagao to Kase-san.",
     "relatedMalIds": [],
-    "relationsAt": 1782006727077,
+    "relationsAt": 1782568842128,
     "studios": [
       "Zexcs"
     ],
@@ -29992,7 +30103,7 @@
     "type": "TV",
     "malScore": 6.71,
     "airing": false,
-    "nextEpAt": 1782477000000,
+    "nextEpAt": 1783081800000,
     "altTitle": "Muhyo to Rouji no Mahouritsu Soudan Jimusho",
     "relatedMalIds": [
       {
@@ -30028,10 +30139,10 @@
     "type": "TV",
     "malScore": 7.36,
     "airing": false,
-    "nextEpAt": 1782401160000,
+    "nextEpAt": 1783005960000,
     "altTitle": "Akuyaku Reijou Tensei Ojisan",
     "relatedMalIds": [],
-    "relationsAt": 1782006729526,
+    "relationsAt": 1782568844101,
     "studios": [
       "Ajia-do"
     ],
@@ -30062,7 +30173,7 @@
     "nextEpAt": 1782999000000,
     "altTitle": "SCARLET NEXUS",
     "relatedMalIds": [],
-    "relationsAt": 1782006729968,
+    "relationsAt": 1782568845306,
     "studios": [
       "Sunrise"
     ],
@@ -30094,7 +30205,7 @@
     "nextEpAt": 1782997200000,
     "altTitle": "Nagi no Asu kara",
     "relatedMalIds": [],
-    "relationsAt": 1782006732130,
+    "relationsAt": 1782568846440,
     "studios": [
       "P.A. Works"
     ],
@@ -30124,10 +30235,10 @@
     "type": "TV",
     "malScore": 7.66,
     "airing": false,
-    "nextEpAt": 1782660600000,
+    "nextEpAt": 1783265400000,
     "altTitle": "Hai to Gensou no Grimgar",
     "relatedMalIds": [],
-    "relationsAt": 1782006732655,
+    "relationsAt": 1782568847550,
     "studios": [
       "A-1 Pictures"
     ],
@@ -30158,7 +30269,7 @@
     "type": "TV",
     "malScore": 5.78,
     "airing": false,
-    "nextEpAt": 1782486000000,
+    "nextEpAt": 1783090800000,
     "altTitle": "Dokyuu Hentai HxEros",
     "relatedMalIds": [
       {
@@ -30193,7 +30304,7 @@
     "type": "TV",
     "malScore": 6.25,
     "airing": false,
-    "nextEpAt": 1782664500000,
+    "nextEpAt": 1783269300000,
     "altTitle": "Hachigatsu no Cinderella Nine",
     "relatedMalIds": [
       {
@@ -30262,10 +30373,10 @@
     "type": "TV",
     "malScore": 6.62,
     "airing": false,
-    "nextEpAt": 1782828900000,
+    "nextEpAt": 1783433700000,
     "altTitle": "Sounan desu ka?",
     "relatedMalIds": [],
-    "relationsAt": 1782006736055,
+    "relationsAt": 1782568848660,
     "studios": [
       "Ezόla"
     ],
@@ -30293,7 +30404,7 @@
     "type": "TV",
     "malScore": 7.99,
     "airing": false,
-    "nextEpAt": 1782406500000,
+    "nextEpAt": 1783011300000,
     "altTitle": "CLANNAD",
     "relatedMalIds": [
       {
@@ -30330,10 +30441,10 @@
     "type": "TV",
     "malScore": 7.82,
     "airing": false,
-    "nextEpAt": 1782401400000,
+    "nextEpAt": 1783006200000,
     "altTitle": "Somali to Mori no Kamisama",
     "relatedMalIds": [],
-    "relationsAt": 1782006738531,
+    "relationsAt": 1782568849797,
     "studios": [
       "Satelight",
       "HORNETS"
@@ -30362,10 +30473,10 @@
     "type": "TV",
     "malScore": 6.94,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "LOST SONG",
     "relatedMalIds": [],
-    "relationsAt": 1782006738992,
+    "relationsAt": 1782568850934,
     "studios": [
       "LIDENFILMS"
     ],
@@ -30394,10 +30505,10 @@
     "type": "TV",
     "malScore": 6.47,
     "airing": false,
-    "nextEpAt": 1782577800000,
+    "nextEpAt": 1783182600000,
     "altTitle": "THE NEW GATE",
     "relatedMalIds": [],
-    "relationsAt": 1782006741001,
+    "relationsAt": 1782568852036,
     "studios": [
       "Yokohama Animation Lab",
       "Cloud Hearts"
@@ -30471,7 +30582,7 @@
     "nextEpAt": null,
     "altTitle": "Hametsu no Oukoku",
     "relatedMalIds": [],
-    "relationsAt": 1782006741782,
+    "relationsAt": 1782568853148,
     "studios": [
       "Yokohama Animation Lab"
     ],
@@ -30501,7 +30612,7 @@
     "nextEpAt": null,
     "altTitle": "Magic Maker: Isekai Mahou no Tsukurikata",
     "relatedMalIds": [],
-    "relationsAt": 1782006743718,
+    "relationsAt": 1782568854271,
     "studios": [
       "Studio Deen"
     ],
@@ -30533,7 +30644,7 @@
     "nextEpAt": null,
     "altTitle": "Megami-ryou no Ryoubo-kun.",
     "relatedMalIds": [],
-    "relationsAt": 1782006744217,
+    "relationsAt": 1782568856497,
     "studios": [
       "asread."
     ],
@@ -30640,10 +30751,10 @@
     "type": "TV",
     "malScore": 6.81,
     "airing": false,
-    "nextEpAt": 1782480600000,
+    "nextEpAt": 1783085400000,
     "altTitle": "Uchi no Shishou wa Shippo ga Nai",
     "relatedMalIds": [],
-    "relationsAt": 1782006747149,
+    "relationsAt": 1782568857601,
     "studios": [
       "LIDENFILMS"
     ],
@@ -30672,10 +30783,10 @@
     "type": "TV",
     "malScore": 7.38,
     "airing": false,
-    "nextEpAt": 1782829800000,
+    "nextEpAt": 1783434600000,
     "altTitle": "Aru Majo ga Shinu Made",
     "relatedMalIds": [],
-    "relationsAt": 1782006749136,
+    "relationsAt": 1782568859637,
     "studios": [
       "EMT Squared"
     ],
@@ -30703,7 +30814,7 @@
     "type": "TV",
     "malScore": 7.34,
     "airing": false,
-    "nextEpAt": 1782492900000,
+    "nextEpAt": 1783097700000,
     "altTitle": "Ao no Exorcist: Kyoto Fujouou-hen",
     "relatedMalIds": [
       {
@@ -30743,7 +30854,7 @@
     "nextEpAt": null,
     "altTitle": "i☆Ris the Movie -Full Energy!!-",
     "relatedMalIds": [],
-    "relationsAt": 1782006750048,
+    "relationsAt": 1782568860741,
     "studios": [
       "Studio Gokumi"
     ],
@@ -30771,11 +30882,11 @@
     "type": "TV",
     "malScore": 7.07,
     "airing": true,
-    "nextEpAt": 1782571500000,
+    "nextEpAt": 1783176300000,
     "altTitle": "MAO",
     "repairedAt": 1781976186088,
     "relatedMalIds": [],
-    "relationsAt": 1782006751987,
+    "relationsAt": 1782568861941,
     "localImage": "covers/62048.jpg"
   },
   {
@@ -30798,7 +30909,7 @@
     "type": "TV",
     "malScore": 7.48,
     "airing": false,
-    "nextEpAt": 1782739800000,
+    "nextEpAt": 1783344600000,
     "altTitle": "Isekai Nonbiri Nouka 2",
     "relatedMalIds": [
       {
@@ -30834,10 +30945,10 @@
     "type": "TV",
     "malScore": 7.11,
     "airing": false,
-    "nextEpAt": 1782657000000,
+    "nextEpAt": 1783261800000,
     "altTitle": "マイホームヒーロー",
     "relatedMalIds": [],
-    "relationsAt": 1782006752837,
+    "relationsAt": 1782568863080,
     "studios": [
       "Tezuka Productions"
     ],
@@ -30864,10 +30975,10 @@
     "type": "TV",
     "malScore": 8.08,
     "airing": false,
-    "nextEpAt": 1782745200000,
+    "nextEpAt": 1783350000000,
     "altTitle": "Kimi wa Houkago Insomnia",
     "relatedMalIds": [],
-    "relationsAt": 1782006754829,
+    "relationsAt": 1782568864282,
     "studios": [
       "LIDENFILMS"
     ],
@@ -30894,7 +31005,7 @@
     "type": "TV",
     "malScore": 6.87,
     "airing": false,
-    "nextEpAt": 1782838740000,
+    "nextEpAt": 1783443540000,
     "altTitle": "3D Kanojo: Real Girl",
     "relatedMalIds": [
       {
@@ -30931,10 +31042,10 @@
     "type": "TV",
     "malScore": 6.14,
     "airing": false,
-    "nextEpAt": 1782655200000,
+    "nextEpAt": 1783260000000,
     "altTitle": "ブラック★★ロックシューター DAWN FALL",
     "relatedMalIds": [],
-    "relationsAt": 1782006755672,
+    "relationsAt": 1782568865389,
     "studios": [
       "Bibury Animation Studios",
       "Bibury Animation CG"
@@ -31001,7 +31112,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782828000000,
+    "nextEpAt": 1783432800000,
     "altTitle": "Mayonaka Heart Tune",
     "relatedMalIds": [
       {
