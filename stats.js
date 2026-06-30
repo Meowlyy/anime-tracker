@@ -52,7 +52,7 @@ const CHART_COLORS = [
 let _charts = {};
 function destroyChart(id) { if (_charts[id]) { _charts[id].destroy(); delete _charts[id]; } }
 
-function buildStatsData() {
+function buildStatsData(timeframe = "year") {
   const completed = list.filter(a => a.status === "Completed");
   const rated = list.filter(a => a.rating > 0);
   const totalEp = list.reduce((s,a) => s+(a.episodesWatched||0), 0);
@@ -88,29 +88,45 @@ function buildStatsData() {
   });
   const topStudios = Object.entries(studioCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
 
+  // Timeframe bucketing for the "completed over time" chart
   const hasCompletedAt = completed.some(a => a.completedAt);
-  const yearCount = {};
+  const bucketCount = {};
   let noDateCount = 0;
+
+  function isoWeekKey(d) {
+    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const dayNum = (date.getUTCDay() + 6) % 7;
+    date.setUTCDate(date.getUTCDate() - dayNum + 3);
+    const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+    const week = 1 + Math.round(((date - firstThursday) / 86400000 - 3) / 7);
+    return `${date.getUTCFullYear()}-W${String(week).padStart(2,"0")}`;
+  }
+
   completed.forEach(a => {
-    if (a.completedAt) {
-      const y = new Date(a.completedAt).getFullYear();
-      yearCount[y] = (yearCount[y]||0)+1;
-    } else if (a.year) {
-      // Fallback bucket, kept separate so it's not confused with real completion dates
-      noDateCount++;
-    }
+    if (!a.completedAt) { if (a.year) noDateCount++; return; }
+    const d = new Date(a.completedAt);
+    let key;
+    if (timeframe === "year") key = String(d.getFullYear());
+    else if (timeframe === "month") key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+    else key = isoWeekKey(d);
+    bucketCount[key] = (bucketCount[key]||0)+1;
   });
-  const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
+
+  let bucketEntries = Object.entries(bucketCount).sort((a,b)=>a[0].localeCompare(b[0]));
+  if (timeframe !== "year") bucketEntries = bucketEntries.slice(-24);
+  const years = bucketEntries;
 
   return { topGenres, ratingDist, statusCounts, topStudios, years, totalEp, hours,
-    hasCompletedAt, noDateCount,
+    hasCompletedAt, noDateCount, timeframe,
     completedCount: completed.length,
     avgRating: rated.length ? (rated.reduce((s,a)=>s+a.rating,0)/rated.length).toFixed(1) : "—",
     favCount: list.filter(a=>a.favorite).length };
 }
 
-function renderStats() {
-  const d = buildStatsData();
+let _currentTimeframe = "year";
+function renderStats(timeframe) {
+  if (timeframe) _currentTimeframe = timeframe;
+  const d = buildStatsData(_currentTimeframe);
   const sumEl = $("spSummary");
   if (sumEl) sumEl.innerHTML = [
     { val: list.length,       lbl: "Anime gesamt" },
@@ -216,19 +232,33 @@ function renderStats() {
   }
 
   // Update year chart title dynamically
+  const tfLabels = { year:"Jahr", month:"Monat", week:"Woche" };
   const yearTitle = $("yearChartTitle");
   const yearSub = $("yearChartSub");
-  if (yearTitle) yearTitle.textContent = "Anime abgeschlossen pro Jahr";
+  if (yearTitle) yearTitle.textContent = `Anime abgeschlossen pro ${tfLabels[d.timeframe]}`;
   if (yearSub) yearSub.textContent = d.hasCompletedAt
     ? (d.noDateCount > 0
         ? `Basiert auf manuell eingetragenen Daten · ${d.noDateCount} abgeschlossene Anime ohne Datum sind hier nicht erfasst`
         : "Basiert auf deinen eingetragenen Abschluss-Daten")
     : "Noch keine Abschluss-Daten eingetragen — trag sie im Bearbeiten-Menü nach, um diesen Chart zu befüllen";
 
+  // Friendlier label formatting per timeframe (e.g. "2026-03" → "Mär 2026")
+  const MONTH_NAMES = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+  function formatBucketLabel(key) {
+    if (d.timeframe === "month") {
+      const [y,m] = key.split("-");
+      return `${MONTH_NAMES[parseInt(m)-1]} ${y}`;
+    }
+    if (d.timeframe === "week") {
+      return key.replace("-W", " · W");
+    }
+    return key; // year
+  }
+
   destroyChart("year");
   const yCtx = $("yearChart")?.getContext("2d");
   if (yCtx && d.years.length) _charts.year = new Chart(yCtx, {
-    type:"bar", data:{ labels:d.years.map(y=>y[0]),
+    type:"bar", data:{ labels:d.years.map(y=>formatBucketLabel(y[0])),
       datasets:[{ data:d.years.map(y=>y[1]), backgroundColor:CHART_COLORS[2], borderRadius:4, borderSkipped:false, label:"Abgeschlossene Anime" }]},
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{
@@ -451,6 +481,13 @@ function confirmAdd() {
 // ── Wire up ──
 document.addEventListener("DOMContentLoaded", () => {
   renderStats();
+  document.querySelectorAll(".sp-tf-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".sp-tf-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderStats(btn.dataset.tf);
+    });
+  });
   $("recoLoadBtn")?.addEventListener("click", loadRecommendations);
   $("addClose")?.addEventListener("click",  () => $("addModal")?.classList.add("hidden"));
   $("addCancel")?.addEventListener("click", () => $("addModal")?.classList.add("hidden"));

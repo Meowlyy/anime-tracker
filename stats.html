@@ -72,7 +72,14 @@
         <div class="sp-bar-list" id="studioList"></div>
       </div>
       <div class="sp-card">
-        <h3><i class="fas fa-calendar-check"></i> <span id="yearChartTitle">Anime abgeschlossen pro Jahr</span></h3>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">
+          <h3><i class="fas fa-calendar-check"></i> <span id="yearChartTitle">Anime abgeschlossen pro Jahr</span></h3>
+          <div class="sp-timeframe-toggle" id="timeframeToggle">
+            <button class="sp-tf-btn active" data-tf="year">Jahre</button>
+            <button class="sp-tf-btn" data-tf="month">Monate</button>
+            <button class="sp-tf-btn" data-tf="week">Wochen</button>
+          </div>
+        </div>
         <div style="font-size:.72rem;color:var(--dim);margin-top:-8px" id="yearChartSub">Wann du einen Anime abgeschlossen hast (setzbar im Bearbeiten-Menü)</div>
         <canvas id="yearChart"></canvas>
       </div>

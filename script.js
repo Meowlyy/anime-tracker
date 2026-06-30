@@ -9,6 +9,7 @@ const SK   = "animeTracker_v5";
 const FK   = "animeTrackerFolders_v2";
 const AK   = "animeTrackerAiring_v2";
 const NK   = "animeTrackerNotifRead_v1";
+const PK   = "animeTrackerPrefs_v1"; // persists sort/grouping across full page navigations
 const NWK  = "animeTrackerNews_v1";
 const PER_PAGE   = 60;
 const AIRING_TTL = 6 * 3600000;
@@ -93,6 +94,21 @@ const NO_COVER_SVG = "data:image/svg+xml," + encodeURIComponent(`
 </svg>`.trim());
 function noCover(el){ el.onerror=null; el.src=NO_COVER_SVG; }
 window.noCover = noCover; // expose globally for inline onerror attributes
+
+// Persist sort/grouping choice across full page navigations (stats.html is a real
+// page, not an SPA route, so the in-memory ui object resets on every navigation).
+function savePrefs() {
+  try { localStorage.setItem(PK, JSON.stringify({ sort: ui.sort, grouping: ui.grouping })); } catch {}
+}
+function loadPrefs() {
+  try {
+    const p = JSON.parse(localStorage.getItem(PK));
+    if (p) {
+      if (p.sort) ui.sort = p.sort;
+      if (typeof p.grouping === "boolean") ui.grouping = p.grouping;
+    }
+  } catch {}
+}
 
 // Generic Jikan API request helper. Used throughout the app (imports, airing
 // refresh, relations, news) — handles the relative "/..." paths and retries
@@ -451,7 +467,7 @@ function getFiltered() {
     case "progress-desc":  l.sort((a,b)=>((b.episodesWatched||0)/(b.totalEpisodes||1))-((a.episodesWatched||0)/(a.totalEpisodes||1))); break;
     case "completed-desc": l.sort((a,b)=>(b.completedAt||0)-(a.completedAt||0)); break;
     case "completed-asc":  l.sort((a,b)=>(a.completedAt||0)-(b.completedAt||0)); break;
-    default:               l.sort((a,b)=>(b.addedAt||0)-(a.addedAt||0));
+    default:               l.sort((a,b)=>(b.lastProgressAt||b.addedAt||0)-(a.lastProgressAt||a.addedAt||0));
   }
   return l;
 }
@@ -796,6 +812,7 @@ function initGridDelegation() {
       if (!a) return;
       if (a.totalEpisodes && (a.episodesWatched||0) >= a.totalEpisodes) { msg("Alle Episoden bereits gesehen!"); return; }
       a.episodesWatched = (a.episodesWatched||0)+1;
+      if (a.status === "Currently Watching") a.lastProgressAt = Date.now();
       // In-place DOM update
       const card = epBtn.closest(".anime-card");
       if (card) {
@@ -838,10 +855,17 @@ function loadImg(src) {
 }
 
 async function buildShareCanvas(anime) {
-  const W = 720, H = 960; // portrait "story" style card
+  // Make sure the custom font is actually loaded before drawing — otherwise the canvas
+  // falls back to a system font with different glyph metrics, which made "Meowly" (with
+  // its decorative unicode symbols) look vertically misaligned.
+  try { await document.fonts.load("700 26px Poppins"); await document.fonts.ready; } catch {}
+
+  const SCALE = 1.35; // ~35% larger text/elements as requested
+  const W = 720, H = 960; // logical size used for all positioning math below
   const canvas = document.createElement("canvas");
-  canvas.width = W; canvas.height = H;
+  canvas.width = W * SCALE; canvas.height = H * SCALE;
   const ctx = canvas.getContext("2d");
+  ctx.scale(SCALE, SCALE); // everything below is still drawn in the original 720x960 coordinate space
 
   // ── Blurred cover as full background ──
   ctx.fillStyle = "#0b1020";
@@ -867,14 +891,17 @@ async function buildShareCanvas(anime) {
   ctx.fillStyle = overlay;
   ctx.fillRect(0, 0, W, H);
 
-  // ── Brand mark, top ──
-  ctx.font = "700 22px 'Poppins', sans-serif";
+  // ── Brand mark, top-left — "middle" baseline is more robust across fonts than
+  // "alphabetic" for lines mixing decorative unicode symbols with regular letters ──
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  ctx.font = "700 26px 'Poppins', sans-serif";
   ctx.fillStyle = "#ff7fe0";
-  ctx.textBaseline = "alphabetic";
-  ctx.fillText("˚ʚ Meowly ₊✧", 36, 56);
-  ctx.font = "500 13px 'Poppins', sans-serif";
-  ctx.fillStyle = "rgba(255,255,255,.55)";
-  ctx.fillText("Anime Tracker", 36, 76);
+  ctx.fillText("˚ʚ Meowly ₊✧", 36, 46);
+  ctx.font = "600 13px 'Poppins', sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.5)";
+  ctx.fillText("A N I M E   T R A C K E R", 36, 70);
+  ctx.textBaseline = "alphabetic"; // reset — everything below assumes alphabetic baseline
 
   // ── Sharp cover thumbnail, upper-middle ──
   const cw = 280, ch = 396, cx = (W-cw)/2, cy = 120;
@@ -1108,6 +1135,7 @@ function openDetail(anime) {
         <div class="detail-section">
           <h4>Fortschritt</h4>
           <p>${anime.episodesWatched||0} / ${anime.totalEpisodes||"?"} Episoden · ${anime.type||"Anime"}</p>
+          ${anime.completedAt ? `<p style="margin-top:6px;color:var(--dim);font-size:.82rem"><i class="fas fa-calendar-check" style="color:var(--accent);margin-right:5px"></i>Abgeschlossen am ${new Date(anime.completedAt).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit",year:"numeric"})}</p>` : ""}
         </div>
         <div class="detail-section">
           <h4>MAL Info</h4>
@@ -1170,6 +1198,7 @@ function saveEdit() {
   const a = list.find(x=>String(x.id)===String(ui.editId));
   if (!a) return;
   const oldStatus = a.status;
+  const oldEpWatched = a.episodesWatched;
   const stat = $("editStatus"); if(stat) a.status = stat.value;
   const epW  = $("editEpWatched");
   if (epW) a.episodesWatched = Math.min(parseInt(epW.value)||0, a.totalEpisodes||Infinity);
@@ -1177,16 +1206,29 @@ function saveEdit() {
   const fav  = $("editFav");    if(fav) a.favorite = fav.checked;
   a.customCategories = [...document.querySelectorAll(".cat-cb:checked")].map(c=>c.value);
 
+  // "Currently watching" progress timestamp — bumps this anime to the top of the
+  // default sort, but ONLY when you're actively watching it and the episode count
+  // actually changed. Other categories (Plan to Watch, Completed, etc.) never bump,
+  // even if you edit/save other fields like rating or favorite.
+  if (a.status === "Currently Watching" && a.episodesWatched !== oldEpWatched) {
+    a.lastProgressAt = Date.now();
+  }
+
   // Handle completedAt
   const dateInp = $("editCompletedDate");
   if (a.status === "Completed") {
     if (dateInp?.value) {
-      // Manual date set — keep the chosen day but stamp the current time so multiple
-      // anime completed on the same day still sort in the order they were entered.
       const chosen = new Date(dateInp.value);
-      const now = new Date();
-      chosen.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
-      a.completedAt = chosen.getTime();
+      const prevDay = a.completedAt ? new Date(a.completedAt).toISOString().slice(0,10) : null;
+      if (prevDay === dateInp.value) {
+        // Same date as before → keep the existing timestamp untouched (no re-sort on every save)
+      } else {
+        // Date actually changed (or set for the first time) → stamp current time so same-day
+        // entries still sort by entry order
+        const now = new Date();
+        chosen.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+        a.completedAt = chosen.getTime();
+      }
     } else if (dateInp && !dateInp.value) {
       // Date field shown but cleared with Reset → remove date
       a.completedAt = null;
@@ -2794,7 +2836,7 @@ function initEvents() {
     const v=$("ratingVal"); if(v) v.textContent=ui.minRating%1===0?ui.minRating:ui.minRating.toFixed(1);
     ui.page=1; renderList();
   });
-  $("sortSel")?.addEventListener("change",e=>{ ui.sort=e.target.value; ui.page=1; renderList(); });
+  $("sortSel")?.addEventListener("change",e=>{ ui.sort=e.target.value; ui.page=1; savePrefs(); renderList(); });
 
   const gb=$("genreBtn"),gp=$("genrePanel");
   gb?.addEventListener("click",e=>{ e.stopPropagation(); gp?.classList.toggle("hidden"); });
@@ -2803,6 +2845,7 @@ function initEvents() {
   $("groupingBtn")?.addEventListener("click",()=>{
     ui.grouping=!ui.grouping;
     $("groupingBtn")?.classList.toggle("active",ui.grouping);
+    savePrefs();
     ui.page=1; renderList();
   });
 
@@ -2815,6 +2858,7 @@ function initEvents() {
     const ss=$("sortSel"); if(ss) ss.value="added-desc";
     const fs=$("franchiseSel"); if(fs) fs.value="";
     const gb_=$("groupingBtn"); if(gb_) gb_.classList.add("active");
+    savePrefs();
     const ft=$("favToggle"); if(ft) ft.checked=false;
     document.querySelectorAll(".genre-chip.on").forEach(c=>c.classList.remove("on"));
     const gt=$("genreBtnText"); if(gt) gt.textContent="Genres";
@@ -2960,12 +3004,16 @@ function initEvents() {
 // ══════════════════ INIT ══════════════════
 function init() {
   load();
+  loadPrefs();
   initGenres();
   initEvents();
   initGridDelegation();
   renderTabs();
   renderFranchiseDropdown();
   updateStats();
+  // Sync sort dropdown + grouping toggle UI to the restored preference
+  const ss = $("sortSel"); if (ss) ss.value = ui.sort;
+  const gb = $("groupingBtn"); if (gb) gb.classList.toggle("active", ui.grouping);
   renderList();
   updateBulkUI();
   updateNotifBadge();

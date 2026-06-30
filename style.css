@@ -975,3 +975,10 @@ body{
 .bsr-add-btn:hover{background:#e040c0}
 .bsr-franchise-btn{background:transparent;color:var(--accent);border-color:var(--accent)}
 .bsr-franchise-btn:hover{background:var(--accent-dim)}
+.sp-timeframe-toggle{display:flex;gap:4px;background:var(--bg2);border-radius:var(--radius-pill);padding:3px;flex-shrink:0}
+.sp-tf-btn{
+  background:none;border:none;color:var(--dim);font-size:.72rem;font-weight:600;
+  padding:5px 12px;border-radius:var(--radius-pill);cursor:pointer;transition:all var(--trans);
+}
+.sp-tf-btn.active{background:var(--accent);color:#fff}
+.sp-tf-btn:not(.active):hover{color:var(--text)}
