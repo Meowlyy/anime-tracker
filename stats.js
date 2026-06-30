@@ -90,16 +90,20 @@ function buildStatsData() {
 
   const hasCompletedAt = completed.some(a => a.completedAt);
   const yearCount = {};
+  let noDateCount = 0;
   completed.forEach(a => {
-    const y = a.completedAt
-      ? new Date(a.completedAt).getFullYear()
-      : (a.year || null);
-    if (y) yearCount[y] = (yearCount[y]||0)+1;
+    if (a.completedAt) {
+      const y = new Date(a.completedAt).getFullYear();
+      yearCount[y] = (yearCount[y]||0)+1;
+    } else if (a.year) {
+      // Fallback bucket, kept separate so it's not confused with real completion dates
+      noDateCount++;
+    }
   });
   const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
 
   return { topGenres, ratingDist, statusCounts, topStudios, years, totalEp, hours,
-    hasCompletedAt,
+    hasCompletedAt, noDateCount,
     completedCount: completed.length,
     avgRating: rated.length ? (rated.reduce((s,a)=>s+a.rating,0)/rated.length).toFixed(1) : "—",
     favCount: list.filter(a=>a.favorite).length };
@@ -214,12 +218,12 @@ function renderStats() {
   // Update year chart title dynamically
   const yearTitle = $("yearChartTitle");
   const yearSub = $("yearChartSub");
-  if (yearTitle) yearTitle.textContent = d.hasCompletedAt
-    ? "Anime abgeschlossen pro Jahr"
-    : "Abgeschlossene Anime nach Erscheinungsjahr";
+  if (yearTitle) yearTitle.textContent = "Anime abgeschlossen pro Jahr";
   if (yearSub) yearSub.textContent = d.hasCompletedAt
-    ? "Wann du einen Anime abgeschlossen hast — Einträge ohne Datum nutzen das Erscheinungsjahr als Fallback"
-    : "Noch kein Abschlussdatum gesetzt — Erscheinungsjahr wird genutzt. Datum im Bearbeiten-Menü nachtragen.";
+    ? (d.noDateCount > 0
+        ? `Basiert auf manuell eingetragenen Daten · ${d.noDateCount} abgeschlossene Anime ohne Datum sind hier nicht erfasst`
+        : "Basiert auf deinen eingetragenen Abschluss-Daten")
+    : "Noch keine Abschluss-Daten eingetragen — trag sie im Bearbeiten-Menü nach, um diesen Chart zu befüllen";
 
   destroyChart("year");
   const yCtx = $("yearChart")?.getContext("2d");

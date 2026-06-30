@@ -264,7 +264,7 @@ function buildFranchMap() {
 // the FULL filtered list (not a page slice) — this is what makes sure a franchise group
 // (e.g. all Slime seasons) always renders together, instead of potentially being split
 // across two pages if pagination happened before grouping.
-function buildRenderUnits(filtered) {
+function buildRenderUnits(filtered, sortMode) {
   // Step 1: group by normalized title text (catches numbered seasons, parts, etc.)
   const byKey = {};
   filtered.forEach(a => {
@@ -325,8 +325,24 @@ function buildRenderUnits(filtered) {
     groupsByRoot[r].push(a);
   });
 
-  // Sort members: follow Prequel→Sequel chain, then by year, then by title
+  // Sort members: when the user picked an explicit sort (anything but the default
+  // "added-desc"), respect it inside groups too. Otherwise follow the chronological
+  // Prequel→Sequel chain (nicest reading order for a franchise).
   function sortGroupMembers(members) {
+    if (sortMode && sortMode !== "added-desc") {
+      const sorted = [...members];
+      switch (sortMode) {
+        case "title-asc":      sorted.sort((a,b)=>a.title.localeCompare(b.title)); break;
+        case "title-desc":     sorted.sort((a,b)=>b.title.localeCompare(a.title)); break;
+        case "rating-desc":    sorted.sort((a,b)=>(b.rating||0)-(a.rating||0)); break;
+        case "rating-asc":     sorted.sort((a,b)=>(a.rating||0)-(b.rating||0)); break;
+        case "mal-desc":       sorted.sort((a,b)=>(b.malScore||0)-(a.malScore||0)); break;
+        case "progress-desc":  sorted.sort((a,b)=>((b.episodesWatched||0)/(b.totalEpisodes||1))-((a.episodesWatched||0)/(a.totalEpisodes||1))); break;
+        case "completed-desc": sorted.sort((a,b)=>(b.completedAt||0)-(a.completedAt||0)); break;
+        case "completed-asc":  sorted.sort((a,b)=>(a.completedAt||0)-(b.completedAt||0)); break;
+      }
+      return sorted;
+    }
     const byMalId = {};
     members.forEach(m => { if (m.malId) byMalId[m.malId] = m; });
     const hasPrequelInGroup = new Set();
@@ -684,7 +700,7 @@ function _doRender() {
 
   // Pagination
   if (ui.grouping) {
-    const units = buildRenderUnits(filtered);
+    const units = buildRenderUnits(filtered, ui.sort);
     const pages = paginateUnits(units, PER_PAGE);
     if (ui.page > pages.length) ui.page = 1;
     const pageUnits = pages[ui.page-1] || [];
@@ -810,119 +826,258 @@ function initGridDelegation() {
 }
 
 // ══════════════════ SHARE ══════════════════
-async function shareAnime(anime) {
+function loadImg(src) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = src;
+    setTimeout(rej, 4000);
+  });
+}
+
+async function buildShareCanvas(anime) {
+  const W = 720, H = 960; // portrait "story" style card
   const canvas = document.createElement("canvas");
-  const W = 400, H = 220;
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
 
+  // ── Blurred cover as full background ──
   ctx.fillStyle = "#0b1020";
   ctx.fillRect(0, 0, W, H);
-  const grad = ctx.createLinearGradient(0, 0, W, H);
-  grad.addColorStop(0, "rgba(255,79,216,.08)");
-  grad.addColorStop(1, "rgba(168,85,247,.05)");
-  ctx.fillStyle = grad;
+  let coverImg = null;
+  try { coverImg = await loadImg(anime.imageUrl); } catch {}
+  if (coverImg) {
+    ctx.save();
+    ctx.filter = "blur(28px) brightness(0.45) saturate(1.3)";
+    // Oversize + center-crop so the blur doesn't reveal edges
+    const scale = Math.max(W/coverImg.width, H/coverImg.height) * 1.15;
+    const dw = coverImg.width*scale, dh = coverImg.height*scale;
+    ctx.drawImage(coverImg, (W-dw)/2, (H-dh)/2, dw, dh);
+    ctx.restore();
+  }
+
+  // Dark gradient overlay for text legibility (stronger toward bottom)
+  const overlay = ctx.createLinearGradient(0, 0, 0, H);
+  overlay.addColorStop(0,   "rgba(5,8,22,.55)");
+  overlay.addColorStop(0.45,"rgba(5,8,22,.35)");
+  overlay.addColorStop(0.7, "rgba(5,8,22,.75)");
+  overlay.addColorStop(1,   "rgba(5,8,22,.96)");
+  ctx.fillStyle = overlay;
   ctx.fillRect(0, 0, W, H);
 
-  ctx.strokeStyle = "rgba(255,79,216,.3)";
-  ctx.lineWidth = 1.5;
-  ctx.strokeRect(1, 1, W-2, H-2);
+  // ── Brand mark, top ──
+  ctx.font = "700 22px 'Poppins', sans-serif";
+  ctx.fillStyle = "#ff7fe0";
+  ctx.textBaseline = "alphabetic";
+  ctx.fillText("˚ʚ Meowly ₊✧", 36, 56);
+  ctx.font = "500 13px 'Poppins', sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.55)";
+  ctx.fillText("Anime Tracker", 36, 76);
 
-  const coverW = 120, coverH = H - 24, coverX = 16, coverY = 12;
-  try {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    await new Promise((res, rej) => {
-      img.onload = res; img.onerror = rej;
-      img.src = anime.imageUrl || "";
-      setTimeout(rej, 3000);
-    });
+  // ── Sharp cover thumbnail, upper-middle ──
+  const cw = 280, ch = 396, cx = (W-cw)/2, cy = 120;
+  ctx.save();
+  ctx.shadowColor = "rgba(0,0,0,.5)";
+  ctx.shadowBlur = 40;
+  ctx.shadowOffsetY = 18;
+  ctx.beginPath();
+  roundRectPath(ctx, cx, cy, cw, ch, 16);
+  ctx.fillStyle = "#111827";
+  ctx.fill();
+  ctx.restore();
+  if (coverImg) {
     ctx.save();
     ctx.beginPath();
-    ctx.roundRect(coverX, coverY, coverW, coverH, 8);
+    roundRectPath(ctx, cx, cy, cw, ch, 16);
     ctx.clip();
-    ctx.drawImage(img, coverX, coverY, coverW, coverH);
+    const s2 = Math.max(cw/coverImg.width, ch/coverImg.height);
+    const dw2 = coverImg.width*s2, dh2 = coverImg.height*s2;
+    ctx.drawImage(coverImg, cx+(cw-dw2)/2, cy+(ch-dh2)/2, dw2, dh2);
     ctx.restore();
-  } catch {
-    ctx.fillStyle = "#111827";
-    ctx.fillRect(coverX, coverY, coverW, coverH);
   }
+  // thin border on cover
+  ctx.strokeStyle = "rgba(255,255,255,.12)";
+  ctx.lineWidth = 1.5;
+  roundRectPath(ctx, cx, cy, cw, ch, 16);
+  ctx.stroke();
 
-  const tx = coverX + coverW + 16;
-  const tw = W - tx - 16;
+  let y = cy + ch + 48;
 
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 15px 'Poppins', sans-serif";
-  const titleWords = anime.title.split(" ");
-  let line = "", lines = [];
-  for (const w of titleWords) {
-    const test = line ? line+" "+w : w;
-    if (ctx.measureText(test).width > tw) { if(line) lines.push(line); line = w; }
-    else line = test;
-  }
-  if (line) lines.push(line);
-  lines.slice(0,2).forEach((l,i) => ctx.fillText(l, tx, 32 + i*20));
-
-  if (anime.altTitle) {
-    ctx.fillStyle = "#8891a8";
-    ctx.font = "11px 'Poppins', sans-serif";
-    ctx.fillText(anime.altTitle.substring(0,42)+(anime.altTitle.length>42?"…":""), tx, 32+lines.slice(0,2).length*20+4);
-  }
-
-  const statusColors = {"Completed":"#10b981","Currently Watching":"#06b6d4","Plan to Watch":"#f59e0b","On Hold":"#8b5cf6","Dropped":"#ef4444"};
+  // ── Status badge, centered ──
+  const statusColors = {"Completed":"#34d399","Currently Watching":"#22d3ee","Plan to Watch":"#fbbf24","On Hold":"#a78bfa","Dropped":"#f87171"};
   const statusLabels = {"Completed":"Abgeschlossen","Currently Watching":"Watching","Plan to Watch":"Geplant","On Hold":"Pausiert","Dropped":"Abgebrochen"};
-  const sc = statusColors[anime.status]||"#8891a8";
-  const sl = statusLabels[anime.status]||anime.status;
-  const badgeY = 90;
-  ctx.fillStyle = sc+"25";
-  ctx.strokeStyle = sc+"80";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.roundRect(tx, badgeY, ctx.measureText(sl).width+20, 22, 11);
+  const sc = statusColors[anime.status]||"#9aa3b8";
+  const sl = (statusLabels[anime.status]||anime.status).toUpperCase();
+  ctx.font = "700 13px 'Poppins', sans-serif";
+  const slw = ctx.measureText(sl).width;
+  const badgeW = slw + 36, badgeH = 30;
+  const bx = (W-badgeW)/2;
+  ctx.fillStyle = sc + "26";
+  ctx.strokeStyle = sc + "99";
+  ctx.lineWidth = 1.3;
+  roundRectPath(ctx, bx, y, badgeW, badgeH, badgeH/2);
   ctx.fill(); ctx.stroke();
   ctx.fillStyle = sc;
-  ctx.font = "bold 11px 'Poppins', sans-serif";
-  ctx.fillText(sl, tx+10, badgeY+15);
+  ctx.textAlign = "center";
+  ctx.fillText(sl, W/2, y + badgeH/2 + 4.5);
+  ctx.textAlign = "left";
+  y += badgeH + 28;
 
-  const stars = anime.rating ? Math.round(anime.rating/2) : 0;
-  ctx.font = "14px sans-serif";
-  ctx.fillStyle = "#facc15";
-  ctx.fillText("★".repeat(stars)+"☆".repeat(5-stars), tx, 132);
+  // ── Title, centered, wrapped ──
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "700 30px 'Poppins', sans-serif";
+  const maxTitleW = W - 80;
+  const words = anime.title.split(" ");
+  let line = "", titleLines = [];
+  for (const w of words) {
+    const test = line ? line+" "+w : w;
+    if (ctx.measureText(test).width > maxTitleW) { if(line) titleLines.push(line); line = w; }
+    else line = test;
+  }
+  if (line) titleLines.push(line);
+  titleLines.slice(0,2).forEach((l,i) => ctx.fillText(l, W/2, y + i*38));
+  y += titleLines.slice(0,2).length * 38 + 4;
 
-  ctx.fillStyle = "#8891a8";
-  ctx.font = "11px 'Poppins', sans-serif";
-  const meta = [
-    anime.type||"TV",
-    anime.totalEpisodes ? `${anime.episodesWatched||0}/${anime.totalEpisodes} Ep.` : "",
-    anime.malScore ? `MAL ${anime.malScore.toFixed(1)}` : ""
-  ].filter(Boolean).join("  ·  ");
-  ctx.fillText(meta, tx, 152);
-
-  if (anime.genres?.length) {
-    ctx.strokeStyle = "#ff4fd850";
-    ctx.lineWidth = 1;
-    let gx = tx;
-    ctx.font = "10px 'Poppins', sans-serif";
-    for (const g of anime.genres.slice(0,3)) {
-      const gw = ctx.measureText(g).width + 14;
-      if (gx + gw > W - 12) break;
-      ctx.fillStyle = "#ff4fd820";
-      ctx.beginPath(); ctx.roundRect(gx, 162, gw, 18, 9); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = "#ff4fd8";
-      ctx.fillText(g, gx+7, 174);
-      gx += gw + 6;
-    }
+  if (anime.altTitle) {
+    ctx.font = "400 15px 'Poppins', sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,.5)";
+    const alt = anime.altTitle.length>48 ? anime.altTitle.slice(0,48)+"…" : anime.altTitle;
+    ctx.fillText(alt, W/2, y + 14);
+    y += 34;
+  } else {
+    y += 14;
   }
 
-  ctx.fillStyle = "#ff4fd860";
-  ctx.font = "bold 10px 'Poppins', sans-serif";
-  ctx.fillText("🌸 Anime Tracker", W - ctx.measureText("🌸 Anime Tracker").width - 12, H - 10);
+  // ── Stars ──
+  const starCount = anime.rating ? Math.round(anime.rating/2) : 0;
+  ctx.font = "26px sans-serif";
+  ctx.fillStyle = "#fbbf24";
+  ctx.fillText("★".repeat(starCount) + "☆".repeat(5-starCount), W/2, y + 24);
+  if (anime.rating) {
+    ctx.font = "600 14px 'Poppins', sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,.6)";
+    ctx.fillText(`${anime.rating.toFixed(1)} / 10`, W/2, y + 48);
+    y += 70;
+  } else {
+    y += 46;
+  }
 
-  const link = document.createElement("a");
-  link.download = `${anime.title.replace(/[^a-z0-9]/gi,"_").toLowerCase()}.png`;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-  msg("Karte gespeichert!");
+  // ── Meta row (type · episodes · MAL score) ──
+  ctx.font = "500 14px 'Poppins', sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.65)";
+  const metaParts = [
+    anime.type || "TV",
+    anime.totalEpisodes ? `${anime.episodesWatched||0}/${anime.totalEpisodes} Episoden` : null,
+    anime.malScore ? `MAL ${anime.malScore.toFixed(1)}` : null
+  ].filter(Boolean);
+  ctx.fillText(metaParts.join("   ·   "), W/2, y);
+  y += 38;
+
+  // ── Genre pills, centered, wrap row ──
+  if (anime.genres?.length) {
+    ctx.font = "600 13px 'Poppins', sans-serif";
+    const pills = anime.genres.slice(0,4);
+    const pillW = pills.map(g => ctx.measureText(g).width + 28);
+    const gap = 10;
+    const totalW = pillW.reduce((s,w)=>s+w,0) + gap*(pills.length-1);
+    let gx = (W - totalW)/2;
+    pills.forEach((g,i) => {
+      const w = pillW[i];
+      ctx.fillStyle = "rgba(255,79,216,.16)";
+      ctx.strokeStyle = "rgba(255,79,216,.5)";
+      ctx.lineWidth = 1;
+      roundRectPath(ctx, gx, y, w, 28, 14);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#ff9fe8";
+      ctx.fillText(g, gx + w/2, y + 19);
+      gx += w + gap;
+    });
+  }
+  ctx.textAlign = "left";
+
+  return canvas;
+}
+
+function roundRectPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y, x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r);
+  ctx.arcTo(x, y, x+w, y, r);
+  ctx.closePath();
+}
+
+async function shareAnime(anime) {
+  const canvas = await buildShareCanvas(anime);
+  openSharePreview(canvas, anime);
+}
+
+function openSharePreview(canvas, anime) {
+  let modal = $("sharePreviewModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "sharePreviewModal";
+    modal.className = "modal";
+    modal.innerHTML = `
+      <div class="modal-bg"></div>
+      <div class="modal-box" style="max-width:420px">
+        <div class="modal-head">
+          <h2><i class="fas fa-share-nodes"></i> Teilen</h2>
+          <button class="icon-btn" id="sharePreviewClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:14px;align-items:center">
+          <img id="sharePreviewImg" style="width:100%;border-radius:12px;border:1px solid var(--border)" alt="">
+          <div style="display:flex;gap:10px;width:100%">
+            <button class="btn-ghost" id="shareCopyBtn" style="flex:1"><i class="fas fa-copy"></i> Kopieren</button>
+            <button class="btn-accent" id="shareDownloadBtn" style="flex:1"><i class="fas fa-download"></i> Speichern</button>
+          </div>
+          <button class="btn-ghost" id="shareNativeBtn" style="width:100%;display:none"><i class="fas fa-paper-plane"></i> Teilen…</button>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener("click", e => { if (e.target===modal.querySelector(".modal-bg")) modal.classList.add("hidden"); });
+    $("sharePreviewClose").addEventListener("click", ()=>modal.classList.add("hidden"));
+  }
+
+  const dataUrl = canvas.toDataURL("image/png");
+  $("sharePreviewImg").src = dataUrl;
+
+  const filename = `${anime.title.replace(/[^a-z0-9]/gi,"_").toLowerCase()}_meowly.png`;
+
+  $("shareDownloadBtn").onclick = () => {
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = dataUrl;
+    link.click();
+    msg("Bild gespeichert!");
+  };
+
+  $("shareCopyBtn").onclick = async () => {
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+      msg("In Zwischenablage kopiert!");
+    } catch {
+      msg("Kopieren nicht unterstützt – nutze 'Speichern'.", true);
+    }
+  };
+
+  const nativeBtn = $("shareNativeBtn");
+  if (navigator.share && navigator.canShare) {
+    canvas.toBlob(blob => {
+      const file = new File([blob], filename, { type: "image/png" });
+      if (navigator.canShare({ files: [file] })) {
+        nativeBtn.style.display = "";
+        nativeBtn.onclick = () => navigator.share({ files: [file], title: anime.title }).catch(()=>{});
+      }
+    });
+  }
+
+  modal.classList.remove("hidden");
 }
 
 // ══════════════════ DETAIL MODAL ══════════════════
@@ -1026,8 +1181,12 @@ function saveEdit() {
   const dateInp = $("editCompletedDate");
   if (a.status === "Completed") {
     if (dateInp?.value) {
-      // Manual date set
-      a.completedAt = new Date(dateInp.value).getTime();
+      // Manual date set — keep the chosen day but stamp the current time so multiple
+      // anime completed on the same day still sort in the order they were entered.
+      const chosen = new Date(dateInp.value);
+      const now = new Date();
+      chosen.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+      a.completedAt = chosen.getTime();
     } else if (dateInp && !dateInp.value) {
       // Date field shown but cleared with Reset → remove date
       a.completedAt = null;
@@ -1334,7 +1493,11 @@ function confirmAdd() {
     completedAt: (() => {
       if ($("addStatus")?.value !== "Completed") return null;
       const d = $("addCompletedDate")?.value;
-      return d ? new Date(d).getTime() : Date.now();
+      if (!d) return Date.now();
+      const chosen = new Date(d);
+      const now = new Date();
+      chosen.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+      return chosen.getTime();
     })(),
     addedAt: Date.now(),
     customCategories: [...document.querySelectorAll(".cat-cb:checked")].map(c=>c.value)
