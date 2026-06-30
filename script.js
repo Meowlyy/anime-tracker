@@ -433,6 +433,8 @@ function getFiltered() {
     case "rating-asc":     l.sort((a,b)=>(a.rating||0)-(b.rating||0)); break;
     case "mal-desc":       l.sort((a,b)=>(b.malScore||0)-(a.malScore||0)); break;
     case "progress-desc":  l.sort((a,b)=>((b.episodesWatched||0)/(b.totalEpisodes||1))-((a.episodesWatched||0)/(a.totalEpisodes||1))); break;
+    case "completed-desc": l.sort((a,b)=>(b.completedAt||0)-(a.completedAt||0)); break;
+    case "completed-asc":  l.sort((a,b)=>(a.completedAt||0)-(b.completedAt||0)); break;
     default:               l.sort((a,b)=>(b.addedAt||0)-(a.addedAt||0));
   }
   return l;
@@ -805,6 +807,122 @@ function initGridDelegation() {
       updateBulkUI();
     }
   });
+}
+
+// ══════════════════ SHARE ══════════════════
+async function shareAnime(anime) {
+  const canvas = document.createElement("canvas");
+  const W = 400, H = 220;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = "#0b1020";
+  ctx.fillRect(0, 0, W, H);
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, "rgba(255,79,216,.08)");
+  grad.addColorStop(1, "rgba(168,85,247,.05)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = "rgba(255,79,216,.3)";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(1, 1, W-2, H-2);
+
+  const coverW = 120, coverH = H - 24, coverX = 16, coverY = 12;
+  try {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    await new Promise((res, rej) => {
+      img.onload = res; img.onerror = rej;
+      img.src = anime.imageUrl || "";
+      setTimeout(rej, 3000);
+    });
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(coverX, coverY, coverW, coverH, 8);
+    ctx.clip();
+    ctx.drawImage(img, coverX, coverY, coverW, coverH);
+    ctx.restore();
+  } catch {
+    ctx.fillStyle = "#111827";
+    ctx.fillRect(coverX, coverY, coverW, coverH);
+  }
+
+  const tx = coverX + coverW + 16;
+  const tw = W - tx - 16;
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 15px 'Poppins', sans-serif";
+  const titleWords = anime.title.split(" ");
+  let line = "", lines = [];
+  for (const w of titleWords) {
+    const test = line ? line+" "+w : w;
+    if (ctx.measureText(test).width > tw) { if(line) lines.push(line); line = w; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  lines.slice(0,2).forEach((l,i) => ctx.fillText(l, tx, 32 + i*20));
+
+  if (anime.altTitle) {
+    ctx.fillStyle = "#8891a8";
+    ctx.font = "11px 'Poppins', sans-serif";
+    ctx.fillText(anime.altTitle.substring(0,42)+(anime.altTitle.length>42?"…":""), tx, 32+lines.slice(0,2).length*20+4);
+  }
+
+  const statusColors = {"Completed":"#10b981","Currently Watching":"#06b6d4","Plan to Watch":"#f59e0b","On Hold":"#8b5cf6","Dropped":"#ef4444"};
+  const statusLabels = {"Completed":"Abgeschlossen","Currently Watching":"Watching","Plan to Watch":"Geplant","On Hold":"Pausiert","Dropped":"Abgebrochen"};
+  const sc = statusColors[anime.status]||"#8891a8";
+  const sl = statusLabels[anime.status]||anime.status;
+  const badgeY = 90;
+  ctx.fillStyle = sc+"25";
+  ctx.strokeStyle = sc+"80";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(tx, badgeY, ctx.measureText(sl).width+20, 22, 11);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = sc;
+  ctx.font = "bold 11px 'Poppins', sans-serif";
+  ctx.fillText(sl, tx+10, badgeY+15);
+
+  const stars = anime.rating ? Math.round(anime.rating/2) : 0;
+  ctx.font = "14px sans-serif";
+  ctx.fillStyle = "#facc15";
+  ctx.fillText("★".repeat(stars)+"☆".repeat(5-stars), tx, 132);
+
+  ctx.fillStyle = "#8891a8";
+  ctx.font = "11px 'Poppins', sans-serif";
+  const meta = [
+    anime.type||"TV",
+    anime.totalEpisodes ? `${anime.episodesWatched||0}/${anime.totalEpisodes} Ep.` : "",
+    anime.malScore ? `MAL ${anime.malScore.toFixed(1)}` : ""
+  ].filter(Boolean).join("  ·  ");
+  ctx.fillText(meta, tx, 152);
+
+  if (anime.genres?.length) {
+    ctx.strokeStyle = "#ff4fd850";
+    ctx.lineWidth = 1;
+    let gx = tx;
+    ctx.font = "10px 'Poppins', sans-serif";
+    for (const g of anime.genres.slice(0,3)) {
+      const gw = ctx.measureText(g).width + 14;
+      if (gx + gw > W - 12) break;
+      ctx.fillStyle = "#ff4fd820";
+      ctx.beginPath(); ctx.roundRect(gx, 162, gw, 18, 9); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#ff4fd8";
+      ctx.fillText(g, gx+7, 174);
+      gx += gw + 6;
+    }
+  }
+
+  ctx.fillStyle = "#ff4fd860";
+  ctx.font = "bold 10px 'Poppins', sans-serif";
+  ctx.fillText("🌸 Anime Tracker", W - ctx.measureText("🌸 Anime Tracker").width - 12, H - 10);
+
+  const link = document.createElement("a");
+  link.download = `${anime.title.replace(/[^a-z0-9]/gi,"_").toLowerCase()}.png`;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+  msg("Karte gespeichert!");
 }
 
 // ══════════════════ DETAIL MODAL ══════════════════
@@ -2622,6 +2740,14 @@ function initEvents() {
   $("detailEdit")?.addEventListener("click",()=>{
     const a=list.find(x=>String(x.id)===String(ui.detailId));
     if(a){$("detailModal")?.classList.add("hidden");openEdit(a);}
+  });
+  $("detailShare")?.addEventListener("click", async ()=>{
+    const a=list.find(x=>String(x.id)===String(ui.detailId));
+    if(!a) return;
+    const btn = $("detailShare");
+    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Erstelle…';
+    try { await shareAnime(a); } catch { msg("Fehler beim Erstellen der Karte.", true); }
+    btn.disabled=false; btn.innerHTML='<i class="fas fa-share-nodes"></i> Teilen';
   });
 
   // Edit modal

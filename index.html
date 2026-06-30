@@ -185,6 +185,8 @@
       <i class="fas fa-sort fi-icon"></i>
       <select id="sortSel" class="filter-select">
         <option value="added-desc">Zuletzt hinzugefügt</option>
+        <option value="completed-desc">Abgeschlossen (neueste)</option>
+        <option value="completed-asc">Abgeschlossen (älteste)</option>
         <option value="title-asc">Titel A–Z</option>
         <option value="title-desc">Titel Z–A</option>
         <option value="rating-desc">Bewertung ↓</option>
@@ -249,7 +251,10 @@
     <div class="modal-body" id="detailBody"></div>
     <div class="modal-foot">
       <button class="btn-danger" id="detailDelete"><i class="fas fa-trash"></i> Löschen</button>
-      <button class="btn-accent" id="detailEdit"><i class="fas fa-edit"></i> Bearbeiten</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn-ghost" id="detailShare"><i class="fas fa-share-nodes"></i> Teilen</button>
+        <button class="btn-accent" id="detailEdit"><i class="fas fa-edit"></i> Bearbeiten</button>
+      </div>
     </div>
   </div>
 </div>

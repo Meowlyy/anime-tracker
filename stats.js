@@ -88,16 +88,18 @@ function buildStatsData() {
   });
   const topStudios = Object.entries(studioCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
 
+  const hasCompletedAt = completed.some(a => a.completedAt);
   const yearCount = {};
   completed.forEach(a => {
     const y = a.completedAt
       ? new Date(a.completedAt).getFullYear()
-      : a.year || null;
+      : (a.year || null);
     if (y) yearCount[y] = (yearCount[y]||0)+1;
   });
   const years = Object.entries(yearCount).sort((a,b)=>a[0]-b[0]);
 
   return { topGenres, ratingDist, statusCounts, topStudios, years, totalEp, hours,
+    hasCompletedAt,
     completedCount: completed.length,
     avgRating: rated.length ? (rated.reduce((s,a)=>s+a.rating,0)/rated.length).toFixed(1) : "—",
     favCount: list.filter(a=>a.favorite).length };
@@ -208,6 +210,16 @@ function renderStats() {
       stEl.innerHTML = `<div class="sp-reco-empty">Noch keine Studio-Daten — einmal "Daten reparieren" in der Hauptansicht ausführen.</div>`;
     }
   }
+
+  // Update year chart title dynamically
+  const yearTitle = $("yearChartTitle");
+  const yearSub = $("yearChartSub");
+  if (yearTitle) yearTitle.textContent = d.hasCompletedAt
+    ? "Anime abgeschlossen pro Jahr"
+    : "Abgeschlossene Anime nach Erscheinungsjahr";
+  if (yearSub) yearSub.textContent = d.hasCompletedAt
+    ? "Wann du einen Anime abgeschlossen hast — Einträge ohne Datum nutzen das Erscheinungsjahr als Fallback"
+    : "Noch kein Abschlussdatum gesetzt — Erscheinungsjahr wird genutzt. Datum im Bearbeiten-Menü nachtragen.";
 
   destroyChart("year");
   const yCtx = $("yearChart")?.getContext("2d");
