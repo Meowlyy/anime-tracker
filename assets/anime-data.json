@@ -1,34 +1,70 @@
 [
   {
-    "id": 1782843597150,
-    "malId": 41574,
-    "title": "Grand Blues!",
-    "altTitle": "Guraburu!",
-    "status": "Plan to Watch",
-    "episodesWatched": 0,
+    "addedAt": 1779994657656,
+    "customCategories": [],
+    "id": 1780164608568,
+    "malId": 59745,
+    "title": "Yandere Dark Elf: She Chased Me All the Way From Another World!",
+    "status": "Currently Watching",
+    "episodesWatched": 1,
     "totalEpisodes": 12,
     "rating": 0,
     "favorite": false,
-    "notes": "Anime adaptation of Guraburu!, which is 4-koma manga of Granblue Fantasy.",
+    "notes": "When high school student Hinata Sunohara was summoned to another world to defeat the Demon Lord, he promised to marry Mariabelle, a beautiful dark elf. But once his mission ended, Hinata was returned to Earth, leaving Mariabelle devastated.\n\nAfter a month back in Japan, Hinata's life has seemingly gone back to normal. However, everything changes again when Mariabelle suddenly appears in his room! Swearing to remain by his side forever, she begins living with him. As her obsessive love grows by the day, Mariabelle wishes to protect Hinata from any threat and ensure that he only has eyes for her.\n\n[Written by MAL Rewrite]",
     "genres": [
-      "Adventure",
+      "Comedy",
+      "Supernatural",
+      "Ecchi"
+    ],
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1192/148314l.jpg",
+    "type": "TV",
+    "malScore": 5.54,
+    "airing": false,
+    "nextEpAt": 1783267500000,
+    "altTitle": "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita",
+    "relatedMalIds": [],
+    "relationsAt": 1782665241672,
+    "studios": [
+      "Elias"
+    ],
+    "year": 2025,
+    "repairedAt": 1782164949648,
+    "relationsVerified": true
+  },
+  {
+    "addedAt": 1779994451694,
+    "customCategories": [],
+    "id": 1780164665420,
+    "malId": 40586,
+    "title": "I've Been Killing Slimes for 300 Years and Maxed Out My Level",
+    "status": "Currently Watching",
+    "episodesWatched": 2,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "In role-playing games, slimes are usually the easiest monster to kill, and because of that, they yield few experience points. But what would happen if you live long enough to keep defeating them for 300 years?\n\nAfter many years of being a corporate slave, Azusa Aizawa abruptly passes away due to severe exhaustion. Seemingly headed for the afterlife, she meets a goddess who bestows her with immortality alongside a peaceful life in another world. There, Azusa enjoys her days tending to her farm, protecting the nearby village, and killing about 25 slimes per day—a routine that continues for at least three centuries.\n\nHowever, this rather monotonous cycle begins to change when Azusa suddenly finds out that she has reached level 99—the maximum possible level—from slimes alone. Despite desperately trying to hide this fact in fear of ending her slow life, rumors of her strength spread nevertheless. Soon enough, various people throughout the continent, like the dragon Laika and the elf Halkara, start to appear at her doorstep—some seeking a battle, others asking for her assistance. Meeting friends and acquaintances who soon become family, Azusa finds she can live a life far better with others than when she was alone.\n\n[Written by MAL Rewrite]",
+    "genres": [
+      "Comedy",
       "Fantasy"
     ],
-    "studios": [
-      "W-Toon Studio",
-      "DMM.futureworks"
-    ],
-    "year": 2020,
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1870/119993l.jpg",
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1888/133089l.jpg",
     "type": "TV",
-    "malScore": 5.8,
+    "malScore": 6.89,
     "airing": false,
-    "nextEpAt": 1782996840000,
-    "completedAt": null,
-    "addedAt": 1782843596867,
-    "customCategories": [],
-    "relatedMalIds": [],
-    "relationsAt": 1782843597961
+    "nextEpAt": 1783166400000,
+    "altTitle": "Slime Taoshite 300-nen, Shiranai Uchi ni Level Max ni Nattemashita",
+    "relatedMalIds": [
+      {
+        "malId": 50738,
+        "relation": "Sequel"
+      }
+    ],
+    "relationsAt": 1782005920143,
+    "studios": [
+      "Revoroot"
+    ],
+    "year": 2021,
+    "repairedAt": 1782164949289
   },
   {
     "id": 1782843561900,
@@ -52,9 +88,9 @@
     "type": "TV",
     "malScore": 8.45,
     "airing": false,
-    "nextEpAt": null,
+    "nextEpAt": 1783101300000,
     "completedAt": null,
-    "addedAt": 1782843561015,
+    "addedAt": 1779994502161,
     "customCategories": [],
     "relatedMalIds": [
       {
@@ -62,7 +98,71 @@
         "relation": "Sequel"
       }
     ],
-    "relationsAt": 1782843562124
+    "relationsAt": 1782843562124,
+    "repairedAt": 1782165092040
+  },
+  {
+    "id": 1780592353266,
+    "malId": 60028,
+    "title": "The Warrior Princess and the Barbaric King",
+    "status": "Currently Watching",
+    "episodesWatched": 7,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "\"Just kill me!\" These are the words of Serafina de Lavillant, the strongest female knight in the West. After being defeated in a war with the East, she has become a prisoner of the barbarians! What awaits the captive Serafina is a life of revenge, torture, and humiliation... or so she thought! What she is offered instead is a marriage to the barbarian king?! An intriguing tale of otherworldly marriage is about to begin!\n\n(Source: Kodansha)",
+    "genres": [
+      "Comedy",
+      "Fantasy",
+      "Romance"
+    ],
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1229/155022l.jpg",
+    "type": "TV",
+    "malScore": 6.84,
+    "airing": false,
+    "nextEpAt": 1783600200000,
+    "addedAt": 1780074424778,
+    "customCategories": [],
+    "altTitle": "Himekishi wa Barbaroi no Yome",
+    "relatedMalIds": [],
+    "relationsAt": 1782665240561,
+    "studios": [
+      "Jumondou"
+    ],
+    "year": 2026,
+    "repairedAt": 1782164947637,
+    "relationsVerified": true
+  },
+  {
+    "id": 1782843597150,
+    "malId": 41574,
+    "title": "Grand Blues!",
+    "altTitle": "Guraburu!",
+    "status": "Plan to Watch",
+    "episodesWatched": 0,
+    "totalEpisodes": 12,
+    "rating": 0,
+    "favorite": false,
+    "notes": "Anime adaptation of Guraburu!, which is 4-koma manga of Granblue Fantasy.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "studios": [
+      "W-Toon Studio",
+      "DMM.futureworks"
+    ],
+    "year": 2020,
+    "imageUrl": "https://cdn.myanimelist.net/images/anime/1870/119993l.jpg",
+    "type": "TV",
+    "malScore": 5.8,
+    "airing": false,
+    "nextEpAt": 1783601640000,
+    "completedAt": null,
+    "addedAt": 1782843596867,
+    "customCategories": [],
+    "relatedMalIds": [],
+    "relationsAt": 1782843597961
   },
   {
     "id": 1782363265586,
@@ -807,7 +907,7 @@
     "type": "TV",
     "malScore": 7.61,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "completedAt": null,
     "addedAt": 1782281085076,
     "customCategories": [],
@@ -850,7 +950,7 @@
     "type": "TV",
     "malScore": 7.6,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "completedAt": null,
     "addedAt": 1782281077381,
     "customCategories": [],
@@ -936,7 +1036,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "completedAt": null,
     "addedAt": 1782280969617,
     "customCategories": [],
@@ -1005,7 +1105,7 @@
     "type": "TV",
     "malScore": 0,
     "airing": true,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "completedAt": null,
     "addedAt": 1782250470279,
     "customCategories": [],
@@ -1101,7 +1201,7 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "addedAt": 1782182296230,
     "customCategories": [],
     "relatedMalIds": [],
@@ -1191,7 +1291,7 @@
     "type": "TV",
     "malScore": 0,
     "airing": false,
-    "nextEpAt": 1782922500000,
+    "nextEpAt": 1783527300000,
     "addedAt": 1782182158711,
     "customCategories": [],
     "relatedMalIds": [],
@@ -1577,7 +1677,7 @@
     "type": "TV",
     "malScore": 6.77,
     "airing": false,
-    "nextEpAt": 1783004160000,
+    "nextEpAt": 1783608960000,
     "addedAt": 1781915389680,
     "customCategories": [],
     "altTitle": "Hananoi-kun to Koi no Yamai",
@@ -1843,7 +1943,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782986400000,
+    "nextEpAt": 1783591200000,
     "addedAt": 1780863596453,
     "customCategories": [],
     "altTitle": "Pokemon",
@@ -1920,38 +2020,6 @@
     ],
     "year": 2023,
     "repairedAt": 1782164947283
-  },
-  {
-    "id": 1780592353266,
-    "malId": 60028,
-    "title": "The Warrior Princess and the Barbaric King",
-    "status": "Currently Watching",
-    "episodesWatched": 7,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "\"Just kill me!\" These are the words of Serafina de Lavillant, the strongest female knight in the West. After being defeated in a war with the East, she has become a prisoner of the barbarians! What awaits the captive Serafina is a life of revenge, torture, and humiliation... or so she thought! What she is offered instead is a marriage to the barbarian king?! An intriguing tale of otherworldly marriage is about to begin!\n\n(Source: Kodansha)",
-    "genres": [
-      "Comedy",
-      "Fantasy",
-      "Romance"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1229/155022l.jpg",
-    "type": "TV",
-    "malScore": 6.84,
-    "airing": false,
-    "nextEpAt": 1782995400000,
-    "addedAt": 1780592353263,
-    "customCategories": [],
-    "altTitle": "Himekishi wa Barbaroi no Yome",
-    "relatedMalIds": [],
-    "relationsAt": 1782665240561,
-    "studios": [
-      "Jumondou"
-    ],
-    "year": 2026,
-    "repairedAt": 1782164947637,
-    "relationsVerified": true
   },
   {
     "id": 1780592179717,
@@ -2067,73 +2135,6 @@
     "repairedAt": 1782164948930
   },
   {
-    "addedAt": 1780164665420,
-    "customCategories": [],
-    "id": 1780164665420,
-    "malId": 40586,
-    "title": "I've Been Killing Slimes for 300 Years and Maxed Out My Level",
-    "status": "Currently Watching",
-    "episodesWatched": 2,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "In role-playing games, slimes are usually the easiest monster to kill, and because of that, they yield few experience points. But what would happen if you live long enough to keep defeating them for 300 years?\n\nAfter many years of being a corporate slave, Azusa Aizawa abruptly passes away due to severe exhaustion. Seemingly headed for the afterlife, she meets a goddess who bestows her with immortality alongside a peaceful life in another world. There, Azusa enjoys her days tending to her farm, protecting the nearby village, and killing about 25 slimes per day—a routine that continues for at least three centuries.\n\nHowever, this rather monotonous cycle begins to change when Azusa suddenly finds out that she has reached level 99—the maximum possible level—from slimes alone. Despite desperately trying to hide this fact in fear of ending her slow life, rumors of her strength spread nevertheless. Soon enough, various people throughout the continent, like the dragon Laika and the elf Halkara, start to appear at her doorstep—some seeking a battle, others asking for her assistance. Meeting friends and acquaintances who soon become family, Azusa finds she can live a life far better with others than when she was alone.\n\n[Written by MAL Rewrite]",
-    "genres": [
-      "Comedy",
-      "Fantasy"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1888/133089l.jpg",
-    "type": "TV",
-    "malScore": 6.89,
-    "airing": false,
-    "nextEpAt": 1783166400000,
-    "altTitle": "Slime Taoshite 300-nen, Shiranai Uchi ni Level Max ni Nattemashita",
-    "relatedMalIds": [
-      {
-        "malId": 50738,
-        "relation": "Sequel"
-      }
-    ],
-    "relationsAt": 1782005920143,
-    "studios": [
-      "Revoroot"
-    ],
-    "year": 2021,
-    "repairedAt": 1782164949289
-  },
-  {
-    "addedAt": 1780164608568,
-    "customCategories": [],
-    "id": 1780164608568,
-    "malId": 59745,
-    "title": "Yandere Dark Elf: She Chased Me All the Way From Another World!",
-    "status": "Currently Watching",
-    "episodesWatched": 1,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "When high school student Hinata Sunohara was summoned to another world to defeat the Demon Lord, he promised to marry Mariabelle, a beautiful dark elf. But once his mission ended, Hinata was returned to Earth, leaving Mariabelle devastated.\n\nAfter a month back in Japan, Hinata's life has seemingly gone back to normal. However, everything changes again when Mariabelle suddenly appears in his room! Swearing to remain by his side forever, she begins living with him. As her obsessive love grows by the day, Mariabelle wishes to protect Hinata from any threat and ensure that he only has eyes for her.\n\n[Written by MAL Rewrite]",
-    "genres": [
-      "Comedy",
-      "Supernatural",
-      "Ecchi"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1192/148314l.jpg",
-    "type": "TV",
-    "malScore": 5.54,
-    "airing": false,
-    "nextEpAt": 1783267500000,
-    "altTitle": "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita",
-    "relatedMalIds": [],
-    "relationsAt": 1782665241672,
-    "studios": [
-      "Elias"
-    ],
-    "year": 2025,
-    "repairedAt": 1782164949648,
-    "relationsVerified": true
-  },
-  {
     "addedAt": 1780162339417,
     "customCategories": [],
     "id": 1780162339416,
@@ -2176,7 +2177,7 @@
     "malId": 59983,
     "title": "Wistoria: Wand and Sword Season 2",
     "status": "Currently Watching",
-    "episodesWatched": 9,
+    "episodesWatched": 10,
     "totalEpisodes": 12,
     "rating": 7,
     "favorite": false,
@@ -2207,7 +2208,8 @@
       "Bandai Namco Pictures"
     ],
     "year": 2026,
-    "repairedAt": 1782164952437
+    "repairedAt": 1782164952437,
+    "lastProgressAt": 1782915534366
   },
   {
     "addedAt": 1779951571731,
@@ -3069,7 +3071,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782997200000,
+    "nextEpAt": 1783602000000,
     "altTitle": "Hoshifuru Oukoku no Nina",
     "relatedMalIds": [],
     "relationsAt": 1782568317901,
@@ -3636,7 +3638,7 @@
     "type": "TV",
     "malScore": 7.53,
     "airing": false,
-    "nextEpAt": 1782923400000,
+    "nextEpAt": 1783528200000,
     "altTitle": "キャシャーン SINS",
     "relatedMalIds": [],
     "relationsAt": 1782568326667,
@@ -3918,7 +3920,7 @@
     "type": "TV",
     "malScore": 6.2,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Boku no Kanojo ga Majimesugiru Sho-bitch na Ken",
     "relatedMalIds": [],
     "relationsAt": 1782665242813,
@@ -4311,7 +4313,7 @@
     "type": "TV",
     "malScore": 7.99,
     "airing": false,
-    "nextEpAt": 1783002600000,
+    "nextEpAt": 1783607400000,
     "altTitle": "Zombieland Saga Revenge",
     "relatedMalIds": [
       {
@@ -4591,7 +4593,7 @@
     "type": "TV",
     "malScore": 7.64,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Mikadono Sanshimai wa Angai, Choroi.",
     "relatedMalIds": [],
     "relationsAt": 1782568349641,
@@ -4724,7 +4726,7 @@
     "type": "TV",
     "malScore": 6.89,
     "airing": false,
-    "nextEpAt": 1782923400000,
+    "nextEpAt": 1783528200000,
     "altTitle": "Yama no Susume",
     "relatedMalIds": [
       {
@@ -4856,7 +4858,7 @@
     "type": "TV",
     "malScore": 7.26,
     "airing": false,
-    "nextEpAt": 1783000800000,
+    "nextEpAt": 1783605600000,
     "altTitle": "Btooom!",
     "relatedMalIds": [],
     "relationsAt": 1782568351913,
@@ -5983,7 +5985,7 @@
     "type": "TV",
     "malScore": 7.42,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "たまこまーけっと",
     "relatedMalIds": [
       {
@@ -6213,7 +6215,7 @@
     "type": "TV",
     "malScore": 5.34,
     "airing": false,
-    "nextEpAt": 1782921600000,
+    "nextEpAt": 1783526400000,
     "altTitle": "鬼斬",
     "relatedMalIds": [],
     "relationsAt": 1782568372984,
@@ -7383,7 +7385,7 @@
     "type": "TV",
     "malScore": 6.73,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "ネコぱら",
     "relatedMalIds": [],
     "relationsAt": 1782568398167,
@@ -7981,7 +7983,7 @@
     "type": "TV",
     "malScore": 6.84,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Odayaka Kizoku no Kyuuka no Susume.",
     "relatedMalIds": [],
     "relationsAt": 1782568417839,
@@ -8110,7 +8112,7 @@
     "type": "TV",
     "malScore": 6.9,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "16bitセンセーション ANOTHER LAYER",
     "relatedMalIds": [],
     "relationsAt": 1782568420150,
@@ -8297,7 +8299,7 @@
     "type": "TV",
     "malScore": 6.94,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "宇宙人ムームー",
     "relatedMalIds": [],
     "relationsAt": 1782568425873,
@@ -8385,7 +8387,7 @@
     "type": "TV",
     "malScore": 7.74,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "Kumichou Musume to Sewagakari",
     "relatedMalIds": [],
     "relationsAt": 1782568430102,
@@ -8506,7 +8508,7 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1927/154309l.jpg",
     "type": "TV",
     "malScore": 7.55,
-    "airing": true,
+    "airing": false,
     "nextEpAt": 1783432800000,
     "altTitle": "マリッジトキシン",
     "relatedMalIds": [],
@@ -8537,7 +8539,7 @@
     "type": "TV",
     "malScore": 7.87,
     "airing": true,
-    "nextEpAt": 1783004160000,
+    "nextEpAt": 1783608960000,
     "altTitle": "Koori no Jouheki",
     "repairedAt": 1781976179782,
     "relatedMalIds": [],
@@ -9151,7 +9153,7 @@
     "type": "TV",
     "malScore": 6.48,
     "airing": false,
-    "nextEpAt": 1782920700000,
+    "nextEpAt": 1783525500000,
     "altTitle": "Onmyou Kaiten Re:Birth",
     "relatedMalIds": [],
     "relationsAt": 1782568455090,
@@ -9206,7 +9208,7 @@
     "type": "TV",
     "malScore": 6.76,
     "airing": false,
-    "nextEpAt": 1782920700000,
+    "nextEpAt": 1783525500000,
     "altTitle": "Let's Play: Quest-darake no My Life",
     "relatedMalIds": [],
     "relationsAt": 1782568457990,
@@ -9863,7 +9865,7 @@
     "type": "TV",
     "malScore": 6.34,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "Around 40 Otoko no Isekai Tsuuhan",
     "relatedMalIds": [],
     "relationsAt": 1782568477367,
@@ -9983,7 +9985,7 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1783002600000,
+    "nextEpAt": 1783607400000,
     "altTitle": "Tenchi Souzou Design-bu",
     "relatedMalIds": [
       {
@@ -10108,7 +10110,7 @@
     "type": "TV",
     "malScore": 7.62,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "Ninja to Koroshiya no Futarigurashi",
     "relatedMalIds": [],
     "relationsAt": 1782568485144,
@@ -10242,7 +10244,7 @@
     "type": "TV",
     "malScore": 7.63,
     "airing": false,
-    "nextEpAt": 1782995400000,
+    "nextEpAt": 1783600200000,
     "altTitle": "Karaoke Iko!",
     "relatedMalIds": [],
     "relationsAt": 1782568487351,
@@ -10637,41 +10639,6 @@
     "repairedAt": 1782165077511
   },
   {
-    "addedAt": 1779994451694,
-    "customCategories": [],
-    "id": 1779994451694.068,
-    "malId": 40586,
-    "title": "I've Been Killing Slimes for 300 Years and Maxed Out My Level",
-    "status": "Plan to Watch",
-    "episodesWatched": 0,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "In role-playing games, slimes are usually the easiest monster to kill, and because of that, they yield few experience points. But what would happen if you live long enough to keep defeating them for 300 years?\n\nAfter many years of being a corporate slave, Azusa Aizawa abruptly passes away due to severe exhaustion. Seemingly headed for the afterlife, she meets a goddess who bestows her with immortality alongside a peaceful life in another world. There, Azusa enjoys her days tending to her farm, protecting the nearby village, and killing about 25 slimes per day—a routine that continues for at least three centuries.\n\nHowever, this rather monotonous cycle begins to change when Azusa suddenly finds out that she has reached level 99—the maximum possible level—from slimes alone. Despite desperately trying to hide this fact in fear of ending her slow life, rumors of her strength spread nevertheless. Soon enough, various people throughout the continent, like the dragon Laika and the elf Halkara, start to appear at her doorstep—some seeking a battle, others asking for her assistance. Meeting friends and acquaintances who soon become family, Azusa finds she can live a life far better with others than when she was alone.\n\n[Written by MAL Rewrite]",
-    "genres": [
-      "Comedy",
-      "Fantasy"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1888/133089l.jpg",
-    "type": "TV",
-    "malScore": 6.89,
-    "airing": false,
-    "nextEpAt": 1783166400000,
-    "altTitle": "Slime Taoshite 300-nen, Shiranai Uchi ni Level Max ni Nattemashita",
-    "relatedMalIds": [
-      {
-        "malId": 50738,
-        "relation": "Sequel"
-      }
-    ],
-    "relationsAt": 1782006183116,
-    "studios": [
-      "Revoroot"
-    ],
-    "year": 2021,
-    "repairedAt": 1782165077875
-  },
-  {
     "addedAt": 1779994452183,
     "customCategories": [],
     "id": 1779994452183.1296,
@@ -10814,7 +10781,7 @@
     "type": "TV",
     "malScore": 5.94,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Soukou Musume Senki",
     "relatedMalIds": [],
     "relationsAt": 1782568499903,
@@ -11110,7 +11077,7 @@
     "type": "TV",
     "malScore": 6.75,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "Masamune-kun no Revenge",
     "relatedMalIds": [
       {
@@ -11929,40 +11896,6 @@
     "completedAt": null
   },
   {
-    "addedAt": 1779994502161,
-    "customCategories": [],
-    "id": 1779994502161.69,
-    "malId": 37105,
-    "title": "Grand Blue Dreaming",
-    "status": "Plan to Watch",
-    "episodesWatched": 0,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "Iori Kitahara moves to the coastal town of Izu for his freshman year at its university, taking residence above Grand Blue, his uncle's scuba diving shop. Iori has high hopes and dreams about having the ideal college experience, but when he enters the shop he is sucked into the alcoholic activities of the carefree members of the Diving Club who frequent the place. Persuaded by upperclassmen Shinji Tokita and Ryuujirou Kotobuki, Iori reluctantly joins their bizarre party. His cousin Chisa Kotegawa later walks in and catches him in the act, earning Iori her utter disdain.\n\nBased on Kenji Inoue and Kimitake Yoshioka's popular comedy manga, Grand Blue follows Iori's misadventures with his eccentric new friends as he strives to realize his ideal college dream, while also learning how to scuba dive.\n\n[Written by MAL Rewrite]",
-    "genres": [
-      "Comedy"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1302/94882l.jpg",
-    "type": "TV",
-    "malScore": 8.45,
-    "airing": false,
-    "nextEpAt": 1783101300000,
-    "altTitle": "Grand Blue",
-    "relatedMalIds": [
-      {
-        "malId": 59986,
-        "relation": "Sequel"
-      }
-    ],
-    "relationsAt": 1782006221491,
-    "studios": [
-      "Zero-G"
-    ],
-    "year": 2018,
-    "repairedAt": 1782165092040
-  },
-  {
     "addedAt": 1779994502628,
     "customCategories": [],
     "id": 1779994502628.8145,
@@ -12112,7 +12045,7 @@
     "type": "TV",
     "malScore": 6.85,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Musaigen no Phantom World",
     "relatedMalIds": [
       {
@@ -12863,7 +12796,7 @@
     "type": "TV",
     "malScore": 7.25,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Kanpekisugite Kawaige ga Nai to Konyaku Haki sareta Seijo wa Ringoku ni Urareru",
     "relatedMalIds": [],
     "relationsAt": 1782568539812,
@@ -13256,7 +13189,7 @@
     "type": "TV",
     "malScore": 7.94,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Niehime to Kemono no Ou",
     "relatedMalIds": [],
     "relationsAt": 1782568550112,
@@ -13354,7 +13287,7 @@
     "type": "TV",
     "malScore": 7.71,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Tomo-chan wa Onnanoko!",
     "relatedMalIds": [],
     "relationsAt": 1782568552252,
@@ -13443,7 +13376,7 @@
     "type": "TV",
     "malScore": 6.82,
     "airing": false,
-    "nextEpAt": 1782991800000,
+    "nextEpAt": 1783596600000,
     "altTitle": "Kimi to Boku no Saigo no Senjou, Aruiwa Sekai ga Hajimaru Seisen Season II",
     "relatedMalIds": [
       {
@@ -13511,7 +13444,7 @@
     "type": "TV",
     "malScore": 7.24,
     "airing": false,
-    "nextEpAt": 1782928200000,
+    "nextEpAt": 1783533000000,
     "altTitle": "Beelzebub-jou no Okinimesu mama.",
     "relatedMalIds": [],
     "relationsAt": 1782568556715,
@@ -14115,7 +14048,7 @@
     "type": "TV",
     "malScore": 7.78,
     "airing": false,
-    "nextEpAt": 1782921300000,
+    "nextEpAt": 1783526100000,
     "altTitle": "BEASTARS",
     "relatedMalIds": [
       {
@@ -14209,7 +14142,7 @@
     "type": "TV",
     "malScore": 7.32,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "Gimai Seikatsu",
     "relatedMalIds": [],
     "relationsAt": 1782568571642,
@@ -14408,7 +14341,7 @@
     "type": "TV",
     "malScore": 7.15,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "クロムクロ",
     "relatedMalIds": [],
     "relationsAt": 1782568575111,
@@ -14534,7 +14467,7 @@
     "type": "TV",
     "malScore": 7.3,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Ore wo Suki nano wa Omae dake ka yo",
     "relatedMalIds": [
       {
@@ -15080,7 +15013,7 @@
     "type": "TV",
     "malScore": 7.28,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "Heroine Tarumono! Kiraware Heroine to Naisho no Oshigoto",
     "relatedMalIds": [],
     "relationsAt": 1782568591180,
@@ -15648,7 +15581,7 @@
     "type": "TV",
     "malScore": 7.78,
     "airing": false,
-    "nextEpAt": 1782930480000,
+    "nextEpAt": 1783535280000,
     "altTitle": "TEXHNOLYZE",
     "relatedMalIds": [
       {
@@ -15763,38 +15696,6 @@
     ],
     "year": 2014,
     "repairedAt": 1782165133748
-  },
-  {
-    "addedAt": 1779994657656,
-    "customCategories": [],
-    "id": 1779994657656.8416,
-    "malId": 59745,
-    "title": "Yandere Dark Elf: She Chased Me All the Way From Another World!",
-    "status": "Plan to Watch",
-    "episodesWatched": 1,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "When high school student Hinata Sunohara was summoned to another world to defeat the Demon Lord, he promised to marry Mariabelle, a beautiful dark elf. But once his mission ended, Hinata was returned to Earth, leaving Mariabelle devastated.\n\nAfter a month back in Japan, Hinata's life has seemingly gone back to normal. However, everything changes again when Mariabelle suddenly appears in his room! Swearing to remain by his side forever, she begins living with him. As her obsessive love grows by the day, Mariabelle wishes to protect Hinata from any threat and ensure that he only has eyes for her.\n\n[Written by MAL Rewrite]",
-    "genres": [
-      "Comedy",
-      "Supernatural",
-      "Ecchi"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1192/148314l.jpg",
-    "type": "TV",
-    "malScore": 5.55,
-    "airing": false,
-    "nextEpAt": 1783267500000,
-    "altTitle": "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita",
-    "relatedMalIds": [],
-    "relationsAt": 1782665247152,
-    "studios": [
-      "Elias"
-    ],
-    "year": 2025,
-    "repairedAt": 1782165134112,
-    "relationsVerified": true
   },
   {
     "addedAt": 1779994661513,
@@ -16528,7 +16429,7 @@
     "type": "TV",
     "malScore": 7.81,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "アイドルマスター シンデレラガールズ U149",
     "relatedMalIds": [
       {
@@ -16632,7 +16533,7 @@
     "type": "TV",
     "malScore": 6.97,
     "airing": false,
-    "nextEpAt": 1782950400000,
+    "nextEpAt": 1783555200000,
     "altTitle": "ダンスインザヴァンパイアバンド",
     "relatedMalIds": [
       {
@@ -17342,7 +17243,7 @@
     "type": "TV",
     "malScore": 7.17,
     "airing": false,
-    "nextEpAt": 1782921300000,
+    "nextEpAt": 1783526100000,
     "altTitle": "ハニーレモンソーダ",
     "relatedMalIds": [],
     "relationsAt": 1782568635562,
@@ -23994,7 +23895,7 @@
     "type": "TV",
     "malScore": 7.97,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen",
     "relatedMalIds": [
       {
@@ -24546,7 +24447,7 @@
     "type": "TV",
     "malScore": 8.16,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "Yuusha-kei ni Shosu: Choubatsu Yuusha 9004-tai Keimu Kiroku",
     "relatedMalIds": [
       {
@@ -24871,7 +24772,7 @@
     "type": "TV",
     "malScore": 6.73,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "Sunohara-sou no Kanrinin-san",
     "relatedMalIds": [],
     "relationsAt": 1782568752319,
@@ -25673,7 +25574,7 @@
     "type": "TV",
     "malScore": 6.72,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Tensei Akujo no Kuro Rekishi",
     "relatedMalIds": [],
     "relationsAt": 1782568771275,
@@ -27987,38 +27888,6 @@
     "repairedAt": 1782165527680
   },
   {
-    "addedAt": 1780074424778,
-    "customCategories": [],
-    "id": 1780074424778.0044,
-    "malId": 60028,
-    "title": "The Warrior Princess and the Barbaric King",
-    "status": "Plan to Watch",
-    "episodesWatched": 0,
-    "totalEpisodes": 12,
-    "rating": 0,
-    "favorite": false,
-    "notes": "\"Just kill me!\" These are the words of Serafina de Lavillant, the strongest female knight in the West. After being defeated in a war with the East, she has become a prisoner of the barbarians! What awaits the captive Serafina is a life of revenge, torture, and humiliation... or so she thought! What she is offered instead is a marriage to the barbarian king?! An intriguing tale of otherworldly marriage is about to begin!\n\n(Source: Kodansha)",
-    "genres": [
-      "Comedy",
-      "Fantasy",
-      "Romance"
-    ],
-    "imageUrl": "https://cdn.myanimelist.net/images/anime/1229/155022l.jpg",
-    "type": "TV",
-    "malScore": 6.85,
-    "airing": false,
-    "nextEpAt": 1782995400000,
-    "altTitle": "Himekishi wa Barbaroi no Yome",
-    "relatedMalIds": [],
-    "relationsAt": 1782665258154,
-    "studios": [
-      "Jumondou"
-    ],
-    "year": 2026,
-    "repairedAt": 1782165528044,
-    "relationsVerified": true
-  },
-  {
     "addedAt": 1780074428604,
     "customCategories": [],
     "id": 1780074428604.2866,
@@ -28039,7 +27908,7 @@
     "type": "TV",
     "malScore": 6.24,
     "airing": false,
-    "nextEpAt": 1782997200000,
+    "nextEpAt": 1783602000000,
     "altTitle": "ピーチボーイリバーサイド",
     "relatedMalIds": [],
     "relationsAt": 1782568808460,
@@ -28226,7 +28095,7 @@
     "type": "TV",
     "malScore": 7.35,
     "airing": false,
-    "nextEpAt": 1783004160000,
+    "nextEpAt": 1783608960000,
     "altTitle": "Taiyou yori mo Mabushii Hoshi",
     "relatedMalIds": [
       {
@@ -28261,7 +28130,7 @@
     "type": "TV",
     "malScore": 7.7,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Chuunibyou demo Koi ga Shitai!",
     "relatedMalIds": [
       {
@@ -28451,7 +28320,7 @@
     "type": "TV",
     "malScore": 6.16,
     "airing": false,
-    "nextEpAt": 1782923400000,
+    "nextEpAt": 1783528200000,
     "altTitle": "マケン姫っ！通",
     "relatedMalIds": [
       {
@@ -28696,7 +28565,7 @@
     "type": "TV",
     "malScore": 7.07,
     "airing": false,
-    "nextEpAt": 1782997200000,
+    "nextEpAt": 1783602000000,
     "altTitle": "Bukiyou na Senpai.",
     "relatedMalIds": [],
     "relationsAt": 1782568829005,
@@ -28727,7 +28596,7 @@
     "type": "TV",
     "malScore": 5.86,
     "airing": false,
-    "nextEpAt": 1782919800000,
+    "nextEpAt": 1783524600000,
     "altTitle": "Hortensia Saga",
     "relatedMalIds": [],
     "relationsAt": 1782568830175,
@@ -28758,7 +28627,7 @@
     "type": "TV",
     "malScore": 6.65,
     "airing": false,
-    "nextEpAt": 1782918000000,
+    "nextEpAt": 1783522800000,
     "altTitle": "Kizoku Tensei: Megumareta Umare kara Saikyou no Chikara wo Eru",
     "relatedMalIds": [],
     "relationsAt": 1782568831287,
@@ -28888,7 +28757,7 @@
     "imageUrl": "https://cdn.myanimelist.net/images/anime/1879/155958l.jpg",
     "type": "TV",
     "malScore": 7.28,
-    "airing": true,
+    "airing": false,
     "nextEpAt": 1783432800000,
     "altTitle": "Aishiteru Game wo Owarasetai",
     "relatedMalIds": [],
@@ -28944,7 +28813,7 @@
     "type": "TV",
     "malScore": 6.28,
     "airing": false,
-    "nextEpAt": 1782993600000,
+    "nextEpAt": 1783598400000,
     "altTitle": "Hachi-nan tte, Sore wa Nai deshou!",
     "relatedMalIds": [],
     "relationsAt": 1782568836749,
@@ -29300,7 +29169,7 @@
     "type": "TV",
     "malScore": 5.76,
     "airing": false,
-    "nextEpAt": 1782999000000,
+    "nextEpAt": 1783603800000,
     "altTitle": "SCARLET NEXUS",
     "relatedMalIds": [],
     "relationsAt": 1782568845306,
@@ -29331,7 +29200,7 @@
     "type": "TV",
     "malScore": 7.94,
     "airing": false,
-    "nextEpAt": 1782997200000,
+    "nextEpAt": 1783602000000,
     "altTitle": "Nagi no Asu kara",
     "relatedMalIds": [],
     "relationsAt": 1782568846440,

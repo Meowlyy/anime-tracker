@@ -73,7 +73,7 @@ body{
   line-height:1.1;
 }
 .header-sub{font-size:.75rem;color:var(--dim);margin-top:2px}
-.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
 
 /* ── Buttons ── */
 .btn-ghost{
@@ -992,3 +992,34 @@ body{
 }
 .sp-tf-btn.active{background:var(--accent);color:#fff}
 .sp-tf-btn:not(.active):hover{color:var(--text)}
+
+/* ════════════════════ DUPLICATE MODAL ════════════════════ */
+.dup-groups{display:flex;flex-direction:column;gap:14px}
+.dup-group{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.dup-group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:.88rem;font-weight:700}
+.dup-group-head i{color:var(--accent);margin-right:6px}
+.dup-items{display:flex;gap:12px;flex-wrap:wrap}
+.dup-item{display:flex;gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px;flex:1;min-width:200px}
+.dup-item img{width:46px;height:65px;object-fit:cover;border-radius:6px;flex-shrink:0;background:var(--bg3)}
+.dup-item-info{display:flex;flex-direction:column;justify-content:center}
+
+/* ════════════════════ RECAP & DRILLDOWN ════════════════════ */
+.sp-recap-card{gap:14px}
+
+/* ════════════════════ HEADER DROPDOWN MENUS ════════════════════ */
+.hdr-dd-wrap{position:relative}
+.hdr-dd-menu{
+  position:absolute;top:calc(100% + 8px);right:0;min-width:280px;
+  background:#0b1020;border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);z-index:500;overflow:hidden;padding:6px;
+}
+.hdr-dd-item{
+  display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;
+  background:none;border:none;color:var(--text);text-align:left;cursor:pointer;
+  border-radius:var(--radius-sm);transition:background var(--trans);font-family:inherit;
+}
+.hdr-dd-item:hover{background:var(--accent-dim)}
+.hdr-dd-item i{color:var(--accent);font-size:1.1rem;width:20px;text-align:center;flex-shrink:0}
+.hdr-dd-item div{display:flex;flex-direction:column;gap:1px}
+.hdr-dd-item strong{font-size:.82rem;font-weight:600}
+.hdr-dd-item span{font-size:.72rem;color:var(--dim)}
