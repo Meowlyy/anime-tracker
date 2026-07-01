@@ -637,7 +637,7 @@ async function refreshAiringOne(anime) {
   if (!anime.malId) return;
   const cached = airingCache[anime.malId];
   if (cached && (Date.now()-cached.fetchedAt)<AIRING_TTL) return;
-  await new Promise(r=>setTimeout(r,350));
+  await new Promise(r=>setTimeout(r,700));
   const info = await fetchAiring(anime.malId);
   if (info) {
     airingCache[anime.malId] = info;
@@ -2108,6 +2108,118 @@ async function runExtImport() {
   msg(`${done} Anime importiert!`);
 }
 
+// ══════════════════ DUPLICATE DETECTION ══════════════════
+// Finds entries sharing the same MAL id (can happen via import + manual add,
+// or two imports from different sources for the same anime).
+function findDuplicateGroups() {
+  const byMalId = {};
+  list.forEach(a => { if (a.malId) (byMalId[a.malId] = byMalId[a.malId]||[]).push(a); });
+  return Object.values(byMalId).filter(g => g.length > 1);
+}
+
+const STATUS_PRIORITY = ["Completed","Currently Watching","On Hold","Plan to Watch","Dropped"];
+
+// Merges a duplicate group into a single entry using sensible defaults:
+// most-advanced status, highest progress/rating, earliest добавление/completion dates,
+// union of categories, and whichever copy has the most complete metadata.
+function mergeDuplicateGroup(group) {
+  const base = { ...group[0] };
+  for (const other of group.slice(1)) {
+    // Status: keep whichever is "further along"
+    const bi = STATUS_PRIORITY.indexOf(base.status), oi = STATUS_PRIORITY.indexOf(other.status);
+    if (oi !== -1 && (bi === -1 || oi < bi)) base.status = other.status;
+    base.episodesWatched = Math.max(base.episodesWatched||0, other.episodesWatched||0);
+    base.rating = Math.max(base.rating||0, other.rating||0);
+    base.favorite = base.favorite || other.favorite;
+    base.customCategories = [...new Set([...(base.customCategories||[]), ...(other.customCategories||[])])];
+    if (!base.notes && other.notes) base.notes = other.notes;
+    else if (base.notes && other.notes && base.notes !== other.notes) base.notes = base.notes + "\n\n" + other.notes;
+    // Metadata — fill in whichever copy has it
+    if (!base.altTitle && other.altTitle) base.altTitle = other.altTitle;
+    if (!base.imageUrl && other.imageUrl) base.imageUrl = other.imageUrl;
+    if (!base.totalEpisodes && other.totalEpisodes) base.totalEpisodes = other.totalEpisodes;
+    if (!base.malScore && other.malScore) base.malScore = other.malScore;
+    if (!base.genres?.length && other.genres?.length) base.genres = other.genres;
+    if (!base.studios?.length && other.studios?.length) base.studios = other.studios;
+    if (!base.year && other.year) base.year = other.year;
+    if (!base.type && other.type) base.type = other.type;
+    if (!base.relationsAt && other.relationsAt) { base.relationsAt = other.relationsAt; base.relatedMalIds = other.relatedMalIds; }
+    if (!base.repairedAt && other.repairedAt) base.repairedAt = other.repairedAt;
+    // Dates: keep the earliest "added", earliest non-null "completed"
+    base.addedAt = Math.min(base.addedAt||Infinity, other.addedAt||Infinity);
+    if (other.completedAt && (!base.completedAt || other.completedAt < base.completedAt)) base.completedAt = other.completedAt;
+    if (other.lastProgressAt && (!base.lastProgressAt || other.lastProgressAt > base.lastProgressAt)) base.lastProgressAt = other.lastProgressAt;
+  }
+  return base;
+}
+
+function openDupModal() {
+  const groups = findDuplicateGroups();
+  const body = $("dupBody"), mergeAllBtn = $("dupMergeAll");
+  if (!body) return;
+
+  if (!groups.length) {
+    body.innerHTML = `<div class="sp-reco-empty"><i class="fas fa-check-circle" style="color:#34d399;margin-right:6px"></i>Keine Duplikate gefunden — deine Liste ist sauber! 🌸</div>`;
+    if (mergeAllBtn) mergeAllBtn.disabled = true;
+  } else {
+    body.innerHTML = `
+      <div class="ext-info" style="margin-bottom:16px"><i class="fas fa-info-circle" style="color:var(--accent2);margin-right:6px;"></i>
+        ${groups.length} doppelte ${groups.length===1?"Eintrag":"Einträge"} gefunden. Beim Zusammenführen werden Fortschritt, Bewertung, Favorit-Status und Kategorien aus allen Kopien kombiniert (das Beste aus jeder Version bleibt erhalten).
+      </div>
+      <div class="dup-groups">
+        ${groups.map((g,i) => `
+          <div class="dup-group" data-idx="${i}">
+            <div class="dup-group-head">
+              <span><i class="fas fa-clone"></i> ${esc(g[0].title)} <span class="sg-count">${g.length}</span></span>
+              <button class="btn-ghost dup-merge-one" data-idx="${i}" style="font-size:.75rem;padding:4px 12px"><i class="fas fa-code-merge"></i> Zusammenführen</button>
+            </div>
+            <div class="dup-items">
+              ${g.map(a => `
+                <div class="dup-item">
+                  <img src="${esc(a.imageUrl||NO_COVER_SVG)}" alt="" onerror="noCover(this)">
+                  <div class="dup-item-info">
+                    <span class="card-status ${TO_CLASS[a.status]||"planning"}" style="position:static;display:inline-block;margin-bottom:4px">${TO_LABEL[a.status]||a.status}</span>
+                    <div style="font-size:.72rem;color:var(--dim)">${a.episodesWatched||0}/${a.totalEpisodes||"?"} Ep. · ${a.rating?("⭐ "+a.rating.toFixed(1)):"unbewertet"}</div>
+                  </div>
+                </div>`).join("")}
+            </div>
+          </div>`).join("")}
+      </div>`;
+    if (mergeAllBtn) mergeAllBtn.disabled = false;
+  }
+  $("dupModal")?.classList.remove("hidden");
+}
+
+function mergeOneDuplicateGroup(idx) {
+  const groups = findDuplicateGroups();
+  const group = groups[idx];
+  if (!group) return;
+  const merged = mergeDuplicateGroup(group);
+  const idsToRemove = new Set(group.map(a=>a.id));
+  list = list.filter(a => !idsToRemove.has(a.id));
+  list.unshift(merged);
+  save(); updateStats(); renderList(); renderTabs(); invalidateFranchMap();
+  msg(`"${merged.title}" zusammengeführt.`);
+  openDupModal(); // refresh
+}
+
+function mergeAllDuplicates() {
+  let groups = findDuplicateGroups();
+  let count = 0;
+  while (groups.length) {
+    const group = groups[0];
+    const merged = mergeDuplicateGroup(group);
+    const idsToRemove = new Set(group.map(a=>a.id));
+    list = list.filter(a => !idsToRemove.has(a.id));
+    list.unshift(merged);
+    count++;
+    groups = findDuplicateGroups();
+  }
+  save(); updateStats(); renderList(); renderTabs(); invalidateFranchMap();
+  msg(`${count} Duplikat-Gruppe${count!==1?"n":""} zusammengeführt.`);
+  openDupModal();
+}
+
 // ══════════════════ REPAIR EXISTING ENTRIES ══════════════════
 // Backfills missing data (cover, episode count, score, alt title, genres) for entries
 // that were added/imported before a fix, or where the source API returned incomplete
@@ -2913,7 +3025,45 @@ function initEvents() {
   $("franchiseConfirm")?.addEventListener("click", confirmFranchiseAdd);
 
   // Repair existing entries
+  // Header dropdown menus (Export / Import / Werkzeuge)
+  const headerDropdowns = [
+    { btn: "exportDdBtn", menu: "exportDdMenu" },
+    { btn: "importDdBtn", menu: "importDdMenu" },
+    { btn: "toolsDdBtn",  menu: "toolsDdMenu"  },
+  ];
+  function closeAllHeaderDropdowns() {
+    headerDropdowns.forEach(d => $(d.menu)?.classList.add("hidden"));
+  }
+  headerDropdowns.forEach(d => {
+    $(d.btn)?.addEventListener("click", e => {
+      e.stopPropagation();
+      const isOpen = !$(d.menu)?.classList.contains("hidden");
+      closeAllHeaderDropdowns();
+      if (!isOpen) $(d.menu)?.classList.remove("hidden");
+    });
+  });
+  // Close dropdown after picking an item inside it (but not when clicking a <label>'s
+  // hidden file input, which needs the click to reach the OS file picker first)
+  document.querySelectorAll(".hdr-dd-menu").forEach(menu => {
+    menu.addEventListener("click", e => {
+      if (e.target.closest("input[type=file]")) return;
+      closeAllHeaderDropdowns();
+    });
+  });
+  document.addEventListener("click", () => closeAllHeaderDropdowns());
+
   $("repairBtn")?.addEventListener("click", openRepairModal);
+
+  // Duplicate detection
+  $("dupBtn")?.addEventListener("click", openDupModal);
+  $("dupClose")?.addEventListener("click", ()=>$("dupModal")?.classList.add("hidden"));
+  $("dupCancel")?.addEventListener("click", ()=>$("dupModal")?.classList.add("hidden"));
+  $("dupModal")?.addEventListener("click", e=>{ if(e.target===$("dupModal")?.querySelector(".modal-bg")) $("dupModal")?.classList.add("hidden"); });
+  $("dupMergeAll")?.addEventListener("click", mergeAllDuplicates);
+  $("dupBody")?.addEventListener("click", e=>{
+    const btn = e.target.closest(".dup-merge-one");
+    if (btn) mergeOneDuplicateGroup(parseInt(btn.dataset.idx));
+  });
   $("repairClose")?.addEventListener("click", () => { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); });
   $("repairCancel")?.addEventListener("click", () => { ui.repairCancelled = true; $("repairModal")?.classList.add("hidden"); });
   $("repairModal")?.addEventListener("click", e => {

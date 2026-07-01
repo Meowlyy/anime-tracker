@@ -593,11 +593,12 @@ async function buildRecapCanvas(timeframe, periodKey) {
   let pillY = 340;
   if (d.topGenre) {
     ctx.font = "700 15px 'Poppins', sans-serif";
-    const tw = ctx.measureText(d.topGenre).width + 44;
+    const pillText = `✦ Lieblingsgenre: ${d.topGenre}`;
+    const tw = ctx.measureText(pillText).width + 44;
     ctx.fillStyle = "rgba(255,79,216,.16)"; ctx.strokeStyle = "rgba(255,79,216,.5)"; ctx.lineWidth = 1.3;
     roundRectPathStats(ctx, W/2-tw/2, pillY, tw, 36, 18); ctx.fill(); ctx.stroke();
     ctx.fillStyle = "#ff9fe8";
-    ctx.fillText(`✦ Lieblingsgenre: ${d.topGenre}`, W/2, pillY+24);
+    ctx.fillText(pillText, W/2, pillY+24);
   }
 
   // ── Top 3 anime row ──
@@ -614,14 +615,17 @@ async function buildRecapCanvas(timeframe, periodKey) {
     ctx.fillText("Noch keine Bewertung in diesem Zeitraum", W/2, cardY + 100);
   } else {
     const n = d.topThree.length;
-    const cw = n === 1 ? 220 : 195, ch = cw * 1.42, gap = 20;
+    const cw = n === 1 ? 220 : 195, baseCh = cw * 1.42, gap = 20;
     const totalW = cw*n + gap*(n-1);
     let cx = W/2 - totalW/2;
+    const cardBottom = cardY + baseCh; // all cards share the same bottom edge (podium style)
 
     d.topThree.forEach((a, i) => {
-      // Rank 1 slightly larger/raised when there are 3
-      const raise = (n === 3 && i === 0) ? 14 : 0;
-      const thisCy = cardY - raise;
+      // Rank 1 grows upward (taller card) instead of the whole box shifting, so every
+      // card's bottom edge — and therefore the rating pill + title row — lines up.
+      const extra = (n === 3 && i === 0) ? 22 : 0;
+      const ch = baseCh + extra;
+      const thisCy = cardBottom - ch;
 
       ctx.save();
       ctx.shadowColor = "rgba(0,0,0,.55)"; ctx.shadowBlur = 28; ctx.shadowOffsetY = 12;
@@ -638,26 +642,45 @@ async function buildRecapCanvas(timeframe, periodKey) {
         const dw2 = img.width*s2, dh2 = img.height*s2;
         ctx.drawImage(img, cx+(cw-dw2)/2, thisCy+(ch-dh2)/2, dw2, dh2);
         ctx.restore();
+      } else {
+        // Fallback placeholder so a missing cover doesn't look like a rendering glitch
+        ctx.save();
+        roundRectPathStats(ctx, cx, thisCy, cw, ch, 14);
+        ctx.clip();
+        ctx.fillStyle = "#1a2035";
+        ctx.fillRect(cx, thisCy, cw, ch);
+        ctx.strokeStyle = "rgba(255,79,216,.35)"; ctx.lineWidth = 2;
+        roundRectPathStats(ctx, cx+cw/2-24, thisCy+ch/2-30, 48, 34, 6); ctx.stroke();
+        ctx.font = "600 11px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.4)";
+        ctx.fillText("Kein Cover", cx+cw/2, thisCy+ch/2+22);
+        ctx.restore();
       }
-      // Rank badge
+
+      // Subtle border so the card reads clearly even against a busy blurred background
+      ctx.strokeStyle = "rgba(255,255,255,.1)"; ctx.lineWidth = 1;
+      roundRectPathStats(ctx, cx, thisCy, cw, ch, 14); ctx.stroke();
+
+      // Rank badge, top-left
       ctx.font = "24px sans-serif";
       ctx.textAlign = "left";
       ctx.fillText(RANK_ICONS[i] || "", cx+8, thisCy+30);
       ctx.textAlign = "center";
 
-      // Rating pill under cover
+      // Rating pill — fully inside the card, small gap above the bottom edge
       ctx.font = "700 13px 'Poppins', sans-serif";
       const rs = a.rating.toFixed(1);
-      const rw = ctx.measureText(`⭐ ${rs}`).width + 20;
-      ctx.fillStyle = "rgba(5,8,22,.85)"; ctx.strokeStyle = RANK_COLORS[i]+"90"; ctx.lineWidth = 1.2;
-      roundRectPathStats(ctx, cx+cw/2-rw/2, thisCy+ch-24, rw, 30, 15); ctx.fill(); ctx.stroke();
+      const rw = ctx.measureText(`⭐ ${rs}`).width + 22;
+      const pillH = 28, pillBottomGap = 10;
+      const pillTop = cardBottom - pillBottomGap - pillH;
+      ctx.fillStyle = "rgba(5,8,22,.88)"; ctx.strokeStyle = RANK_COLORS[i]+"90"; ctx.lineWidth = 1.2;
+      roundRectPathStats(ctx, cx+cw/2-rw/2, pillTop, rw, pillH, pillH/2); ctx.fill(); ctx.stroke();
       ctx.fillStyle = "#fbbf24";
-      ctx.fillText(`⭐ ${rs}`, cx+cw/2, thisCy+ch-4);
+      ctx.fillText(`⭐ ${rs}`, cx+cw/2, pillTop+pillH/2+4.5);
 
-      // Title below card
+      // Title below card — aligned the same for all three since cardBottom is shared
       ctx.font = "700 13px 'Poppins', sans-serif"; ctx.fillStyle = "#fff";
       const title = a.title.length > 22 ? a.title.slice(0,22)+"…" : a.title;
-      ctx.fillText(title, cx+cw/2, thisCy+ch+24);
+      ctx.fillText(title, cx+cw/2, cardBottom+24);
 
       cx += cw + gap;
     });
