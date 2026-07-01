@@ -85,6 +85,22 @@
       </div>
     </div>
 
+    <div class="sp-card sp-recap-card" id="spRecapWrap">
+      <div class="sp-reco-head">
+        <h3><i class="fas fa-gift"></i> Dein Recap</h3>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <div class="sp-timeframe-toggle" id="recapTfToggle">
+            <button class="sp-tf-btn active" data-tf="year">Jahr</button>
+            <button class="sp-tf-btn" data-tf="month">Monat</button>
+            <button class="sp-tf-btn" data-tf="week">Woche</button>
+          </div>
+          <select id="recapPeriodSel" class="filter-select" style="font-size:.8rem;padding:6px 10px"></select>
+          <button class="btn-accent" id="recapBtn"><i class="fas fa-wand-magic-sparkles"></i> Recap erstellen</button>
+        </div>
+      </div>
+      <div class="sp-reco-hint" id="recapHint">Basiert auf deinen eingetragenen Abschluss-Daten.</div>
+    </div>
+
     <div class="sp-card sp-reco-card" id="spRecoWrap">
       <div class="sp-reco-head">
         <h3><i class="fas fa-wand-magic-sparkles"></i> Empfehlungen für dich</h3>
@@ -114,6 +130,24 @@
 </div>
 
 <!-- Recommendation detail modal -->
+<!-- Recap preview -->
+<div class="modal hidden" id="recapPreviewModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box" style="max-width:480px">
+    <div class="modal-head">
+      <h2><i class="fas fa-gift"></i> Dein Recap</h2>
+      <button class="icon-btn" id="recapPreviewClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:14px;align-items:center">
+      <img id="recapPreviewImg" style="width:100%;border-radius:12px;border:1px solid var(--border)" alt="">
+      <div style="display:flex;gap:10px;width:100%">
+        <button class="btn-ghost" id="recapCopyBtn" style="flex:1"><i class="fas fa-copy"></i> Kopieren</button>
+        <button class="btn-accent" id="recapDownloadBtn" style="flex:1"><i class="fas fa-download"></i> Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal hidden" id="recoDetailModal">
   <div class="modal-bg"></div>
   <div class="modal-box xlarge">
@@ -126,6 +160,18 @@
       <button class="btn-ghost" id="recoDetailCancel">Schließen</button>
       <button class="btn-accent" id="recoDetailAdd"><i class="fas fa-plus"></i> Zur Liste hinzufügen</button>
     </div>
+  </div>
+</div>
+
+<!-- Genre / Studio drilldown -->
+<div class="modal hidden" id="drillModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box xlarge">
+    <div class="modal-head">
+      <h2><i class="fas fa-magnifying-glass"></i> <span id="drillTitle">Anime</span></h2>
+      <button class="icon-btn" id="drillClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="drillBody"></div>
   </div>
 </div>
 

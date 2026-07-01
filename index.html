@@ -25,6 +25,7 @@
   </style>
 </head>
 <body>
+<script>window.noCover = function(el){ el.onerror=null; el.style.visibility="hidden"; };</script>
 <div class="app">
 
   <!-- ═══ HEADER ═══ -->
@@ -55,20 +56,37 @@
           <div class="notif-body" id="notifBody"></div>
         </div>
       </div>
-      <button class="btn-ghost" id="exportBtn"><i class="fas fa-download"></i> Exportieren</button>
-      <button class="btn-ghost" id="exportZipBtn" title="JSON + alle Cover-Bilder als ZIP exportieren"><i class="fas fa-file-zipper"></i> Mit Bildern (ZIP)</button>
       <a href="stats.html" class="btn-ghost" style="text-decoration:none"><i class="fas fa-chart-bar"></i> Statistiken</a>
-      <label class="btn-ghost">
-        <i class="fas fa-upload"></i> Importieren
-        <input type="file" id="importInput" accept="application/json" hidden>
-      </label>
-      <label class="btn-ghost btn-accent-border" title="Import von HiAnime/AnimeKai/MAL (XML, JSON, TXT)">
-        <i class="fas fa-file-import"></i> Extern
-        <input type="file" id="extImportInput" accept=".xml,.json,.txt" hidden>
-      </label>
-      <button class="btn-ghost" id="repairBtn" title="Fehlende Daten (Cover, Episoden, Alt-Titel) für bestehende Einträge nachladen">
-        <i class="fas fa-wrench"></i> Daten reparieren
-      </button>
+
+      <div class="hdr-dd-wrap" id="exportDdWrap">
+        <button class="btn-ghost" id="exportDdBtn"><i class="fas fa-download"></i> Exportieren <i class="fas fa-caret-down" style="font-size:.7em;margin-left:2px"></i></button>
+        <div class="hdr-dd-menu hidden" id="exportDdMenu">
+          <button class="hdr-dd-item" id="exportBtn"><i class="fas fa-file-code"></i><div><strong>Als JSON</strong><span>Nur die Daten, ohne Bilder</span></div></button>
+          <button class="hdr-dd-item" id="exportZipBtn"><i class="fas fa-file-zipper"></i><div><strong>Mit Bildern (ZIP)</strong><span>Daten + alle Cover als Backup</span></div></button>
+        </div>
+      </div>
+
+      <div class="hdr-dd-wrap" id="importDdWrap">
+        <button class="btn-ghost" id="importDdBtn"><i class="fas fa-upload"></i> Importieren <i class="fas fa-caret-down" style="font-size:.7em;margin-left:2px"></i></button>
+        <div class="hdr-dd-menu hidden" id="importDdMenu">
+          <label class="hdr-dd-item">
+            <i class="fas fa-file-code"></i><div><strong>JSON-Backup</strong><span>Eigene, zuvor exportierte Datei</span></div>
+            <input type="file" id="importInput" accept="application/json" hidden>
+          </label>
+          <label class="hdr-dd-item">
+            <i class="fas fa-file-import"></i><div><strong>Extern (MAL/HiAnime/AnimeKai)</strong><span>XML, JSON oder TXT</span></div>
+            <input type="file" id="extImportInput" accept=".xml,.json,.txt" hidden>
+          </label>
+        </div>
+      </div>
+
+      <div class="hdr-dd-wrap" id="toolsDdWrap">
+        <button class="btn-ghost" id="toolsDdBtn"><i class="fas fa-toolbox"></i> Werkzeuge <i class="fas fa-caret-down" style="font-size:.7em;margin-left:2px"></i></button>
+        <div class="hdr-dd-menu hidden" id="toolsDdMenu">
+          <button class="hdr-dd-item" id="repairBtn"><i class="fas fa-wrench"></i><div><strong>Daten reparieren</strong><span>Fehlendes Cover, Episoden, Alt-Titel nachladen</span></div></button>
+          <button class="hdr-dd-item" id="dupBtn"><i class="fas fa-clone"></i><div><strong>Duplikate prüfen</strong><span>Doppelte Einträge finden & zusammenführen</span></div></button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -400,6 +418,22 @@
     <div class="modal-foot">
       <button class="btn-ghost" id="repairCancel">Abbrechen</button>
       <button class="btn-accent" id="repairStart" disabled><i class="fas fa-rocket"></i> Reparatur starten</button>
+    </div>
+  </div>
+</div>
+
+<!-- Duplicate detection -->
+<div class="modal hidden" id="dupModal">
+  <div class="modal-bg"></div>
+  <div class="modal-box xlarge">
+    <div class="modal-head">
+      <h2><i class="fas fa-clone"></i> Duplikate</h2>
+      <button class="icon-btn" id="dupClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="dupBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="dupCancel">Schließen</button>
+      <button class="btn-accent" id="dupMergeAll" disabled><i class="fas fa-code-merge"></i> Alle zusammenführen</button>
     </div>
   </div>
 </div>

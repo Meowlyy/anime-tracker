@@ -10,6 +10,26 @@ const $ = id => document.getElementById(id);
 const esc = s => s ? String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;") : "";
 const NO_COVER_SVG = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="#111827"/><g transform="translate(150,195)" fill="#ff4fd8" opacity=".55"><path d="M-26-20h52a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6h-52a6 6 0 0 1-6-6v-34a6 6 0 0 1 6-6Z" fill="none" stroke="#ff4fd8" stroke-width="3"/><circle cx="-9" cy="-3" r="5"/><path d="M-20 16l13-13 9 8 11-13 17 18Z"/></g><text x="150" y="248" font-family="sans-serif" font-size="15" fill="#8891a8" text-anchor="middle">Kein Cover</text></svg>`);
 function noCover(el){ el.onerror=null; el.src=NO_COVER_SVG; }
+
+// ISO week key like "2026-W05" — used by both the timeframe chart and the recap
+function isoWeekKey(d) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = (date.getUTCDay() + 6) % 7;
+  date.setUTCDate(date.getUTCDate() - dayNum + 3);
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const week = 1 + Math.round(((date - firstThursday) / 86400000 - 3) / 7);
+  return `${date.getUTCFullYear()}-W${String(week).padStart(2,"0")}`;
+}
+// Given an ISO week key, returns the Monday date of that week
+function dateFromIsoWeekKey(key) {
+  const [y, w] = key.split("-W").map(Number);
+  const simple = new Date(Date.UTC(y, 0, 1 + (w-1)*7));
+  const dow = simple.getUTCDay();
+  const monday = new Date(simple);
+  if (dow <= 4) monday.setUTCDate(simple.getUTCDate() - dow + 1);
+  else monday.setUTCDate(simple.getUTCDate() + 8 - dow);
+  return monday;
+}
 window.noCover = noCover;
 
 // ── Load data from localStorage ──
@@ -93,15 +113,6 @@ function buildStatsData(timeframe = "year") {
   const bucketCount = {};
   let noDateCount = 0;
 
-  function isoWeekKey(d) {
-    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    const dayNum = (date.getUTCDay() + 6) % 7;
-    date.setUTCDate(date.getUTCDate() - dayNum + 3);
-    const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
-    const week = 1 + Math.round(((date - firstThursday) / 86400000 - 3) / 7);
-    return `${date.getUTCFullYear()}-W${String(week).padStart(2,"0")}`;
-  }
-
   completed.forEach(a => {
     if (!a.completedAt) { if (a.year) noDateCount++; return; }
     const d = new Date(a.completedAt);
@@ -147,6 +158,8 @@ function renderStats(timeframe) {
     type:"bar", data:{ labels:d.topGenres.map(g=>g[0]),
       datasets:[{ data:d.topGenres.map(g=>g[1]), backgroundColor:CHART_COLORS, borderRadius:5, borderSkipped:false }]},
     options:{ indexAxis:"y", responsive:true, maintainAspectRatio:false,
+      onHover:(e,els)=>{ e.native.target.style.cursor = els.length ? "pointer" : "default"; },
+      onClick:(e,els)=>{ if(els.length) openGenreDrilldown(d.topGenres[els[0].index][0]); },
       plugins:{legend:{display:false}},
       scales:{ x:{grid:{color:gridColor},ticks:{stepSize:1}}, y:{grid:{display:false}} }}
   });
@@ -219,13 +232,16 @@ function renderStats(timeframe) {
     if (d.topStudios.length) {
       const max = d.topStudios[0][1];
       stEl.innerHTML = d.topStudios.map(([name,count]) => `
-        <div class="sp-bar-item">
+        <div class="sp-bar-item" data-studio="${esc(name)}" style="cursor:pointer">
           <div class="sp-bar-row">
             <span class="sp-bar-name">${esc(name)}</span>
             <span class="sp-bar-count">${count}</span>
           </div>
           <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${Math.round(count/max*100)}%"></div></div>
         </div>`).join("");
+      stEl.querySelectorAll(".sp-bar-item").forEach(el => {
+        el.addEventListener("click", () => openStudioDrilldown(el.dataset.studio));
+      });
     } else {
       stEl.innerHTML = `<div class="sp-reco-empty">Noch keine Studio-Daten — einmal "Daten reparieren" in der Hauptansicht ausführen.</div>`;
     }
@@ -409,6 +425,309 @@ async function loadRecommendations() {
 }
 
 
+// ── Year recap ("Wrapped" style) ──
+function roundRectPathStats(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y, x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r);
+  ctx.arcTo(x, y, x+w, y, r);
+  ctx.closePath();
+}
+function loadImgStats(src) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = src;
+    setTimeout(rej, 4000);
+  });
+}
+
+let _recapTimeframe = "year";
+
+function populateRecapPeriods() {
+  const sel = $("recapPeriodSel");
+  if (!sel) return;
+  const now = new Date();
+
+  if (_recapTimeframe === "year") {
+    const years = new Set([now.getFullYear()]);
+    list.forEach(a => { if (a.completedAt) years.add(new Date(a.completedAt).getFullYear()); });
+    const sorted = [...years].sort((a,b)=>b-a);
+    sel.innerHTML = sorted.map(y => `<option value="${y}">${y}</option>`).join("");
+  } else if (_recapTimeframe === "month") {
+    const months = new Set([`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}`]);
+    list.forEach(a => { if (a.completedAt) { const d=new Date(a.completedAt); months.add(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`); } });
+    const MONTH_NAMES = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    const sorted = [...months].sort().reverse();
+    sel.innerHTML = sorted.map(key => {
+      const [y,m] = key.split("-");
+      return `<option value="${key}">${MONTH_NAMES[parseInt(m)-1]} ${y}</option>`;
+    }).join("");
+  } else { // week
+    const weeks = new Set([isoWeekKey(now)]);
+    list.forEach(a => { if (a.completedAt) weeks.add(isoWeekKey(new Date(a.completedAt))); });
+    const sorted = [...weeks].sort().reverse();
+    sel.innerHTML = sorted.map(key => {
+      const monday = dateFromIsoWeekKey(key);
+      const label = monday.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});
+      return `<option value="${key}">${key.split("-W")[1]?.replace(/^0/,"")===""?key:"KW "+parseInt(key.split("-W")[1])} · ab ${label}</option>`;
+    }).join("");
+  }
+}
+
+function matchesPeriod(completedAt, timeframe, periodKey) {
+  const d = new Date(completedAt);
+  if (timeframe === "year") return String(d.getFullYear()) === String(periodKey);
+  if (timeframe === "month") return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}` === periodKey;
+  return isoWeekKey(d) === periodKey; // week
+}
+
+function formatPeriodLabel(timeframe, periodKey) {
+  if (timeframe === "year") return periodKey;
+  if (timeframe === "month") {
+    const MONTH_NAMES = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    const [y,m] = periodKey.split("-");
+    return `${MONTH_NAMES[parseInt(m)-1]} ${y}`;
+  }
+  const monday = dateFromIsoWeekKey(periodKey);
+  const sunday = new Date(monday); sunday.setUTCDate(monday.getUTCDate()+6);
+  const fmt = d => d.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});
+  return `${fmt(monday)} – ${fmt(sunday)}`;
+}
+
+function getRecapData(timeframe, periodKey) {
+  const inPeriod = list.filter(a => a.completedAt && matchesPeriod(a.completedAt, timeframe, periodKey));
+  const totalEp = inPeriod.reduce((s,a)=>s+(a.totalEpisodes||a.episodesWatched||0),0);
+  const hours = Math.round(totalEp * 24 / 60);
+
+  const genreCount = {};
+  inPeriod.forEach(a => (a.genres||[]).forEach(g => genreCount[g]=(genreCount[g]||0)+1));
+  const topGenre = Object.entries(genreCount).sort((a,b)=>b[1]-a[1])[0]?.[0] || null;
+
+  const rated = inPeriod.filter(a=>a.rating).sort((a,b)=>b.rating-a.rating);
+  const topThree = rated.slice(0,3);
+
+  const addedInPeriod = list.filter(a => a.addedAt && matchesPeriod(a.addedAt, timeframe, periodKey)).length;
+
+  return { timeframe, periodKey, label: formatPeriodLabel(timeframe, periodKey),
+    count: inPeriod.length, hours, topGenre, topThree, addedInPeriod };
+}
+
+async function buildRecapCanvas(timeframe, periodKey) {
+  try { await document.fonts.load("700 26px Poppins"); await document.fonts.ready; } catch {}
+  const d = getRecapData(timeframe, periodKey);
+
+  const SCALE = 1.35;
+  const W = 720, H = 820;
+  const canvas = document.createElement("canvas");
+  canvas.width = W*SCALE; canvas.height = H*SCALE;
+  const ctx = canvas.getContext("2d");
+  ctx.scale(SCALE, SCALE);
+
+  // Preload top-3 cover images
+  const topImgs = await Promise.all(d.topThree.map(a => a.imageUrl ? loadImgStats(a.imageUrl).catch(()=>null) : Promise.resolve(null)));
+
+  // ── Background ──
+  ctx.fillStyle = "#0b1020";
+  ctx.fillRect(0,0,W,H);
+  if (topImgs[0]) {
+    ctx.save();
+    ctx.filter = "blur(34px) brightness(0.38) saturate(1.35)";
+    const sc = Math.max(W/topImgs[0].width, H/topImgs[0].height) * 1.2;
+    const dw = topImgs[0].width*sc, dh = topImgs[0].height*sc;
+    ctx.drawImage(topImgs[0], (W-dw)/2, (H-dh)/2, dw, dh);
+    ctx.restore();
+  } else {
+    const g = ctx.createRadialGradient(W/2,H*0.3,50,W/2,H*0.3,W*0.9);
+    g.addColorStop(0,"rgba(255,79,216,.18)"); g.addColorStop(1,"rgba(11,16,32,1)");
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  }
+  const overlay = ctx.createLinearGradient(0,0,0,H);
+  overlay.addColorStop(0,"rgba(5,8,22,.65)"); overlay.addColorStop(0.35,"rgba(5,8,22,.45)");
+  overlay.addColorStop(0.65,"rgba(5,8,22,.8)"); overlay.addColorStop(1,"rgba(5,8,22,.98)");
+  ctx.fillStyle = overlay; ctx.fillRect(0,0,W,H);
+
+  // Decorative top accent line
+  const accentGrad = ctx.createLinearGradient(0,0,W,0);
+  accentGrad.addColorStop(0,"#ff4fd8"); accentGrad.addColorStop(1,"#a855f7");
+  ctx.fillStyle = accentGrad;
+  ctx.fillRect(0,0,W,5);
+
+  // ── Brand mark ──
+  ctx.textAlign = "left"; ctx.textBaseline = "middle";
+  ctx.font = "700 26px 'Poppins', sans-serif"; ctx.fillStyle = "#ff7fe0";
+  ctx.fillText("˚ʚ Meowly ₊✧", 36, 54);
+  ctx.font = "600 12px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.5)";
+  ctx.fillText("A N I M E   T R A C K E R", 36, 77);
+  ctx.textBaseline = "alphabetic";
+
+  const TF_LABEL = { year:"JAHRES-RECAP", month:"MONATS-RECAP", week:"WOCHEN-RECAP" };
+
+  // ── Period heading ──
+  ctx.textAlign = "center";
+  ctx.font = "700 15px 'Poppins', sans-serif"; ctx.fillStyle = "#c084fc";
+  ctx.fillText(TF_LABEL[timeframe] || "RECAP", W/2, 132);
+  ctx.font = "800 42px 'Poppins', sans-serif"; ctx.fillStyle = "#fff";
+  ctx.fillText(d.label, W/2, 178);
+
+  // ── Stat row: count + hours side by side ──
+  const statY = 260;
+  ctx.font = "800 72px 'Poppins', sans-serif"; ctx.fillStyle = "#ff4fd8";
+  ctx.fillText(String(d.count), W/2 - 130, statY);
+  ctx.font = "800 72px 'Poppins', sans-serif"; ctx.fillStyle = "#a855f7";
+  ctx.fillText(String(d.hours), W/2 + 130, statY);
+
+  ctx.font = "600 15px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.7)";
+  ctx.fillText("Anime abgeschlossen", W/2 - 130, statY + 32);
+  ctx.fillText("Stunden geschätzt", W/2 + 130, statY + 32);
+
+  // Divider between the two stats
+  ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2, statY-55); ctx.lineTo(W/2, statY+15); ctx.stroke();
+
+  // ── Top genre pill ──
+  let pillY = 340;
+  if (d.topGenre) {
+    ctx.font = "700 15px 'Poppins', sans-serif";
+    const tw = ctx.measureText(d.topGenre).width + 44;
+    ctx.fillStyle = "rgba(255,79,216,.16)"; ctx.strokeStyle = "rgba(255,79,216,.5)"; ctx.lineWidth = 1.3;
+    roundRectPathStats(ctx, W/2-tw/2, pillY, tw, 36, 18); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ff9fe8";
+    ctx.fillText(`✦ Lieblingsgenre: ${d.topGenre}`, W/2, pillY+24);
+  }
+
+  // ── Top 3 anime row ──
+  const sectionY = pillY + 70;
+  ctx.font = "700 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.6)";
+  ctx.fillText(d.topThree.length > 1 ? "DEINE TOP-ANIME" : "DEIN TOP-ANIME", W/2, sectionY);
+
+  const cardY = sectionY + 30;
+  const RANK_COLORS = ["#fbbf24","#d1d5db","#f0a875"]; // gold, silver, bronze
+  const RANK_ICONS = ["🥇","🥈","🥉"];
+
+  if (d.topThree.length === 0) {
+    ctx.font = "500 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText("Noch keine Bewertung in diesem Zeitraum", W/2, cardY + 100);
+  } else {
+    const n = d.topThree.length;
+    const cw = n === 1 ? 220 : 195, ch = cw * 1.42, gap = 20;
+    const totalW = cw*n + gap*(n-1);
+    let cx = W/2 - totalW/2;
+
+    d.topThree.forEach((a, i) => {
+      // Rank 1 slightly larger/raised when there are 3
+      const raise = (n === 3 && i === 0) ? 14 : 0;
+      const thisCy = cardY - raise;
+
+      ctx.save();
+      ctx.shadowColor = "rgba(0,0,0,.55)"; ctx.shadowBlur = 28; ctx.shadowOffsetY = 12;
+      roundRectPathStats(ctx, cx, thisCy, cw, ch, 14);
+      ctx.fillStyle = "#111827"; ctx.fill();
+      ctx.restore();
+
+      const img = topImgs[i];
+      if (img) {
+        ctx.save();
+        roundRectPathStats(ctx, cx, thisCy, cw, ch, 14);
+        ctx.clip();
+        const s2 = Math.max(cw/img.width, ch/img.height);
+        const dw2 = img.width*s2, dh2 = img.height*s2;
+        ctx.drawImage(img, cx+(cw-dw2)/2, thisCy+(ch-dh2)/2, dw2, dh2);
+        ctx.restore();
+      }
+      // Rank badge
+      ctx.font = "24px sans-serif";
+      ctx.textAlign = "left";
+      ctx.fillText(RANK_ICONS[i] || "", cx+8, thisCy+30);
+      ctx.textAlign = "center";
+
+      // Rating pill under cover
+      ctx.font = "700 13px 'Poppins', sans-serif";
+      const rs = a.rating.toFixed(1);
+      const rw = ctx.measureText(`⭐ ${rs}`).width + 20;
+      ctx.fillStyle = "rgba(5,8,22,.85)"; ctx.strokeStyle = RANK_COLORS[i]+"90"; ctx.lineWidth = 1.2;
+      roundRectPathStats(ctx, cx+cw/2-rw/2, thisCy+ch-24, rw, 30, 15); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#fbbf24";
+      ctx.fillText(`⭐ ${rs}`, cx+cw/2, thisCy+ch-4);
+
+      // Title below card
+      ctx.font = "700 13px 'Poppins', sans-serif"; ctx.fillStyle = "#fff";
+      const title = a.title.length > 22 ? a.title.slice(0,22)+"…" : a.title;
+      ctx.fillText(title, cx+cw/2, thisCy+ch+24);
+
+      cx += cw + gap;
+    });
+  }
+
+  // ── Footer: thin divider + subtle sign-off ──
+  ctx.strokeStyle = "rgba(255,255,255,.1)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(60, H-56); ctx.lineTo(W-60, H-56); ctx.stroke();
+  ctx.textAlign = "center";
+  ctx.font = "500 13px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.35)";
+  ctx.fillText("Erstellt mit ˚ʚ Meowly ₊✧ Anime Tracker", W/2, H-28);
+
+  ctx.textAlign = "left";
+  return canvas;
+}
+
+function openRecapPreview(canvas, year) {
+  const dataUrl = canvas.toDataURL("image/png");
+  $("recapPreviewImg").src = dataUrl;
+  const filename = `meowly_recap_${year}.png`;
+  $("recapDownloadBtn").onclick = () => {
+    const link = document.createElement("a");
+    link.download = filename; link.href = dataUrl; link.click();
+    msg("Recap gespeichert!");
+  };
+  $("recapCopyBtn").onclick = async () => {
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+      msg("In Zwischenablage kopiert!");
+    } catch { msg("Kopieren nicht unterstützt – nutze 'Speichern'.", true); }
+  };
+  $("recapPreviewModal")?.classList.remove("hidden");
+}
+
+// ── Genre / Studio drilldown ──
+function renderDrillGrid(title, icon, items) {
+  $("drillTitle").innerHTML = `<i class="${icon}"></i> ${esc(title)} <span class="sg-count">${items.length}</span>`;
+  const body = $("drillBody");
+  if (!items.length) { body.innerHTML = `<div class="sp-reco-empty">Keine Anime gefunden.</div>`; }
+  else {
+    const avgRating = items.filter(a=>a.rating).length
+      ? (items.filter(a=>a.rating).reduce((s,a)=>s+a.rating,0) / items.filter(a=>a.rating).length).toFixed(1)
+      : "—";
+    body.innerHTML = `
+      <div class="ext-info" style="margin-bottom:16px"><i class="fas fa-star" style="color:var(--accent2);margin-right:6px"></i>Ø Bewertung: <strong>${avgRating}</strong> über ${items.length} Anime</div>
+      <div class="bigsearch-grid">
+        ${items.sort((a,b)=>(b.rating||0)-(a.rating||0)).map(a => `
+          <div class="bsr-card" style="cursor:default">
+            <img src="${esc(a.imageUrl||NO_COVER_SVG)}" alt="" loading="lazy" onerror="noCover(this)">
+            <div class="bsr-info">
+              <div class="bsr-title">${esc(a.title)}</div>
+              <div class="bsr-meta">
+                <span>${a.type||"TV"}</span>
+                <span>${a.episodesWatched||0}/${a.totalEpisodes||"?"} Ep.</span>
+                <span>${a.rating?("⭐ "+a.rating.toFixed(1)):"unbewertet"}</span>
+              </div>
+            </div>
+          </div>`).join("")}
+      </div>`;
+  }
+  $("drillModal")?.classList.remove("hidden");
+}
+function openGenreDrilldown(genre) {
+  renderDrillGrid(genre, "fas fa-tag", list.filter(a => (a.genres||[]).includes(genre)));
+}
+function openStudioDrilldown(studio) {
+  renderDrillGrid(studio, "fas fa-building", list.filter(a => (a.studios||[]).some(s => (typeof s==="string"?s:s.name)===studio)));
+}
+
 // ── Recommendation detail view ──
 let _recoDetailMalId = null;
 function openRecoDetail(a) {
@@ -441,6 +760,31 @@ function openRecoDetail(a) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  populateRecapPeriods();
+  document.querySelectorAll("#recapTfToggle .sp-tf-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#recapTfToggle .sp-tf-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      _recapTimeframe = btn.dataset.tf;
+      populateRecapPeriods();
+    });
+  });
+  $("recapBtn")?.addEventListener("click", async () => {
+    const btn = $("recapBtn");
+    const periodKey = $("recapPeriodSel")?.value;
+    if (!periodKey) { msg("Kein Zeitraum verfügbar.", true); return; }
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Erstelle…';
+    try {
+      const canvas = await buildRecapCanvas(_recapTimeframe, periodKey);
+      openRecapPreview(canvas, periodKey);
+    } catch { msg("Fehler beim Erstellen des Recaps.", true); }
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Recap erstellen';
+  });
+  $("recapPreviewClose")?.addEventListener("click", ()=>$("recapPreviewModal")?.classList.add("hidden"));
+  $("recapPreviewModal")?.addEventListener("click", e => { if (e.target===$("recapPreviewModal")?.querySelector(".modal-bg")) $("recapPreviewModal")?.classList.add("hidden"); });
+  $("drillClose")?.addEventListener("click", ()=>$("drillModal")?.classList.add("hidden"));
+  $("drillModal")?.addEventListener("click", e => { if (e.target===$("drillModal")?.querySelector(".modal-bg")) $("drillModal")?.classList.add("hidden"); });
+
   $("recoDetailClose")?.addEventListener("click", ()=>$("recoDetailModal")?.classList.add("hidden"));
   $("recoDetailCancel")?.addEventListener("click", ()=>$("recoDetailModal")?.classList.add("hidden"));
   $("recoDetailModal")?.addEventListener("click", e => { if (e.target===$("recoDetailModal")?.querySelector(".modal-bg")) $("recoDetailModal")?.classList.add("hidden"); });
