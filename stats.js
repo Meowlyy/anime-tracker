@@ -520,16 +520,51 @@ function getRecapData(timeframe, periodKey) {
 async function buildRecapCanvas(timeframe, periodKey) {
   try { await document.fonts.load("700 26px Poppins"); await document.fonts.ready; } catch {}
   const d = getRecapData(timeframe, periodKey);
+  const showCount = Math.min(3, d.topThree.length); // adapts to 0-3 automatically
+  const items = d.topThree.slice(0, showCount);
+
+  // ── Deterministic vertical layout: every offset is computed from the one before it,
+  // so nothing overlaps and no space is wasted regardless of how many top-anime are shown. ──
+  const W = 720;
+  const M = 44; // side margin
+
+  const brandY = 50, brandSubY = 73;
+  const topPad = 118;                    // space after brand block
+  const periodTagY = topPad;             // small caps "JAHRES-RECAP" baseline
+  const periodTitleY = periodTagY + 46;  // big period label baseline
+
+  const statsGapAbove = 58;
+  const statY = periodTitleY + statsGapAbove;      // big stat numbers baseline
+  const statLabelY = statY + 30;                    // "Anime abgeschlossen" / "Stunden" baseline
+
+  const pillsGapAbove = 44;
+  const pillsTop = statLabelY + pillsGapAbove;      // top of genre/added pills
+  const pillH = 36;
+  const pillsBottom = pillsTop + pillH;
+
+  const hasPills = !!(d.topGenre || d.addedInPeriod > 0);
+  const sectionGapAbove = hasPills ? 46 : 30;
+  const sectionLabelY = (hasPills ? pillsBottom : statLabelY) + sectionGapAbove; // "TOP ANIME" baseline
+
+  const cardGapAbove = 26;
+  const cw = showCount === 1 ? 240 : showCount === 2 ? 220 : 195;
+  const baseCh = cw * 1.42;
+  const rankExtra = showCount === 3 ? 24 : 0; // podium raise for #1 only makes sense with 3
+  const cardTopMax = sectionLabelY + cardGapAbove; // topmost point among all cards (rank 1 if raised)
+  const cardBottom = cardTopMax + rankExtra + baseCh; // shared bottom edge for every card
+
+  const titleGapBelow = 26;
+  const bottomPad = 40;
+  const H = showCount > 0 ? Math.round(cardBottom + titleGapBelow + bottomPad) : Math.round(sectionLabelY + 60);
 
   const SCALE = 1.35;
-  const W = 720, H = 820;
   const canvas = document.createElement("canvas");
   canvas.width = W*SCALE; canvas.height = H*SCALE;
   const ctx = canvas.getContext("2d");
   ctx.scale(SCALE, SCALE);
 
-  // Preload top-3 cover images
-  const topImgs = await Promise.all(d.topThree.map(a => a.imageUrl ? loadImgStats(a.imageUrl).catch(()=>null) : Promise.resolve(null)));
+  // Preload cover images for the shown items
+  const topImgs = await Promise.all(items.map(a => a.imageUrl ? loadImgStats(a.imageUrl).catch(()=>null) : Promise.resolve(null)));
 
   // ── Background ──
   ctx.fillStyle = "#0b1020";
@@ -551,18 +586,18 @@ async function buildRecapCanvas(timeframe, periodKey) {
   overlay.addColorStop(0.65,"rgba(5,8,22,.8)"); overlay.addColorStop(1,"rgba(5,8,22,.98)");
   ctx.fillStyle = overlay; ctx.fillRect(0,0,W,H);
 
-  // Decorative top accent line
+  // Decorative top accent line — the only "sign-off" flourish, kept once, no repeated branding
   const accentGrad = ctx.createLinearGradient(0,0,W,0);
   accentGrad.addColorStop(0,"#ff4fd8"); accentGrad.addColorStop(1,"#a855f7");
   ctx.fillStyle = accentGrad;
   ctx.fillRect(0,0,W,5);
 
-  // ── Brand mark ──
+  // ── Brand mark (appears exactly once) ──
   ctx.textAlign = "left"; ctx.textBaseline = "middle";
   ctx.font = "700 26px 'Poppins', sans-serif"; ctx.fillStyle = "#ff7fe0";
-  ctx.fillText("˚ʚ Meowly ₊✧", 36, 54);
+  ctx.fillText("˚ʚ Meowly ₊✧", M, brandY);
   ctx.font = "600 12px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.5)";
-  ctx.fillText("A N I M E   T R A C K E R", 36, 77);
+  ctx.fillText("A N I M E   T R A C K E R", M, brandSubY);
   ctx.textBaseline = "alphabetic";
 
   const TF_LABEL = { year:"JAHRES-RECAP", month:"MONATS-RECAP", week:"WOCHEN-RECAP" };
@@ -570,60 +605,59 @@ async function buildRecapCanvas(timeframe, periodKey) {
   // ── Period heading ──
   ctx.textAlign = "center";
   ctx.font = "700 15px 'Poppins', sans-serif"; ctx.fillStyle = "#c084fc";
-  ctx.fillText(TF_LABEL[timeframe] || "RECAP", W/2, 132);
+  ctx.fillText(TF_LABEL[timeframe] || "RECAP", W/2, periodTagY);
   ctx.font = "800 42px 'Poppins', sans-serif"; ctx.fillStyle = "#fff";
-  ctx.fillText(d.label, W/2, 178);
+  ctx.fillText(d.label, W/2, periodTitleY);
 
   // ── Stat row: count + hours side by side ──
-  const statY = 260;
+  const statGapFromCenter = 130;
   ctx.font = "800 72px 'Poppins', sans-serif"; ctx.fillStyle = "#ff4fd8";
-  ctx.fillText(String(d.count), W/2 - 130, statY);
+  ctx.fillText(String(d.count), W/2 - statGapFromCenter, statY);
   ctx.font = "800 72px 'Poppins', sans-serif"; ctx.fillStyle = "#a855f7";
-  ctx.fillText(String(d.hours), W/2 + 130, statY);
+  ctx.fillText(String(d.hours), W/2 + statGapFromCenter, statY);
 
   ctx.font = "600 15px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.7)";
-  ctx.fillText("Anime abgeschlossen", W/2 - 130, statY + 32);
-  ctx.fillText("Stunden geschätzt", W/2 + 130, statY + 32);
+  ctx.fillText("Anime abgeschlossen", W/2 - statGapFromCenter, statLabelY);
+  ctx.fillText("Stunden geschätzt", W/2 + statGapFromCenter, statLabelY);
 
-  // Divider between the two stats
   ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(W/2, statY-55); ctx.lineTo(W/2, statY+15); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2, statY-52); ctx.lineTo(W/2, statLabelY+6); ctx.stroke();
 
-  // ── Top genre pill ──
-  let pillY = 340;
-  if (d.topGenre) {
-    ctx.font = "700 15px 'Poppins', sans-serif";
-    const pillText = `✦ Lieblingsgenre: ${d.topGenre}`;
-    const tw = ctx.measureText(pillText).width + 44;
-    ctx.fillStyle = "rgba(255,79,216,.16)"; ctx.strokeStyle = "rgba(255,79,216,.5)"; ctx.lineWidth = 1.3;
-    roundRectPathStats(ctx, W/2-tw/2, pillY, tw, 36, 18); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = "#ff9fe8";
-    ctx.fillText(pillText, W/2, pillY+24);
+  // ── Info pills row: genre + newly-added, side by side, fills the width evenly ──
+  if (hasPills) {
+    ctx.font = "700 14px 'Poppins', sans-serif";
+    const pills = [];
+    if (d.topGenre) pills.push({ text: `✦ ${d.topGenre}`, color: "#ff4fd8", textColor: "#ff9fe8" });
+    if (d.addedInPeriod > 0) pills.push({ text: `+${d.addedInPeriod} neu hinzugefügt`, color: "#a855f7", textColor: "#d8b4fe" });
+
+    const widths = pills.map(p => ctx.measureText(p.text).width + 38);
+    const pillGap = 14;
+    const totalPillsW = widths.reduce((s,w)=>s+w,0) + pillGap*(pills.length-1);
+    let px = W/2 - totalPillsW/2;
+    pills.forEach((p,i) => {
+      const w = widths[i];
+      ctx.fillStyle = p.color+"28"; ctx.strokeStyle = p.color+"70"; ctx.lineWidth = 1.3;
+      roundRectPathStats(ctx, px, pillsTop, w, pillH, pillH/2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = p.textColor;
+      ctx.fillText(p.text, px+w/2, pillsTop+pillH/2+5);
+      px += w + pillGap;
+    });
   }
 
-  // ── Top 3 anime row ──
-  const sectionY = pillY + 70;
-  ctx.font = "700 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.6)";
-  ctx.fillText(d.topThree.length > 1 ? "DEINE TOP-ANIME" : "DEIN TOP-ANIME", W/2, sectionY);
+  // ── Top anime section ──
+  if (showCount > 0) {
+    ctx.font = "700 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.6)";
+    const sectionLabel = showCount === 1 ? "DEIN TOP-ANIME" : `DEINE TOP ${showCount}`;
+    ctx.fillText(sectionLabel, W/2, sectionLabelY);
 
-  const cardY = sectionY + 30;
-  const RANK_COLORS = ["#fbbf24","#d1d5db","#f0a875"]; // gold, silver, bronze
-  const RANK_ICONS = ["🥇","🥈","🥉"];
-
-  if (d.topThree.length === 0) {
-    ctx.font = "500 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.45)";
-    ctx.fillText("Noch keine Bewertung in diesem Zeitraum", W/2, cardY + 100);
-  } else {
-    const n = d.topThree.length;
-    const cw = n === 1 ? 220 : 195, baseCh = cw * 1.42, gap = 20;
-    const totalW = cw*n + gap*(n-1);
+    const RANK_COLORS = ["#fbbf24","#d1d5db","#f0a875"];
+    const RANK_ICONS = ["🥇","🥈","🥉"];
+    const gap = 20;
+    const totalW = cw*showCount + gap*(showCount-1);
     let cx = W/2 - totalW/2;
-    const cardBottom = cardY + baseCh; // all cards share the same bottom edge (podium style)
 
-    d.topThree.forEach((a, i) => {
-      // Rank 1 grows upward (taller card) instead of the whole box shifting, so every
-      // card's bottom edge — and therefore the rating pill + title row — lines up.
-      const extra = (n === 3 && i === 0) ? 22 : 0;
+    items.forEach((a, i) => {
+      const extra = (showCount === 3 && i === 0) ? rankExtra : 0;
       const ch = baseCh + extra;
       const thisCy = cardBottom - ch;
 
@@ -643,7 +677,6 @@ async function buildRecapCanvas(timeframe, periodKey) {
         ctx.drawImage(img, cx+(cw-dw2)/2, thisCy+(ch-dh2)/2, dw2, dh2);
         ctx.restore();
       } else {
-        // Fallback placeholder so a missing cover doesn't look like a rendering glitch
         ctx.save();
         roundRectPathStats(ctx, cx, thisCy, cw, ch, 14);
         ctx.clip();
@@ -656,42 +689,37 @@ async function buildRecapCanvas(timeframe, periodKey) {
         ctx.restore();
       }
 
-      // Subtle border so the card reads clearly even against a busy blurred background
       ctx.strokeStyle = "rgba(255,255,255,.1)"; ctx.lineWidth = 1;
       roundRectPathStats(ctx, cx, thisCy, cw, ch, 14); ctx.stroke();
 
-      // Rank badge, top-left
-      ctx.font = "24px sans-serif";
-      ctx.textAlign = "left";
-      ctx.fillText(RANK_ICONS[i] || "", cx+8, thisCy+30);
-      ctx.textAlign = "center";
+      if (showCount > 1) {
+        ctx.font = "24px sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText(RANK_ICONS[i] || "", cx+8, thisCy+30);
+        ctx.textAlign = "center";
+      }
 
-      // Rating pill — fully inside the card, small gap above the bottom edge
       ctx.font = "700 13px 'Poppins', sans-serif";
       const rs = a.rating.toFixed(1);
       const rw = ctx.measureText(`⭐ ${rs}`).width + 22;
-      const pillH = 28, pillBottomGap = 10;
-      const pillTop = cardBottom - pillBottomGap - pillH;
-      ctx.fillStyle = "rgba(5,8,22,.88)"; ctx.strokeStyle = RANK_COLORS[i]+"90"; ctx.lineWidth = 1.2;
-      roundRectPathStats(ctx, cx+cw/2-rw/2, pillTop, rw, pillH, pillH/2); ctx.fill(); ctx.stroke();
+      const pillHgt = 28, pillBottomGap = 10;
+      const ratingPillTop = cardBottom - pillBottomGap - pillHgt;
+      ctx.fillStyle = "rgba(5,8,22,.88)"; ctx.strokeStyle = (RANK_COLORS[i]||"#ff4fd8")+"90"; ctx.lineWidth = 1.2;
+      roundRectPathStats(ctx, cx+cw/2-rw/2, ratingPillTop, rw, pillHgt, pillHgt/2); ctx.fill(); ctx.stroke();
       ctx.fillStyle = "#fbbf24";
-      ctx.fillText(`⭐ ${rs}`, cx+cw/2, pillTop+pillH/2+4.5);
+      ctx.fillText(`⭐ ${rs}`, cx+cw/2, ratingPillTop+pillHgt/2+4.5);
 
-      // Title below card — aligned the same for all three since cardBottom is shared
       ctx.font = "700 13px 'Poppins', sans-serif"; ctx.fillStyle = "#fff";
-      const title = a.title.length > 22 ? a.title.slice(0,22)+"…" : a.title;
-      ctx.fillText(title, cx+cw/2, cardBottom+24);
+      const maxChars = showCount === 1 ? 28 : 22;
+      const title = a.title.length > maxChars ? a.title.slice(0,maxChars)+"…" : a.title;
+      ctx.fillText(title, cx+cw/2, cardBottom+titleGapBelow);
 
       cx += cw + gap;
     });
+  } else {
+    ctx.font = "500 16px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText("Noch keine Bewertung in diesem Zeitraum", W/2, sectionLabelY+40);
   }
-
-  // ── Footer: thin divider + subtle sign-off ──
-  ctx.strokeStyle = "rgba(255,255,255,.1)"; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(60, H-56); ctx.lineTo(W-60, H-56); ctx.stroke();
-  ctx.textAlign = "center";
-  ctx.font = "500 13px 'Poppins', sans-serif"; ctx.fillStyle = "rgba(255,255,255,.35)";
-  ctx.fillText("Erstellt mit ˚ʚ Meowly ₊✧ Anime Tracker", W/2, H-28);
 
   ctx.textAlign = "left";
   return canvas;
